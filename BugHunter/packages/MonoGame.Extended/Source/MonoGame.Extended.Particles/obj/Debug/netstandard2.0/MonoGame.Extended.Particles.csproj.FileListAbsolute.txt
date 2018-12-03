@@ -1,0 +1,12 @@
+C:\Users\Alexa\Documents\Werkstätte\Projekt\EscapeRoom\V4\EscapeRoom\packages\MonoGame.Extended\Source\MonoGame.Extended.Particles\bin\Debug\netstandard2.0\MonoGame.Extended.Particles.deps.json
+C:\Users\Alexa\Documents\Werkstätte\Projekt\EscapeRoom\V4\EscapeRoom\packages\MonoGame.Extended\Source\MonoGame.Extended.Particles\bin\Debug\netstandard2.0\MonoGame.Extended.Particles.dll
+C:\Users\Alexa\Documents\Werkstätte\Projekt\EscapeRoom\V4\EscapeRoom\packages\MonoGame.Extended\Source\MonoGame.Extended.Particles\bin\Debug\netstandard2.0\MonoGame.Extended.Particles.pdb
+C:\Users\Alexa\Documents\Werkstätte\Projekt\EscapeRoom\V4\EscapeRoom\packages\MonoGame.Extended\Source\MonoGame.Extended.Particles\bin\Debug\netstandard2.0\MonoGame.Extended.dll
+C:\Users\Alexa\Documents\Werkstätte\Projekt\EscapeRoom\V4\EscapeRoom\packages\MonoGame.Extended\Source\MonoGame.Extended.Particles\bin\Debug\netstandard2.0\MonoGame.Extended.pdb
+C:\Users\Alexa\Documents\Werkstätte\Projekt\EscapeRoom\V4\EscapeRoom\packages\MonoGame.Extended\Source\MonoGame.Extended.Particles\obj\Debug\netstandard2.0\MonoGame.Extended.Particles.csprojAssemblyReference.cache
+C:\Users\Alexa\Documents\Werkstätte\Projekt\EscapeRoom\V4\EscapeRoom\packages\MonoGame.Extended\Source\MonoGame.Extended.Particles\obj\Debug\netstandard2.0\MonoGame.Extended.Particles.csproj.CoreCompileInputs.cache
+C:\Users\Alexa\Documents\Werkstätte\Projekt\EscapeRoom\V4\EscapeRoom\packages\MonoGame.Extended\Source\MonoGame.Extended.Particles\obj\Debug\netstandard2.0\MonoGame.Extended.Particles.AssemblyInfoInputs.cache
+C:\Users\Alexa\Documents\Werkstätte\Projekt\EscapeRoom\V4\EscapeRoom\packages\MonoGame.Extended\Source\MonoGame.Extended.Particles\obj\Debug\netstandard2.0\MonoGame.Extended.Particles.AssemblyInfo.cs
+C:\Users\Alexa\Documents\Werkstätte\Projekt\EscapeRoom\V4\EscapeRoom\packages\MonoGame.Extended\Source\MonoGame.Extended.Particles\obj\Debug\netstandard2.0\MonoGame.Extended.Particles.csproj.CopyComplete
+C:\Users\Alexa\Documents\Werkstätte\Projekt\EscapeRoom\V4\EscapeRoom\packages\MonoGame.Extended\Source\MonoGame.Extended.Particles\obj\Debug\netstandard2.0\MonoGame.Extended.Particles.dll
+C:\Users\Alexa\Documents\Werkstätte\Projekt\EscapeRoom\V4\EscapeRoom\packages\MonoGame.Extended\Source\MonoGame.Extended.Particles\obj\Debug\netstandard2.0\MonoGame.Extended.Particles.pdb

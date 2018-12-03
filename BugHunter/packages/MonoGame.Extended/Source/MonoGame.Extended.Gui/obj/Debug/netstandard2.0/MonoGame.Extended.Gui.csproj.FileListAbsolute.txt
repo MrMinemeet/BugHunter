@@ -1,0 +1,14 @@
+C:\Users\Alexa\Documents\Werkstätte\Projekt\EscapeRoom\V4\EscapeRoom\packages\MonoGame.Extended\Source\MonoGame.Extended.Gui\bin\Debug\netstandard2.0\MonoGame.Extended.Gui.deps.json
+C:\Users\Alexa\Documents\Werkstätte\Projekt\EscapeRoom\V4\EscapeRoom\packages\MonoGame.Extended\Source\MonoGame.Extended.Gui\bin\Debug\netstandard2.0\MonoGame.Extended.Gui.dll
+C:\Users\Alexa\Documents\Werkstätte\Projekt\EscapeRoom\V4\EscapeRoom\packages\MonoGame.Extended\Source\MonoGame.Extended.Gui\bin\Debug\netstandard2.0\MonoGame.Extended.Gui.pdb
+C:\Users\Alexa\Documents\Werkstätte\Projekt\EscapeRoom\V4\EscapeRoom\packages\MonoGame.Extended\Source\MonoGame.Extended.Gui\bin\Debug\netstandard2.0\MonoGame.Extended.dll
+C:\Users\Alexa\Documents\Werkstätte\Projekt\EscapeRoom\V4\EscapeRoom\packages\MonoGame.Extended\Source\MonoGame.Extended.Gui\bin\Debug\netstandard2.0\MonoGame.Extended.Input.dll
+C:\Users\Alexa\Documents\Werkstätte\Projekt\EscapeRoom\V4\EscapeRoom\packages\MonoGame.Extended\Source\MonoGame.Extended.Gui\bin\Debug\netstandard2.0\MonoGame.Extended.Input.pdb
+C:\Users\Alexa\Documents\Werkstätte\Projekt\EscapeRoom\V4\EscapeRoom\packages\MonoGame.Extended\Source\MonoGame.Extended.Gui\bin\Debug\netstandard2.0\MonoGame.Extended.pdb
+C:\Users\Alexa\Documents\Werkstätte\Projekt\EscapeRoom\V4\EscapeRoom\packages\MonoGame.Extended\Source\MonoGame.Extended.Gui\obj\Debug\netstandard2.0\MonoGame.Extended.Gui.csprojAssemblyReference.cache
+C:\Users\Alexa\Documents\Werkstätte\Projekt\EscapeRoom\V4\EscapeRoom\packages\MonoGame.Extended\Source\MonoGame.Extended.Gui\obj\Debug\netstandard2.0\MonoGame.Extended.Gui.csproj.CoreCompileInputs.cache
+C:\Users\Alexa\Documents\Werkstätte\Projekt\EscapeRoom\V4\EscapeRoom\packages\MonoGame.Extended\Source\MonoGame.Extended.Gui\obj\Debug\netstandard2.0\MonoGame.Extended.Gui.AssemblyInfoInputs.cache
+C:\Users\Alexa\Documents\Werkstätte\Projekt\EscapeRoom\V4\EscapeRoom\packages\MonoGame.Extended\Source\MonoGame.Extended.Gui\obj\Debug\netstandard2.0\MonoGame.Extended.Gui.AssemblyInfo.cs
+C:\Users\Alexa\Documents\Werkstätte\Projekt\EscapeRoom\V4\EscapeRoom\packages\MonoGame.Extended\Source\MonoGame.Extended.Gui\obj\Debug\netstandard2.0\MonoGame.Extended.Gui.csproj.CopyComplete
+C:\Users\Alexa\Documents\Werkstätte\Projekt\EscapeRoom\V4\EscapeRoom\packages\MonoGame.Extended\Source\MonoGame.Extended.Gui\obj\Debug\netstandard2.0\MonoGame.Extended.Gui.dll
+C:\Users\Alexa\Documents\Werkstätte\Projekt\EscapeRoom\V4\EscapeRoom\packages\MonoGame.Extended\Source\MonoGame.Extended.Gui\obj\Debug\netstandard2.0\MonoGame.Extended.Gui.pdb

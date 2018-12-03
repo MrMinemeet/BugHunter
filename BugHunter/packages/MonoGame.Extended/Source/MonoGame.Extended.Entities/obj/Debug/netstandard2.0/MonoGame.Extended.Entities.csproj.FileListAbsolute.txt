@@ -1,0 +1,14 @@
+C:\Users\Alexa\Documents\Werkstätte\Projekt\EscapeRoom\V4\EscapeRoom\packages\MonoGame.Extended\Source\MonoGame.Extended.Entities\bin\Debug\netstandard2.0\MonoGame.Extended.Entities.deps.json
+C:\Users\Alexa\Documents\Werkstätte\Projekt\EscapeRoom\V4\EscapeRoom\packages\MonoGame.Extended\Source\MonoGame.Extended.Entities\bin\Debug\netstandard2.0\MonoGame.Extended.Entities.dll
+C:\Users\Alexa\Documents\Werkstätte\Projekt\EscapeRoom\V4\EscapeRoom\packages\MonoGame.Extended\Source\MonoGame.Extended.Entities\bin\Debug\netstandard2.0\MonoGame.Extended.Entities.pdb
+C:\Users\Alexa\Documents\Werkstätte\Projekt\EscapeRoom\V4\EscapeRoom\packages\MonoGame.Extended\Source\MonoGame.Extended.Entities\bin\Debug\netstandard2.0\MonoGame.Extended.Animations.dll
+C:\Users\Alexa\Documents\Werkstätte\Projekt\EscapeRoom\V4\EscapeRoom\packages\MonoGame.Extended\Source\MonoGame.Extended.Entities\bin\Debug\netstandard2.0\MonoGame.Extended.dll
+C:\Users\Alexa\Documents\Werkstätte\Projekt\EscapeRoom\V4\EscapeRoom\packages\MonoGame.Extended\Source\MonoGame.Extended.Entities\bin\Debug\netstandard2.0\MonoGame.Extended.Animations.pdb
+C:\Users\Alexa\Documents\Werkstätte\Projekt\EscapeRoom\V4\EscapeRoom\packages\MonoGame.Extended\Source\MonoGame.Extended.Entities\bin\Debug\netstandard2.0\MonoGame.Extended.pdb
+C:\Users\Alexa\Documents\Werkstätte\Projekt\EscapeRoom\V4\EscapeRoom\packages\MonoGame.Extended\Source\MonoGame.Extended.Entities\obj\Debug\netstandard2.0\MonoGame.Extended.Entities.csprojAssemblyReference.cache
+C:\Users\Alexa\Documents\Werkstätte\Projekt\EscapeRoom\V4\EscapeRoom\packages\MonoGame.Extended\Source\MonoGame.Extended.Entities\obj\Debug\netstandard2.0\MonoGame.Extended.Entities.csproj.CoreCompileInputs.cache
+C:\Users\Alexa\Documents\Werkstätte\Projekt\EscapeRoom\V4\EscapeRoom\packages\MonoGame.Extended\Source\MonoGame.Extended.Entities\obj\Debug\netstandard2.0\MonoGame.Extended.Entities.AssemblyInfoInputs.cache
+C:\Users\Alexa\Documents\Werkstätte\Projekt\EscapeRoom\V4\EscapeRoom\packages\MonoGame.Extended\Source\MonoGame.Extended.Entities\obj\Debug\netstandard2.0\MonoGame.Extended.Entities.AssemblyInfo.cs
+C:\Users\Alexa\Documents\Werkstätte\Projekt\EscapeRoom\V4\EscapeRoom\packages\MonoGame.Extended\Source\MonoGame.Extended.Entities\obj\Debug\netstandard2.0\MonoGame.Extended.Entities.csproj.CopyComplete
+C:\Users\Alexa\Documents\Werkstätte\Projekt\EscapeRoom\V4\EscapeRoom\packages\MonoGame.Extended\Source\MonoGame.Extended.Entities\obj\Debug\netstandard2.0\MonoGame.Extended.Entities.dll
+C:\Users\Alexa\Documents\Werkstätte\Projekt\EscapeRoom\V4\EscapeRoom\packages\MonoGame.Extended\Source\MonoGame.Extended.Entities\obj\Debug\netstandard2.0\MonoGame.Extended.Entities.pdb

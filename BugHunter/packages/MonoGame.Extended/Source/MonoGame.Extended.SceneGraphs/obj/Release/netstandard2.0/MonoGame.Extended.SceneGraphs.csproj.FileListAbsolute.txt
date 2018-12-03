@@ -1,0 +1,48 @@
+C:\Users\Alexa\Desktop\file\MonoGame.Extended\Source\MonoGame.Extended.SceneGraphs\bin\Release\netstandard2.0\MonoGame.Extended.SceneGraphs.deps.json
+C:\Users\Alexa\Desktop\file\MonoGame.Extended\Source\MonoGame.Extended.SceneGraphs\bin\Release\netstandard2.0\MonoGame.Extended.SceneGraphs.dll
+C:\Users\Alexa\Desktop\file\MonoGame.Extended\Source\MonoGame.Extended.SceneGraphs\bin\Release\netstandard2.0\MonoGame.Extended.SceneGraphs.pdb
+C:\Users\Alexa\Desktop\file\MonoGame.Extended\Source\MonoGame.Extended.SceneGraphs\bin\Release\netstandard2.0\MonoGame.Extended.dll
+C:\Users\Alexa\Desktop\file\MonoGame.Extended\Source\MonoGame.Extended.SceneGraphs\bin\Release\netstandard2.0\MonoGame.Extended.pdb
+C:\Users\Alexa\Desktop\file\MonoGame.Extended\Source\MonoGame.Extended.SceneGraphs\obj\Release\netstandard2.0\MonoGame.Extended.SceneGraphs.csproj.CoreCompileInputs.cache
+C:\Users\Alexa\Desktop\file\MonoGame.Extended\Source\MonoGame.Extended.SceneGraphs\obj\Release\netstandard2.0\MonoGame.Extended.SceneGraphs.AssemblyInfoInputs.cache
+C:\Users\Alexa\Desktop\file\MonoGame.Extended\Source\MonoGame.Extended.SceneGraphs\obj\Release\netstandard2.0\MonoGame.Extended.SceneGraphs.AssemblyInfo.cs
+C:\Users\Alexa\Desktop\file\MonoGame.Extended\Source\MonoGame.Extended.SceneGraphs\obj\Release\netstandard2.0\MonoGame.Extended.SceneGraphs.csproj.CopyComplete
+C:\Users\Alexa\Desktop\file\MonoGame.Extended\Source\MonoGame.Extended.SceneGraphs\obj\Release\netstandard2.0\MonoGame.Extended.SceneGraphs.dll
+C:\Users\Alexa\Desktop\file\MonoGame.Extended\Source\MonoGame.Extended.SceneGraphs\obj\Release\netstandard2.0\MonoGame.Extended.SceneGraphs.pdb
+C:\Users\Alexa\Desktop\file\MonoGame.Extended\Source\MonoGame.Extended.SceneGraphs\obj\Release\netstandard2.0\MonoGame.Extended.SceneGraphs.csprojAssemblyReference.cache
+C:\Users\Alexa\Google Drive\Schule\4AHELS\Werkstätte\Projekt\EscapeRoom\V4\EscapeRoom\packages\MonoGame.Extended\Source\MonoGame.Extended.SceneGraphs\bin\Release\netstandard2.0\MonoGame.Extended.SceneGraphs.deps.json
+C:\Users\Alexa\Google Drive\Schule\4AHELS\Werkstätte\Projekt\EscapeRoom\V4\EscapeRoom\packages\MonoGame.Extended\Source\MonoGame.Extended.SceneGraphs\bin\Release\netstandard2.0\MonoGame.Extended.SceneGraphs.dll
+C:\Users\Alexa\Google Drive\Schule\4AHELS\Werkstätte\Projekt\EscapeRoom\V4\EscapeRoom\packages\MonoGame.Extended\Source\MonoGame.Extended.SceneGraphs\bin\Release\netstandard2.0\MonoGame.Extended.SceneGraphs.pdb
+C:\Users\Alexa\Google Drive\Schule\4AHELS\Werkstätte\Projekt\EscapeRoom\V4\EscapeRoom\packages\MonoGame.Extended\Source\MonoGame.Extended.SceneGraphs\bin\Release\netstandard2.0\MonoGame.Extended.dll
+C:\Users\Alexa\Google Drive\Schule\4AHELS\Werkstätte\Projekt\EscapeRoom\V4\EscapeRoom\packages\MonoGame.Extended\Source\MonoGame.Extended.SceneGraphs\bin\Release\netstandard2.0\MonoGame.Extended.pdb
+C:\Users\Alexa\Google Drive\Schule\4AHELS\Werkstätte\Projekt\EscapeRoom\V4\EscapeRoom\packages\MonoGame.Extended\Source\MonoGame.Extended.SceneGraphs\obj\Release\netstandard2.0\MonoGame.Extended.SceneGraphs.csprojAssemblyReference.cache
+C:\Users\Alexa\Google Drive\Schule\4AHELS\Werkstätte\Projekt\EscapeRoom\V4\EscapeRoom\packages\MonoGame.Extended\Source\MonoGame.Extended.SceneGraphs\obj\Release\netstandard2.0\MonoGame.Extended.SceneGraphs.csproj.CoreCompileInputs.cache
+C:\Users\Alexa\Google Drive\Schule\4AHELS\Werkstätte\Projekt\EscapeRoom\V4\EscapeRoom\packages\MonoGame.Extended\Source\MonoGame.Extended.SceneGraphs\obj\Release\netstandard2.0\MonoGame.Extended.SceneGraphs.AssemblyInfoInputs.cache
+C:\Users\Alexa\Google Drive\Schule\4AHELS\Werkstätte\Projekt\EscapeRoom\V4\EscapeRoom\packages\MonoGame.Extended\Source\MonoGame.Extended.SceneGraphs\obj\Release\netstandard2.0\MonoGame.Extended.SceneGraphs.AssemblyInfo.cs
+C:\Users\Alexa\Google Drive\Schule\4AHELS\Werkstätte\Projekt\EscapeRoom\V4\EscapeRoom\packages\MonoGame.Extended\Source\MonoGame.Extended.SceneGraphs\obj\Release\netstandard2.0\MonoGame.Extended.SceneGraphs.csproj.CopyComplete
+C:\Users\Alexa\Google Drive\Schule\4AHELS\Werkstätte\Projekt\EscapeRoom\V4\EscapeRoom\packages\MonoGame.Extended\Source\MonoGame.Extended.SceneGraphs\obj\Release\netstandard2.0\MonoGame.Extended.SceneGraphs.dll
+C:\Users\Alexa\Google Drive\Schule\4AHELS\Werkstätte\Projekt\EscapeRoom\V4\EscapeRoom\packages\MonoGame.Extended\Source\MonoGame.Extended.SceneGraphs\obj\Release\netstandard2.0\MonoGame.Extended.SceneGraphs.pdb
+C:\Users\Alexa\Documents\Werkstätte\Projekt\EscapeRoom\V4\EscapeRoom\packages\MonoGame.Extended\Source\MonoGame.Extended.SceneGraphs\bin\Release\netstandard2.0\MonoGame.Extended.SceneGraphs.deps.json
+C:\Users\Alexa\Documents\Werkstätte\Projekt\EscapeRoom\V4\EscapeRoom\packages\MonoGame.Extended\Source\MonoGame.Extended.SceneGraphs\bin\Release\netstandard2.0\MonoGame.Extended.SceneGraphs.dll
+C:\Users\Alexa\Documents\Werkstätte\Projekt\EscapeRoom\V4\EscapeRoom\packages\MonoGame.Extended\Source\MonoGame.Extended.SceneGraphs\bin\Release\netstandard2.0\MonoGame.Extended.SceneGraphs.pdb
+C:\Users\Alexa\Documents\Werkstätte\Projekt\EscapeRoom\V4\EscapeRoom\packages\MonoGame.Extended\Source\MonoGame.Extended.SceneGraphs\bin\Release\netstandard2.0\MonoGame.Extended.dll
+C:\Users\Alexa\Documents\Werkstätte\Projekt\EscapeRoom\V4\EscapeRoom\packages\MonoGame.Extended\Source\MonoGame.Extended.SceneGraphs\bin\Release\netstandard2.0\MonoGame.Extended.pdb
+C:\Users\Alexa\Documents\Werkstätte\Projekt\EscapeRoom\V4\EscapeRoom\packages\MonoGame.Extended\Source\MonoGame.Extended.SceneGraphs\obj\Release\netstandard2.0\MonoGame.Extended.SceneGraphs.csprojAssemblyReference.cache
+C:\Users\Alexa\Documents\Werkstätte\Projekt\EscapeRoom\V4\EscapeRoom\packages\MonoGame.Extended\Source\MonoGame.Extended.SceneGraphs\obj\Release\netstandard2.0\MonoGame.Extended.SceneGraphs.csproj.CoreCompileInputs.cache
+C:\Users\Alexa\Documents\Werkstätte\Projekt\EscapeRoom\V4\EscapeRoom\packages\MonoGame.Extended\Source\MonoGame.Extended.SceneGraphs\obj\Release\netstandard2.0\MonoGame.Extended.SceneGraphs.AssemblyInfoInputs.cache
+C:\Users\Alexa\Documents\Werkstätte\Projekt\EscapeRoom\V4\EscapeRoom\packages\MonoGame.Extended\Source\MonoGame.Extended.SceneGraphs\obj\Release\netstandard2.0\MonoGame.Extended.SceneGraphs.AssemblyInfo.cs
+C:\Users\Alexa\Documents\Werkstätte\Projekt\EscapeRoom\V4\EscapeRoom\packages\MonoGame.Extended\Source\MonoGame.Extended.SceneGraphs\obj\Release\netstandard2.0\MonoGame.Extended.SceneGraphs.csproj.CopyComplete
+C:\Users\Alexa\Documents\Werkstätte\Projekt\EscapeRoom\V4\EscapeRoom\packages\MonoGame.Extended\Source\MonoGame.Extended.SceneGraphs\obj\Release\netstandard2.0\MonoGame.Extended.SceneGraphs.dll
+C:\Users\Alexa\Documents\Werkstätte\Projekt\EscapeRoom\V4\EscapeRoom\packages\MonoGame.Extended\Source\MonoGame.Extended.SceneGraphs\obj\Release\netstandard2.0\MonoGame.Extended.SceneGraphs.pdb
+F:\Google Drive\Schule\4AHELS\Werkstätte\Escaperoom\V4\EscapeRoom\packages\MonoGame.Extended\Source\MonoGame.Extended.SceneGraphs\bin\Release\netstandard2.0\MonoGame.Extended.SceneGraphs.deps.json
+F:\Google Drive\Schule\4AHELS\Werkstätte\Escaperoom\V4\EscapeRoom\packages\MonoGame.Extended\Source\MonoGame.Extended.SceneGraphs\bin\Release\netstandard2.0\MonoGame.Extended.SceneGraphs.dll
+F:\Google Drive\Schule\4AHELS\Werkstätte\Escaperoom\V4\EscapeRoom\packages\MonoGame.Extended\Source\MonoGame.Extended.SceneGraphs\bin\Release\netstandard2.0\MonoGame.Extended.SceneGraphs.pdb
+F:\Google Drive\Schule\4AHELS\Werkstätte\Escaperoom\V4\EscapeRoom\packages\MonoGame.Extended\Source\MonoGame.Extended.SceneGraphs\bin\Release\netstandard2.0\MonoGame.Extended.dll
+F:\Google Drive\Schule\4AHELS\Werkstätte\Escaperoom\V4\EscapeRoom\packages\MonoGame.Extended\Source\MonoGame.Extended.SceneGraphs\bin\Release\netstandard2.0\MonoGame.Extended.pdb
+F:\Google Drive\Schule\4AHELS\Werkstätte\Escaperoom\V4\EscapeRoom\packages\MonoGame.Extended\Source\MonoGame.Extended.SceneGraphs\obj\Release\netstandard2.0\MonoGame.Extended.SceneGraphs.csprojAssemblyReference.cache
+F:\Google Drive\Schule\4AHELS\Werkstätte\Escaperoom\V4\EscapeRoom\packages\MonoGame.Extended\Source\MonoGame.Extended.SceneGraphs\obj\Release\netstandard2.0\MonoGame.Extended.SceneGraphs.csproj.CoreCompileInputs.cache
+F:\Google Drive\Schule\4AHELS\Werkstätte\Escaperoom\V4\EscapeRoom\packages\MonoGame.Extended\Source\MonoGame.Extended.SceneGraphs\obj\Release\netstandard2.0\MonoGame.Extended.SceneGraphs.AssemblyInfoInputs.cache
+F:\Google Drive\Schule\4AHELS\Werkstätte\Escaperoom\V4\EscapeRoom\packages\MonoGame.Extended\Source\MonoGame.Extended.SceneGraphs\obj\Release\netstandard2.0\MonoGame.Extended.SceneGraphs.AssemblyInfo.cs
+F:\Google Drive\Schule\4AHELS\Werkstätte\Escaperoom\V4\EscapeRoom\packages\MonoGame.Extended\Source\MonoGame.Extended.SceneGraphs\obj\Release\netstandard2.0\MonoGame.Extended.SceneGraphs.csproj.CopyComplete
+F:\Google Drive\Schule\4AHELS\Werkstätte\Escaperoom\V4\EscapeRoom\packages\MonoGame.Extended\Source\MonoGame.Extended.SceneGraphs\obj\Release\netstandard2.0\MonoGame.Extended.SceneGraphs.dll
+F:\Google Drive\Schule\4AHELS\Werkstätte\Escaperoom\V4\EscapeRoom\packages\MonoGame.Extended\Source\MonoGame.Extended.SceneGraphs\obj\Release\netstandard2.0\MonoGame.Extended.SceneGraphs.pdb

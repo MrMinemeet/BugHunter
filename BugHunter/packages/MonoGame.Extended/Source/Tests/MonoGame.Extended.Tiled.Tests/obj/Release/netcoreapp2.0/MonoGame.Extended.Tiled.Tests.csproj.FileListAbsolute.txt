@@ -1,0 +1,84 @@
+C:\Users\Alexa\Desktop\file\MonoGame.Extended\Source\Tests\MonoGame.Extended.Tiled.Tests\bin\Release\netcoreapp2.0\xunit.runner.visualstudio.dotnetcore.testadapter.dll
+C:\Users\Alexa\Desktop\file\MonoGame.Extended\Source\Tests\MonoGame.Extended.Tiled.Tests\bin\Release\netcoreapp2.0\xunit.runner.reporters.netcoreapp10.dll
+C:\Users\Alexa\Desktop\file\MonoGame.Extended\Source\Tests\MonoGame.Extended.Tiled.Tests\bin\Release\netcoreapp2.0\xunit.runner.utility.netcoreapp10.dll
+C:\Users\Alexa\Desktop\file\MonoGame.Extended\Source\Tests\MonoGame.Extended.Tiled.Tests\bin\Release\netcoreapp2.0\MonoGame.Extended.Tiled.Tests.deps.json
+C:\Users\Alexa\Desktop\file\MonoGame.Extended\Source\Tests\MonoGame.Extended.Tiled.Tests\bin\Release\netcoreapp2.0\MonoGame.Extended.Tiled.Tests.runtimeconfig.json
+C:\Users\Alexa\Desktop\file\MonoGame.Extended\Source\Tests\MonoGame.Extended.Tiled.Tests\bin\Release\netcoreapp2.0\MonoGame.Extended.Tiled.Tests.runtimeconfig.dev.json
+C:\Users\Alexa\Desktop\file\MonoGame.Extended\Source\Tests\MonoGame.Extended.Tiled.Tests\bin\Release\netcoreapp2.0\MonoGame.Extended.Tiled.Tests.dll
+C:\Users\Alexa\Desktop\file\MonoGame.Extended\Source\Tests\MonoGame.Extended.Tiled.Tests\bin\Release\netcoreapp2.0\MonoGame.Extended.Tiled.Tests.pdb
+C:\Users\Alexa\Desktop\file\MonoGame.Extended\Source\Tests\MonoGame.Extended.Tiled.Tests\bin\Release\netcoreapp2.0\MonoGame.Extended.dll
+C:\Users\Alexa\Desktop\file\MonoGame.Extended\Source\Tests\MonoGame.Extended.Tiled.Tests\bin\Release\netcoreapp2.0\MonoGame.Extended.Graphics.dll
+C:\Users\Alexa\Desktop\file\MonoGame.Extended\Source\Tests\MonoGame.Extended.Tiled.Tests\bin\Release\netcoreapp2.0\MonoGame.Extended.Tiled.dll
+C:\Users\Alexa\Desktop\file\MonoGame.Extended\Source\Tests\MonoGame.Extended.Tiled.Tests\bin\Release\netcoreapp2.0\MonoGame.Extended.Tiled.pdb
+C:\Users\Alexa\Desktop\file\MonoGame.Extended\Source\Tests\MonoGame.Extended.Tiled.Tests\bin\Release\netcoreapp2.0\MonoGame.Extended.pdb
+C:\Users\Alexa\Desktop\file\MonoGame.Extended\Source\Tests\MonoGame.Extended.Tiled.Tests\bin\Release\netcoreapp2.0\MonoGame.Extended.Graphics.pdb
+C:\Users\Alexa\Desktop\file\MonoGame.Extended\Source\Tests\MonoGame.Extended.Tiled.Tests\obj\Release\netcoreapp2.0\MonoGame.Extended.Tiled.Tests.csprojAssemblyReference.cache
+C:\Users\Alexa\Desktop\file\MonoGame.Extended\Source\Tests\MonoGame.Extended.Tiled.Tests\obj\Release\netcoreapp2.0\MonoGame.Extended.Tiled.Tests.csproj.CoreCompileInputs.cache
+C:\Users\Alexa\Desktop\file\MonoGame.Extended\Source\Tests\MonoGame.Extended.Tiled.Tests\obj\Release\netcoreapp2.0\MonoGame.Extended.Tiled.Tests.AssemblyInfoInputs.cache
+C:\Users\Alexa\Desktop\file\MonoGame.Extended\Source\Tests\MonoGame.Extended.Tiled.Tests\obj\Release\netcoreapp2.0\MonoGame.Extended.Tiled.Tests.AssemblyInfo.cs
+C:\Users\Alexa\Desktop\file\MonoGame.Extended\Source\Tests\MonoGame.Extended.Tiled.Tests\obj\Release\netcoreapp2.0\MonoGame.Extended.Tiled.Tests.csproj.CopyComplete
+C:\Users\Alexa\Desktop\file\MonoGame.Extended\Source\Tests\MonoGame.Extended.Tiled.Tests\obj\Release\netcoreapp2.0\MonoGame.Extended.Tiled.Tests.dll
+C:\Users\Alexa\Desktop\file\MonoGame.Extended\Source\Tests\MonoGame.Extended.Tiled.Tests\obj\Release\netcoreapp2.0\MonoGame.Extended.Tiled.Tests.pdb
+C:\Users\Alexa\Google Drive\Schule\4AHELS\Werkstätte\Projekt\EscapeRoom\V4\EscapeRoom\packages\MonoGame.Extended\Source\Tests\MonoGame.Extended.Tiled.Tests\bin\Release\netcoreapp2.0\xunit.runner.visualstudio.dotnetcore.testadapter.dll
+C:\Users\Alexa\Google Drive\Schule\4AHELS\Werkstätte\Projekt\EscapeRoom\V4\EscapeRoom\packages\MonoGame.Extended\Source\Tests\MonoGame.Extended.Tiled.Tests\bin\Release\netcoreapp2.0\xunit.runner.reporters.netcoreapp10.dll
+C:\Users\Alexa\Google Drive\Schule\4AHELS\Werkstätte\Projekt\EscapeRoom\V4\EscapeRoom\packages\MonoGame.Extended\Source\Tests\MonoGame.Extended.Tiled.Tests\bin\Release\netcoreapp2.0\xunit.runner.utility.netcoreapp10.dll
+C:\Users\Alexa\Google Drive\Schule\4AHELS\Werkstätte\Projekt\EscapeRoom\V4\EscapeRoom\packages\MonoGame.Extended\Source\Tests\MonoGame.Extended.Tiled.Tests\bin\Release\netcoreapp2.0\MonoGame.Extended.Tiled.Tests.deps.json
+C:\Users\Alexa\Google Drive\Schule\4AHELS\Werkstätte\Projekt\EscapeRoom\V4\EscapeRoom\packages\MonoGame.Extended\Source\Tests\MonoGame.Extended.Tiled.Tests\bin\Release\netcoreapp2.0\MonoGame.Extended.Tiled.Tests.runtimeconfig.json
+C:\Users\Alexa\Google Drive\Schule\4AHELS\Werkstätte\Projekt\EscapeRoom\V4\EscapeRoom\packages\MonoGame.Extended\Source\Tests\MonoGame.Extended.Tiled.Tests\bin\Release\netcoreapp2.0\MonoGame.Extended.Tiled.Tests.runtimeconfig.dev.json
+C:\Users\Alexa\Google Drive\Schule\4AHELS\Werkstätte\Projekt\EscapeRoom\V4\EscapeRoom\packages\MonoGame.Extended\Source\Tests\MonoGame.Extended.Tiled.Tests\bin\Release\netcoreapp2.0\MonoGame.Extended.Tiled.Tests.dll
+C:\Users\Alexa\Google Drive\Schule\4AHELS\Werkstätte\Projekt\EscapeRoom\V4\EscapeRoom\packages\MonoGame.Extended\Source\Tests\MonoGame.Extended.Tiled.Tests\bin\Release\netcoreapp2.0\MonoGame.Extended.Tiled.Tests.pdb
+C:\Users\Alexa\Google Drive\Schule\4AHELS\Werkstätte\Projekt\EscapeRoom\V4\EscapeRoom\packages\MonoGame.Extended\Source\Tests\MonoGame.Extended.Tiled.Tests\bin\Release\netcoreapp2.0\MonoGame.Extended.dll
+C:\Users\Alexa\Google Drive\Schule\4AHELS\Werkstätte\Projekt\EscapeRoom\V4\EscapeRoom\packages\MonoGame.Extended\Source\Tests\MonoGame.Extended.Tiled.Tests\bin\Release\netcoreapp2.0\MonoGame.Extended.Graphics.dll
+C:\Users\Alexa\Google Drive\Schule\4AHELS\Werkstätte\Projekt\EscapeRoom\V4\EscapeRoom\packages\MonoGame.Extended\Source\Tests\MonoGame.Extended.Tiled.Tests\bin\Release\netcoreapp2.0\MonoGame.Extended.Tiled.dll
+C:\Users\Alexa\Google Drive\Schule\4AHELS\Werkstätte\Projekt\EscapeRoom\V4\EscapeRoom\packages\MonoGame.Extended\Source\Tests\MonoGame.Extended.Tiled.Tests\bin\Release\netcoreapp2.0\MonoGame.Extended.Tiled.pdb
+C:\Users\Alexa\Google Drive\Schule\4AHELS\Werkstätte\Projekt\EscapeRoom\V4\EscapeRoom\packages\MonoGame.Extended\Source\Tests\MonoGame.Extended.Tiled.Tests\bin\Release\netcoreapp2.0\MonoGame.Extended.pdb
+C:\Users\Alexa\Google Drive\Schule\4AHELS\Werkstätte\Projekt\EscapeRoom\V4\EscapeRoom\packages\MonoGame.Extended\Source\Tests\MonoGame.Extended.Tiled.Tests\bin\Release\netcoreapp2.0\MonoGame.Extended.Graphics.pdb
+C:\Users\Alexa\Google Drive\Schule\4AHELS\Werkstätte\Projekt\EscapeRoom\V4\EscapeRoom\packages\MonoGame.Extended\Source\Tests\MonoGame.Extended.Tiled.Tests\obj\Release\netcoreapp2.0\MonoGame.Extended.Tiled.Tests.csprojAssemblyReference.cache
+C:\Users\Alexa\Google Drive\Schule\4AHELS\Werkstätte\Projekt\EscapeRoom\V4\EscapeRoom\packages\MonoGame.Extended\Source\Tests\MonoGame.Extended.Tiled.Tests\obj\Release\netcoreapp2.0\MonoGame.Extended.Tiled.Tests.csproj.CoreCompileInputs.cache
+C:\Users\Alexa\Google Drive\Schule\4AHELS\Werkstätte\Projekt\EscapeRoom\V4\EscapeRoom\packages\MonoGame.Extended\Source\Tests\MonoGame.Extended.Tiled.Tests\obj\Release\netcoreapp2.0\MonoGame.Extended.Tiled.Tests.AssemblyInfoInputs.cache
+C:\Users\Alexa\Google Drive\Schule\4AHELS\Werkstätte\Projekt\EscapeRoom\V4\EscapeRoom\packages\MonoGame.Extended\Source\Tests\MonoGame.Extended.Tiled.Tests\obj\Release\netcoreapp2.0\MonoGame.Extended.Tiled.Tests.AssemblyInfo.cs
+C:\Users\Alexa\Google Drive\Schule\4AHELS\Werkstätte\Projekt\EscapeRoom\V4\EscapeRoom\packages\MonoGame.Extended\Source\Tests\MonoGame.Extended.Tiled.Tests\obj\Release\netcoreapp2.0\MonoGame.Extended.Tiled.Tests.csproj.CopyComplete
+C:\Users\Alexa\Google Drive\Schule\4AHELS\Werkstätte\Projekt\EscapeRoom\V4\EscapeRoom\packages\MonoGame.Extended\Source\Tests\MonoGame.Extended.Tiled.Tests\obj\Release\netcoreapp2.0\MonoGame.Extended.Tiled.Tests.dll
+C:\Users\Alexa\Google Drive\Schule\4AHELS\Werkstätte\Projekt\EscapeRoom\V4\EscapeRoom\packages\MonoGame.Extended\Source\Tests\MonoGame.Extended.Tiled.Tests\obj\Release\netcoreapp2.0\MonoGame.Extended.Tiled.Tests.pdb
+C:\Users\Alexa\Documents\Werkstätte\Projekt\EscapeRoom\V4\EscapeRoom\packages\MonoGame.Extended\Source\Tests\MonoGame.Extended.Tiled.Tests\bin\Release\netcoreapp2.0\xunit.runner.visualstudio.dotnetcore.testadapter.dll
+C:\Users\Alexa\Documents\Werkstätte\Projekt\EscapeRoom\V4\EscapeRoom\packages\MonoGame.Extended\Source\Tests\MonoGame.Extended.Tiled.Tests\bin\Release\netcoreapp2.0\xunit.runner.reporters.netcoreapp10.dll
+C:\Users\Alexa\Documents\Werkstätte\Projekt\EscapeRoom\V4\EscapeRoom\packages\MonoGame.Extended\Source\Tests\MonoGame.Extended.Tiled.Tests\bin\Release\netcoreapp2.0\xunit.runner.utility.netcoreapp10.dll
+C:\Users\Alexa\Documents\Werkstätte\Projekt\EscapeRoom\V4\EscapeRoom\packages\MonoGame.Extended\Source\Tests\MonoGame.Extended.Tiled.Tests\bin\Release\netcoreapp2.0\MonoGame.Extended.Tiled.Tests.deps.json
+C:\Users\Alexa\Documents\Werkstätte\Projekt\EscapeRoom\V4\EscapeRoom\packages\MonoGame.Extended\Source\Tests\MonoGame.Extended.Tiled.Tests\bin\Release\netcoreapp2.0\MonoGame.Extended.Tiled.Tests.runtimeconfig.json
+C:\Users\Alexa\Documents\Werkstätte\Projekt\EscapeRoom\V4\EscapeRoom\packages\MonoGame.Extended\Source\Tests\MonoGame.Extended.Tiled.Tests\bin\Release\netcoreapp2.0\MonoGame.Extended.Tiled.Tests.runtimeconfig.dev.json
+C:\Users\Alexa\Documents\Werkstätte\Projekt\EscapeRoom\V4\EscapeRoom\packages\MonoGame.Extended\Source\Tests\MonoGame.Extended.Tiled.Tests\bin\Release\netcoreapp2.0\MonoGame.Extended.Tiled.Tests.dll
+C:\Users\Alexa\Documents\Werkstätte\Projekt\EscapeRoom\V4\EscapeRoom\packages\MonoGame.Extended\Source\Tests\MonoGame.Extended.Tiled.Tests\bin\Release\netcoreapp2.0\MonoGame.Extended.Tiled.Tests.pdb
+C:\Users\Alexa\Documents\Werkstätte\Projekt\EscapeRoom\V4\EscapeRoom\packages\MonoGame.Extended\Source\Tests\MonoGame.Extended.Tiled.Tests\bin\Release\netcoreapp2.0\MonoGame.Extended.dll
+C:\Users\Alexa\Documents\Werkstätte\Projekt\EscapeRoom\V4\EscapeRoom\packages\MonoGame.Extended\Source\Tests\MonoGame.Extended.Tiled.Tests\bin\Release\netcoreapp2.0\MonoGame.Extended.Graphics.dll
+C:\Users\Alexa\Documents\Werkstätte\Projekt\EscapeRoom\V4\EscapeRoom\packages\MonoGame.Extended\Source\Tests\MonoGame.Extended.Tiled.Tests\bin\Release\netcoreapp2.0\MonoGame.Extended.Tiled.dll
+C:\Users\Alexa\Documents\Werkstätte\Projekt\EscapeRoom\V4\EscapeRoom\packages\MonoGame.Extended\Source\Tests\MonoGame.Extended.Tiled.Tests\bin\Release\netcoreapp2.0\MonoGame.Extended.Tiled.pdb
+C:\Users\Alexa\Documents\Werkstätte\Projekt\EscapeRoom\V4\EscapeRoom\packages\MonoGame.Extended\Source\Tests\MonoGame.Extended.Tiled.Tests\bin\Release\netcoreapp2.0\MonoGame.Extended.pdb
+C:\Users\Alexa\Documents\Werkstätte\Projekt\EscapeRoom\V4\EscapeRoom\packages\MonoGame.Extended\Source\Tests\MonoGame.Extended.Tiled.Tests\bin\Release\netcoreapp2.0\MonoGame.Extended.Graphics.pdb
+C:\Users\Alexa\Documents\Werkstätte\Projekt\EscapeRoom\V4\EscapeRoom\packages\MonoGame.Extended\Source\Tests\MonoGame.Extended.Tiled.Tests\obj\Release\netcoreapp2.0\MonoGame.Extended.Tiled.Tests.csprojAssemblyReference.cache
+C:\Users\Alexa\Documents\Werkstätte\Projekt\EscapeRoom\V4\EscapeRoom\packages\MonoGame.Extended\Source\Tests\MonoGame.Extended.Tiled.Tests\obj\Release\netcoreapp2.0\MonoGame.Extended.Tiled.Tests.csproj.CoreCompileInputs.cache
+C:\Users\Alexa\Documents\Werkstätte\Projekt\EscapeRoom\V4\EscapeRoom\packages\MonoGame.Extended\Source\Tests\MonoGame.Extended.Tiled.Tests\obj\Release\netcoreapp2.0\MonoGame.Extended.Tiled.Tests.AssemblyInfoInputs.cache
+C:\Users\Alexa\Documents\Werkstätte\Projekt\EscapeRoom\V4\EscapeRoom\packages\MonoGame.Extended\Source\Tests\MonoGame.Extended.Tiled.Tests\obj\Release\netcoreapp2.0\MonoGame.Extended.Tiled.Tests.AssemblyInfo.cs
+C:\Users\Alexa\Documents\Werkstätte\Projekt\EscapeRoom\V4\EscapeRoom\packages\MonoGame.Extended\Source\Tests\MonoGame.Extended.Tiled.Tests\obj\Release\netcoreapp2.0\MonoGame.Extended.Tiled.Tests.csproj.CopyComplete
+C:\Users\Alexa\Documents\Werkstätte\Projekt\EscapeRoom\V4\EscapeRoom\packages\MonoGame.Extended\Source\Tests\MonoGame.Extended.Tiled.Tests\obj\Release\netcoreapp2.0\MonoGame.Extended.Tiled.Tests.dll
+C:\Users\Alexa\Documents\Werkstätte\Projekt\EscapeRoom\V4\EscapeRoom\packages\MonoGame.Extended\Source\Tests\MonoGame.Extended.Tiled.Tests\obj\Release\netcoreapp2.0\MonoGame.Extended.Tiled.Tests.pdb
+F:\Google Drive\Schule\4AHELS\Werkstätte\Escaperoom\V4\EscapeRoom\packages\MonoGame.Extended\Source\Tests\MonoGame.Extended.Tiled.Tests\bin\Release\netcoreapp2.0\xunit.runner.visualstudio.dotnetcore.testadapter.dll
+F:\Google Drive\Schule\4AHELS\Werkstätte\Escaperoom\V4\EscapeRoom\packages\MonoGame.Extended\Source\Tests\MonoGame.Extended.Tiled.Tests\bin\Release\netcoreapp2.0\xunit.runner.reporters.netcoreapp10.dll
+F:\Google Drive\Schule\4AHELS\Werkstätte\Escaperoom\V4\EscapeRoom\packages\MonoGame.Extended\Source\Tests\MonoGame.Extended.Tiled.Tests\bin\Release\netcoreapp2.0\xunit.runner.utility.netcoreapp10.dll
+F:\Google Drive\Schule\4AHELS\Werkstätte\Escaperoom\V4\EscapeRoom\packages\MonoGame.Extended\Source\Tests\MonoGame.Extended.Tiled.Tests\bin\Release\netcoreapp2.0\MonoGame.Extended.Tiled.Tests.deps.json
+F:\Google Drive\Schule\4AHELS\Werkstätte\Escaperoom\V4\EscapeRoom\packages\MonoGame.Extended\Source\Tests\MonoGame.Extended.Tiled.Tests\bin\Release\netcoreapp2.0\MonoGame.Extended.Tiled.Tests.runtimeconfig.json
+F:\Google Drive\Schule\4AHELS\Werkstätte\Escaperoom\V4\EscapeRoom\packages\MonoGame.Extended\Source\Tests\MonoGame.Extended.Tiled.Tests\bin\Release\netcoreapp2.0\MonoGame.Extended.Tiled.Tests.runtimeconfig.dev.json
+F:\Google Drive\Schule\4AHELS\Werkstätte\Escaperoom\V4\EscapeRoom\packages\MonoGame.Extended\Source\Tests\MonoGame.Extended.Tiled.Tests\bin\Release\netcoreapp2.0\MonoGame.Extended.Tiled.Tests.dll
+F:\Google Drive\Schule\4AHELS\Werkstätte\Escaperoom\V4\EscapeRoom\packages\MonoGame.Extended\Source\Tests\MonoGame.Extended.Tiled.Tests\bin\Release\netcoreapp2.0\MonoGame.Extended.Tiled.Tests.pdb
+F:\Google Drive\Schule\4AHELS\Werkstätte\Escaperoom\V4\EscapeRoom\packages\MonoGame.Extended\Source\Tests\MonoGame.Extended.Tiled.Tests\bin\Release\netcoreapp2.0\MonoGame.Extended.dll
+F:\Google Drive\Schule\4AHELS\Werkstätte\Escaperoom\V4\EscapeRoom\packages\MonoGame.Extended\Source\Tests\MonoGame.Extended.Tiled.Tests\bin\Release\netcoreapp2.0\MonoGame.Extended.Graphics.dll
+F:\Google Drive\Schule\4AHELS\Werkstätte\Escaperoom\V4\EscapeRoom\packages\MonoGame.Extended\Source\Tests\MonoGame.Extended.Tiled.Tests\bin\Release\netcoreapp2.0\MonoGame.Extended.Tiled.dll
+F:\Google Drive\Schule\4AHELS\Werkstätte\Escaperoom\V4\EscapeRoom\packages\MonoGame.Extended\Source\Tests\MonoGame.Extended.Tiled.Tests\bin\Release\netcoreapp2.0\MonoGame.Extended.Tiled.pdb
+F:\Google Drive\Schule\4AHELS\Werkstätte\Escaperoom\V4\EscapeRoom\packages\MonoGame.Extended\Source\Tests\MonoGame.Extended.Tiled.Tests\bin\Release\netcoreapp2.0\MonoGame.Extended.pdb
+F:\Google Drive\Schule\4AHELS\Werkstätte\Escaperoom\V4\EscapeRoom\packages\MonoGame.Extended\Source\Tests\MonoGame.Extended.Tiled.Tests\bin\Release\netcoreapp2.0\MonoGame.Extended.Graphics.pdb
+F:\Google Drive\Schule\4AHELS\Werkstätte\Escaperoom\V4\EscapeRoom\packages\MonoGame.Extended\Source\Tests\MonoGame.Extended.Tiled.Tests\obj\Release\netcoreapp2.0\MonoGame.Extended.Tiled.Tests.csprojAssemblyReference.cache
+F:\Google Drive\Schule\4AHELS\Werkstätte\Escaperoom\V4\EscapeRoom\packages\MonoGame.Extended\Source\Tests\MonoGame.Extended.Tiled.Tests\obj\Release\netcoreapp2.0\MonoGame.Extended.Tiled.Tests.csproj.CoreCompileInputs.cache
+F:\Google Drive\Schule\4AHELS\Werkstätte\Escaperoom\V4\EscapeRoom\packages\MonoGame.Extended\Source\Tests\MonoGame.Extended.Tiled.Tests\obj\Release\netcoreapp2.0\MonoGame.Extended.Tiled.Tests.AssemblyInfoInputs.cache
+F:\Google Drive\Schule\4AHELS\Werkstätte\Escaperoom\V4\EscapeRoom\packages\MonoGame.Extended\Source\Tests\MonoGame.Extended.Tiled.Tests\obj\Release\netcoreapp2.0\MonoGame.Extended.Tiled.Tests.AssemblyInfo.cs
+F:\Google Drive\Schule\4AHELS\Werkstätte\Escaperoom\V4\EscapeRoom\packages\MonoGame.Extended\Source\Tests\MonoGame.Extended.Tiled.Tests\obj\Release\netcoreapp2.0\MonoGame.Extended.Tiled.Tests.csproj.CopyComplete
+F:\Google Drive\Schule\4AHELS\Werkstätte\Escaperoom\V4\EscapeRoom\packages\MonoGame.Extended\Source\Tests\MonoGame.Extended.Tiled.Tests\obj\Release\netcoreapp2.0\MonoGame.Extended.Tiled.Tests.dll
+F:\Google Drive\Schule\4AHELS\Werkstätte\Escaperoom\V4\EscapeRoom\packages\MonoGame.Extended\Source\Tests\MonoGame.Extended.Tiled.Tests\obj\Release\netcoreapp2.0\MonoGame.Extended.Tiled.Tests.pdb
