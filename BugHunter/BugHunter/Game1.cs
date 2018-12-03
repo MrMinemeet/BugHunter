@@ -111,7 +111,7 @@ namespace BugHunter
             settings.setMapSizeWidth(map[AktuelleMap].getTiledMap().Width);
 
             // TMX (wie CSV) Map in 2D Array wandeln
-            CollisionMapArray = Converter.TmxToIntArray(@"C:\Users\Alexa\Google Drive\Schule\4AHELS\Werkstätte\BugHunter\V1\BugHunter\BugHunter\Content\map1.tmx");
+            CollisionMapArray = Converter.TmxToIntArray(@"C:\Users\Alexa\Google Drive\Schule\4AHELS\Werkstätte\BugHunter\BugHunter\BugHunter\Content\map1.tmx");
 
             // TODO: use this.Content to load your game content here
             font = Content.Load<SpriteFont>("Font");
