@@ -1,0 +1,22 @@
+﻿using MonoGame.Extended.Tiled;
+using MonoGame.Extended.Tiled.Renderers;
+
+namespace BugHunter
+{
+    class Map
+    {
+        // The tile map
+        private TiledMap maplevel;
+        // The renderer for the map
+        public TiledMapRenderer mapRenderer;
+        
+        public void setTiledMap(TiledMap value)
+        {
+            this.maplevel = value;
+        }
+        public TiledMap getTiledMap()
+        {
+            return this.maplevel;
+        }
+    }
+}

@@ -1,0 +1,14 @@
+#
+# Sprite sheet data for MonoGame.
+#
+# To learn how to import these sprites into your MonoGame project visit:
+# https://www.codeandweb.com/texturepacker/monogame
+#
+# Sprite sheet: android_packed.png (1088 x 304)
+# $TexturePacker:SmartUpdate:18b31d8456b2fc436bb75e4431e877e5:648b274c0e3dc18333ddf18c584eac01:661758968771fee6b10c7ca7a9054a93$
+#
+
+sprites/Android1;0;0;0;272;304;272;304;0.5;0.5
+sprites/android2;0;272;0;272;304;272;304;0.5;0.5
+sprites/android3;0;544;0;272;304;272;304;0.5;0.5
+sprites/android4;0;816;0;272;304;272;304;0.5;0.5

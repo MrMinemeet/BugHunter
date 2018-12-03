@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<SourceFileCollection xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <Profile>Reach</Profile>
+  <Platform>DesktopGL</Platform>
+  <Config />
+  <SourceFiles>
+    <File>C:/Users/Alexa/Google Drive/Schule/4AHELS/Werkstätte/BugHunter/V1/BugHunter/BugHunter/Content/damaged.png</File>
+    <File>C:/Users/Alexa/Google Drive/Schule/4AHELS/Werkstätte/BugHunter/V1/BugHunter/BugHunter/Content/Debug.spritefont</File>
+    <File>C:/Users/Alexa/Google Drive/Schule/4AHELS/Werkstätte/BugHunter/V1/BugHunter/BugHunter/Content/Font.spritefont</File>
+    <File>C:/Users/Alexa/Google Drive/Schule/4AHELS/Werkstätte/BugHunter/V1/BugHunter/BugHunter/Content/map1.tmx</File>
+    <File>C:/Users/Alexa/Google Drive/Schule/4AHELS/Werkstätte/BugHunter/V1/BugHunter/BugHunter/Content/MenuFont.spritefont</File>
+    <File>C:/Users/Alexa/Google Drive/Schule/4AHELS/Werkstätte/BugHunter/V1/BugHunter/BugHunter/Content/paused_background.png</File>
+    <File>C:/Users/Alexa/Google Drive/Schule/4AHELS/Werkstätte/BugHunter/V1/BugHunter/BugHunter/Content/sprites/enemy/android/android_packed.png</File>
+    <File>C:/Users/Alexa/Google Drive/Schule/4AHELS/Werkstätte/BugHunter/V1/BugHunter/BugHunter/Content/sprites/enemy/android/sprites/Android1.png</File>
+    <File>C:/Users/Alexa/Google Drive/Schule/4AHELS/Werkstätte/BugHunter/V1/BugHunter/BugHunter/Content/sprites/gui/textures/heart_full.png</File>
+    <File>C:/Users/Alexa/Google Drive/Schule/4AHELS/Werkstätte/BugHunter/V1/BugHunter/BugHunter/Content/sprites/gui/textures/heart_half.png</File>
+    <File>C:/Users/Alexa/Google Drive/Schule/4AHELS/Werkstätte/BugHunter/V1/BugHunter/BugHunter/Content/sprites/mauszeiger.png</File>
+    <File>C:/Users/Alexa/Google Drive/Schule/4AHELS/Werkstätte/BugHunter/V1/BugHunter/BugHunter/Content/sprites/originSpot.png</File>
+    <File>C:/Users/Alexa/Google Drive/Schule/4AHELS/Werkstätte/BugHunter/V1/BugHunter/BugHunter/Content/sprites/player/afk_0001.png</File>
+  </SourceFiles>
+  <DestFiles>
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+  </DestFiles>
+</SourceFileCollection>

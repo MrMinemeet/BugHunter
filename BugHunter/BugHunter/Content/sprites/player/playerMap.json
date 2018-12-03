@@ -1,0 +1,60 @@
+{"frames": [
+
+{
+	"filename": "afk_0001.png",
+	"frame": {"x":1,"y":1,"w":76,"h":128},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":76,"h":128},
+	"sourceSize": {"w":76,"h":128}
+},
+{
+	"filename": "afk_0002.png",
+	"frame": {"x":1,"y":131,"w":76,"h":128},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":76,"h":128},
+	"sourceSize": {"w":76,"h":128}
+},
+{
+	"filename": "afk_0003.png",
+	"frame": {"x":79,"y":1,"w":76,"h":128},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":76,"h":128},
+	"sourceSize": {"w":76,"h":128}
+},
+{
+	"filename": "move_0001.png",
+	"frame": {"x":79,"y":131,"w":76,"h":128},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":76,"h":128},
+	"sourceSize": {"w":76,"h":128}
+},
+{
+	"filename": "move_0002.png",
+	"frame": {"x":157,"y":1,"w":76,"h":128},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":76,"h":128},
+	"sourceSize": {"w":76,"h":128}
+},
+{
+	"filename": "move_0003.png",
+	"frame": {"x":157,"y":131,"w":76,"h":128},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":76,"h":128},
+	"sourceSize": {"w":76,"h":128}
+}],
+"meta": {
+	"app": "https://www.codeandweb.com/texturepacker",
+	"version": "1.0",
+	"image": "player.png",
+	"format": "RGBA8888",
+	"size": {"w":260,"h":260},
+	"scale": "1",
+	"smartupdate": "$TexturePacker:SmartUpdate:9202b13369179f8b34f80270a1e7d6d5:e9b9c92d1ada5bee07c9590a54f608b3:877061a17e39c1c13fe25f0b65c0ad08$"
+}
+}
