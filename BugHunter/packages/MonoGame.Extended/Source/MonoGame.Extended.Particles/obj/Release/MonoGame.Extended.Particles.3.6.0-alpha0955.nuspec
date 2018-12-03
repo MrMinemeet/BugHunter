@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
+  <metadata>
+    <id>MonoGame.Extended.Particles</id>
+    <version>3.6.0-alpha0955</version>
+    <authors>craftworkgames</authors>
+    <owners>craftworkgames</owners>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <licenseUrl>https://github.com/craftworkgames/MonoGame.Extended/blob/master/LICENSE</licenseUrl>
+    <projectUrl>https://github.com/craftworkgames/MonoGame.Extended</projectUrl>
+    <iconUrl>https://raw.githubusercontent.com/craftworkgames/MonoGame.Extended/master/Logos/logo-nuget-128.png</iconUrl>
+    <description>A high performance particle system to make MonoGame more awesome.</description>
+    <tags>monogame particle system</tags>
+    <repository url="https://github.com/craftworkgames/MonoGame.Extended" />
+    <dependencies>
+      <group targetFramework=".NETStandard2.0">
+        <dependency id="MonoGame.Extended" version="3.6.0-alpha0955" exclude="Build,Analyzers" />
+      </group>
+    </dependencies>
+  </metadata>
+  <files>
+    <file src="C:\Users\Alexa\Documents\Werkstätte\Projekt\EscapeRoom\V4\EscapeRoom\packages\MonoGame.Extended\Source\MonoGame.Extended.Particles\bin\Release\netstandard2.0\MonoGame.Extended.Particles.dll" target="lib\netstandard2.0\MonoGame.Extended.Particles.dll" />
+  </files>
+</package>

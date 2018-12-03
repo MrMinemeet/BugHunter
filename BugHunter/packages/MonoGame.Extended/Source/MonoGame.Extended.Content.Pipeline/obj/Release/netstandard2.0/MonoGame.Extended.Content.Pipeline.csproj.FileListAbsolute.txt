@@ -1,0 +1,104 @@
+C:\Users\Alexa\Desktop\file\MonoGame.Extended\Source\MonoGame.Extended.Content.Pipeline\bin\netstandard2.0\Newtonsoft.Json.dll
+C:\Users\Alexa\Desktop\file\MonoGame.Extended\Source\MonoGame.Extended.Content.Pipeline\bin\netstandard2.0\MonoGame.Extended.Content.Pipeline.deps.json
+C:\Users\Alexa\Desktop\file\MonoGame.Extended\Source\MonoGame.Extended.Content.Pipeline\bin\netstandard2.0\MonoGame.Extended.Content.Pipeline.dll
+C:\Users\Alexa\Desktop\file\MonoGame.Extended\Source\MonoGame.Extended.Content.Pipeline\bin\netstandard2.0\MonoGame.Extended.Content.Pipeline.pdb
+C:\Users\Alexa\Desktop\file\MonoGame.Extended\Source\MonoGame.Extended.Content.Pipeline\bin\netstandard2.0\MonoGame.Extended.dll
+C:\Users\Alexa\Desktop\file\MonoGame.Extended\Source\MonoGame.Extended.Content.Pipeline\bin\netstandard2.0\MonoGame.Extended.Graphics.dll
+C:\Users\Alexa\Desktop\file\MonoGame.Extended\Source\MonoGame.Extended.Content.Pipeline\bin\netstandard2.0\MonoGame.Extended.Tiled.dll
+C:\Users\Alexa\Desktop\file\MonoGame.Extended\Source\MonoGame.Extended.Content.Pipeline\bin\netstandard2.0\MonoGame.Extended.Tiled.pdb
+C:\Users\Alexa\Desktop\file\MonoGame.Extended\Source\MonoGame.Extended.Content.Pipeline\bin\netstandard2.0\MonoGame.Extended.pdb
+C:\Users\Alexa\Desktop\file\MonoGame.Extended\Source\MonoGame.Extended.Content.Pipeline\bin\netstandard2.0\MonoGame.Extended.Graphics.pdb
+C:\Users\Alexa\Desktop\file\MonoGame.Extended\Source\MonoGame.Extended.Content.Pipeline\obj\Release\netstandard2.0\MonoGame.Extended.Content.Pipeline.csprojAssemblyReference.cache
+C:\Users\Alexa\Desktop\file\MonoGame.Extended\Source\MonoGame.Extended.Content.Pipeline\obj\Release\netstandard2.0\MonoGame.Extended.Content.Pipeline.csproj.CoreCompileInputs.cache
+C:\Users\Alexa\Desktop\file\MonoGame.Extended\Source\MonoGame.Extended.Content.Pipeline\obj\Release\netstandard2.0\MonoGame.Extended.Content.Pipeline.AssemblyInfoInputs.cache
+C:\Users\Alexa\Desktop\file\MonoGame.Extended\Source\MonoGame.Extended.Content.Pipeline\obj\Release\netstandard2.0\MonoGame.Extended.Content.Pipeline.AssemblyInfo.cs
+C:\Users\Alexa\Desktop\file\MonoGame.Extended\Source\MonoGame.Extended.Content.Pipeline\obj\Release\netstandard2.0\MonoGame.Extended.Content.Pipeline.csproj.CopyComplete
+C:\Users\Alexa\Desktop\file\MonoGame.Extended\Source\MonoGame.Extended.Content.Pipeline\obj\Release\netstandard2.0\MonoGame.Extended.Content.Pipeline.dll
+C:\Users\Alexa\Desktop\file\MonoGame.Extended\Source\MonoGame.Extended.Content.Pipeline\obj\Release\netstandard2.0\MonoGame.Extended.Content.Pipeline.pdb
+C:\Users\Alexa\Google Drive\Schule\4AHELS\Werkstätte\Projekt\EscapeRoom\SOFTWARE\MonoGame.Extended\Source\MonoGame.Extended.Content.Pipeline\obj\Release\netstandard2.0\MonoGame.Extended.Content.Pipeline.dll
+C:\Users\Alexa\Google Drive\Schule\4AHELS\Werkstätte\Projekt\EscapeRoom\SOFTWARE\MonoGame.Extended\Source\MonoGame.Extended.Content.Pipeline\obj\Release\netstandard2.0\MonoGame.Extended.Content.Pipeline.pdb
+C:\Users\Alexa\Google Drive\Schule\4AHELS\Werkstätte\Projekt\EscapeRoom\V4\EscapeRoom\packages\MonoGame.Extended\Source\MonoGame.Extended.Content.Pipeline\bin\netstandard2.0\Newtonsoft.Json.dll
+C:\Users\Alexa\Google Drive\Schule\4AHELS\Werkstätte\Projekt\EscapeRoom\V4\EscapeRoom\packages\MonoGame.Extended\Source\MonoGame.Extended.Content.Pipeline\bin\netstandard2.0\MonoGame.Extended.Content.Pipeline.deps.json
+C:\Users\Alexa\Google Drive\Schule\4AHELS\Werkstätte\Projekt\EscapeRoom\V4\EscapeRoom\packages\MonoGame.Extended\Source\MonoGame.Extended.Content.Pipeline\bin\netstandard2.0\MonoGame.Extended.Content.Pipeline.dll
+C:\Users\Alexa\Google Drive\Schule\4AHELS\Werkstätte\Projekt\EscapeRoom\V4\EscapeRoom\packages\MonoGame.Extended\Source\MonoGame.Extended.Content.Pipeline\bin\netstandard2.0\MonoGame.Extended.Content.Pipeline.pdb
+C:\Users\Alexa\Google Drive\Schule\4AHELS\Werkstätte\Projekt\EscapeRoom\V4\EscapeRoom\packages\MonoGame.Extended\Source\MonoGame.Extended.Content.Pipeline\bin\netstandard2.0\MonoGame.Extended.dll
+C:\Users\Alexa\Google Drive\Schule\4AHELS\Werkstätte\Projekt\EscapeRoom\V4\EscapeRoom\packages\MonoGame.Extended\Source\MonoGame.Extended.Content.Pipeline\bin\netstandard2.0\MonoGame.Extended.Graphics.dll
+C:\Users\Alexa\Google Drive\Schule\4AHELS\Werkstätte\Projekt\EscapeRoom\V4\EscapeRoom\packages\MonoGame.Extended\Source\MonoGame.Extended.Content.Pipeline\bin\netstandard2.0\MonoGame.Extended.Tiled.dll
+C:\Users\Alexa\Google Drive\Schule\4AHELS\Werkstätte\Projekt\EscapeRoom\V4\EscapeRoom\packages\MonoGame.Extended\Source\MonoGame.Extended.Content.Pipeline\bin\netstandard2.0\MonoGame.Extended.Tiled.pdb
+C:\Users\Alexa\Google Drive\Schule\4AHELS\Werkstätte\Projekt\EscapeRoom\V4\EscapeRoom\packages\MonoGame.Extended\Source\MonoGame.Extended.Content.Pipeline\bin\netstandard2.0\MonoGame.Extended.pdb
+C:\Users\Alexa\Google Drive\Schule\4AHELS\Werkstätte\Projekt\EscapeRoom\V4\EscapeRoom\packages\MonoGame.Extended\Source\MonoGame.Extended.Content.Pipeline\bin\netstandard2.0\MonoGame.Extended.Graphics.pdb
+C:\Users\Alexa\Google Drive\Schule\4AHELS\Werkstätte\Projekt\EscapeRoom\V4\EscapeRoom\packages\MonoGame.Extended\Source\MonoGame.Extended.Content.Pipeline\obj\Release\netstandard2.0\MonoGame.Extended.Content.Pipeline.csprojAssemblyReference.cache
+C:\Users\Alexa\Google Drive\Schule\4AHELS\Werkstätte\Projekt\EscapeRoom\V4\EscapeRoom\packages\MonoGame.Extended\Source\MonoGame.Extended.Content.Pipeline\obj\Release\netstandard2.0\MonoGame.Extended.Content.Pipeline.csproj.CoreCompileInputs.cache
+C:\Users\Alexa\Google Drive\Schule\4AHELS\Werkstätte\Projekt\EscapeRoom\V4\EscapeRoom\packages\MonoGame.Extended\Source\MonoGame.Extended.Content.Pipeline\obj\Release\netstandard2.0\MonoGame.Extended.Content.Pipeline.AssemblyInfoInputs.cache
+C:\Users\Alexa\Google Drive\Schule\4AHELS\Werkstätte\Projekt\EscapeRoom\V4\EscapeRoom\packages\MonoGame.Extended\Source\MonoGame.Extended.Content.Pipeline\obj\Release\netstandard2.0\MonoGame.Extended.Content.Pipeline.AssemblyInfo.cs
+C:\Users\Alexa\Google Drive\Schule\4AHELS\Werkstätte\Projekt\EscapeRoom\V4\EscapeRoom\packages\MonoGame.Extended\Source\MonoGame.Extended.Content.Pipeline\obj\Release\netstandard2.0\MonoGame.Extended.Content.Pipeline.csproj.CopyComplete
+C:\Users\Alexa\Google Drive\Schule\4AHELS\Werkstätte\Projekt\EscapeRoom\V4\EscapeRoom\packages\MonoGame.Extended\Source\MonoGame.Extended.Content.Pipeline\obj\Release\netstandard2.0\MonoGame.Extended.Content.Pipeline.dll
+C:\Users\Alexa\Google Drive\Schule\4AHELS\Werkstätte\Projekt\EscapeRoom\V4\EscapeRoom\packages\MonoGame.Extended\Source\MonoGame.Extended.Content.Pipeline\obj\Release\netstandard2.0\MonoGame.Extended.Content.Pipeline.pdb
+C:\Users\Alexa\Documents\Werkstätte\Projekt\EscapeRoom\V4\EscapeRoom\packages\MonoGame.Extended\Source\MonoGame.Extended.Content.Pipeline\bin\netstandard2.0\Newtonsoft.Json.dll
+C:\Users\Alexa\Documents\Werkstätte\Projekt\EscapeRoom\V4\EscapeRoom\packages\MonoGame.Extended\Source\MonoGame.Extended.Content.Pipeline\bin\netstandard2.0\MonoGame.Extended.Content.Pipeline.deps.json
+C:\Users\Alexa\Documents\Werkstätte\Projekt\EscapeRoom\V4\EscapeRoom\packages\MonoGame.Extended\Source\MonoGame.Extended.Content.Pipeline\bin\netstandard2.0\MonoGame.Extended.Content.Pipeline.dll
+C:\Users\Alexa\Documents\Werkstätte\Projekt\EscapeRoom\V4\EscapeRoom\packages\MonoGame.Extended\Source\MonoGame.Extended.Content.Pipeline\bin\netstandard2.0\MonoGame.Extended.Content.Pipeline.pdb
+C:\Users\Alexa\Documents\Werkstätte\Projekt\EscapeRoom\V4\EscapeRoom\packages\MonoGame.Extended\Source\MonoGame.Extended.Content.Pipeline\bin\netstandard2.0\MonoGame.Extended.dll
+C:\Users\Alexa\Documents\Werkstätte\Projekt\EscapeRoom\V4\EscapeRoom\packages\MonoGame.Extended\Source\MonoGame.Extended.Content.Pipeline\bin\netstandard2.0\MonoGame.Extended.Graphics.dll
+C:\Users\Alexa\Documents\Werkstätte\Projekt\EscapeRoom\V4\EscapeRoom\packages\MonoGame.Extended\Source\MonoGame.Extended.Content.Pipeline\bin\netstandard2.0\MonoGame.Extended.Tiled.dll
+C:\Users\Alexa\Documents\Werkstätte\Projekt\EscapeRoom\V4\EscapeRoom\packages\MonoGame.Extended\Source\MonoGame.Extended.Content.Pipeline\bin\netstandard2.0\MonoGame.Extended.Tiled.pdb
+C:\Users\Alexa\Documents\Werkstätte\Projekt\EscapeRoom\V4\EscapeRoom\packages\MonoGame.Extended\Source\MonoGame.Extended.Content.Pipeline\bin\netstandard2.0\MonoGame.Extended.pdb
+C:\Users\Alexa\Documents\Werkstätte\Projekt\EscapeRoom\V4\EscapeRoom\packages\MonoGame.Extended\Source\MonoGame.Extended.Content.Pipeline\bin\netstandard2.0\MonoGame.Extended.Graphics.pdb
+C:\Users\Alexa\Documents\Werkstätte\Projekt\EscapeRoom\V4\EscapeRoom\packages\MonoGame.Extended\Source\MonoGame.Extended.Content.Pipeline\obj\Release\netstandard2.0\MonoGame.Extended.Content.Pipeline.csprojAssemblyReference.cache
+C:\Users\Alexa\Documents\Werkstätte\Projekt\EscapeRoom\V4\EscapeRoom\packages\MonoGame.Extended\Source\MonoGame.Extended.Content.Pipeline\obj\Release\netstandard2.0\MonoGame.Extended.Content.Pipeline.csproj.CoreCompileInputs.cache
+C:\Users\Alexa\Documents\Werkstätte\Projekt\EscapeRoom\V4\EscapeRoom\packages\MonoGame.Extended\Source\MonoGame.Extended.Content.Pipeline\obj\Release\netstandard2.0\MonoGame.Extended.Content.Pipeline.AssemblyInfoInputs.cache
+C:\Users\Alexa\Documents\Werkstätte\Projekt\EscapeRoom\V4\EscapeRoom\packages\MonoGame.Extended\Source\MonoGame.Extended.Content.Pipeline\obj\Release\netstandard2.0\MonoGame.Extended.Content.Pipeline.AssemblyInfo.cs
+C:\Users\Alexa\Documents\Werkstätte\Projekt\EscapeRoom\V4\EscapeRoom\packages\MonoGame.Extended\Source\MonoGame.Extended.Content.Pipeline\obj\Release\netstandard2.0\MonoGame.Extended.Content.Pipeline.csproj.CopyComplete
+C:\Users\Alexa\Documents\Werkstätte\Projekt\EscapeRoom\V4\EscapeRoom\packages\MonoGame.Extended\Source\MonoGame.Extended.Content.Pipeline\obj\Release\netstandard2.0\MonoGame.Extended.Content.Pipeline.dll
+C:\Users\Alexa\Documents\Werkstätte\Projekt\EscapeRoom\V4\EscapeRoom\packages\MonoGame.Extended\Source\MonoGame.Extended.Content.Pipeline\obj\Release\netstandard2.0\MonoGame.Extended.Content.Pipeline.pdb
+F:\Google Drive\Schule\4AHELS\Werkstätte\Escaperoom\V4\EscapeRoom\packages\MonoGame.Extended\Source\MonoGame.Extended.Content.Pipeline\bin\netstandard2.0\Newtonsoft.Json.dll
+F:\Google Drive\Schule\4AHELS\Werkstätte\Escaperoom\V4\EscapeRoom\packages\MonoGame.Extended\Source\MonoGame.Extended.Content.Pipeline\bin\netstandard2.0\MonoGame.Extended.Content.Pipeline.deps.json
+F:\Google Drive\Schule\4AHELS\Werkstätte\Escaperoom\V4\EscapeRoom\packages\MonoGame.Extended\Source\MonoGame.Extended.Content.Pipeline\bin\netstandard2.0\MonoGame.Extended.Content.Pipeline.dll
+F:\Google Drive\Schule\4AHELS\Werkstätte\Escaperoom\V4\EscapeRoom\packages\MonoGame.Extended\Source\MonoGame.Extended.Content.Pipeline\bin\netstandard2.0\MonoGame.Extended.Content.Pipeline.pdb
+F:\Google Drive\Schule\4AHELS\Werkstätte\Escaperoom\V4\EscapeRoom\packages\MonoGame.Extended\Source\MonoGame.Extended.Content.Pipeline\bin\netstandard2.0\MonoGame.Extended.dll
+F:\Google Drive\Schule\4AHELS\Werkstätte\Escaperoom\V4\EscapeRoom\packages\MonoGame.Extended\Source\MonoGame.Extended.Content.Pipeline\bin\netstandard2.0\MonoGame.Extended.Graphics.dll
+F:\Google Drive\Schule\4AHELS\Werkstätte\Escaperoom\V4\EscapeRoom\packages\MonoGame.Extended\Source\MonoGame.Extended.Content.Pipeline\bin\netstandard2.0\MonoGame.Extended.Tiled.dll
+F:\Google Drive\Schule\4AHELS\Werkstätte\Escaperoom\V4\EscapeRoom\packages\MonoGame.Extended\Source\MonoGame.Extended.Content.Pipeline\bin\netstandard2.0\MonoGame.Extended.Tiled.pdb
+F:\Google Drive\Schule\4AHELS\Werkstätte\Escaperoom\V4\EscapeRoom\packages\MonoGame.Extended\Source\MonoGame.Extended.Content.Pipeline\bin\netstandard2.0\MonoGame.Extended.pdb
+F:\Google Drive\Schule\4AHELS\Werkstätte\Escaperoom\V4\EscapeRoom\packages\MonoGame.Extended\Source\MonoGame.Extended.Content.Pipeline\bin\netstandard2.0\MonoGame.Extended.Graphics.pdb
+F:\Google Drive\Schule\4AHELS\Werkstätte\Escaperoom\V4\EscapeRoom\packages\MonoGame.Extended\Source\MonoGame.Extended.Content.Pipeline\obj\Release\netstandard2.0\MonoGame.Extended.Content.Pipeline.csprojAssemblyReference.cache
+F:\Google Drive\Schule\4AHELS\Werkstätte\Escaperoom\V4\EscapeRoom\packages\MonoGame.Extended\Source\MonoGame.Extended.Content.Pipeline\obj\Release\netstandard2.0\MonoGame.Extended.Content.Pipeline.csproj.CoreCompileInputs.cache
+F:\Google Drive\Schule\4AHELS\Werkstätte\Escaperoom\V4\EscapeRoom\packages\MonoGame.Extended\Source\MonoGame.Extended.Content.Pipeline\obj\Release\netstandard2.0\MonoGame.Extended.Content.Pipeline.AssemblyInfoInputs.cache
+F:\Google Drive\Schule\4AHELS\Werkstätte\Escaperoom\V4\EscapeRoom\packages\MonoGame.Extended\Source\MonoGame.Extended.Content.Pipeline\obj\Release\netstandard2.0\MonoGame.Extended.Content.Pipeline.AssemblyInfo.cs
+F:\Google Drive\Schule\4AHELS\Werkstätte\Escaperoom\V4\EscapeRoom\packages\MonoGame.Extended\Source\MonoGame.Extended.Content.Pipeline\obj\Release\netstandard2.0\MonoGame.Extended.Content.Pipeline.csproj.CopyComplete
+F:\Google Drive\Schule\4AHELS\Werkstätte\Escaperoom\V4\EscapeRoom\packages\MonoGame.Extended\Source\MonoGame.Extended.Content.Pipeline\obj\Release\netstandard2.0\MonoGame.Extended.Content.Pipeline.dll
+F:\Google Drive\Schule\4AHELS\Werkstätte\Escaperoom\V4\EscapeRoom\packages\MonoGame.Extended\Source\MonoGame.Extended.Content.Pipeline\obj\Release\netstandard2.0\MonoGame.Extended.Content.Pipeline.pdb
+C:\Users\Alexa\Google Drive\Schule\4AHELS\Werkstätte\Escaperoom\V4\EscapeRoom\packages\MonoGame.Extended\Source\MonoGame.Extended.Content.Pipeline\bin\netstandard2.0\Newtonsoft.Json.dll
+C:\Users\Alexa\Google Drive\Schule\4AHELS\Werkstätte\Escaperoom\V4\EscapeRoom\packages\MonoGame.Extended\Source\MonoGame.Extended.Content.Pipeline\bin\netstandard2.0\MonoGame.Extended.Content.Pipeline.deps.json
+C:\Users\Alexa\Google Drive\Schule\4AHELS\Werkstätte\Escaperoom\V4\EscapeRoom\packages\MonoGame.Extended\Source\MonoGame.Extended.Content.Pipeline\bin\netstandard2.0\MonoGame.Extended.Content.Pipeline.dll
+C:\Users\Alexa\Google Drive\Schule\4AHELS\Werkstätte\Escaperoom\V4\EscapeRoom\packages\MonoGame.Extended\Source\MonoGame.Extended.Content.Pipeline\bin\netstandard2.0\MonoGame.Extended.Content.Pipeline.pdb
+C:\Users\Alexa\Google Drive\Schule\4AHELS\Werkstätte\Escaperoom\V4\EscapeRoom\packages\MonoGame.Extended\Source\MonoGame.Extended.Content.Pipeline\bin\netstandard2.0\MonoGame.Extended.dll
+C:\Users\Alexa\Google Drive\Schule\4AHELS\Werkstätte\Escaperoom\V4\EscapeRoom\packages\MonoGame.Extended\Source\MonoGame.Extended.Content.Pipeline\bin\netstandard2.0\MonoGame.Extended.Graphics.dll
+C:\Users\Alexa\Google Drive\Schule\4AHELS\Werkstätte\Escaperoom\V4\EscapeRoom\packages\MonoGame.Extended\Source\MonoGame.Extended.Content.Pipeline\bin\netstandard2.0\MonoGame.Extended.Tiled.dll
+C:\Users\Alexa\Google Drive\Schule\4AHELS\Werkstätte\Escaperoom\V4\EscapeRoom\packages\MonoGame.Extended\Source\MonoGame.Extended.Content.Pipeline\bin\netstandard2.0\MonoGame.Extended.Tiled.pdb
+C:\Users\Alexa\Google Drive\Schule\4AHELS\Werkstätte\Escaperoom\V4\EscapeRoom\packages\MonoGame.Extended\Source\MonoGame.Extended.Content.Pipeline\bin\netstandard2.0\MonoGame.Extended.pdb
+C:\Users\Alexa\Google Drive\Schule\4AHELS\Werkstätte\Escaperoom\V4\EscapeRoom\packages\MonoGame.Extended\Source\MonoGame.Extended.Content.Pipeline\bin\netstandard2.0\MonoGame.Extended.Graphics.pdb
+C:\Users\Alexa\Google Drive\Schule\4AHELS\Werkstätte\Escaperoom\V4\EscapeRoom\packages\MonoGame.Extended\Source\MonoGame.Extended.Content.Pipeline\obj\Release\netstandard2.0\MonoGame.Extended.Content.Pipeline.csprojAssemblyReference.cache
+C:\Users\Alexa\Google Drive\Schule\4AHELS\Werkstätte\Escaperoom\V4\EscapeRoom\packages\MonoGame.Extended\Source\MonoGame.Extended.Content.Pipeline\obj\Release\netstandard2.0\MonoGame.Extended.Content.Pipeline.csproj.CoreCompileInputs.cache
+C:\Users\Alexa\Google Drive\Schule\4AHELS\Werkstätte\Escaperoom\V4\EscapeRoom\packages\MonoGame.Extended\Source\MonoGame.Extended.Content.Pipeline\obj\Release\netstandard2.0\MonoGame.Extended.Content.Pipeline.AssemblyInfoInputs.cache
+C:\Users\Alexa\Google Drive\Schule\4AHELS\Werkstätte\Escaperoom\V4\EscapeRoom\packages\MonoGame.Extended\Source\MonoGame.Extended.Content.Pipeline\obj\Release\netstandard2.0\MonoGame.Extended.Content.Pipeline.AssemblyInfo.cs
+C:\Users\Alexa\Google Drive\Schule\4AHELS\Werkstätte\Escaperoom\V4\EscapeRoom\packages\MonoGame.Extended\Source\MonoGame.Extended.Content.Pipeline\obj\Release\netstandard2.0\MonoGame.Extended.Content.Pipeline.csproj.CopyComplete
+C:\Users\Alexa\Google Drive\Schule\4AHELS\Werkstätte\Escaperoom\V4\EscapeRoom\packages\MonoGame.Extended\Source\MonoGame.Extended.Content.Pipeline\obj\Release\netstandard2.0\MonoGame.Extended.Content.Pipeline.dll
+C:\Users\Alexa\Google Drive\Schule\4AHELS\Werkstätte\Escaperoom\V4\EscapeRoom\packages\MonoGame.Extended\Source\MonoGame.Extended.Content.Pipeline\obj\Release\netstandard2.0\MonoGame.Extended.Content.Pipeline.pdb
+C:\Users\Alexa\Google Drive\Schule\4AHELS\Werkstätte\BugHunter\V1\BugHunter\packages\MonoGame.Extended\Source\MonoGame.Extended.Content.Pipeline\bin\netstandard2.0\Newtonsoft.Json.dll
+C:\Users\Alexa\Google Drive\Schule\4AHELS\Werkstätte\BugHunter\V1\BugHunter\packages\MonoGame.Extended\Source\MonoGame.Extended.Content.Pipeline\bin\netstandard2.0\MonoGame.Extended.Content.Pipeline.deps.json
+C:\Users\Alexa\Google Drive\Schule\4AHELS\Werkstätte\BugHunter\V1\BugHunter\packages\MonoGame.Extended\Source\MonoGame.Extended.Content.Pipeline\bin\netstandard2.0\MonoGame.Extended.Content.Pipeline.dll
+C:\Users\Alexa\Google Drive\Schule\4AHELS\Werkstätte\BugHunter\V1\BugHunter\packages\MonoGame.Extended\Source\MonoGame.Extended.Content.Pipeline\bin\netstandard2.0\MonoGame.Extended.Content.Pipeline.pdb
+C:\Users\Alexa\Google Drive\Schule\4AHELS\Werkstätte\BugHunter\V1\BugHunter\packages\MonoGame.Extended\Source\MonoGame.Extended.Content.Pipeline\bin\netstandard2.0\MonoGame.Extended.dll
+C:\Users\Alexa\Google Drive\Schule\4AHELS\Werkstätte\BugHunter\V1\BugHunter\packages\MonoGame.Extended\Source\MonoGame.Extended.Content.Pipeline\bin\netstandard2.0\MonoGame.Extended.Graphics.dll
+C:\Users\Alexa\Google Drive\Schule\4AHELS\Werkstätte\BugHunter\V1\BugHunter\packages\MonoGame.Extended\Source\MonoGame.Extended.Content.Pipeline\bin\netstandard2.0\MonoGame.Extended.Tiled.dll
+C:\Users\Alexa\Google Drive\Schule\4AHELS\Werkstätte\BugHunter\V1\BugHunter\packages\MonoGame.Extended\Source\MonoGame.Extended.Content.Pipeline\bin\netstandard2.0\MonoGame.Extended.Tiled.pdb
+C:\Users\Alexa\Google Drive\Schule\4AHELS\Werkstätte\BugHunter\V1\BugHunter\packages\MonoGame.Extended\Source\MonoGame.Extended.Content.Pipeline\bin\netstandard2.0\MonoGame.Extended.pdb
+C:\Users\Alexa\Google Drive\Schule\4AHELS\Werkstätte\BugHunter\V1\BugHunter\packages\MonoGame.Extended\Source\MonoGame.Extended.Content.Pipeline\bin\netstandard2.0\MonoGame.Extended.Graphics.pdb
+C:\Users\Alexa\Google Drive\Schule\4AHELS\Werkstätte\BugHunter\V1\BugHunter\packages\MonoGame.Extended\Source\MonoGame.Extended.Content.Pipeline\obj\Release\netstandard2.0\MonoGame.Extended.Content.Pipeline.csprojAssemblyReference.cache
+C:\Users\Alexa\Google Drive\Schule\4AHELS\Werkstätte\BugHunter\V1\BugHunter\packages\MonoGame.Extended\Source\MonoGame.Extended.Content.Pipeline\obj\Release\netstandard2.0\MonoGame.Extended.Content.Pipeline.csproj.CoreCompileInputs.cache
+C:\Users\Alexa\Google Drive\Schule\4AHELS\Werkstätte\BugHunter\V1\BugHunter\packages\MonoGame.Extended\Source\MonoGame.Extended.Content.Pipeline\obj\Release\netstandard2.0\MonoGame.Extended.Content.Pipeline.AssemblyInfoInputs.cache
+C:\Users\Alexa\Google Drive\Schule\4AHELS\Werkstätte\BugHunter\V1\BugHunter\packages\MonoGame.Extended\Source\MonoGame.Extended.Content.Pipeline\obj\Release\netstandard2.0\MonoGame.Extended.Content.Pipeline.AssemblyInfo.cs
+C:\Users\Alexa\Google Drive\Schule\4AHELS\Werkstätte\BugHunter\V1\BugHunter\packages\MonoGame.Extended\Source\MonoGame.Extended.Content.Pipeline\obj\Release\netstandard2.0\MonoGame.Extended.Content.Pipeline.csproj.CopyComplete
+C:\Users\Alexa\Google Drive\Schule\4AHELS\Werkstätte\BugHunter\V1\BugHunter\packages\MonoGame.Extended\Source\MonoGame.Extended.Content.Pipeline\obj\Release\netstandard2.0\MonoGame.Extended.Content.Pipeline.dll
+C:\Users\Alexa\Google Drive\Schule\4AHELS\Werkstätte\BugHunter\V1\BugHunter\packages\MonoGame.Extended\Source\MonoGame.Extended.Content.Pipeline\obj\Release\netstandard2.0\MonoGame.Extended.Content.Pipeline.pdb

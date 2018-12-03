@@ -1,0 +1,74 @@
+C:\Users\Alexa\Desktop\file\MonoGame.Extended\Source\MonoGame.Extended.Animations\bin\Release\netstandard2.0\MonoGame.Extended.Animations.deps.json
+C:\Users\Alexa\Desktop\file\MonoGame.Extended\Source\MonoGame.Extended.Animations\bin\Release\netstandard2.0\MonoGame.Extended.Animations.dll
+C:\Users\Alexa\Desktop\file\MonoGame.Extended\Source\MonoGame.Extended.Animations\bin\Release\netstandard2.0\MonoGame.Extended.Animations.pdb
+C:\Users\Alexa\Desktop\file\MonoGame.Extended\Source\MonoGame.Extended.Animations\bin\Release\netstandard2.0\MonoGame.Extended.dll
+C:\Users\Alexa\Desktop\file\MonoGame.Extended\Source\MonoGame.Extended.Animations\bin\Release\netstandard2.0\MonoGame.Extended.pdb
+C:\Users\Alexa\Desktop\file\MonoGame.Extended\Source\MonoGame.Extended.Animations\obj\Release\netstandard2.0\MonoGame.Extended.Animations.csproj.CoreCompileInputs.cache
+C:\Users\Alexa\Desktop\file\MonoGame.Extended\Source\MonoGame.Extended.Animations\obj\Release\netstandard2.0\MonoGame.Extended.Animations.AssemblyInfoInputs.cache
+C:\Users\Alexa\Desktop\file\MonoGame.Extended\Source\MonoGame.Extended.Animations\obj\Release\netstandard2.0\MonoGame.Extended.Animations.AssemblyInfo.cs
+C:\Users\Alexa\Desktop\file\MonoGame.Extended\Source\MonoGame.Extended.Animations\obj\Release\netstandard2.0\MonoGame.Extended.Animations.csproj.CopyComplete
+C:\Users\Alexa\Desktop\file\MonoGame.Extended\Source\MonoGame.Extended.Animations\obj\Release\netstandard2.0\MonoGame.Extended.Animations.dll
+C:\Users\Alexa\Desktop\file\MonoGame.Extended\Source\MonoGame.Extended.Animations\obj\Release\netstandard2.0\MonoGame.Extended.Animations.pdb
+C:\Users\Alexa\Desktop\file\MonoGame.Extended\Source\MonoGame.Extended.Animations\obj\Release\netstandard2.0\MonoGame.Extended.Animations.csprojAssemblyReference.cache
+C:\Users\Alexa\Google Drive\Schule\4AHELS\Werkstätte\Projekt\EscapeRoom\SOFTWARE\MonoGame.Extended\Source\MonoGame.Extended.Animations\obj\Release\netstandard2.0\MonoGame.Extended.Animations.dll
+C:\Users\Alexa\Google Drive\Schule\4AHELS\Werkstätte\Projekt\EscapeRoom\SOFTWARE\MonoGame.Extended\Source\MonoGame.Extended.Animations\obj\Release\netstandard2.0\MonoGame.Extended.Animations.pdb
+C:\Users\Alexa\Google Drive\Schule\4AHELS\Werkstätte\Projekt\EscapeRoom\V4\EscapeRoom\packages\MonoGame.Extended\Source\MonoGame.Extended.Animations\bin\Release\netstandard2.0\MonoGame.Extended.Animations.deps.json
+C:\Users\Alexa\Google Drive\Schule\4AHELS\Werkstätte\Projekt\EscapeRoom\V4\EscapeRoom\packages\MonoGame.Extended\Source\MonoGame.Extended.Animations\bin\Release\netstandard2.0\MonoGame.Extended.Animations.dll
+C:\Users\Alexa\Google Drive\Schule\4AHELS\Werkstätte\Projekt\EscapeRoom\V4\EscapeRoom\packages\MonoGame.Extended\Source\MonoGame.Extended.Animations\bin\Release\netstandard2.0\MonoGame.Extended.Animations.pdb
+C:\Users\Alexa\Google Drive\Schule\4AHELS\Werkstätte\Projekt\EscapeRoom\V4\EscapeRoom\packages\MonoGame.Extended\Source\MonoGame.Extended.Animations\bin\Release\netstandard2.0\MonoGame.Extended.dll
+C:\Users\Alexa\Google Drive\Schule\4AHELS\Werkstätte\Projekt\EscapeRoom\V4\EscapeRoom\packages\MonoGame.Extended\Source\MonoGame.Extended.Animations\bin\Release\netstandard2.0\MonoGame.Extended.pdb
+C:\Users\Alexa\Google Drive\Schule\4AHELS\Werkstätte\Projekt\EscapeRoom\V4\EscapeRoom\packages\MonoGame.Extended\Source\MonoGame.Extended.Animations\obj\Release\netstandard2.0\MonoGame.Extended.Animations.csprojAssemblyReference.cache
+C:\Users\Alexa\Google Drive\Schule\4AHELS\Werkstätte\Projekt\EscapeRoom\V4\EscapeRoom\packages\MonoGame.Extended\Source\MonoGame.Extended.Animations\obj\Release\netstandard2.0\MonoGame.Extended.Animations.csproj.CoreCompileInputs.cache
+C:\Users\Alexa\Google Drive\Schule\4AHELS\Werkstätte\Projekt\EscapeRoom\V4\EscapeRoom\packages\MonoGame.Extended\Source\MonoGame.Extended.Animations\obj\Release\netstandard2.0\MonoGame.Extended.Animations.AssemblyInfoInputs.cache
+C:\Users\Alexa\Google Drive\Schule\4AHELS\Werkstätte\Projekt\EscapeRoom\V4\EscapeRoom\packages\MonoGame.Extended\Source\MonoGame.Extended.Animations\obj\Release\netstandard2.0\MonoGame.Extended.Animations.AssemblyInfo.cs
+C:\Users\Alexa\Google Drive\Schule\4AHELS\Werkstätte\Projekt\EscapeRoom\V4\EscapeRoom\packages\MonoGame.Extended\Source\MonoGame.Extended.Animations\obj\Release\netstandard2.0\MonoGame.Extended.Animations.csproj.CopyComplete
+C:\Users\Alexa\Google Drive\Schule\4AHELS\Werkstätte\Projekt\EscapeRoom\V4\EscapeRoom\packages\MonoGame.Extended\Source\MonoGame.Extended.Animations\obj\Release\netstandard2.0\MonoGame.Extended.Animations.dll
+C:\Users\Alexa\Google Drive\Schule\4AHELS\Werkstätte\Projekt\EscapeRoom\V4\EscapeRoom\packages\MonoGame.Extended\Source\MonoGame.Extended.Animations\obj\Release\netstandard2.0\MonoGame.Extended.Animations.pdb
+C:\Users\Alexa\Documents\Werkstätte\Projekt\EscapeRoom\V4\EscapeRoom\packages\MonoGame.Extended\Source\MonoGame.Extended.Animations\bin\Release\netstandard2.0\MonoGame.Extended.Animations.deps.json
+C:\Users\Alexa\Documents\Werkstätte\Projekt\EscapeRoom\V4\EscapeRoom\packages\MonoGame.Extended\Source\MonoGame.Extended.Animations\bin\Release\netstandard2.0\MonoGame.Extended.Animations.dll
+C:\Users\Alexa\Documents\Werkstätte\Projekt\EscapeRoom\V4\EscapeRoom\packages\MonoGame.Extended\Source\MonoGame.Extended.Animations\bin\Release\netstandard2.0\MonoGame.Extended.Animations.pdb
+C:\Users\Alexa\Documents\Werkstätte\Projekt\EscapeRoom\V4\EscapeRoom\packages\MonoGame.Extended\Source\MonoGame.Extended.Animations\bin\Release\netstandard2.0\MonoGame.Extended.dll
+C:\Users\Alexa\Documents\Werkstätte\Projekt\EscapeRoom\V4\EscapeRoom\packages\MonoGame.Extended\Source\MonoGame.Extended.Animations\bin\Release\netstandard2.0\MonoGame.Extended.pdb
+C:\Users\Alexa\Documents\Werkstätte\Projekt\EscapeRoom\V4\EscapeRoom\packages\MonoGame.Extended\Source\MonoGame.Extended.Animations\obj\Release\netstandard2.0\MonoGame.Extended.Animations.csprojAssemblyReference.cache
+C:\Users\Alexa\Documents\Werkstätte\Projekt\EscapeRoom\V4\EscapeRoom\packages\MonoGame.Extended\Source\MonoGame.Extended.Animations\obj\Release\netstandard2.0\MonoGame.Extended.Animations.csproj.CoreCompileInputs.cache
+C:\Users\Alexa\Documents\Werkstätte\Projekt\EscapeRoom\V4\EscapeRoom\packages\MonoGame.Extended\Source\MonoGame.Extended.Animations\obj\Release\netstandard2.0\MonoGame.Extended.Animations.AssemblyInfoInputs.cache
+C:\Users\Alexa\Documents\Werkstätte\Projekt\EscapeRoom\V4\EscapeRoom\packages\MonoGame.Extended\Source\MonoGame.Extended.Animations\obj\Release\netstandard2.0\MonoGame.Extended.Animations.AssemblyInfo.cs
+C:\Users\Alexa\Documents\Werkstätte\Projekt\EscapeRoom\V4\EscapeRoom\packages\MonoGame.Extended\Source\MonoGame.Extended.Animations\obj\Release\netstandard2.0\MonoGame.Extended.Animations.csproj.CopyComplete
+C:\Users\Alexa\Documents\Werkstätte\Projekt\EscapeRoom\V4\EscapeRoom\packages\MonoGame.Extended\Source\MonoGame.Extended.Animations\obj\Release\netstandard2.0\MonoGame.Extended.Animations.dll
+C:\Users\Alexa\Documents\Werkstätte\Projekt\EscapeRoom\V4\EscapeRoom\packages\MonoGame.Extended\Source\MonoGame.Extended.Animations\obj\Release\netstandard2.0\MonoGame.Extended.Animations.pdb
+F:\Google Drive\Schule\4AHELS\Werkstätte\Escaperoom\V4\EscapeRoom\packages\MonoGame.Extended\Source\MonoGame.Extended.Animations\bin\Release\netstandard2.0\MonoGame.Extended.Animations.deps.json
+F:\Google Drive\Schule\4AHELS\Werkstätte\Escaperoom\V4\EscapeRoom\packages\MonoGame.Extended\Source\MonoGame.Extended.Animations\bin\Release\netstandard2.0\MonoGame.Extended.Animations.dll
+F:\Google Drive\Schule\4AHELS\Werkstätte\Escaperoom\V4\EscapeRoom\packages\MonoGame.Extended\Source\MonoGame.Extended.Animations\bin\Release\netstandard2.0\MonoGame.Extended.Animations.pdb
+F:\Google Drive\Schule\4AHELS\Werkstätte\Escaperoom\V4\EscapeRoom\packages\MonoGame.Extended\Source\MonoGame.Extended.Animations\bin\Release\netstandard2.0\MonoGame.Extended.dll
+F:\Google Drive\Schule\4AHELS\Werkstätte\Escaperoom\V4\EscapeRoom\packages\MonoGame.Extended\Source\MonoGame.Extended.Animations\bin\Release\netstandard2.0\MonoGame.Extended.pdb
+F:\Google Drive\Schule\4AHELS\Werkstätte\Escaperoom\V4\EscapeRoom\packages\MonoGame.Extended\Source\MonoGame.Extended.Animations\obj\Release\netstandard2.0\MonoGame.Extended.Animations.csprojAssemblyReference.cache
+F:\Google Drive\Schule\4AHELS\Werkstätte\Escaperoom\V4\EscapeRoom\packages\MonoGame.Extended\Source\MonoGame.Extended.Animations\obj\Release\netstandard2.0\MonoGame.Extended.Animations.csproj.CoreCompileInputs.cache
+F:\Google Drive\Schule\4AHELS\Werkstätte\Escaperoom\V4\EscapeRoom\packages\MonoGame.Extended\Source\MonoGame.Extended.Animations\obj\Release\netstandard2.0\MonoGame.Extended.Animations.AssemblyInfoInputs.cache
+F:\Google Drive\Schule\4AHELS\Werkstätte\Escaperoom\V4\EscapeRoom\packages\MonoGame.Extended\Source\MonoGame.Extended.Animations\obj\Release\netstandard2.0\MonoGame.Extended.Animations.AssemblyInfo.cs
+F:\Google Drive\Schule\4AHELS\Werkstätte\Escaperoom\V4\EscapeRoom\packages\MonoGame.Extended\Source\MonoGame.Extended.Animations\obj\Release\netstandard2.0\MonoGame.Extended.Animations.csproj.CopyComplete
+F:\Google Drive\Schule\4AHELS\Werkstätte\Escaperoom\V4\EscapeRoom\packages\MonoGame.Extended\Source\MonoGame.Extended.Animations\obj\Release\netstandard2.0\MonoGame.Extended.Animations.dll
+F:\Google Drive\Schule\4AHELS\Werkstätte\Escaperoom\V4\EscapeRoom\packages\MonoGame.Extended\Source\MonoGame.Extended.Animations\obj\Release\netstandard2.0\MonoGame.Extended.Animations.pdb
+C:\Users\Alexa\Google Drive\Schule\4AHELS\Werkstätte\Escaperoom\V4\EscapeRoom\packages\MonoGame.Extended\Source\MonoGame.Extended.Animations\bin\Release\netstandard2.0\MonoGame.Extended.Animations.deps.json
+C:\Users\Alexa\Google Drive\Schule\4AHELS\Werkstätte\Escaperoom\V4\EscapeRoom\packages\MonoGame.Extended\Source\MonoGame.Extended.Animations\bin\Release\netstandard2.0\MonoGame.Extended.Animations.dll
+C:\Users\Alexa\Google Drive\Schule\4AHELS\Werkstätte\Escaperoom\V4\EscapeRoom\packages\MonoGame.Extended\Source\MonoGame.Extended.Animations\bin\Release\netstandard2.0\MonoGame.Extended.Animations.pdb
+C:\Users\Alexa\Google Drive\Schule\4AHELS\Werkstätte\Escaperoom\V4\EscapeRoom\packages\MonoGame.Extended\Source\MonoGame.Extended.Animations\bin\Release\netstandard2.0\MonoGame.Extended.dll
+C:\Users\Alexa\Google Drive\Schule\4AHELS\Werkstätte\Escaperoom\V4\EscapeRoom\packages\MonoGame.Extended\Source\MonoGame.Extended.Animations\bin\Release\netstandard2.0\MonoGame.Extended.pdb
+C:\Users\Alexa\Google Drive\Schule\4AHELS\Werkstätte\Escaperoom\V4\EscapeRoom\packages\MonoGame.Extended\Source\MonoGame.Extended.Animations\obj\Release\netstandard2.0\MonoGame.Extended.Animations.csprojAssemblyReference.cache
+C:\Users\Alexa\Google Drive\Schule\4AHELS\Werkstätte\Escaperoom\V4\EscapeRoom\packages\MonoGame.Extended\Source\MonoGame.Extended.Animations\obj\Release\netstandard2.0\MonoGame.Extended.Animations.csproj.CoreCompileInputs.cache
+C:\Users\Alexa\Google Drive\Schule\4AHELS\Werkstätte\Escaperoom\V4\EscapeRoom\packages\MonoGame.Extended\Source\MonoGame.Extended.Animations\obj\Release\netstandard2.0\MonoGame.Extended.Animations.AssemblyInfoInputs.cache
+C:\Users\Alexa\Google Drive\Schule\4AHELS\Werkstätte\Escaperoom\V4\EscapeRoom\packages\MonoGame.Extended\Source\MonoGame.Extended.Animations\obj\Release\netstandard2.0\MonoGame.Extended.Animations.AssemblyInfo.cs
+C:\Users\Alexa\Google Drive\Schule\4AHELS\Werkstätte\Escaperoom\V4\EscapeRoom\packages\MonoGame.Extended\Source\MonoGame.Extended.Animations\obj\Release\netstandard2.0\MonoGame.Extended.Animations.csproj.CopyComplete
+C:\Users\Alexa\Google Drive\Schule\4AHELS\Werkstätte\Escaperoom\V4\EscapeRoom\packages\MonoGame.Extended\Source\MonoGame.Extended.Animations\obj\Release\netstandard2.0\MonoGame.Extended.Animations.dll
+C:\Users\Alexa\Google Drive\Schule\4AHELS\Werkstätte\Escaperoom\V4\EscapeRoom\packages\MonoGame.Extended\Source\MonoGame.Extended.Animations\obj\Release\netstandard2.0\MonoGame.Extended.Animations.pdb
+C:\Users\Alexa\Google Drive\Schule\4AHELS\Werkstätte\BugHunter\V1\BugHunter\packages\MonoGame.Extended\Source\MonoGame.Extended.Animations\bin\Release\netstandard2.0\MonoGame.Extended.Animations.deps.json
+C:\Users\Alexa\Google Drive\Schule\4AHELS\Werkstätte\BugHunter\V1\BugHunter\packages\MonoGame.Extended\Source\MonoGame.Extended.Animations\bin\Release\netstandard2.0\MonoGame.Extended.Animations.dll
+C:\Users\Alexa\Google Drive\Schule\4AHELS\Werkstätte\BugHunter\V1\BugHunter\packages\MonoGame.Extended\Source\MonoGame.Extended.Animations\bin\Release\netstandard2.0\MonoGame.Extended.Animations.pdb
+C:\Users\Alexa\Google Drive\Schule\4AHELS\Werkstätte\BugHunter\V1\BugHunter\packages\MonoGame.Extended\Source\MonoGame.Extended.Animations\bin\Release\netstandard2.0\MonoGame.Extended.dll
+C:\Users\Alexa\Google Drive\Schule\4AHELS\Werkstätte\BugHunter\V1\BugHunter\packages\MonoGame.Extended\Source\MonoGame.Extended.Animations\bin\Release\netstandard2.0\MonoGame.Extended.pdb
+C:\Users\Alexa\Google Drive\Schule\4AHELS\Werkstätte\BugHunter\V1\BugHunter\packages\MonoGame.Extended\Source\MonoGame.Extended.Animations\obj\Release\netstandard2.0\MonoGame.Extended.Animations.csprojAssemblyReference.cache
+C:\Users\Alexa\Google Drive\Schule\4AHELS\Werkstätte\BugHunter\V1\BugHunter\packages\MonoGame.Extended\Source\MonoGame.Extended.Animations\obj\Release\netstandard2.0\MonoGame.Extended.Animations.csproj.CoreCompileInputs.cache
+C:\Users\Alexa\Google Drive\Schule\4AHELS\Werkstätte\BugHunter\V1\BugHunter\packages\MonoGame.Extended\Source\MonoGame.Extended.Animations\obj\Release\netstandard2.0\MonoGame.Extended.Animations.AssemblyInfoInputs.cache
+C:\Users\Alexa\Google Drive\Schule\4AHELS\Werkstätte\BugHunter\V1\BugHunter\packages\MonoGame.Extended\Source\MonoGame.Extended.Animations\obj\Release\netstandard2.0\MonoGame.Extended.Animations.AssemblyInfo.cs
+C:\Users\Alexa\Google Drive\Schule\4AHELS\Werkstätte\BugHunter\V1\BugHunter\packages\MonoGame.Extended\Source\MonoGame.Extended.Animations\obj\Release\netstandard2.0\MonoGame.Extended.Animations.csproj.CopyComplete
+C:\Users\Alexa\Google Drive\Schule\4AHELS\Werkstätte\BugHunter\V1\BugHunter\packages\MonoGame.Extended\Source\MonoGame.Extended.Animations\obj\Release\netstandard2.0\MonoGame.Extended.Animations.dll
+C:\Users\Alexa\Google Drive\Schule\4AHELS\Werkstätte\BugHunter\V1\BugHunter\packages\MonoGame.Extended\Source\MonoGame.Extended.Animations\obj\Release\netstandard2.0\MonoGame.Extended.Animations.pdb

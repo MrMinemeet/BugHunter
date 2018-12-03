@@ -1,0 +1,75 @@
+C:\Users\Alexa\Desktop\file\MonoGame.Extended\Source\MonoGame.Extended.NuclexGui\bin\Release\netstandard2.0\Resources\Skins\SuaveSkin.json
+C:\Users\Alexa\Desktop\file\MonoGame.Extended\Source\MonoGame.Extended.NuclexGui\bin\Release\netstandard2.0\MonoGame.Extended.NuclexGui.deps.json
+C:\Users\Alexa\Desktop\file\MonoGame.Extended\Source\MonoGame.Extended.NuclexGui\bin\Release\netstandard2.0\MonoGame.Extended.NuclexGui.dll
+C:\Users\Alexa\Desktop\file\MonoGame.Extended\Source\MonoGame.Extended.NuclexGui\bin\Release\netstandard2.0\MonoGame.Extended.NuclexGui.pdb
+C:\Users\Alexa\Desktop\file\MonoGame.Extended\Source\MonoGame.Extended.NuclexGui\bin\Release\netstandard2.0\MonoGame.Extended.dll
+C:\Users\Alexa\Desktop\file\MonoGame.Extended\Source\MonoGame.Extended.NuclexGui\bin\Release\netstandard2.0\MonoGame.Extended.Input.dll
+C:\Users\Alexa\Desktop\file\MonoGame.Extended\Source\MonoGame.Extended.NuclexGui\bin\Release\netstandard2.0\MonoGame.Extended.Input.pdb
+C:\Users\Alexa\Desktop\file\MonoGame.Extended\Source\MonoGame.Extended.NuclexGui\bin\Release\netstandard2.0\MonoGame.Extended.pdb
+C:\Users\Alexa\Desktop\file\MonoGame.Extended\Source\MonoGame.Extended.NuclexGui\obj\Release\netstandard2.0\MonoGame.Extended.NuclexGui.csprojAssemblyReference.cache
+C:\Users\Alexa\Desktop\file\MonoGame.Extended\Source\MonoGame.Extended.NuclexGui\obj\Release\netstandard2.0\MonoGame.Extended.NuclexGui.csproj.CoreCompileInputs.cache
+C:\Users\Alexa\Desktop\file\MonoGame.Extended\Source\MonoGame.Extended.NuclexGui\obj\Release\netstandard2.0\MonoGame.Extended.NuclexGui.AssemblyInfoInputs.cache
+C:\Users\Alexa\Desktop\file\MonoGame.Extended\Source\MonoGame.Extended.NuclexGui\obj\Release\netstandard2.0\MonoGame.Extended.NuclexGui.AssemblyInfo.cs
+C:\Users\Alexa\Desktop\file\MonoGame.Extended\Source\MonoGame.Extended.NuclexGui\obj\Release\netstandard2.0\MonoGame.Extended.NuclexGui.csproj.CopyComplete
+C:\Users\Alexa\Desktop\file\MonoGame.Extended\Source\MonoGame.Extended.NuclexGui\obj\Release\netstandard2.0\MonoGame.Extended.NuclexGui.dll
+C:\Users\Alexa\Desktop\file\MonoGame.Extended\Source\MonoGame.Extended.NuclexGui\obj\Release\netstandard2.0\MonoGame.Extended.NuclexGui.pdb
+C:\Users\Alexa\Google Drive\Schule\4AHELS\Werkstätte\Projekt\EscapeRoom\V4\EscapeRoom\packages\MonoGame.Extended\Source\MonoGame.Extended.NuclexGui\bin\Release\netstandard2.0\Resources\Skins\SuaveSkin.json
+C:\Users\Alexa\Google Drive\Schule\4AHELS\Werkstätte\Projekt\EscapeRoom\V4\EscapeRoom\packages\MonoGame.Extended\Source\MonoGame.Extended.NuclexGui\bin\Release\netstandard2.0\MonoGame.Extended.NuclexGui.deps.json
+C:\Users\Alexa\Google Drive\Schule\4AHELS\Werkstätte\Projekt\EscapeRoom\V4\EscapeRoom\packages\MonoGame.Extended\Source\MonoGame.Extended.NuclexGui\bin\Release\netstandard2.0\MonoGame.Extended.NuclexGui.dll
+C:\Users\Alexa\Google Drive\Schule\4AHELS\Werkstätte\Projekt\EscapeRoom\V4\EscapeRoom\packages\MonoGame.Extended\Source\MonoGame.Extended.NuclexGui\bin\Release\netstandard2.0\MonoGame.Extended.NuclexGui.pdb
+C:\Users\Alexa\Google Drive\Schule\4AHELS\Werkstätte\Projekt\EscapeRoom\V4\EscapeRoom\packages\MonoGame.Extended\Source\MonoGame.Extended.NuclexGui\bin\Release\netstandard2.0\MonoGame.Extended.dll
+C:\Users\Alexa\Google Drive\Schule\4AHELS\Werkstätte\Projekt\EscapeRoom\V4\EscapeRoom\packages\MonoGame.Extended\Source\MonoGame.Extended.NuclexGui\bin\Release\netstandard2.0\MonoGame.Extended.Input.dll
+C:\Users\Alexa\Google Drive\Schule\4AHELS\Werkstätte\Projekt\EscapeRoom\V4\EscapeRoom\packages\MonoGame.Extended\Source\MonoGame.Extended.NuclexGui\bin\Release\netstandard2.0\MonoGame.Extended.Input.pdb
+C:\Users\Alexa\Google Drive\Schule\4AHELS\Werkstätte\Projekt\EscapeRoom\V4\EscapeRoom\packages\MonoGame.Extended\Source\MonoGame.Extended.NuclexGui\bin\Release\netstandard2.0\MonoGame.Extended.pdb
+C:\Users\Alexa\Google Drive\Schule\4AHELS\Werkstätte\Projekt\EscapeRoom\V4\EscapeRoom\packages\MonoGame.Extended\Source\MonoGame.Extended.NuclexGui\obj\Release\netstandard2.0\MonoGame.Extended.NuclexGui.csprojAssemblyReference.cache
+C:\Users\Alexa\Google Drive\Schule\4AHELS\Werkstätte\Projekt\EscapeRoom\V4\EscapeRoom\packages\MonoGame.Extended\Source\MonoGame.Extended.NuclexGui\obj\Release\netstandard2.0\MonoGame.Extended.NuclexGui.csproj.CoreCompileInputs.cache
+C:\Users\Alexa\Google Drive\Schule\4AHELS\Werkstätte\Projekt\EscapeRoom\V4\EscapeRoom\packages\MonoGame.Extended\Source\MonoGame.Extended.NuclexGui\obj\Release\netstandard2.0\MonoGame.Extended.NuclexGui.AssemblyInfoInputs.cache
+C:\Users\Alexa\Google Drive\Schule\4AHELS\Werkstätte\Projekt\EscapeRoom\V4\EscapeRoom\packages\MonoGame.Extended\Source\MonoGame.Extended.NuclexGui\obj\Release\netstandard2.0\MonoGame.Extended.NuclexGui.AssemblyInfo.cs
+C:\Users\Alexa\Google Drive\Schule\4AHELS\Werkstätte\Projekt\EscapeRoom\V4\EscapeRoom\packages\MonoGame.Extended\Source\MonoGame.Extended.NuclexGui\obj\Release\netstandard2.0\MonoGame.Extended.NuclexGui.csproj.CopyComplete
+C:\Users\Alexa\Google Drive\Schule\4AHELS\Werkstätte\Projekt\EscapeRoom\V4\EscapeRoom\packages\MonoGame.Extended\Source\MonoGame.Extended.NuclexGui\obj\Release\netstandard2.0\MonoGame.Extended.NuclexGui.dll
+C:\Users\Alexa\Google Drive\Schule\4AHELS\Werkstätte\Projekt\EscapeRoom\V4\EscapeRoom\packages\MonoGame.Extended\Source\MonoGame.Extended.NuclexGui\obj\Release\netstandard2.0\MonoGame.Extended.NuclexGui.pdb
+C:\Users\Alexa\Documents\Werkstätte\Projekt\EscapeRoom\V4\EscapeRoom\packages\MonoGame.Extended\Source\MonoGame.Extended.NuclexGui\bin\Release\netstandard2.0\Resources\Skins\SuaveSkin.json
+C:\Users\Alexa\Documents\Werkstätte\Projekt\EscapeRoom\V4\EscapeRoom\packages\MonoGame.Extended\Source\MonoGame.Extended.NuclexGui\bin\Release\netstandard2.0\MonoGame.Extended.NuclexGui.deps.json
+C:\Users\Alexa\Documents\Werkstätte\Projekt\EscapeRoom\V4\EscapeRoom\packages\MonoGame.Extended\Source\MonoGame.Extended.NuclexGui\bin\Release\netstandard2.0\MonoGame.Extended.NuclexGui.dll
+C:\Users\Alexa\Documents\Werkstätte\Projekt\EscapeRoom\V4\EscapeRoom\packages\MonoGame.Extended\Source\MonoGame.Extended.NuclexGui\bin\Release\netstandard2.0\MonoGame.Extended.NuclexGui.pdb
+C:\Users\Alexa\Documents\Werkstätte\Projekt\EscapeRoom\V4\EscapeRoom\packages\MonoGame.Extended\Source\MonoGame.Extended.NuclexGui\bin\Release\netstandard2.0\MonoGame.Extended.dll
+C:\Users\Alexa\Documents\Werkstätte\Projekt\EscapeRoom\V4\EscapeRoom\packages\MonoGame.Extended\Source\MonoGame.Extended.NuclexGui\bin\Release\netstandard2.0\MonoGame.Extended.Input.dll
+C:\Users\Alexa\Documents\Werkstätte\Projekt\EscapeRoom\V4\EscapeRoom\packages\MonoGame.Extended\Source\MonoGame.Extended.NuclexGui\bin\Release\netstandard2.0\MonoGame.Extended.Input.pdb
+C:\Users\Alexa\Documents\Werkstätte\Projekt\EscapeRoom\V4\EscapeRoom\packages\MonoGame.Extended\Source\MonoGame.Extended.NuclexGui\bin\Release\netstandard2.0\MonoGame.Extended.pdb
+C:\Users\Alexa\Documents\Werkstätte\Projekt\EscapeRoom\V4\EscapeRoom\packages\MonoGame.Extended\Source\MonoGame.Extended.NuclexGui\obj\Release\netstandard2.0\MonoGame.Extended.NuclexGui.csprojAssemblyReference.cache
+C:\Users\Alexa\Documents\Werkstätte\Projekt\EscapeRoom\V4\EscapeRoom\packages\MonoGame.Extended\Source\MonoGame.Extended.NuclexGui\obj\Release\netstandard2.0\MonoGame.Extended.NuclexGui.csproj.CoreCompileInputs.cache
+C:\Users\Alexa\Documents\Werkstätte\Projekt\EscapeRoom\V4\EscapeRoom\packages\MonoGame.Extended\Source\MonoGame.Extended.NuclexGui\obj\Release\netstandard2.0\MonoGame.Extended.NuclexGui.AssemblyInfoInputs.cache
+C:\Users\Alexa\Documents\Werkstätte\Projekt\EscapeRoom\V4\EscapeRoom\packages\MonoGame.Extended\Source\MonoGame.Extended.NuclexGui\obj\Release\netstandard2.0\MonoGame.Extended.NuclexGui.AssemblyInfo.cs
+C:\Users\Alexa\Documents\Werkstätte\Projekt\EscapeRoom\V4\EscapeRoom\packages\MonoGame.Extended\Source\MonoGame.Extended.NuclexGui\obj\Release\netstandard2.0\MonoGame.Extended.NuclexGui.csproj.CopyComplete
+C:\Users\Alexa\Documents\Werkstätte\Projekt\EscapeRoom\V4\EscapeRoom\packages\MonoGame.Extended\Source\MonoGame.Extended.NuclexGui\obj\Release\netstandard2.0\MonoGame.Extended.NuclexGui.dll
+C:\Users\Alexa\Documents\Werkstätte\Projekt\EscapeRoom\V4\EscapeRoom\packages\MonoGame.Extended\Source\MonoGame.Extended.NuclexGui\obj\Release\netstandard2.0\MonoGame.Extended.NuclexGui.pdb
+F:\Google Drive\Schule\4AHELS\Werkstätte\Escaperoom\V4\EscapeRoom\packages\MonoGame.Extended\Source\MonoGame.Extended.NuclexGui\bin\Release\netstandard2.0\Resources\Skins\SuaveSkin.json
+F:\Google Drive\Schule\4AHELS\Werkstätte\Escaperoom\V4\EscapeRoom\packages\MonoGame.Extended\Source\MonoGame.Extended.NuclexGui\bin\Release\netstandard2.0\MonoGame.Extended.NuclexGui.deps.json
+F:\Google Drive\Schule\4AHELS\Werkstätte\Escaperoom\V4\EscapeRoom\packages\MonoGame.Extended\Source\MonoGame.Extended.NuclexGui\bin\Release\netstandard2.0\MonoGame.Extended.NuclexGui.dll
+F:\Google Drive\Schule\4AHELS\Werkstätte\Escaperoom\V4\EscapeRoom\packages\MonoGame.Extended\Source\MonoGame.Extended.NuclexGui\bin\Release\netstandard2.0\MonoGame.Extended.NuclexGui.pdb
+F:\Google Drive\Schule\4AHELS\Werkstätte\Escaperoom\V4\EscapeRoom\packages\MonoGame.Extended\Source\MonoGame.Extended.NuclexGui\bin\Release\netstandard2.0\MonoGame.Extended.dll
+F:\Google Drive\Schule\4AHELS\Werkstätte\Escaperoom\V4\EscapeRoom\packages\MonoGame.Extended\Source\MonoGame.Extended.NuclexGui\bin\Release\netstandard2.0\MonoGame.Extended.Input.dll
+F:\Google Drive\Schule\4AHELS\Werkstätte\Escaperoom\V4\EscapeRoom\packages\MonoGame.Extended\Source\MonoGame.Extended.NuclexGui\bin\Release\netstandard2.0\MonoGame.Extended.Input.pdb
+F:\Google Drive\Schule\4AHELS\Werkstätte\Escaperoom\V4\EscapeRoom\packages\MonoGame.Extended\Source\MonoGame.Extended.NuclexGui\bin\Release\netstandard2.0\MonoGame.Extended.pdb
+F:\Google Drive\Schule\4AHELS\Werkstätte\Escaperoom\V4\EscapeRoom\packages\MonoGame.Extended\Source\MonoGame.Extended.NuclexGui\obj\Release\netstandard2.0\MonoGame.Extended.NuclexGui.csprojAssemblyReference.cache
+F:\Google Drive\Schule\4AHELS\Werkstätte\Escaperoom\V4\EscapeRoom\packages\MonoGame.Extended\Source\MonoGame.Extended.NuclexGui\obj\Release\netstandard2.0\MonoGame.Extended.NuclexGui.csproj.CoreCompileInputs.cache
+F:\Google Drive\Schule\4AHELS\Werkstätte\Escaperoom\V4\EscapeRoom\packages\MonoGame.Extended\Source\MonoGame.Extended.NuclexGui\obj\Release\netstandard2.0\MonoGame.Extended.NuclexGui.AssemblyInfoInputs.cache
+F:\Google Drive\Schule\4AHELS\Werkstätte\Escaperoom\V4\EscapeRoom\packages\MonoGame.Extended\Source\MonoGame.Extended.NuclexGui\obj\Release\netstandard2.0\MonoGame.Extended.NuclexGui.AssemblyInfo.cs
+F:\Google Drive\Schule\4AHELS\Werkstätte\Escaperoom\V4\EscapeRoom\packages\MonoGame.Extended\Source\MonoGame.Extended.NuclexGui\obj\Release\netstandard2.0\MonoGame.Extended.NuclexGui.csproj.CopyComplete
+F:\Google Drive\Schule\4AHELS\Werkstätte\Escaperoom\V4\EscapeRoom\packages\MonoGame.Extended\Source\MonoGame.Extended.NuclexGui\obj\Release\netstandard2.0\MonoGame.Extended.NuclexGui.dll
+F:\Google Drive\Schule\4AHELS\Werkstätte\Escaperoom\V4\EscapeRoom\packages\MonoGame.Extended\Source\MonoGame.Extended.NuclexGui\obj\Release\netstandard2.0\MonoGame.Extended.NuclexGui.pdb
+C:\Users\Alexa\Google Drive\Schule\4AHELS\Werkstätte\Escaperoom\V4\EscapeRoom\packages\MonoGame.Extended\Source\MonoGame.Extended.NuclexGui\bin\Release\netstandard2.0\Resources\Skins\SuaveSkin.json
+C:\Users\Alexa\Google Drive\Schule\4AHELS\Werkstätte\Escaperoom\V4\EscapeRoom\packages\MonoGame.Extended\Source\MonoGame.Extended.NuclexGui\bin\Release\netstandard2.0\MonoGame.Extended.NuclexGui.deps.json
+C:\Users\Alexa\Google Drive\Schule\4AHELS\Werkstätte\Escaperoom\V4\EscapeRoom\packages\MonoGame.Extended\Source\MonoGame.Extended.NuclexGui\bin\Release\netstandard2.0\MonoGame.Extended.NuclexGui.dll
+C:\Users\Alexa\Google Drive\Schule\4AHELS\Werkstätte\Escaperoom\V4\EscapeRoom\packages\MonoGame.Extended\Source\MonoGame.Extended.NuclexGui\bin\Release\netstandard2.0\MonoGame.Extended.NuclexGui.pdb
+C:\Users\Alexa\Google Drive\Schule\4AHELS\Werkstätte\Escaperoom\V4\EscapeRoom\packages\MonoGame.Extended\Source\MonoGame.Extended.NuclexGui\bin\Release\netstandard2.0\MonoGame.Extended.dll
+C:\Users\Alexa\Google Drive\Schule\4AHELS\Werkstätte\Escaperoom\V4\EscapeRoom\packages\MonoGame.Extended\Source\MonoGame.Extended.NuclexGui\bin\Release\netstandard2.0\MonoGame.Extended.Input.dll
+C:\Users\Alexa\Google Drive\Schule\4AHELS\Werkstätte\Escaperoom\V4\EscapeRoom\packages\MonoGame.Extended\Source\MonoGame.Extended.NuclexGui\bin\Release\netstandard2.0\MonoGame.Extended.Input.pdb
+C:\Users\Alexa\Google Drive\Schule\4AHELS\Werkstätte\Escaperoom\V4\EscapeRoom\packages\MonoGame.Extended\Source\MonoGame.Extended.NuclexGui\bin\Release\netstandard2.0\MonoGame.Extended.pdb
+C:\Users\Alexa\Google Drive\Schule\4AHELS\Werkstätte\Escaperoom\V4\EscapeRoom\packages\MonoGame.Extended\Source\MonoGame.Extended.NuclexGui\obj\Release\netstandard2.0\MonoGame.Extended.NuclexGui.csprojAssemblyReference.cache
+C:\Users\Alexa\Google Drive\Schule\4AHELS\Werkstätte\Escaperoom\V4\EscapeRoom\packages\MonoGame.Extended\Source\MonoGame.Extended.NuclexGui\obj\Release\netstandard2.0\MonoGame.Extended.NuclexGui.csproj.CoreCompileInputs.cache
+C:\Users\Alexa\Google Drive\Schule\4AHELS\Werkstätte\Escaperoom\V4\EscapeRoom\packages\MonoGame.Extended\Source\MonoGame.Extended.NuclexGui\obj\Release\netstandard2.0\MonoGame.Extended.NuclexGui.AssemblyInfoInputs.cache
+C:\Users\Alexa\Google Drive\Schule\4AHELS\Werkstätte\Escaperoom\V4\EscapeRoom\packages\MonoGame.Extended\Source\MonoGame.Extended.NuclexGui\obj\Release\netstandard2.0\MonoGame.Extended.NuclexGui.AssemblyInfo.cs
+C:\Users\Alexa\Google Drive\Schule\4AHELS\Werkstätte\Escaperoom\V4\EscapeRoom\packages\MonoGame.Extended\Source\MonoGame.Extended.NuclexGui\obj\Release\netstandard2.0\MonoGame.Extended.NuclexGui.csproj.CopyComplete
+C:\Users\Alexa\Google Drive\Schule\4AHELS\Werkstätte\Escaperoom\V4\EscapeRoom\packages\MonoGame.Extended\Source\MonoGame.Extended.NuclexGui\obj\Release\netstandard2.0\MonoGame.Extended.NuclexGui.dll
+C:\Users\Alexa\Google Drive\Schule\4AHELS\Werkstätte\Escaperoom\V4\EscapeRoom\packages\MonoGame.Extended\Source\MonoGame.Extended.NuclexGui\obj\Release\netstandard2.0\MonoGame.Extended.NuclexGui.pdb
