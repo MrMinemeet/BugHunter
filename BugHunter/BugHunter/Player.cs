@@ -31,15 +31,7 @@ namespace BugHunter
 
         public Weapons aktWeapon = Weapons.c;
 
-
-        // Schuss
-        public bool HasShot = false;
-        public float ProjectileSpeed = 400f;
-        public Vector2 ProjectilePosition;
-        private double TimeSinceShot = 0;
-        enum Directions : byte { Up, Down, Left, Right}
-        Directions aktDirection;
-
+        Projectile[] projectiles = new Projectile[100];
 
         /// <summary>
         /// Konstruktorfür Klasse Android
@@ -125,69 +117,24 @@ namespace BugHunter
                 this.Position = this.PotNewPlayerPosition;
             }
 
-            UpdateShot(gameTime);            
+            for(int i = 0; i < 1; i++)
+            {
+                if (kstate.IsKeyDown(Keys.Right))
+                {
+                    foreach(Projectile p in projectiles)
+                    {
+                        if (!p.IsActive)
+                        {
+                            p.IsActive = true;
+                            p.ProjectilePosition = this.Position;
+                            p.TimeSinceShot = gameTime.TotalGameTime.TotalSeconds;
+                        }
+                    }
+                }
+            }       
 
             // Kamera über Spieler setzen
             camera.LookAt(Position);
-        }
-
-        private void UpdateShot(GameTime gameTime)
-        {
-            var kstate = Keyboard.GetState();
-
-            // Rechts
-            if (kstate.IsKeyDown(Keys.Right) && !HasShot)
-            {
-                aktDirection = Directions.Right;
-                shoot();
-                TimeSinceShot = gameTime.TotalGameTime.TotalSeconds;
-            }
-            // Links
-            if (kstate.IsKeyDown(Keys.Left) && !HasShot)
-            {
-                aktDirection = Directions.Left;
-                shoot();
-                TimeSinceShot = gameTime.TotalGameTime.TotalSeconds;
-            }
-            // Oben
-            if (kstate.IsKeyDown(Keys.Up) && !HasShot)
-            {
-                aktDirection = Directions.Up;
-                shoot();
-                TimeSinceShot = gameTime.TotalGameTime.TotalSeconds;
-            }
-            // Unten
-            if (kstate.IsKeyDown(Keys.Down) && !HasShot)
-            {
-                aktDirection = Directions.Down;
-                shoot();
-                TimeSinceShot = gameTime.TotalGameTime.TotalSeconds;
-            }
-
-            if (HasShot)
-            {
-
-                switch (aktDirection)
-                {
-                    case Directions.Right:
-                        ProjectilePosition.X += ProjectileSpeed * (float)gameTime.ElapsedGameTime.TotalSeconds;
-                        break;
-                    case Directions.Left:
-                        ProjectilePosition.X -= ProjectileSpeed * (float)gameTime.ElapsedGameTime.TotalSeconds;
-                        break;
-                    case Directions.Up:
-                        ProjectilePosition.Y -= ProjectileSpeed * (float)gameTime.ElapsedGameTime.TotalSeconds;
-                        break;
-                    case Directions.Down:
-                        ProjectilePosition.Y += ProjectileSpeed * (float)gameTime.ElapsedGameTime.TotalSeconds;
-                        break;
-                }
-
-                if (gameTime.TotalGameTime.TotalSeconds - TimeSinceShot >= 2)
-                {
-                    HasShot = false;
-                }
-            }
         }
 
         /// <summary>
@@ -197,15 +144,6 @@ namespace BugHunter
         public void GotHit(Android enemy)
         {
             enemy.Health--;
-        }
-
-        public void shoot()
-        {
-            if (!HasShot)
-            {
-                HasShot = true;
-                ProjectilePosition = this.Position;
-            }
         }
 
         /// <summary>
@@ -270,19 +208,12 @@ namespace BugHunter
                 );
             }
 
-            if (HasShot)
+            foreach(Projectile p in projectiles)
             {
-                spriteBatch.Draw(
-                    OriginTexture,
-                    this.ProjectilePosition,
-                    null,
-                    Color.White,
-                0f,
-                new Vector2(Texture.Width / 2, Texture.Height / 2),
-                Vector2.One,
-                SpriteEffects.None,
-                0f
-                );
+                if (p.IsActive)
+                {
+                    spriteBatch.Draw(OriginTexture, p.ProjectilePosition, Color.White);
+                }
             }
         }
 

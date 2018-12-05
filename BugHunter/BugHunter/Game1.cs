@@ -61,8 +61,10 @@ namespace BugHunter
         enum GameState : Byte { Ingame, Paused, DeathScreen };
         GameState CurrentGameState = GameState.Ingame;
 
-
         private SpriteSheetLoader spriteSheetLoader;
+
+
+
 
 
         public Game1()
