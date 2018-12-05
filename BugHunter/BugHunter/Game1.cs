@@ -58,10 +58,6 @@ namespace BugHunter
         FpsCounter fps = new FpsCounter();
         public SpriteFont DebugFont;
 
-        Vector2 projectile;
-        double grad;
-
-
         enum GameState : Byte { Ingame, Paused, DeathScreen };
         GameState CurrentGameState = GameState.Ingame;
 
@@ -208,9 +204,6 @@ namespace BugHunter
 
                 LastKeyStrokeInput = gameTime.TotalGameTime.TotalMilliseconds;
             }
-
-
-            grad = (Math.Atan((player.Position.Y - android.Position.Y) / (player.Position.X - android.Position.X)));
 
             base.Update(gameTime);
         }

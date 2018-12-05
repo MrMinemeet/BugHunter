@@ -29,7 +29,14 @@ namespace BugHunter
 
         public enum Weapons : byte { cpp, java, c, maschinensprache }
 
-        public Weapons aktWeapon = Weapons.maschinensprache;
+        public Weapons aktWeapon = Weapons.c;
+
+
+        // Schuss
+        public bool HasShot = false;
+        public float ProjectileSpeed = 400f;
+        public Vector2 ProjectilePosition;
+        private double TimeSinceShot = 0;
 
 
         /// <summary>
@@ -90,23 +97,23 @@ namespace BugHunter
             }
 
 
-            if (kstate.IsKeyDown(Keys.Up) || kstate.IsKeyDown(Keys.W))
+            if (kstate.IsKeyDown(Keys.W))
             {
 
                 this.PotNewPlayerPosition.Y -= Speed * (float)gameTime.ElapsedGameTime.TotalSeconds;
             }
 
-            if (kstate.IsKeyDown(Keys.Down) || kstate.IsKeyDown(Keys.S))
+            if (kstate.IsKeyDown(Keys.S))
             {
                 this.PotNewPlayerPosition.Y += Speed * (float)gameTime.ElapsedGameTime.TotalSeconds;
             }
 
-            if (kstate.IsKeyDown(Keys.Left) || kstate.IsKeyDown(Keys.A))
+            if (kstate.IsKeyDown(Keys.A))
             {
                 this.PotNewPlayerPosition.X -= Speed * (float)gameTime.ElapsedGameTime.TotalSeconds;
             }
 
-            if (kstate.IsKeyDown(Keys.Right) || kstate.IsKeyDown(Keys.D))
+            if (kstate.IsKeyDown(Keys.D))
             {
                 this.PotNewPlayerPosition.X += Speed * (float)gameTime.ElapsedGameTime.TotalSeconds;
             }
@@ -114,6 +121,23 @@ namespace BugHunter
             if(!DidHitCollision(CollisionMapArray,map))
             {
                 this.Position = this.PotNewPlayerPosition;
+            }
+
+            if (kstate.IsKeyDown(Keys.Right) && !HasShot)
+            {
+                shoot();
+                TimeSinceShot = gameTime.TotalGameTime.TotalSeconds;
+            }
+
+            if (HasShot)
+            {
+                ProjectilePosition.X += ProjectileSpeed * (float)gameTime.ElapsedGameTime.TotalSeconds;
+
+                
+                if(gameTime.TotalGameTime.TotalSeconds - TimeSinceShot >= 2)
+                {
+                    HasShot = false;
+                }
             }
 
             // Kamera über Spieler setzen
@@ -127,6 +151,15 @@ namespace BugHunter
         public void GotHit(Android enemy)
         {
             enemy.Health--;
+        }
+
+        public void shoot()
+        {
+            if (!HasShot)
+            {
+                HasShot = true;
+                ProjectilePosition = this.Position;
+            }
         }
 
         /// <summary>
@@ -181,6 +214,21 @@ namespace BugHunter
                 spriteBatch.Draw(
                     OriginTexture,
                     Position,
+                    null,
+                    Color.White,
+                0f,
+                new Vector2(Texture.Width / 2, Texture.Height / 2),
+                Vector2.One,
+                SpriteEffects.None,
+                0f
+                );
+            }
+
+            if (HasShot)
+            {
+                spriteBatch.Draw(
+                    OriginTexture,
+                    this.ProjectilePosition,
                     null,
                     Color.White,
                 0f,
