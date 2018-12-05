@@ -37,6 +37,8 @@ namespace BugHunter
         public float ProjectileSpeed = 400f;
         public Vector2 ProjectilePosition;
         private double TimeSinceShot = 0;
+        enum Directions : byte { Up, Down, Left, Right}
+        Directions aktDirection;
 
 
         /// <summary>
@@ -123,25 +125,69 @@ namespace BugHunter
                 this.Position = this.PotNewPlayerPosition;
             }
 
+            UpdateShot(gameTime);            
+
+            // Kamera über Spieler setzen
+            camera.LookAt(Position);
+        }
+
+        private void UpdateShot(GameTime gameTime)
+        {
+            var kstate = Keyboard.GetState();
+
+            // Rechts
             if (kstate.IsKeyDown(Keys.Right) && !HasShot)
             {
+                aktDirection = Directions.Right;
+                shoot();
+                TimeSinceShot = gameTime.TotalGameTime.TotalSeconds;
+            }
+            // Links
+            if (kstate.IsKeyDown(Keys.Left) && !HasShot)
+            {
+                aktDirection = Directions.Left;
+                shoot();
+                TimeSinceShot = gameTime.TotalGameTime.TotalSeconds;
+            }
+            // Oben
+            if (kstate.IsKeyDown(Keys.Up) && !HasShot)
+            {
+                aktDirection = Directions.Up;
+                shoot();
+                TimeSinceShot = gameTime.TotalGameTime.TotalSeconds;
+            }
+            // Unten
+            if (kstate.IsKeyDown(Keys.Down) && !HasShot)
+            {
+                aktDirection = Directions.Down;
                 shoot();
                 TimeSinceShot = gameTime.TotalGameTime.TotalSeconds;
             }
 
             if (HasShot)
             {
-                ProjectilePosition.X += ProjectileSpeed * (float)gameTime.ElapsedGameTime.TotalSeconds;
 
-                
-                if(gameTime.TotalGameTime.TotalSeconds - TimeSinceShot >= 2)
+                switch (aktDirection)
+                {
+                    case Directions.Right:
+                        ProjectilePosition.X += ProjectileSpeed * (float)gameTime.ElapsedGameTime.TotalSeconds;
+                        break;
+                    case Directions.Left:
+                        ProjectilePosition.X -= ProjectileSpeed * (float)gameTime.ElapsedGameTime.TotalSeconds;
+                        break;
+                    case Directions.Up:
+                        ProjectilePosition.Y -= ProjectileSpeed * (float)gameTime.ElapsedGameTime.TotalSeconds;
+                        break;
+                    case Directions.Down:
+                        ProjectilePosition.Y += ProjectileSpeed * (float)gameTime.ElapsedGameTime.TotalSeconds;
+                        break;
+                }
+
+                if (gameTime.TotalGameTime.TotalSeconds - TimeSinceShot >= 2)
                 {
                     HasShot = false;
                 }
             }
-
-            // Kamera über Spieler setzen
-            camera.LookAt(Position);
         }
 
         /// <summary>
