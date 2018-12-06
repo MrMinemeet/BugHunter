@@ -46,13 +46,6 @@
 /processorParam:TextureFormat=Compressed
 /build:Font.spritefont
 
-#begin Font.spritefont
-/importer:FontDescriptionImporter
-/processor:FontDescriptionProcessor
-/processorParam:PremultiplyAlpha=True
-/processorParam:TextureFormat=Compressed
-/build:Font.spritefont
-
 #begin gui_packed.png
 /copy:gui_packed.png
 
@@ -166,4 +159,10 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:sprites/player/afk_0001.png
+
+#begin weapons_packed.png
+/copy:weapons_packed.png
+
+#begin weapons_packed.txt
+/copy:weapons_packed.txt
 

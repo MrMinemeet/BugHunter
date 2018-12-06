@@ -71,11 +71,11 @@ namespace BugHunter
         {
             graphics = new GraphicsDeviceManager(this)
             {
-                PreferredBackBufferWidth = settings.getResolutionWidth(),
-                PreferredBackBufferHeight = settings.getResolutionHeight(),
-                IsFullScreen = settings.getIsFullScreen()
+                PreferredBackBufferWidth = settings.resolutionWidth,
+                PreferredBackBufferHeight = settings.resolutionHeight,
+                IsFullScreen = settings.IsFullscreen
             };
-            IsMouseVisible = settings.getIsMouseVisible();
+            IsMouseVisible = settings.IsMouseVisible;
             Content.RootDirectory = "Content";
         }
 
@@ -105,8 +105,8 @@ namespace BugHunter
             // MapRenderer für die Map erstellen
             map[AktuelleMap].mapRenderer = new TiledMapRenderer(GraphicsDevice, map[AktuelleMap].getTiledMap());
 
-            settings.setMapSizeHeight(map[AktuelleMap].getTiledMap().Height);
-            settings.setMapSizeWidth(map[AktuelleMap].getTiledMap().Width);
+            settings.MapSizeHeight = map[AktuelleMap].getTiledMap().Height;
+            settings.MapSizeWidth = map[AktuelleMap].getTiledMap().Width;
 
             // TMX (wie CSV) Map in 2D Array wandeln
             CollisionMapArray = Converter.TmxToIntArray(@"C:\Users\Alexa\Google Drive\Schule\4AHELS\Werkstätte\BugHunter\BugHunter\BugHunter\Content\map1.tmx");
@@ -120,7 +120,11 @@ namespace BugHunter
             player.Texture = Content.Load<Texture2D>("sprites/player/afk_0001");
             player.OriginTexture = Content.Load<Texture2D>("sprites/originSpot");
             player.DamageTexture = Content.Load<Texture2D>("damaged");
+            player.spriteSheet = spriteSheetLoader.Load("weapons_packed.png");
             gui.PausedBackground = Content.Load<Texture2D>("paused_background");
+
+            player.Init();
+
 
             // Setze Spielerposition auf SpawnTilekoordinaten
             player.SetSpawnFromMap(CollisionMapArray);
@@ -163,7 +167,7 @@ namespace BugHunter
             {
                 if (Keyboard.GetState().IsKeyDown(Keys.F3) && gameTime.TotalGameTime.TotalMilliseconds - LastKeyStrokeInput >= 500)
                 {
-                    settings.setAreDebugInformationsVisible(!settings.getAreDebugInformationsVisible());
+                    settings.AreDebugInformationsVisible = !settings.AreDebugInformationsVisible;
                     LastKeyStrokeInput = gameTime.TotalGameTime.TotalMilliseconds;
                 }
 
@@ -223,7 +227,7 @@ namespace BugHunter
 
 
             // Display Debug-Information
-            if (settings.getAreDebugInformationsVisible())
+            if (settings.AreDebugInformationsVisible)
             {
                 fps.DrawFps(spriteBatch, DebugFont,
                     player.camera.Position,
@@ -231,7 +235,7 @@ namespace BugHunter
 
                 spriteBatch.DrawString(DebugFont,
                     "Player:\n" + " X: " + ((int)player.Position.X).ToString() + " Y: " + ((int)player.Position.Y).ToString(),
-                    new Vector2(player.Position.X - (settings.getResolutionWidth() / 2), player.Position.Y - (settings.getResolutionHeight() / 2) + 125),
+                    new Vector2(player.Position.X - (settings.resolutionWidth / 2), player.Position.Y - (settings.resolutionHeight / 2) + 125),
                     Color.White);
             }
                 
@@ -256,7 +260,7 @@ namespace BugHunter
                 spriteBatch.DrawString(MenuFont, Texttable.Text_Died, new Vector2(player.Position.X - 300, player.Position.Y - 64), Color.White);
             }
 
-            spriteBatch.Draw(gui.CustomCurserTexture, new Vector2(player.camera.Position.X + Mouse.GetState().X, player.camera.Position.Y + Mouse.GetState().Y), Color.White);
+            // spriteBatch.Draw(gui.CustomCurserTexture, new Vector2(player.camera.Position.X + Mouse.GetState().X, player.camera.Position.Y + Mouse.GetState().Y), Color.White);
             
             spriteBatch.End();
 

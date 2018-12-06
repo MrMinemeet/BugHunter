@@ -1,0 +1,11 @@
+#
+# Sprite sheet data for MonoGame.
+#
+# To learn how to import these sprites into your MonoGame project visit:
+# https://www.codeandweb.com/texturepacker/monogame
+#
+# Sprite sheet: weapons_packed.png (24 x 12)
+# $TexturePacker:SmartUpdate:a205af7af9942659d2ba571adcc4858f:2ceaecb6cb8c65a9164259e86c5c5f85:7edb553f07abd4d7247497c914f7282c$
+#
+
+cpp;0;0;0;23;10;32;16;0.4782608695652174;0.5

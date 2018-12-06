@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using MonoGame.Extended;
 using MonoGame.Extended.Tiled;
+using TexturePackerLoader;
 
 namespace BugHunter
 {
@@ -27,11 +28,12 @@ namespace BugHunter
 
         private bool ShowPlayerOrigin = false;
 
+        // Waffen
         public enum Weapons : byte { cpp, java, c, maschinensprache }
-
         public Weapons aktWeapon = Weapons.c;
-
         Projectile[] projectiles = new Projectile[100];
+        public SpriteSheet spriteSheet;
+        private double lastTimeShot = 0;
 
         /// <summary>
         /// Konstruktorfür Klasse Android
@@ -117,21 +119,107 @@ namespace BugHunter
                 this.Position = this.PotNewPlayerPosition;
             }
 
+            // Initialisiert Projektil und stellt richtung, Position und Waffenart ein
             for(int i = 0; i < 1; i++)
             {
                 if (kstate.IsKeyDown(Keys.Right))
                 {
                     foreach(Projectile p in projectiles)
                     {
-                        if (!p.IsActive)
+                        if (!p.IsActive && gameTime.TotalGameTime.TotalMilliseconds - lastTimeShot >= Settings.CppDelayMs)
                         {
                             p.IsActive = true;
                             p.ProjectilePosition = this.Position;
                             p.TimeSinceShot = gameTime.TotalGameTime.TotalSeconds;
+                            p.aktDirection = Projectile.Directions.Right;
+                            p.ProjectileType = aktWeapon;
+
+                            lastTimeShot = gameTime.TotalGameTime.TotalMilliseconds;
                         }
                     }
+                    break;
+                }
+
+                if (kstate.IsKeyDown(Keys.Left))
+                {
+                    foreach (Projectile p in projectiles)
+                    {
+                        if (!p.IsActive && gameTime.TotalGameTime.TotalMilliseconds - lastTimeShot >= Settings.CppDelayMs)
+                        {
+                            p.IsActive = true;
+                            p.ProjectilePosition = this.Position;
+                            p.TimeSinceShot = gameTime.TotalGameTime.TotalSeconds;
+                            p.aktDirection = Projectile.Directions.Left;
+                            p.ProjectileType = aktWeapon;
+
+                            lastTimeShot = gameTime.TotalGameTime.TotalMilliseconds;
+                        }
+                    }
+                    break;
+                }
+                if (kstate.IsKeyDown(Keys.Left))
+                {
+                    foreach (Projectile p in projectiles)
+                    {
+                        if (!p.IsActive && gameTime.TotalGameTime.TotalMilliseconds - lastTimeShot >= Settings.CppDelayMs)
+                        {
+                            p.IsActive = true;
+                            p.ProjectilePosition = this.Position;
+                            p.TimeSinceShot = gameTime.TotalGameTime.TotalSeconds;
+                            p.aktDirection = Projectile.Directions.Left;
+                            p.ProjectileType = aktWeapon;
+
+                            lastTimeShot = gameTime.TotalGameTime.TotalMilliseconds;
+                        }
+                    }
+                    break;
+                }
+
+                if (kstate.IsKeyDown(Keys.Up))
+                {
+                    foreach (Projectile p in projectiles)
+                    {
+                        if (!p.IsActive && gameTime.TotalGameTime.TotalMilliseconds - lastTimeShot >= Settings.CppDelayMs)
+                        {
+                            p.IsActive = true;
+                            p.ProjectilePosition = this.Position;
+                            p.TimeSinceShot = gameTime.TotalGameTime.TotalSeconds;
+                            p.aktDirection = Projectile.Directions.Up;
+                            p.ProjectileType = aktWeapon;
+
+                            lastTimeShot = gameTime.TotalGameTime.TotalMilliseconds;
+                        }
+                    }
+                    break;
+                }
+
+                if (kstate.IsKeyDown(Keys.Down))
+                {
+                    foreach (Projectile p in projectiles)
+                    {
+                        if (!p.IsActive && gameTime.TotalGameTime.TotalMilliseconds - lastTimeShot >= Settings.CppDelayMs)
+                        {
+                            p.IsActive = true;
+                            p.ProjectilePosition = this.Position;
+                            p.TimeSinceShot = gameTime.TotalGameTime.TotalSeconds;
+                            p.aktDirection = Projectile.Directions.Down;
+                            p.ProjectileType = aktWeapon;
+
+                            lastTimeShot = gameTime.TotalGameTime.TotalMilliseconds;
+                        }
+                    }
+                    break;
                 }
             }       
+
+            // Updated jedes aktive Projektil im Array
+            foreach(Projectile p in projectiles)
+            {
+                if (p.IsActive)
+                {
+                    p.UpdateShot(gameTime, this);
+                }
+            }
 
             // Kamera über Spieler setzen
             camera.LookAt(Position);
@@ -174,6 +262,18 @@ namespace BugHunter
         }
 
         /// <summary>
+        /// Initialisiert Dinge für Spieler
+        /// </summary>
+        public void Init()
+        {
+            for(int i = 0; i < projectiles.Length; i++)
+            {
+                projectiles[i] = new Projectile();
+            }
+
+        }
+
+        /// <summary>
         /// Zeichnen für Spieler
         /// </summary>
         /// <param name="spriteBatch"></param>
@@ -208,11 +308,12 @@ namespace BugHunter
                 );
             }
 
+            // Zeichnet alle aktiven Projektile im Arraye
             foreach(Projectile p in projectiles)
             {
                 if (p.IsActive)
                 {
-                    spriteBatch.Draw(OriginTexture, p.ProjectilePosition, Color.White);
+                    p.DrawShot(spriteBatch, this.spriteSheet);
                 }
             }
         }
