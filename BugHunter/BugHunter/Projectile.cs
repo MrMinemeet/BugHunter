@@ -15,6 +15,7 @@ namespace BugHunter
         public bool IsActive = false;
         public float ProjectileSpeed = 400f;
         public Vector2 ProjectilePosition;
+
         public double TimeSinceShot = 0;
         public enum Directions : byte { Up, Down, Left, Right }
         public Directions aktDirection;
@@ -64,10 +65,10 @@ namespace BugHunter
                     spriteRender.Draw(spriteSheet.Sprite(TexturePackerMonoGameDefinitions.weapons.C), this.ProjectilePosition);
                     break;
                 case Player.Weapons.java:
-                    spriteRender.Draw(spriteSheet.Sprite(TexturePackerMonoGameDefinitions.weapons.Cpp), this.ProjectilePosition);
+                    spriteRender.Draw(spriteSheet.Sprite(TexturePackerMonoGameDefinitions.weapons.Java), this.ProjectilePosition);
                     break;
                 case Player.Weapons.maschinensprache:
-                    spriteRender.Draw(spriteSheet.Sprite(TexturePackerMonoGameDefinitions.weapons.Cpp), this.ProjectilePosition);
+                    spriteRender.Draw(spriteSheet.Sprite(TexturePackerMonoGameDefinitions.weapons.Maschinensprache), this.ProjectilePosition);
                     break;
             }
         }

@@ -63,7 +63,6 @@ namespace BugHunter
         /// <param name="map"></param>
         public void Update(GameTime gameTime, int[][] CollisionMapArray, TiledMap map)
         {
-
             var kstate = Keyboard.GetState();
             this.CollisionMapArray = CollisionMapArray;
             this.map = map;
@@ -193,6 +192,8 @@ namespace BugHunter
                     break;
                 }
 
+                WeaponUpdate();
+
                 if (kstate.IsKeyDown(Keys.Down))
                 {
                     foreach (Projectile p in projectiles)
@@ -231,7 +232,40 @@ namespace BugHunter
         /// <param name="enemyPosition"></param>
         public void GotHit(Android enemy)
         {
-            enemy.Health--;
+            
+        }
+
+        // Überprüft ob Waffe gewechselt wird und setzt die richtige aktiv
+        private void WeaponUpdate()
+        {
+            var kstate = Keyboard.GetState();
+
+            for (int i = 0; i < 1; i++)
+            {
+                if (kstate.IsKeyDown(Keys.D1))
+                {
+                    aktWeapon = Weapons.c;
+                    break;
+                }
+
+                if (kstate.IsKeyDown(Keys.D2))
+                {
+                    aktWeapon = Weapons.cpp;
+                    break;
+                }
+
+                if (kstate.IsKeyDown(Keys.D3))
+                {
+                    aktWeapon = Weapons.java;
+                    break;
+                }
+
+                if (kstate.IsKeyDown(Keys.D4))
+                {
+                    aktWeapon = Weapons.maschinensprache;
+                    break;
+                }
+            }
         }
 
         /// <summary>
