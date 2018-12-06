@@ -44,26 +44,26 @@ namespace BugHunter
             // Aktuelle Waffe in der rechten unteren Ecke zeichnen
             switch (player.aktWeapon)
             {
-                case Player.Weapons.cpp:
+                case Weapon.WeaponTypes.cpp:
 
                     spriteRender.Draw(
                         spriteSheet.Sprite(TexturePackerMonoGameDefinitions.gui.Cpp),
                         new Vector2(player.camera.Position.X + 1800, player.camera.Position.Y + 1010),
                         Color.White);
                     break;
-                case Player.Weapons.c:
+                case Weapon.WeaponTypes.c:
                     spriteRender.Draw(
                         spriteSheet.Sprite(TexturePackerMonoGameDefinitions.gui.C),
                         new Vector2(player.camera.Position.X + 1800, player.camera.Position.Y + 1010),
                         Color.White);
                     break;
-                case Player.Weapons.java:
+                case Weapon.WeaponTypes.java:
                     spriteRender.Draw(
                         spriteSheet.Sprite(TexturePackerMonoGameDefinitions.gui.Java),
                         new Vector2(player.camera.Position.X + 1800, player.camera.Position.Y + 1010),
                         Color.White);
                     break;
-                case Player.Weapons.maschinensprache:
+                case Weapon.WeaponTypes.maschinensprache:
                     spriteRender.Draw(
                         spriteSheet.Sprite(TexturePackerMonoGameDefinitions.gui.Maschinensprache),
                         new Vector2(player.camera.Position.X + 1800, player.camera.Position.Y + 1010),

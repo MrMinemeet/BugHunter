@@ -93,7 +93,7 @@ namespace BugHunter
                     {
                         if (p.CheckForHit(this))
                         {
-                            this.Health--;
+                            this.Health -= Weapon.getDamageforAWeapon(player.aktWeapon);
                         }
                     }
                 }

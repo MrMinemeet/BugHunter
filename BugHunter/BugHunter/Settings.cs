@@ -39,8 +39,6 @@ namespace BugHunter
         public Texture2D EmptyTexture { get; set; }
 
 
-        // Delays für Waffen
-        public const int CppDelayMs = 300;
 
     }
 }

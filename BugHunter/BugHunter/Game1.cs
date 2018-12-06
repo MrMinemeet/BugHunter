@@ -34,7 +34,7 @@ namespace BugHunter
     public class Game1 : Game
     {
         Player player = new Player(200f,100);
-        Android android = new Android(30f, 10);
+        Android android = new Android(30f, 100);
         Map[] map = new Map[1];
         GUI gui = new GUI();
 

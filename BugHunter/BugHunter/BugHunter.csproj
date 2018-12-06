@@ -60,6 +60,7 @@
     <Compile Include="TexturePackerLoader\SpriteRender.cs" />
     <Compile Include="TexturePackerLoader\SpriteSheet.cs" />
     <Compile Include="TexturePackerLoader\SpriteSheetLoader.cs" />
+    <Compile Include="Weapon.cs" />
     <Compile Include="weapons_packed.cs" />
   </ItemGroup>
   <ItemGroup>

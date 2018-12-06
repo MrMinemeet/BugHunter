@@ -29,11 +29,10 @@ namespace BugHunter
         private bool ShowPlayerOrigin = false;
 
         // Waffen
-        public enum Weapons : byte { cpp, java, c, maschinensprache }
-        public Weapons aktWeapon = Weapons.c;
         public Projectile[] projectiles = new Projectile[100];
         public SpriteSheet spriteSheet;
         private double lastTimeShot = 0;
+        public Weapon.WeaponTypes aktWeapon = Weapon.WeaponTypes.c;
 
 
         Settings settings;
@@ -128,7 +127,7 @@ namespace BugHunter
                 {
                     foreach(Projectile p in projectiles)
                     {
-                        if (!p.IsActive && gameTime.TotalGameTime.TotalMilliseconds - lastTimeShot >= Settings.CppDelayMs)
+                        if (!p.IsActive && gameTime.TotalGameTime.TotalMilliseconds - lastTimeShot >= Weapon.getDelayforAktWeapon(aktWeapon))
                         {
                             p.IsActive = true;
                             p.ProjectilePosition = this.Position;
@@ -146,7 +145,7 @@ namespace BugHunter
                 {
                     foreach (Projectile p in projectiles)
                     {
-                        if (!p.IsActive && gameTime.TotalGameTime.TotalMilliseconds - lastTimeShot >= Settings.CppDelayMs)
+                        if (!p.IsActive && gameTime.TotalGameTime.TotalMilliseconds - lastTimeShot >= Weapon.getDelayforAktWeapon(aktWeapon))
                         {
                             p.IsActive = true;
                             p.ProjectilePosition = this.Position;
@@ -163,7 +162,7 @@ namespace BugHunter
                 {
                     foreach (Projectile p in projectiles)
                     {
-                        if (!p.IsActive && gameTime.TotalGameTime.TotalMilliseconds - lastTimeShot >= Settings.CppDelayMs)
+                        if (!p.IsActive && gameTime.TotalGameTime.TotalMilliseconds - lastTimeShot >= Weapon.getDelayforAktWeapon(aktWeapon))
                         {
                             p.IsActive = true;
                             p.ProjectilePosition = this.Position;
@@ -181,7 +180,7 @@ namespace BugHunter
                 {
                     foreach (Projectile p in projectiles)
                     {
-                        if (!p.IsActive && gameTime.TotalGameTime.TotalMilliseconds - lastTimeShot >= Settings.CppDelayMs)
+                        if (!p.IsActive && gameTime.TotalGameTime.TotalMilliseconds - lastTimeShot >= Weapon.getDelayforAktWeapon(aktWeapon))
                         {
                             p.IsActive = true;
                             p.ProjectilePosition = this.Position;
@@ -203,7 +202,7 @@ namespace BugHunter
                 {
                     foreach (Projectile p in projectiles)
                     {
-                        if (!p.IsActive && gameTime.TotalGameTime.TotalMilliseconds - lastTimeShot >= Settings.CppDelayMs)
+                        if (!p.IsActive && gameTime.TotalGameTime.TotalMilliseconds - lastTimeShot >= Weapon.getDelayforAktWeapon(aktWeapon))
                         {
                             p.IsActive = true;
                             p.ProjectilePosition = this.Position;
@@ -236,16 +235,16 @@ namespace BugHunter
             SpriteFrame sp;
             switch (aktWeapon)
             {
-                case Player.Weapons.c:
+                case Weapon.WeaponTypes.c:
                     sp = spriteSheet.Sprite(TexturePackerMonoGameDefinitions.weapons.C);
                     return sp.Texture;
-                case Player.Weapons.cpp:
+                case Weapon.WeaponTypes.cpp:
                     sp = spriteSheet.Sprite(TexturePackerMonoGameDefinitions.weapons.Cpp);
                     return sp.Texture;
-                case Player.Weapons.java:
+                case Weapon.WeaponTypes.java:
                     sp = spriteSheet.Sprite(TexturePackerMonoGameDefinitions.weapons.Java);
                     return sp.Texture;
-                case Player.Weapons.maschinensprache:
+                case Weapon.WeaponTypes.maschinensprache:
                     sp = spriteSheet.Sprite(TexturePackerMonoGameDefinitions.weapons.Maschinensprache);
                     return sp.Texture;
                 default:
@@ -271,25 +270,25 @@ namespace BugHunter
             {
                 if (kstate.IsKeyDown(Keys.D1))
                 {
-                    aktWeapon = Weapons.c;
+                    aktWeapon = Weapon.WeaponTypes.c;
                     break;
                 }
 
                 if (kstate.IsKeyDown(Keys.D2))
                 {
-                    aktWeapon = Weapons.cpp;
+                    aktWeapon = Weapon.WeaponTypes.cpp;
                     break;
                 }
 
                 if (kstate.IsKeyDown(Keys.D3))
                 {
-                    aktWeapon = Weapons.java;
+                    aktWeapon = Weapon.WeaponTypes.java;
                     break;
                 }
 
                 if (kstate.IsKeyDown(Keys.D4))
                 {
-                    aktWeapon = Weapons.maschinensprache;
+                    aktWeapon = Weapon.WeaponTypes.maschinensprache;
                     break;
                 }
             }

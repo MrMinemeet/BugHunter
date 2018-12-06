@@ -13,7 +13,7 @@ namespace BugHunter
         public double TimeSinceShot = 0;
         public enum Directions : byte { Up, Down, Left, Right }
         public Directions aktDirection;
-        public Player.Weapons ProjectileType;
+        public Weapon.WeaponTypes ProjectileType;
         public Texture2D texture;
 
         public void UpdateShot(GameTime gameTime, Player player)
@@ -55,22 +55,22 @@ namespace BugHunter
             // Zeichnet Projektil je nach Projektilart
             switch (ProjectileType)
             {
-                case Player.Weapons.cpp:
+                case Weapon.WeaponTypes.cpp:
                     spriteRender.Draw(spriteSheet.Sprite(TexturePackerMonoGameDefinitions.weapons.Cpp), this.ProjectilePosition);
                     break;
-                case Player.Weapons.c:
+                case Weapon.WeaponTypes.c:
                     spriteRender.Draw(spriteSheet.Sprite(TexturePackerMonoGameDefinitions.weapons.C), this.ProjectilePosition);
                     break;
-                case Player.Weapons.java:
+                case Weapon.WeaponTypes.java:
                     spriteRender.Draw(spriteSheet.Sprite(TexturePackerMonoGameDefinitions.weapons.Java), this.ProjectilePosition);
                     break;
-                case Player.Weapons.maschinensprache:
+                case Weapon.WeaponTypes.maschinensprache:
                     spriteRender.Draw(spriteSheet.Sprite(TexturePackerMonoGameDefinitions.weapons.Maschinensprache), this.ProjectilePosition);
                     break;
             }
         }
         
-        public bool CheckForHit(Android  enemy)
+        public bool CheckForHit(Android enemy)
         {
             SpriteFrame sp = enemy.spriteSheet.Sprite(TexturePackerMonoGameDefinitions.android_packed.Sprites_android1);
             Texture2D EnemyTexture = sp.Texture;

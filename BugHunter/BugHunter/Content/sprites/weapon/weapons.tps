@@ -186,7 +186,10 @@
         </struct>
         <key>individualSpriteSettings</key>
         <map type="IndividualSpriteSettingsMap">
+            <key type="filename">projectile/c.png</key>
             <key type="filename">projectile/cpp.png</key>
+            <key type="filename">projectile/java.png</key>
+            <key type="filename">projectile/maschinensprache.png</key>
             <struct type="IndividualSpriteSettings">
                 <key>pivotPoint</key>
                 <point_f>0.5,0.5</point_f>
