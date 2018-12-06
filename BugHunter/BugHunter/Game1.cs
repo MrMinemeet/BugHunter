@@ -62,11 +62,7 @@ namespace BugHunter
         GameState CurrentGameState = GameState.Ingame;
 
         private SpriteSheetLoader spriteSheetLoader;
-
-
-
-
-
+        
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this)
@@ -107,6 +103,7 @@ namespace BugHunter
 
             settings.MapSizeHeight = map[AktuelleMap].getTiledMap().Height;
             settings.MapSizeWidth = map[AktuelleMap].getTiledMap().Width;
+            settings.EmptyTexture = Content.Load<Texture2D>("sprites/empty");
 
             // TMX (wie CSV) Map in 2D Array wandeln
             CollisionMapArray = Converter.TmxToIntArray(@"C:\Users\Alexa\Google Drive\Schule\4AHELS\Werkstätte\BugHunter\BugHunter\BugHunter\Content\map1.tmx");
@@ -123,7 +120,7 @@ namespace BugHunter
             player.spriteSheet = spriteSheetLoader.Load("weapons_packed.png");
             gui.PausedBackground = Content.Load<Texture2D>("paused_background");
 
-            player.Init();
+            player.Init(settings);
 
 
             // Setze Spielerposition auf SpawnTilekoordinaten

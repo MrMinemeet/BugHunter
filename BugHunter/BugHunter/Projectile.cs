@@ -1,11 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Input;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using TexturePackerLoader;
 
 namespace BugHunter
@@ -20,6 +14,7 @@ namespace BugHunter
         public enum Directions : byte { Up, Down, Left, Right }
         public Directions aktDirection;
         public Player.Weapons ProjectileType;
+        public Texture2D texture;
 
         public void UpdateShot(GameTime gameTime, Player player)
         {
@@ -55,6 +50,8 @@ namespace BugHunter
         public void DrawShot(SpriteBatch spriteBatch, SpriteSheet spriteSheet)
         {
             SpriteRender spriteRender = new SpriteRender(spriteBatch);
+
+            
             // Zeichnet Projektil je nach Projektilart
             switch (ProjectileType)
             {
@@ -71,6 +68,29 @@ namespace BugHunter
                     spriteRender.Draw(spriteSheet.Sprite(TexturePackerMonoGameDefinitions.weapons.Maschinensprache), this.ProjectilePosition);
                     break;
             }
+        }
+        
+        public bool CheckForHit(Android  enemy)
+        {
+            SpriteFrame sp = enemy.spriteSheet.Sprite(TexturePackerMonoGameDefinitions.android_packed.Sprites_android1);
+            Texture2D EnemyTexture = sp.Texture;
+
+
+            if (
+                ((ProjectilePosition.X + texture.Width / 2 >= enemy.Position.X - EnemyTexture.Width / 2 && ProjectilePosition.X - texture.Width / 2 <= enemy.Position.X + EnemyTexture.Width / 2)
+                && (ProjectilePosition.Y + texture.Height / 2 >= enemy.Position.Y - EnemyTexture.Height / 2 && ProjectilePosition.Y - texture.Height / 2 <= enemy.Position.Y + EnemyTexture.Height / 2))
+                )
+            {
+                this.IsActive = false;
+                if(enemy.Health <= 0)
+                {
+                    enemy.IsActive = false;
+                }
+                return true;
+            }
+
+            return false;
+            
         }
     }
 }

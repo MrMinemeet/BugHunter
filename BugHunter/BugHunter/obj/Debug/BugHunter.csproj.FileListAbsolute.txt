@@ -98,3 +98,4 @@ C:\Users\Alexa\Google Drive\Schule\4AHELS\Werkstätte\BugHunter\BugHunter\BugHun
 C:\Users\Alexa\Google Drive\Schule\4AHELS\Werkstätte\BugHunter\BugHunter\BugHunter\obj\Debug\BugHunter.pdb
 C:\Users\Alexa\Google Drive\Schule\4AHELS\Werkstätte\BugHunter\BugHunter\BugHunter\bin\DesktopGL\AnyCPU\Debug\Content\weapons_packed.png
 C:\Users\Alexa\Google Drive\Schule\4AHELS\Werkstätte\BugHunter\BugHunter\BugHunter\bin\DesktopGL\AnyCPU\Debug\Content\weapons_packed.txt
+C:\Users\Alexa\Google Drive\Schule\4AHELS\Werkstätte\BugHunter\BugHunter\BugHunter\bin\DesktopGL\AnyCPU\Debug\Content\sprites\empty.xnb

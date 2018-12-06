@@ -31,9 +31,12 @@ namespace BugHunter
         // Waffen
         public enum Weapons : byte { cpp, java, c, maschinensprache }
         public Weapons aktWeapon = Weapons.c;
-        Projectile[] projectiles = new Projectile[100];
+        public Projectile[] projectiles = new Projectile[100];
         public SpriteSheet spriteSheet;
         private double lastTimeShot = 0;
+
+
+        Settings settings;
 
         /// <summary>
         /// Konstruktorfür Klasse Android
@@ -186,6 +189,8 @@ namespace BugHunter
                             p.aktDirection = Projectile.Directions.Up;
                             p.ProjectileType = aktWeapon;
 
+
+
                             lastTimeShot = gameTime.TotalGameTime.TotalMilliseconds;
                         }
                     }
@@ -226,6 +231,28 @@ namespace BugHunter
             camera.LookAt(Position);
         }
 
+        private Texture2D getTextureFromSpritesheetWeapon()
+        {
+            SpriteFrame sp;
+            switch (aktWeapon)
+            {
+                case Player.Weapons.c:
+                    sp = spriteSheet.Sprite(TexturePackerMonoGameDefinitions.weapons.C);
+                    return sp.Texture;
+                case Player.Weapons.cpp:
+                    sp = spriteSheet.Sprite(TexturePackerMonoGameDefinitions.weapons.Cpp);
+                    return sp.Texture;
+                case Player.Weapons.java:
+                    sp = spriteSheet.Sprite(TexturePackerMonoGameDefinitions.weapons.Java);
+                    return sp.Texture;
+                case Player.Weapons.maschinensprache:
+                    sp = spriteSheet.Sprite(TexturePackerMonoGameDefinitions.weapons.Maschinensprache);
+                    return sp.Texture;
+                default:
+                    return settings.EmptyTexture;
+
+            }
+        }
         /// <summary>
         /// Erkennt von wo der Spieler getroffen wurde und platziert ihn etwas anders
         /// </summary>
@@ -298,13 +325,15 @@ namespace BugHunter
         /// <summary>
         /// Initialisiert Dinge für Spieler
         /// </summary>
-        public void Init()
+        public void Init(Settings settings)
         {
-            for(int i = 0; i < projectiles.Length; i++)
+
+            this.settings = settings;
+            for (int i = 0; i < projectiles.Length; i++)
             {
                 projectiles[i] = new Projectile();
+                projectiles[i].texture = settings.EmptyTexture;
             }
-
         }
 
         /// <summary>

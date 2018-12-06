@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 
 namespace BugHunter
 {
@@ -35,8 +36,11 @@ namespace BugHunter
         public const int PlayerSpawnTileId = 21;
         public const int EnemeySpawnTileId = 19;
 
+        public Texture2D EmptyTexture { get; set; }
+
 
         // Delays für Waffen
         public const int CppDelayMs = 300;
+
     }
 }

@@ -21,6 +21,8 @@ namespace BugHunter
         public SpriteSheet spriteSheet;
         public SpriteRender spriteRender;
 
+        public bool IsActive = true;
+
 
         public double LastCollisionCheck = 0;
 
@@ -45,42 +47,56 @@ namespace BugHunter
          /// <param name="player"></param>
         public void Update(GameTime gameTime, int[][] CollisionMapArray, TiledMap map, Player player)
         {
-            this.PotNewEnemyPosition = this.Position;
+            if (IsActive)
+            {
+                this.PotNewEnemyPosition = this.Position;
 
-            if (this.Position.X > player.Position.X)
-            {
-                this.PotNewEnemyPosition.X -= this.Speed * (float)gameTime.ElapsedGameTime.TotalSeconds;
-            }
-            if (this.Position.X < player.Position.X)
-            {
-                this.PotNewEnemyPosition.X += this.Speed * (float)gameTime.ElapsedGameTime.TotalSeconds;
-            }
-
-            if (this.Position.Y > player.Position.Y)
-            {
-                this.PotNewEnemyPosition.Y -= this.Speed * (float)gameTime.ElapsedGameTime.TotalSeconds;
-            }
-
-            if (this.Position.Y < player.Position.Y)
-            {
-                this.PotNewEnemyPosition.Y += this.Speed * (float)gameTime.ElapsedGameTime.TotalSeconds;
-            }
-
-            if (
-                ((PotNewEnemyPosition.X + spriteSheet.Sprite("sprites/android1").Texture.Width / 4 / 2 >= player.Position.X - player.Texture.Width / 2 && PotNewEnemyPosition.X - spriteSheet.Sprite("sprites/android1").Texture.Width / 4 / 2 <= player.Position.X + player.Texture.Width / 2)
-                && (PotNewEnemyPosition.Y + spriteSheet.Sprite("sprites/android1").Texture.Height / 2 >= player.Position.Y - player.Texture.Height / 2 && PotNewEnemyPosition.Y - spriteSheet.Sprite("sprites/android1").Texture.Height / 2 <= player.Position.Y + player.Texture.Height / 2))
-                )
-            {
-                if (gameTime.TotalGameTime.TotalMilliseconds - LastCollisionCheck >= 500)
+                if (this.Position.X > player.Position.X)
                 {
-                    player.Health = player.Health - 1;
-                    LastCollisionCheck = gameTime.TotalGameTime.TotalMilliseconds;
-                    player.GotHit(this);
+                    this.PotNewEnemyPosition.X -= this.Speed * (float)gameTime.ElapsedGameTime.TotalSeconds;
                 }
-            }
-            else
-            {
-                this.Position = PotNewEnemyPosition;
+                if (this.Position.X < player.Position.X)
+                {
+                    this.PotNewEnemyPosition.X += this.Speed * (float)gameTime.ElapsedGameTime.TotalSeconds;
+                }
+
+                if (this.Position.Y > player.Position.Y)
+                {
+                    this.PotNewEnemyPosition.Y -= this.Speed * (float)gameTime.ElapsedGameTime.TotalSeconds;
+                }
+
+                if (this.Position.Y < player.Position.Y)
+                {
+                    this.PotNewEnemyPosition.Y += this.Speed * (float)gameTime.ElapsedGameTime.TotalSeconds;
+                }
+
+                if (
+                    ((PotNewEnemyPosition.X + spriteSheet.Sprite("sprites/android1").Texture.Width / 4 / 2 >= player.Position.X - player.Texture.Width / 2 && PotNewEnemyPosition.X - spriteSheet.Sprite("sprites/android1").Texture.Width / 4 / 2 <= player.Position.X + player.Texture.Width / 2)
+                    && (PotNewEnemyPosition.Y + spriteSheet.Sprite("sprites/android1").Texture.Height / 2 >= player.Position.Y - player.Texture.Height / 2 && PotNewEnemyPosition.Y - spriteSheet.Sprite("sprites/android1").Texture.Height / 2 <= player.Position.Y + player.Texture.Height / 2))
+                    )
+                {
+                    if (gameTime.TotalGameTime.TotalMilliseconds - LastCollisionCheck >= 500)
+                    {
+                        player.Health = player.Health - 1;
+                        LastCollisionCheck = gameTime.TotalGameTime.TotalMilliseconds;
+                        player.GotHit(this);
+                    }
+                }
+                else
+                {
+                    this.Position = PotNewEnemyPosition;
+                }
+
+                foreach (Projectile p in player.projectiles)
+                {
+                    if (p.IsActive)
+                    {
+                        if (p.CheckForHit(this))
+                        {
+                            this.Health--;
+                        }
+                    }
+                }
             }
         }
         
@@ -154,10 +170,7 @@ namespace BugHunter
                     this.Position,
                     Color.White);
             }
-
-
-
-
+            
             if (ShowPlayerOrigin)
             {
                 spriteBatch.Draw(
