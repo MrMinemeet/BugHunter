@@ -77,7 +77,7 @@ namespace BugHunter
 
 
             if (
-                ((ProjectilePosition.X + texture.Width / 2 >= enemy.Position.X - EnemyTexture.Width / 2 && ProjectilePosition.X - texture.Width / 2 <= enemy.Position.X + EnemyTexture.Width / 2)
+                ((ProjectilePosition.X + texture.Width / 2 >= enemy.Position.X - EnemyTexture.Width /4 / 2 && ProjectilePosition.X - texture.Width / 2 <= enemy.Position.X + EnemyTexture.Width /4 / 2)
                 && (ProjectilePosition.Y + texture.Height / 2 >= enemy.Position.Y - EnemyTexture.Height / 2 && ProjectilePosition.Y - texture.Height / 2 <= enemy.Position.Y + EnemyTexture.Height / 2))
                 )
             {

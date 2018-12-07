@@ -18,7 +18,7 @@ namespace BugHunter
         public const int CppDamage = 20;
         public const int CDamage = 25;
         public const int JavaDamage = 15;
-        public const int MaschinenspracheDamage = 50;
+        public const int MaschinenspracheDamage = 100;
 
 
         public enum WeaponTypes : byte { cpp, java, c, maschinensprache }

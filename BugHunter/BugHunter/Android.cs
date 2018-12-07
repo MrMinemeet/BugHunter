@@ -9,7 +9,7 @@ namespace BugHunter
     {
         public Vector2 Position;
         public float Speed { get; set; }
-        public int MaxHealth { get; }
+        public int MaxHealth { get; set; }
         public int Health { get; set; }
         public Texture2D OriginTexture;
         public bool ShowPlayerOrigin = false;
@@ -94,21 +94,28 @@ namespace BugHunter
                         if (p.CheckForHit(this))
                         {
                             this.Health -= Weapon.getDamageforAWeapon(player.aktWeapon);
+
+                            if(this.Health <= 0)
+                            {
+                                this.IsActive = false;
+                            }
                         }
                     }
                 }
             }
         }
-        
+
 
 
         /// <summary>
         /// Setzt Enemy zurück auf starteinstellung
         /// </summary>
         /// <param name="MapArray"></param>
-        public void Reset(int[][] MapArray)
+        public void Reset(int[][] MapArray, float HealthMultiplicator = 1f)
         {
-            this.Health = 100;
+            this.MaxHealth = (int)(this.MaxHealth * HealthMultiplicator);
+            this.Health = MaxHealth;
+            this.IsActive = true;
             SetSpawnFromMap(MapArray);
         }
 

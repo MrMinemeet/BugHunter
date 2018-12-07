@@ -34,7 +34,7 @@ namespace BugHunter
     public class Game1 : Game
     {
         Player player = new Player(200f,100);
-        Android android = new Android(30f, 100);
+        Android android = new Android(30f, 30);
         Map[] map = new Map[1];
         GUI gui = new GUI();
 
@@ -44,7 +44,7 @@ namespace BugHunter
         Settings settings = new Settings(1920, 1080, false, false);
          
         
-        int[][] CollisionMapArray;
+        int[][] MapArray;
 
         private double LastKeyStrokeInput = 0;
 
@@ -106,7 +106,7 @@ namespace BugHunter
             settings.EmptyTexture = Content.Load<Texture2D>("sprites/empty");
 
             // TMX (wie CSV) Map in 2D Array wandeln
-            CollisionMapArray = Converter.TmxToIntArray(@"C:\Users\Alexa\Google Drive\Schule\4AHELS\Werkstätte\BugHunter\BugHunter\BugHunter\Content\map1.tmx");
+            MapArray = Converter.TmxToIntArray(@"C:\Users\Alexa\Google Drive\Schule\4AHELS\Werkstätte\BugHunter\BugHunter\BugHunter\Content\map1.tmx");
 
             // TODO: use this.Content to load your game content here
             font = Content.Load<SpriteFont>("Font");
@@ -124,11 +124,11 @@ namespace BugHunter
 
 
             // Setze Spielerposition auf SpawnTilekoordinaten
-            player.SetSpawnFromMap(CollisionMapArray);
+            player.SetSpawnFromMap(MapArray);
 
             android.OriginTexture = Content.Load<Texture2D>("sprites/originSpot");
             android.spriteSheet = spriteSheetLoader.Load("android_packed.png");
-            android.SetSpawnFromMap(CollisionMapArray);
+            android.SetSpawnFromMap(MapArray);
 
             
 
@@ -169,8 +169,8 @@ namespace BugHunter
                 }
 
                 // Spieler Updaten
-                android.Update(gameTime, CollisionMapArray, map[AktuelleMap].getTiledMap(), player);
-                player.Update(gameTime, CollisionMapArray, map[AktuelleMap].getTiledMap());
+                android.Update(gameTime, MapArray, map[AktuelleMap].getTiledMap(), player);
+                player.Update(gameTime, MapArray, map[AktuelleMap].getTiledMap());
                 gui.Update(gameTime, player);
 
                 // MapRenderer  updaten
@@ -188,8 +188,8 @@ namespace BugHunter
 
             if(Keyboard.GetState().IsKeyDown(Keys.R) && CurrentGameState == GameState.DeathScreen)
             {
-                player.Reset(CollisionMapArray);
-                android.Reset(CollisionMapArray);
+                player.Reset(MapArray);
+                android.Reset(MapArray);
                 this.CurrentGameState = GameState.Ingame;
             }
 
@@ -206,6 +206,11 @@ namespace BugHunter
                 }
 
                 LastKeyStrokeInput = gameTime.TotalGameTime.TotalMilliseconds;
+            }
+
+            if (!android.IsActive)
+            {
+                android.Reset(MapArray, 1.1f);
             }
 
             base.Update(gameTime);
