@@ -62,7 +62,10 @@ namespace BugHunter
         GameState CurrentGameState = GameState.Ingame;
 
         private SpriteSheetLoader spriteSheetLoader;
-        
+
+        // Score
+        public int Score { get; set; }
+
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this)
@@ -80,11 +83,17 @@ namespace BugHunter
         // related content.  Calling base.Initialize will enumerate through any components and initialize them as well.
         protected override void Initialize()
         {
+            this.Score = 0;
+
             player.camera = new OrthographicCamera(GraphicsDevice);
 
             map[0] = new Map();
 
             spriteSheetLoader = new SpriteSheetLoader(Content, GraphicsDevice);
+
+            gui.Init(this);
+
+            android.Init(this);
 
             base.Initialize();
         }
@@ -120,7 +129,9 @@ namespace BugHunter
             player.spriteSheet = spriteSheetLoader.Load("weapons_packed.png");
             gui.PausedBackground = Content.Load<Texture2D>("paused_background");
 
-            player.Init(settings);
+
+            player.Init(settings, this);
+
 
 
             // Setze Spielerposition auf SpawnTilekoordinaten
@@ -147,10 +158,11 @@ namespace BugHunter
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Update(GameTime gameTime)
         {
-
+            // Spiel schließen
             if (Keyboard.GetState().IsKeyDown(Keys.Delete))
                 Exit();
 
+            // Spiel in Vollbild machen
             if (Keyboard.GetState().IsKeyDown(Keys.F11) || (Keyboard.GetState().IsKeyDown(Keys.LeftAlt) && Keyboard.GetState().IsKeyDown(Keys.Enter)))
             {
                 if(gameTime.TotalGameTime.TotalMilliseconds - LastKeyStrokeInput >= 500)
@@ -160,6 +172,7 @@ namespace BugHunter
                 }
             }
 
+            // Ingame
             if(CurrentGameState == GameState.Ingame)
             {
                 if (Keyboard.GetState().IsKeyDown(Keys.F3) && gameTime.TotalGameTime.TotalMilliseconds - LastKeyStrokeInput >= 500)
@@ -180,7 +193,7 @@ namespace BugHunter
                 // Update the fps
                 fps.Update(gameTime);
             }
-            
+
             if(player.Health == 0)
             {
                 CurrentGameState = GameState.DeathScreen;
@@ -191,6 +204,7 @@ namespace BugHunter
                 player.Reset(MapArray);
                 android.Reset(MapArray);
                 this.CurrentGameState = GameState.Ingame;
+                this.Score = 0;
             }
 
             if(Keyboard.GetState().IsKeyDown(Keys.Escape) && gameTime.TotalGameTime.TotalMilliseconds - LastKeyStrokeInput >= 500)

@@ -37,6 +37,8 @@ namespace BugHunter
 
         Settings settings;
 
+        Game1 game;
+
         /// <summary>
         /// Konstruktorfür Klasse Android
         /// </summary>
@@ -324,14 +326,16 @@ namespace BugHunter
         /// <summary>
         /// Initialisiert Dinge für Spieler
         /// </summary>
-        public void Init(Settings settings)
+        public void Init(Settings settings, Game1 game)
         {
-
+            this.game = game;   
             this.settings = settings;
             for (int i = 0; i < projectiles.Length; i++)
             {
                 projectiles[i] = new Projectile();
                 projectiles[i].texture = settings.EmptyTexture;
+
+                projectiles[i].Init(game);
             }
         }
 

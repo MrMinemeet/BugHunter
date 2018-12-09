@@ -15,6 +15,13 @@ namespace BugHunter
         public SpriteSheet spriteSheet;
         public SpriteRender spriteRender;
 
+        public Game1 game;
+
+        public void Init(Game1 game)
+        {
+            this.game = game;
+        }
+
         /// <summary>
         /// Update-Funktion für GUI
         /// </summary>
@@ -22,6 +29,7 @@ namespace BugHunter
         /// <param name="PlayerPosition"></param>
         public void Update(GameTime gameTime, Player player)
         {
+
             this.HeartPosition.X = player.camera.Position.X + 50;
             this.HeartPosition.Y = player.camera.Position.Y + 1020;
 
@@ -86,6 +94,8 @@ namespace BugHunter
                     this.HeartPosition,
                     Color.White);
             }
+
+            spriteBatch.DrawString(font, game.Score.ToString(), new Vector2(player.Position.X, player.camera.Position.Y), Color.White);
 
             spriteBatch.DrawString(font, player.Health.ToString(),HeartStatusTextPosition, Color.White);
         }

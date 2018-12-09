@@ -26,6 +26,14 @@ namespace BugHunter
 
         public double LastCollisionCheck = 0;
 
+
+        public Game1 game;
+
+        public void Init(Game1 game)
+        {
+            this.game = game;
+        }
+
         /// <summary>
         /// Konstruktorfür Klasse Android
         /// </summary>
@@ -95,9 +103,13 @@ namespace BugHunter
                         {
                             this.Health -= Weapon.getDamageforAWeapon(player.aktWeapon);
 
-                            if(this.Health <= 0)
+
+                            // Falls Gegner 0 leben hat, soll dieser despawnen und der Score erhöht werden.
+                            if (this.Health <= 0)
                             {
                                 this.IsActive = false;
+                                game.Score += 100;
+
                             }
                         }
                     }

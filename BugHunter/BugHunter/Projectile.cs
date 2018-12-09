@@ -16,6 +16,13 @@ namespace BugHunter
         public Weapon.WeaponTypes ProjectileType;
         public Texture2D texture;
 
+        public Game1 game;
+
+        public void Init(Game1 game)
+        {
+            this.game = game;
+        }
+
         public void UpdateShot(GameTime gameTime, Player player)
         {
             // Bewegt das Projektil in die vorgesehene Richtung
@@ -81,11 +88,9 @@ namespace BugHunter
                 && (ProjectilePosition.Y + texture.Height / 2 >= enemy.Position.Y - EnemyTexture.Height / 2 && ProjectilePosition.Y - texture.Height / 2 <= enemy.Position.Y + EnemyTexture.Height / 2))
                 )
             {
+                // Projektil weg schalten
                 this.IsActive = false;
-                if(enemy.Health <= 0)
-                {
-                    enemy.IsActive = false;
-                }
+
                 return true;
             }
 
