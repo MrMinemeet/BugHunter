@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using MonoGame.Extended.Tiled;
 using TexturePackerLoader;
 
 namespace BugHunter
@@ -47,6 +48,13 @@ namespace BugHunter
             {
                 this.IsActive = false;
             }
+            
+            // Überprüfen ob Projektil Hitbox der Map getroffen hat
+            if(DidHitCollision(game.MapArray,game.map[0].getTiledMap()))
+            {
+                this.IsActive = false;
+            }
+            
         }
 
         /// <summary>
@@ -76,7 +84,28 @@ namespace BugHunter
                     break;
             }
         }
-        
+
+        private bool DidHitCollision(int[][] CollisionMapArray, TiledMap map)
+        {
+            for (int y = 0; y * Settings.TilePixelSize <= map.HeightInPixels; y++)
+            {
+                for (int x = 0; x < CollisionMapArray[y].Length; x++)
+                {
+
+                    if ((((ProjectilePosition.Y >= Settings.TilePixelSize * y) || (ProjectilePosition.Y + texture.Height >= Settings.TilePixelSize * y)) && ((ProjectilePosition.Y <= Settings.TilePixelSize * (y + 1)) || (ProjectilePosition.Y <= Settings.TilePixelSize * (y + 1))))
+                        && (((ProjectilePosition.X >= Settings.TilePixelSize * x) || (ProjectilePosition.X + texture.Width >= Settings.TilePixelSize * x)) && ((ProjectilePosition.X <= Settings.TilePixelSize * (x + 1)) || (ProjectilePosition.X <= Settings.TilePixelSize * (x + 1)))))
+
+                    {
+                        if (CollisionMapArray[y][x] == Settings.HitBoxTileNumber)
+                        {
+                            return true;
+                        }
+                    }
+                }
+            }
+            return false;
+        }
+
         public bool CheckForHit(Android enemy)
         {
             SpriteFrame sp = enemy.spriteSheet.Sprite(TexturePackerMonoGameDefinitions.android_packed.Sprites_android1);

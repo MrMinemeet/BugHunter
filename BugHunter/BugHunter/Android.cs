@@ -112,12 +112,12 @@ namespace BugHunter
 
                             }
                         }
+
                     }
                 }
             }
         }
-
-
+               
 
         /// <summary>
         /// Setzt Enemy zurück auf starteinstellung

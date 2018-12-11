@@ -35,7 +35,7 @@ namespace BugHunter
     {
         Player player = new Player(200f,100);
         Android android = new Android(30f, 30);
-        Map[] map = new Map[1];
+        public Map[] map = new Map[1];
         GUI gui = new GUI();
 
         int AktuelleMap = 0;
@@ -44,7 +44,7 @@ namespace BugHunter
         Settings settings = new Settings(1920, 1080, false, false);
          
         
-        int[][] MapArray;
+        public int[][] MapArray;
 
         private double LastKeyStrokeInput = 0;
 
@@ -234,9 +234,8 @@ namespace BugHunter
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Draw(GameTime gameTime)
         { 
+            // Schwarzer Hintergrund
             GraphicsDevice.Clear(Color.TransparentBlack);
-
-            // TODO: Add your drawing code here
             
             var transformMatrix = player.camera.GetViewMatrix();
             spriteBatch.Begin(transformMatrix: transformMatrix, samplerState: SamplerState.PointClamp);
