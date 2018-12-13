@@ -4,7 +4,7 @@
  * Contains references to each image within the sprite sheet.
  *
  * https://www.codeandweb.com/texturepacker
- * $TexturePacker:SmartUpdate:0ede3ba3d63c93799c78018c410a8904:19268b7b30c1d666b5c71ff4df78f8a1:a752404cb359b1fa636cef9fa50b1723$
+ * $TexturePacker:SmartUpdate:f50996921713bb5401a6b6630aa63ead:54b12e1a0199789d9076d63e5cf48831:a752404cb359b1fa636cef9fa50b1723$
  *
  */
 namespace TexturePackerMonoGameDefinitions
@@ -13,6 +13,7 @@ namespace TexturePackerMonoGameDefinitions
 	{
 		public const string C = "c";
 		public const string Cpp = "cpp";
+		public const string Csharp = "csharp";
 		public const string Heart_full = "heart_full";
 		public const string Heart_half = "heart_half";
 		public const string Java = "java";

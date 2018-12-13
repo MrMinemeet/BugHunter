@@ -102,6 +102,9 @@ namespace BugHunter
                             spriteRender.Draw(spriteSheet.Sprite(TexturePackerMonoGameDefinitions.weapons.Mss111), this.ProjectilePosition); break;
                     }
                     break;
+                case Weapon.WeaponTypes.csharp:
+                    spriteRender.Draw(spriteSheet.Sprite(TexturePackerMonoGameDefinitions.weapons.Csharp), this.ProjectilePosition);
+                    break;
             }
         }
 

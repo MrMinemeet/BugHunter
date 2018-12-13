@@ -188,6 +188,7 @@
         <map type="IndividualSpriteSettingsMap">
             <key type="filename">textures/c.png</key>
             <key type="filename">textures/cpp.png</key>
+            <key type="filename">textures/csharp.png</key>
             <key type="filename">textures/java.png</key>
             <key type="filename">textures/maschinensprache.png</key>
             <struct type="IndividualSpriteSettings">

@@ -77,6 +77,12 @@ namespace BugHunter
                         new Vector2(player.camera.Position.X + 1800, player.camera.Position.Y + 1010),
                         Color.White);
                     break;
+                case Weapon.WeaponTypes.csharp:
+                    spriteRender.Draw(
+                        spriteSheet.Sprite(TexturePackerMonoGameDefinitions.gui.Csharp),
+                        new Vector2(player.camera.Position.X + 1800, player.camera.Position.Y + 1010),
+                        Color.White);
+                    break;
 
             }
 

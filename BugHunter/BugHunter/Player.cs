@@ -274,6 +274,12 @@ namespace BugHunter
                     aktWeapon = Weapon.WeaponTypes.maschinensprache;
                     break;
                 }
+
+                if (Keyboard.GetState().IsKeyDown(Keys.D5))
+                {
+                    aktWeapon = Weapon.WeaponTypes.csharp;
+                    break;
+                }
             }
         }
 

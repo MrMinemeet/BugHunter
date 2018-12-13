@@ -188,6 +188,7 @@
         <map type="IndividualSpriteSettingsMap">
             <key type="filename">projectile/c.png</key>
             <key type="filename">projectile/cpp.png</key>
+            <key type="filename">projectile/csharp.png</key>
             <key type="filename">projectile/java.png</key>
             <key type="filename">projectile/mss000.png</key>
             <key type="filename">projectile/mss001.png</key>
