@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using MonoGame.Extended.Tiled;
+using System;
 using TexturePackerLoader;
 
 namespace BugHunter
@@ -22,6 +23,7 @@ namespace BugHunter
         public SpriteRender spriteRender;
 
         public bool IsActive = true;
+        Settings settings;
 
 
         public double LastCollisionCheck = 0;
@@ -29,9 +31,10 @@ namespace BugHunter
 
         public Game1 game;
 
-        public void Init(Game1 game)
+        public void Init(Game1 game, Settings settings)
         {
             this.game = game;
+            this.settings = settings;
         }
 
         /// <summary>
@@ -137,11 +140,13 @@ namespace BugHunter
         /// <param name="MapArray"></param>        
         public void SetSpawnFromMap(int[][] MapArray)
         {
+            Random random = new Random();
+
             int x, y;
 
-            for (y = 0; y < MapArray.Length; y++)
+            for (y = random.Next(settings.MapSizeHeight); y < MapArray.Length; y++)
             {
-                for (x = 0; x < MapArray[y].Length; x++)
+                for (x = random.Next(settings.MapSizeWidth); x < MapArray[y].Length; x++)
                 {
                     if (MapArray[y][x].Equals(Settings.EnemeySpawnTileId))
                     {

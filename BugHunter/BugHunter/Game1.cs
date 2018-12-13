@@ -108,7 +108,7 @@ namespace BugHunter
 
             gui.Init(this);
 
-            android.Init(this);
+            android.Init(this,this.settings);
 
             base.Initialize();
         }
