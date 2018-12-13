@@ -19,6 +19,22 @@
  * TexturePackerGUI 
  */
 
+
+ // TODO: Hitmarker bei Schaden
+ // TODO: Mehrere Gegnerauf einmal
+ // TODO: MacOS Gegner
+ // TODO: Windows Gegner
+ // TODO: iOS Gegner
+ // TODO: C# Waffe
+ // TODO: JavaScript Waffe
+ // TODO: Bestimmte anzahl von Munition, wonach man nicht mehr schießen kann und zum PC aufstocken muss.
+ // TODO: Waffen durch Nummerndruck bzw. Durchscrollen wechseln
+ // TODO: Gegner erhält bei respawnen 0,02% mehr leben
+
+
+
+
+
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
@@ -43,7 +59,6 @@ namespace BugHunter
         // Standardeinstellungen setzen
         Settings settings = new Settings(1920, 1080, false, false);
          
-        
         public int[][] MapArray;
 
         private double LastKeyStrokeInput = 0;
@@ -116,8 +131,7 @@ namespace BugHunter
 
             // TMX (wie CSV) Map in 2D Array wandeln
             MapArray = Converter.TmxToIntArray(@"C:\Users\Alexa\Google Drive\Schule\4AHELS\Werkstätte\BugHunter\BugHunter\BugHunter\Content\map1.tmx");
-
-            // TODO: use this.Content to load your game content here
+            
             font = Content.Load<SpriteFont>("Font");
             DebugFont = Content.Load<SpriteFont>("Debug");
             MenuFont = Content.Load<SpriteFont>("MenuFont");
@@ -151,7 +165,6 @@ namespace BugHunter
         // UnloadContent will be called once per game and is the place to unload game-specific content.
         protected override void UnloadContent()
         {
-            // TODO: Unload any non ContentManager content here
         }
 
         // Allows the game to run logic such as updating the world, checking for collisions, gathering input, and playing audio.
@@ -159,7 +172,7 @@ namespace BugHunter
         protected override void Update(GameTime gameTime)
         {
             // Spiel schließen
-            if (Keyboard.GetState().IsKeyDown(Keys.Delete))
+            if (Keyboard.GetState().IsKeyDown(Keys.Delete) && Keyboard.GetState().IsKeyDown(Keys.LeftAlt))
                 Exit();
 
             // Spiel in Vollbild machen
@@ -276,7 +289,9 @@ namespace BugHunter
             }
 
             // spriteBatch.Draw(gui.CustomCurserTexture, new Vector2(player.camera.Position.X + Mouse.GetState().X, player.camera.Position.Y + Mouse.GetState().Y), Color.White);
-            
+
+
+            spriteBatch.DrawString(font, Mouse.GetState().ScrollWheelValue.ToString(), player.Position, Color.White);
             spriteBatch.End();
 
             base.Draw(gameTime);

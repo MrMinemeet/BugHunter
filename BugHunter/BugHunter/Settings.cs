@@ -5,7 +5,6 @@ namespace BugHunter
 {
     class Settings
     {
-
         // Öffentliche Variablen welche geändet werden können
         public int resolutionWidth { get; set; }
         public int resolutionHeight;

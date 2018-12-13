@@ -121,9 +121,12 @@ namespace BugHunter
             {
                 this.Position = this.PotNewPlayerPosition;
             }
+            
+            // Waffenart updaten
+            WeaponUpdate();
 
             // Initialisiert Projektil und stellt richtung, Position und Waffenart ein
-            for(int i = 0; i < 1; i++)
+            for (int i = 0; i < 1; i++)
             {
                 if (kstate.IsKeyDown(Keys.Right))
                 {
@@ -198,8 +201,6 @@ namespace BugHunter
                     break;
                 }
 
-                WeaponUpdate();
-
                 if (kstate.IsKeyDown(Keys.Down))
                 {
                     foreach (Projectile p in projectiles)
@@ -266,29 +267,27 @@ namespace BugHunter
         // Überprüft ob Waffe gewechselt wird und setzt die richtige aktiv
         private void WeaponUpdate()
         {
-            var kstate = Keyboard.GetState();
-
             for (int i = 0; i < 1; i++)
             {
-                if (kstate.IsKeyDown(Keys.D1))
+                if (Keyboard.GetState().IsKeyDown(Keys.D1))
                 {
                     aktWeapon = Weapon.WeaponTypes.c;
                     break;
                 }
 
-                if (kstate.IsKeyDown(Keys.D2))
+                if (Keyboard.GetState().IsKeyDown(Keys.D2))
                 {
                     aktWeapon = Weapon.WeaponTypes.cpp;
                     break;
                 }
 
-                if (kstate.IsKeyDown(Keys.D3))
+                if (Keyboard.GetState().IsKeyDown(Keys.D3))
                 {
                     aktWeapon = Weapon.WeaponTypes.java;
                     break;
                 }
 
-                if (kstate.IsKeyDown(Keys.D4))
+                if (Keyboard.GetState().IsKeyDown(Keys.D4))
                 {
                     aktWeapon = Weapon.WeaponTypes.maschinensprache;
                     break;
