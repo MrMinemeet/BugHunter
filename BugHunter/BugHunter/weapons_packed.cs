@@ -4,7 +4,7 @@
  * Contains references to each image within the sprite sheet.
  *
  * https://www.codeandweb.com/texturepacker
- * $TexturePacker:SmartUpdate:5d92bdb45919d3aeb2529dccddc65238:c5f0a574562ef86d1d4f2262f888b46a:7edb553f07abd4d7247497c914f7282c$
+ * $TexturePacker:SmartUpdate:a68c53c208ac7e1e4d2c9c226c35d3e9:4f13a63e439cd41473dd536e28856b93:7edb553f07abd4d7247497c914f7282c$
  *
  */
 namespace TexturePackerMonoGameDefinitions
@@ -14,6 +14,13 @@ namespace TexturePackerMonoGameDefinitions
 		public const string C = "c";
 		public const string Cpp = "cpp";
 		public const string Java = "java";
-		public const string Maschinensprache = "maschinensprache";
+		public const string Mss000 = "mss000";
+		public const string Mss001 = "mss001";
+		public const string Mss010 = "mss010";
+		public const string Mss011 = "mss011";
+		public const string Mss100 = "mss100";
+		public const string Mss101 = "mss101";
+		public const string Mss110 = "mss110";
+		public const string Mss111 = "mss111";
 	}
 }

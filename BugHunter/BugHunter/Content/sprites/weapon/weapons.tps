@@ -26,7 +26,7 @@
             </struct>
         </array>
         <key>allowRotation</key>
-        <true/>
+        <false/>
         <key>shapeDebug</key>
         <false/>
         <key>dpi</key>
@@ -189,7 +189,14 @@
             <key type="filename">projectile/c.png</key>
             <key type="filename">projectile/cpp.png</key>
             <key type="filename">projectile/java.png</key>
-            <key type="filename">projectile/maschinensprache.png</key>
+            <key type="filename">projectile/mss000.png</key>
+            <key type="filename">projectile/mss001.png</key>
+            <key type="filename">projectile/mss010.png</key>
+            <key type="filename">projectile/mss011.png</key>
+            <key type="filename">projectile/mss100.png</key>
+            <key type="filename">projectile/mss101.png</key>
+            <key type="filename">projectile/mss110.png</key>
+            <key type="filename">projectile/mss111.png</key>
             <struct type="IndividualSpriteSettings">
                 <key>pivotPoint</key>
                 <point_f>0.5,0.5</point_f>

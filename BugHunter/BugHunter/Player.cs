@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using MonoGame.Extended;
 using MonoGame.Extended.Tiled;
+using System;
 using TexturePackerLoader;
 
 namespace BugHunter
@@ -121,7 +122,7 @@ namespace BugHunter
             {
                 this.Position = this.PotNewPlayerPosition;
             }
-            
+            Random random = new Random();
             // Waffenart updaten
             WeaponUpdate();
 
@@ -139,6 +140,7 @@ namespace BugHunter
                             p.TimeSinceShot = gameTime.TotalGameTime.TotalSeconds;
                             p.aktDirection = Projectile.Directions.Right;
                             p.ProjectileType = aktWeapon;
+                            p.textureVersion = (byte)random.Next(8);
 
                             lastTimeShot = gameTime.TotalGameTime.TotalMilliseconds;
                         }
@@ -157,6 +159,7 @@ namespace BugHunter
                             p.TimeSinceShot = gameTime.TotalGameTime.TotalSeconds;
                             p.aktDirection = Projectile.Directions.Left;
                             p.ProjectileType = aktWeapon;
+                            p.textureVersion = (byte)random.Next(8);
 
                             lastTimeShot = gameTime.TotalGameTime.TotalMilliseconds;
                         }
@@ -174,6 +177,7 @@ namespace BugHunter
                             p.TimeSinceShot = gameTime.TotalGameTime.TotalSeconds;
                             p.aktDirection = Projectile.Directions.Left;
                             p.ProjectileType = aktWeapon;
+                            p.textureVersion = (byte)random.Next(8);
 
                             lastTimeShot = gameTime.TotalGameTime.TotalMilliseconds;
                         }
@@ -192,8 +196,7 @@ namespace BugHunter
                             p.TimeSinceShot = gameTime.TotalGameTime.TotalSeconds;
                             p.aktDirection = Projectile.Directions.Up;
                             p.ProjectileType = aktWeapon;
-
-
+                            p.textureVersion = (byte)random.Next(8);
 
                             lastTimeShot = gameTime.TotalGameTime.TotalMilliseconds;
                         }
@@ -212,6 +215,7 @@ namespace BugHunter
                             p.TimeSinceShot = gameTime.TotalGameTime.TotalSeconds;
                             p.aktDirection = Projectile.Directions.Down;
                             p.ProjectileType = aktWeapon;
+                            p.textureVersion = (byte)random.Next(8);
 
                             lastTimeShot = gameTime.TotalGameTime.TotalMilliseconds;
                         }
@@ -233,28 +237,6 @@ namespace BugHunter
             camera.LookAt(Position);
         }
 
-        private Texture2D getTextureFromSpritesheetWeapon()
-        {
-            SpriteFrame sp;
-            switch (aktWeapon)
-            {
-                case Weapon.WeaponTypes.c:
-                    sp = spriteSheet.Sprite(TexturePackerMonoGameDefinitions.weapons.C);
-                    return sp.Texture;
-                case Weapon.WeaponTypes.cpp:
-                    sp = spriteSheet.Sprite(TexturePackerMonoGameDefinitions.weapons.Cpp);
-                    return sp.Texture;
-                case Weapon.WeaponTypes.java:
-                    sp = spriteSheet.Sprite(TexturePackerMonoGameDefinitions.weapons.Java);
-                    return sp.Texture;
-                case Weapon.WeaponTypes.maschinensprache:
-                    sp = spriteSheet.Sprite(TexturePackerMonoGameDefinitions.weapons.Maschinensprache);
-                    return sp.Texture;
-                default:
-                    return settings.EmptyTexture;
-
-            }
-        }
         /// <summary>
         /// Erkennt von wo der Spieler getroffen wurde und platziert ihn etwas anders
         /// </summary>
@@ -374,7 +356,7 @@ namespace BugHunter
             }
 
             // Zeichnet alle aktiven Projektile im Arraye
-            foreach(Projectile p in projectiles)
+            foreach (Projectile p in projectiles)
             {
                 if (p.IsActive)
                 {

@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using MonoGame.Extended.Tiled;
+using System;
 using TexturePackerLoader;
 
 namespace BugHunter
@@ -16,6 +17,8 @@ namespace BugHunter
         public Directions aktDirection;
         public Weapon.WeaponTypes ProjectileType;
         public Texture2D texture;
+
+        public byte textureVersion;
 
         public Game1 game;
 
@@ -65,8 +68,7 @@ namespace BugHunter
         public void DrawShot(SpriteBatch spriteBatch, SpriteSheet spriteSheet)
         {
             SpriteRender spriteRender = new SpriteRender(spriteBatch);
-
-            
+                        
             // Zeichnet Projektil je nach Projektilart
             switch (ProjectileType)
             {
@@ -80,7 +82,25 @@ namespace BugHunter
                     spriteRender.Draw(spriteSheet.Sprite(TexturePackerMonoGameDefinitions.weapons.Java), this.ProjectilePosition);
                     break;
                 case Weapon.WeaponTypes.maschinensprache:
-                    spriteRender.Draw(spriteSheet.Sprite(TexturePackerMonoGameDefinitions.weapons.Maschinensprache), this.ProjectilePosition);
+                    switch (this.textureVersion)
+                    {
+                        case 0:
+                            spriteRender.Draw(spriteSheet.Sprite(TexturePackerMonoGameDefinitions.weapons.Mss000), this.ProjectilePosition); break;
+                        case 1:
+                            spriteRender.Draw(spriteSheet.Sprite(TexturePackerMonoGameDefinitions.weapons.Mss001), this.ProjectilePosition); break;
+                        case 2:
+                            spriteRender.Draw(spriteSheet.Sprite(TexturePackerMonoGameDefinitions.weapons.Mss010), this.ProjectilePosition); break;
+                        case 3:
+                            spriteRender.Draw(spriteSheet.Sprite(TexturePackerMonoGameDefinitions.weapons.Mss011), this.ProjectilePosition); break;
+                        case 4:
+                            spriteRender.Draw(spriteSheet.Sprite(TexturePackerMonoGameDefinitions.weapons.Mss100), this.ProjectilePosition); break;
+                        case 5:
+                            spriteRender.Draw(spriteSheet.Sprite(TexturePackerMonoGameDefinitions.weapons.Mss101), this.ProjectilePosition); break;
+                        case 6:
+                            spriteRender.Draw(spriteSheet.Sprite(TexturePackerMonoGameDefinitions.weapons.Mss110), this.ProjectilePosition); break;
+                        case 7:
+                            spriteRender.Draw(spriteSheet.Sprite(TexturePackerMonoGameDefinitions.weapons.Mss111), this.ProjectilePosition); break;
+                    }
                     break;
             }
         }

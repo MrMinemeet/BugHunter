@@ -30,6 +30,7 @@
  // TODO: Bestimmte anzahl von Munition, wonach man nicht mehr schießen kann und zum PC aufstocken muss.
  // TODO: Waffen durch Nummerndruck bzw. Durchscrollen wechseln
  // TODO: Gegner erhält bei respawnen 0,02% mehr leben
+ // TODO: Highscore in Documents/MyGames/BugHunter speichern und im Pause Screen anzeigen
 
 
 
@@ -283,15 +284,10 @@ namespace BugHunter
 
             if(CurrentGameState == GameState.DeathScreen)
             {
-
                 spriteBatch.Draw(gui.PausedBackground, new Vector2(player.Position.X - 960, player.Position.Y - 540), Color.White);
                 spriteBatch.DrawString(MenuFont, Texttable.Text_Died, new Vector2(player.Position.X - 300, player.Position.Y - 64), Color.White);
             }
 
-            // spriteBatch.Draw(gui.CustomCurserTexture, new Vector2(player.camera.Position.X + Mouse.GetState().X, player.camera.Position.Y + Mouse.GetState().Y), Color.White);
-
-
-            spriteBatch.DrawString(font, Mouse.GetState().ScrollWheelValue.ToString(), player.Position, Color.White);
             spriteBatch.End();
 
             base.Draw(gameTime);

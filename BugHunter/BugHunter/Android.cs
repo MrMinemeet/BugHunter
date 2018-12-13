@@ -128,31 +128,30 @@ namespace BugHunter
         /// <param name="MapArray"></param>
         public void Reset(int[][] MapArray, float HealthMultiplicator = 1f)
         {
+            SetSpawnFromMap(MapArray);
             this.MaxHealth = (int)(this.MaxHealth * HealthMultiplicator);
             this.Health = MaxHealth;
             this.IsActive = true;
-            SetSpawnFromMap(MapArray);
         }
-
-        /// <summary>
-        /// Sucht nach Spawn Tile im Maparray und setzt den Spieler darauf.
-        /// </summary>
-        /// <param name="MapArray"></param>        
+        
+        // Sucht nach Spawn Tile im Maparray und setzt den Spieler darauf.
         public void SetSpawnFromMap(int[][] MapArray)
         {
             Random random = new Random();
 
             int x, y;
-
-            for (y = random.Next(settings.MapSizeHeight); y < MapArray.Length; y++)
+            while (true)
             {
-                for (x = random.Next(settings.MapSizeWidth); x < MapArray[y].Length; x++)
+                for (y = random.Next(settings.MapSizeHeight); y < MapArray.Length; y++)
                 {
-                    if (MapArray[y][x].Equals(Settings.EnemeySpawnTileId))
+                    for (x = random.Next(settings.MapSizeWidth); x < MapArray[y].Length; x++)
                     {
-                        this.Position.Y = y * Settings.TilePixelSize;
-                        this.Position.X = x * Settings.TilePixelSize;
-                        return;
+                        if (MapArray[y][x].Equals(Settings.EnemeySpawnTileId))
+                        {
+                            this.Position.Y = y * Settings.TilePixelSize;
+                            this.Position.X = x * Settings.TilePixelSize;
+                            return;
+                        }
                     }
                 }
             }
