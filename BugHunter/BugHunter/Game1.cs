@@ -240,6 +240,7 @@ namespace BugHunter
             {
                 android.Reset(MapArray, 1.1f);
             }
+            
 
             base.Update(gameTime);
         }
@@ -287,6 +288,7 @@ namespace BugHunter
                 spriteBatch.Draw(gui.PausedBackground, new Vector2(player.Position.X - 960, player.Position.Y - 540), Color.White);
                 spriteBatch.DrawString(MenuFont, Texttable.Text_Died, new Vector2(player.Position.X - 300, player.Position.Y - 64), Color.White);
             }
+
 
             spriteBatch.End();
 

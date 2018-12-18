@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Input;
 using TexturePackerLoader;
 
 namespace BugHunter
@@ -16,6 +17,9 @@ namespace BugHunter
         public SpriteRender spriteRender;
 
         public Game1 game;
+
+        private int previousScrollValue = 0;
+        private double lastWeaponChangeTime = 0;
 
         public void Init(Game1 game)
         {
@@ -36,7 +40,56 @@ namespace BugHunter
 
             this.HeartStatusTextPosition.X = player.camera.Position.X + 120;
             this.HeartStatusTextPosition.Y = player.camera.Position.Y + 1010;
+            
+            if((gameTime.TotalGameTime.TotalMilliseconds - lastWeaponChangeTime) >= 250)
+            {
+                if (Mouse.GetState().ScrollWheelValue > previousScrollValue)
+                {
+                    GoWeaponUpByOne(player);
+                }
+                if (Mouse.GetState().ScrollWheelValue < previousScrollValue)
+                {
+                    GoWeaponDownByOne(player);
+                }
 
+
+                previousScrollValue = Mouse.GetState().ScrollWheelValue;
+                lastWeaponChangeTime = gameTime.TotalGameTime.TotalMilliseconds;
+            }
+
+        }
+
+        private void GoWeaponUpByOne(Player player)
+        {
+            switch (player.aktWeapon)
+            {
+                case Weapon.WeaponTypes.c:
+                    player.aktWeapon = Weapon.WeaponTypes.cpp; break;
+                case Weapon.WeaponTypes.cpp:
+                    player.aktWeapon = Weapon.WeaponTypes.java; break;
+                case Weapon.WeaponTypes.java:
+                    player.aktWeapon = Weapon.WeaponTypes.maschinensprache; break;
+                case Weapon.WeaponTypes.maschinensprache:
+                    player.aktWeapon = Weapon.WeaponTypes.csharp; break;
+                case Weapon.WeaponTypes.csharp:
+                    player.aktWeapon = Weapon.WeaponTypes.c; break;
+            }
+        }
+        private void GoWeaponDownByOne(Player player)
+        {
+            switch (player.aktWeapon)
+            {
+                case Weapon.WeaponTypes.c:
+                    player.aktWeapon = Weapon.WeaponTypes.csharp; break;
+                case Weapon.WeaponTypes.cpp:
+                    player.aktWeapon = Weapon.WeaponTypes.c; break;
+                case Weapon.WeaponTypes.java:
+                    player.aktWeapon = Weapon.WeaponTypes.cpp; break;
+                case Weapon.WeaponTypes.maschinensprache:
+                    player.aktWeapon = Weapon.WeaponTypes.java; break;
+                case Weapon.WeaponTypes.csharp:
+                    player.aktWeapon = Weapon.WeaponTypes.maschinensprache; break;
+            }
         }
 
         /// <summary>
