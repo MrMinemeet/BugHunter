@@ -31,7 +31,7 @@ namespace BugHunter
 
         // Waffen
         public Projectile[] projectiles = new Projectile[100];
-        public SpriteSheet spriteSheet;
+        public SpriteSheet WeaponSpriteSheet;
         private double lastTimeShot = 0;
         public Weapon.WeaponTypes aktWeapon = Weapon.WeaponTypes.c;
 
@@ -320,9 +320,8 @@ namespace BugHunter
             for (int i = 0; i < projectiles.Length; i++)
             {
                 projectiles[i] = new Projectile();
-                projectiles[i].texture = settings.EmptyTexture;
 
-                projectiles[i].Init(game);
+                projectiles[i].Init(game, this);
             }
         }
 
@@ -366,7 +365,7 @@ namespace BugHunter
             {
                 if (p.IsActive)
                 {
-                    p.DrawShot(spriteBatch, this.spriteSheet);
+                    p.DrawShot(spriteBatch, this.WeaponSpriteSheet);
                 }
             }
         }

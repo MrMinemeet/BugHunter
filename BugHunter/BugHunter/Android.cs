@@ -14,6 +14,7 @@ namespace BugHunter
         public int Health { get; set; }
         public Texture2D OriginTexture;
         public bool ShowPlayerOrigin = false;
+        public float attackDamage = 1;
 
         // Potentielle Neue Position
         public Vector2 PotNewEnemyPosition;
@@ -27,7 +28,6 @@ namespace BugHunter
 
 
         public double LastCollisionCheck = 0;
-
 
         public Game1 game;
 
@@ -81,14 +81,20 @@ namespace BugHunter
                     this.PotNewEnemyPosition.Y += this.Speed * (float)gameTime.ElapsedGameTime.TotalSeconds;
                 }
 
+                // Bekommt einen Frame
+                SpriteFrame sp = spriteSheet.Sprite(TexturePackerMonoGameDefinitions.android_packed.Sprites_android1);
+
+
+
+                // Mit sp.Size erhält man einen Vektor mit der größe einer einzelnen Textur. Ist einfach und zudem noch effizienter
                 if (
-                    ((PotNewEnemyPosition.X + spriteSheet.Sprite("sprites/android1").Texture.Width / 4 / 2 >= player.Position.X - player.Texture.Width / 2 && PotNewEnemyPosition.X - spriteSheet.Sprite("sprites/android1").Texture.Width / 4 / 2 <= player.Position.X + player.Texture.Width / 2)
-                    && (PotNewEnemyPosition.Y + spriteSheet.Sprite("sprites/android1").Texture.Height / 2 >= player.Position.Y - player.Texture.Height / 2 && PotNewEnemyPosition.Y - spriteSheet.Sprite("sprites/android1").Texture.Height / 2 <= player.Position.Y + player.Texture.Height / 2))
+                    ((PotNewEnemyPosition.X + sp.Size.X / 2 >= player.Position.X - player.Texture.Width / 2 && PotNewEnemyPosition.X - sp.Size.X / 2 <= player.Position.X + player.Texture.Width / 2)
+                    && (PotNewEnemyPosition.Y + sp.Size.Y / 2 >= player.Position.Y - player.Texture.Height / 2 && PotNewEnemyPosition.Y - sp.Size.Y / 2 <= player.Position.Y + player.Texture.Height / 2))
                     )
                 {
                     if (gameTime.TotalGameTime.TotalMilliseconds - LastCollisionCheck >= 500)
                     {
-                        player.Health = player.Health - 1;
+                        player.Health = (int)(player.Health - attackDamage);
                         LastCollisionCheck = gameTime.TotalGameTime.TotalMilliseconds;
                         player.GotHit(this);
                     }
@@ -111,11 +117,11 @@ namespace BugHunter
                             if (this.Health <= 0)
                             {
                                 this.IsActive = false;
+                                this.attackDamage = attackDamage * 1.1f;
                                 game.Score += 100;
 
                             }
                         }
-
                     }
                 }
             }

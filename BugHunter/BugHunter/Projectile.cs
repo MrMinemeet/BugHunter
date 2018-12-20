@@ -16,15 +16,17 @@ namespace BugHunter
         public enum Directions : byte { Up, Down, Left, Right }
         public Directions aktDirection;
         public Weapon.WeaponTypes ProjectileType;
-        public Texture2D texture;
 
         public byte textureVersion;
 
         public Game1 game;
+        public Player player;
 
-        public void Init(Game1 game)
+
+        public void Init(Game1 game, Player player)
         {
             this.game = game;
+            this.player = player;
         }
 
         public void UpdateShot(GameTime gameTime, Player player)
@@ -110,13 +112,62 @@ namespace BugHunter
 
         private bool DidHitCollision(int[][] CollisionMapArray, TiledMap map)
         {
+            SpriteFrame projectileFrame = null;
+            
+            switch(ProjectileType)
+            {
+                case Weapon.WeaponTypes.cpp:
+                    projectileFrame = player.WeaponSpriteSheet.Sprite(TexturePackerMonoGameDefinitions.weapons.Cpp);    break;
+                case Weapon.WeaponTypes.c:
+                    projectileFrame = player.WeaponSpriteSheet.Sprite(TexturePackerMonoGameDefinitions.weapons.C);      break;
+                case Weapon.WeaponTypes.java:
+                    projectileFrame = player.WeaponSpriteSheet.Sprite(TexturePackerMonoGameDefinitions.weapons.Java);   break;
+                case Weapon.WeaponTypes.maschinensprache:
+                    switch (this.textureVersion)
+                    {
+                        case 0:
+                            projectileFrame = player.WeaponSpriteSheet.Sprite(TexturePackerMonoGameDefinitions.weapons.Mss000); break;
+                        case 1:
+                            projectileFrame = player.WeaponSpriteSheet.Sprite(TexturePackerMonoGameDefinitions.weapons.Mss001); break;
+                        case 2:
+                            projectileFrame = player.WeaponSpriteSheet.Sprite(TexturePackerMonoGameDefinitions.weapons.Mss010); break;
+                        case 3:
+                            projectileFrame = player.WeaponSpriteSheet.Sprite(TexturePackerMonoGameDefinitions.weapons.Mss011); break;
+                        case 4:
+                            projectileFrame = player.WeaponSpriteSheet.Sprite(TexturePackerMonoGameDefinitions.weapons.Mss100); break;
+                        case 5:
+                            projectileFrame = player.WeaponSpriteSheet.Sprite(TexturePackerMonoGameDefinitions.weapons.Mss101); break;
+                        case 6:
+                            projectileFrame = player.WeaponSpriteSheet.Sprite(TexturePackerMonoGameDefinitions.weapons.Mss110); break;
+                        case 7:
+                            projectileFrame = player.WeaponSpriteSheet.Sprite(TexturePackerMonoGameDefinitions.weapons.Mss111); break;
+                    }
+                    break;
+                case Weapon.WeaponTypes.csharp:
+                    projectileFrame = player.WeaponSpriteSheet.Sprite(TexturePackerMonoGameDefinitions.weapons.Csharp); break;
+            }
+            if(projectileFrame == null)
+                return false;
+
             for (int y = 0; y * Settings.TilePixelSize <= map.HeightInPixels; y++)
             {
                 for (int x = 0; x < CollisionMapArray[y].Length; x++)
                 {
 
-                    if ((((ProjectilePosition.Y >= Settings.TilePixelSize * y) || (ProjectilePosition.Y + texture.Height >= Settings.TilePixelSize * y)) && ((ProjectilePosition.Y <= Settings.TilePixelSize * (y + 1)) || (ProjectilePosition.Y <= Settings.TilePixelSize * (y + 1))))
-                        && (((ProjectilePosition.X >= Settings.TilePixelSize * x) || (ProjectilePosition.X + texture.Width >= Settings.TilePixelSize * x)) && ((ProjectilePosition.X <= Settings.TilePixelSize * (x + 1)) || (ProjectilePosition.X <= Settings.TilePixelSize * (x + 1)))))
+                    if(
+                        (((ProjectilePosition.Y >= Settings.TilePixelSize * y) || (ProjectilePosition.Y + projectileFrame.Size.Y >= Settings.TilePixelSize * y)) && ((ProjectilePosition.Y <= Settings.TilePixelSize * (y + 1)) || (ProjectilePosition.Y <= Settings.TilePixelSize * (y + 1))))
+                        && (((ProjectilePosition.X >= Settings.TilePixelSize * x) || (ProjectilePosition.X + projectileFrame.Size.X >= Settings.TilePixelSize * x)) && ((ProjectilePosition.X <= Settings.TilePixelSize * (x + 1)) || (ProjectilePosition.X <= Settings.TilePixelSize * (x + 1))))
+                    )               
+                    {
+                        Console.WriteLine(CollisionMapArray[x][y]);
+                        if (CollisionMapArray[y][x] == Settings.HitBoxTileNumber)
+                        {
+                            return true;
+                        }
+                    }
+                    /*
+                    if ((((ProjectilePosition.Y >= Settings.TilePixelSize * y) || (ProjectilePosition.Y + projectileFrame.Size.Y >= Settings.TilePixelSize * y)) && ((ProjectilePosition.Y <= Settings.TilePixelSize * (y + 1)) || (ProjectilePosition.Y <= Settings.TilePixelSize * (y + 1))))
+                       && (((ProjectilePosition.X >= Settings.TilePixelSize * x + 32) || (ProjectilePosition.X + projectileFrame.Size.X >= Settings.TilePixelSize * x + 32)) && ((ProjectilePosition.X <= Settings.TilePixelSize * (x + 1) + 32) || (ProjectilePosition.X <= Settings.TilePixelSize * (x + 1) + 32))))
 
                     {
                         if (CollisionMapArray[y][x] == Settings.HitBoxTileNumber)
@@ -124,6 +175,7 @@ namespace BugHunter
                             return true;
                         }
                     }
+                    */
                 }
             }
             return false;
@@ -131,13 +183,48 @@ namespace BugHunter
 
         public bool CheckForHit(Android enemy)
         {
-            SpriteFrame sp = enemy.spriteSheet.Sprite(TexturePackerMonoGameDefinitions.android_packed.Sprites_android1);
-            Texture2D EnemyTexture = sp.Texture;
+            SpriteFrame enemySpriteFrame = enemy.spriteSheet.Sprite(TexturePackerMonoGameDefinitions.android_packed.Sprites_android1);
 
+            SpriteFrame projectileFrame = null;
+            switch (ProjectileType)
+            {
+                case Weapon.WeaponTypes.cpp:
+                    projectileFrame = player.WeaponSpriteSheet.Sprite(TexturePackerMonoGameDefinitions.weapons.Cpp); break;
+                case Weapon.WeaponTypes.c:
+                    projectileFrame = player.WeaponSpriteSheet.Sprite(TexturePackerMonoGameDefinitions.weapons.C); break;
+                case Weapon.WeaponTypes.java:
+                    projectileFrame = player.WeaponSpriteSheet.Sprite(TexturePackerMonoGameDefinitions.weapons.Java); break;
+                case Weapon.WeaponTypes.maschinensprache:
+                    switch (this.textureVersion)
+                    {
+                        case 0:
+                            projectileFrame = player.WeaponSpriteSheet.Sprite(TexturePackerMonoGameDefinitions.weapons.Mss000); break;
+                        case 1:
+                            projectileFrame = player.WeaponSpriteSheet.Sprite(TexturePackerMonoGameDefinitions.weapons.Mss001); break;
+                        case 2:
+                            projectileFrame = player.WeaponSpriteSheet.Sprite(TexturePackerMonoGameDefinitions.weapons.Mss010); break;
+                        case 3:
+                            projectileFrame = player.WeaponSpriteSheet.Sprite(TexturePackerMonoGameDefinitions.weapons.Mss011); break;
+                        case 4:
+                            projectileFrame = player.WeaponSpriteSheet.Sprite(TexturePackerMonoGameDefinitions.weapons.Mss100); break;
+                        case 5:
+                            projectileFrame = player.WeaponSpriteSheet.Sprite(TexturePackerMonoGameDefinitions.weapons.Mss101); break;
+                        case 6:
+                            projectileFrame = player.WeaponSpriteSheet.Sprite(TexturePackerMonoGameDefinitions.weapons.Mss110); break;
+                        case 7:
+                            projectileFrame = player.WeaponSpriteSheet.Sprite(TexturePackerMonoGameDefinitions.weapons.Mss111); break;
+                    }
+                    break;
+                case Weapon.WeaponTypes.csharp:
+                    projectileFrame = player.WeaponSpriteSheet.Sprite(TexturePackerMonoGameDefinitions.weapons.Csharp); break;
+            }
+
+            if (projectileFrame == null)
+                return false;
 
             if (
-                ((ProjectilePosition.X + texture.Width / 2 >= enemy.Position.X - EnemyTexture.Width /4 / 2 && ProjectilePosition.X - texture.Width / 2 <= enemy.Position.X + EnemyTexture.Width /4 / 2)
-                && (ProjectilePosition.Y + texture.Height / 2 >= enemy.Position.Y - EnemyTexture.Height / 2 && ProjectilePosition.Y - texture.Height / 2 <= enemy.Position.Y + EnemyTexture.Height / 2))
+                ((ProjectilePosition.X + projectileFrame.Size.X / 2 >= enemy.Position.X - enemySpriteFrame.Size.X / 2 && ProjectilePosition.X - projectileFrame.Size.X / 2 <= enemy.Position.X + enemySpriteFrame.Size.X / 2)
+                && (ProjectilePosition.Y + projectileFrame.Size.Y / 2 >= enemy.Position.Y - enemySpriteFrame.Size.Y / 2 && ProjectilePosition.Y - projectileFrame.Size.Y / 2 <= enemy.Position.Y + enemySpriteFrame.Size.Y / 2))
                 )
             {
                 // Projektil weg schalten

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<tileset version="1.2" tiledversion="1.2.1" name="tileset" tilewidth="64" tileheight="64" tilecount="18" columns="1">
- <image source="tiles/tiles.png" width="64" height="1152"/>
+<tileset version="1.2" tiledversion="1.2.1" name="tileset" tilewidth="64" tileheight="64" tilecount="17" columns="1">
+ <image source="tiles/tiles.png" width="64" height="1088"/>
  <tile id="0" type="door_top"/>
  <tile id="2">
   <objectgroup draworder="index">
@@ -13,5 +13,10 @@
    <frame tileid="7" duration="10000"/>
    <frame tileid="8" duration="5000"/>
   </animation>
+ </tile>
+ <tile id="12">
+  <objectgroup draworder="index">
+   <object id="3" x="0" y="0" width="64" height="64"/>
+  </objectgroup>
  </tile>
 </tileset>

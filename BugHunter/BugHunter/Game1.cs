@@ -25,10 +25,8 @@
  // TODO: MacOS Gegner
  // TODO: Windows Gegner
  // TODO: iOS Gegner
- // TODO: C# Waffe
  // TODO: JavaScript Waffe
- // TODO: Bestimmte anzahl von Munition, wonach man nicht mehr schießen kann und zum PC aufstocken muss.
- // TODO: Waffen durch Nummerndruck bzw. Durchscrollen wechseln
+ // TODO: Bestimmte anzahl von Munition, wonach man nicht mehr schießen kann und zum PC aufstocken muss
  // TODO: Gegner erhält bei respawnen 0,02% mehr leben
  // TODO: Highscore in Documents/MyGames/BugHunter speichern und im Pause Screen anzeigen
 
@@ -78,6 +76,7 @@ namespace BugHunter
         GameState CurrentGameState = GameState.Ingame;
 
         private SpriteSheetLoader spriteSheetLoader;
+        public GraphicsDevice graphicsDevice;
 
         // Score
         public int Score { get; set; }
@@ -99,6 +98,8 @@ namespace BugHunter
         // related content.  Calling base.Initialize will enumerate through any components and initialize them as well.
         protected override void Initialize()
         {
+            this.graphicsDevice = GraphicsDevice;
+
             this.Score = 0;
 
             player.camera = new OrthographicCamera(GraphicsDevice);
@@ -141,7 +142,7 @@ namespace BugHunter
             player.Texture = Content.Load<Texture2D>("sprites/player/afk_0001");
             player.OriginTexture = Content.Load<Texture2D>("sprites/originSpot");
             player.DamageTexture = Content.Load<Texture2D>("damaged");
-            player.spriteSheet = spriteSheetLoader.Load("weapons_packed.png");
+            player.WeaponSpriteSheet = spriteSheetLoader.Load("weapons_packed.png");
             gui.PausedBackground = Content.Load<Texture2D>("paused_background");
 
 

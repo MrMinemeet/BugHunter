@@ -56,7 +56,6 @@ namespace BugHunter
                 previousScrollValue = Mouse.GetState().ScrollWheelValue;
                 lastWeaponChangeTime = gameTime.TotalGameTime.TotalMilliseconds;
             }
-
         }
 
         private void GoWeaponUpByOne(Player player)
