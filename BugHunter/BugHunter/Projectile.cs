@@ -159,7 +159,6 @@ namespace BugHunter
                         && (((ProjectilePosition.X >= Settings.TilePixelSize * x) || (ProjectilePosition.X + projectileFrame.Size.X >= Settings.TilePixelSize * x)) && ((ProjectilePosition.X <= Settings.TilePixelSize * (x + 1)) || (ProjectilePosition.X <= Settings.TilePixelSize * (x + 1))))
                     )               
                     {
-                        Console.WriteLine(CollisionMapArray[x][y]);
                         if (CollisionMapArray[y][x] == Settings.HitBoxTileNumber)
                         {
                             return true;

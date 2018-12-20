@@ -4,6 +4,7 @@ using Microsoft.Xna.Framework.Input;
 using MonoGame.Extended;
 using MonoGame.Extended.Tiled;
 using System;
+using System.Collections.Generic;
 using TexturePackerLoader;
 
 namespace BugHunter
@@ -17,6 +18,12 @@ namespace BugHunter
         public Texture2D DamageTexture { get; set; }
         public int Health { get; set; }
         public int MaxHealth { get; set; }
+        public bool IsReloading = false;
+
+        public double ReloadTime = 0;
+
+        // Munitionsanzahl
+        public IDictionary<Weapon.WeaponTypes, int> AmmunitionAmmountList = new Dictionary<Weapon.WeaponTypes, int>();
 
 
         // Potentielle Neue Position
@@ -50,6 +57,12 @@ namespace BugHunter
             this.Speed = Speed;
             this.MaxHealth = MaxHealth;
             this.Health = MaxHealth;
+
+            AmmunitionAmmountList.Add(Weapon.WeaponTypes.c, Weapon.getMaxAmmoAmountSpecificWeapon(Weapon.WeaponTypes.c));
+            AmmunitionAmmountList.Add(Weapon.WeaponTypes.cpp, Weapon.getMaxAmmoAmountSpecificWeapon(Weapon.WeaponTypes.cpp));
+            AmmunitionAmmountList.Add(Weapon.WeaponTypes.java, Weapon.getMaxAmmoAmountSpecificWeapon(Weapon.WeaponTypes.java));
+            AmmunitionAmmountList.Add(Weapon.WeaponTypes.csharp, Weapon.getMaxAmmoAmountSpecificWeapon(Weapon.WeaponTypes.csharp));
+            AmmunitionAmmountList.Add(Weapon.WeaponTypes.maschinensprache, Weapon.getMaxAmmoAmountSpecificWeapon(Weapon.WeaponTypes.maschinensprache));
         }
 
 
@@ -57,6 +70,12 @@ namespace BugHunter
         {
             this.Health = MaxHealth;
             SetSpawnFromMap(MapArray);
+
+            AmmunitionAmmountList[Weapon.WeaponTypes.c] = Weapon.getMaxAmmoAmountSpecificWeapon(Weapon.WeaponTypes.c);
+            AmmunitionAmmountList[Weapon.WeaponTypes.cpp] = Weapon.getMaxAmmoAmountSpecificWeapon(Weapon.WeaponTypes.cpp);
+            AmmunitionAmmountList[Weapon.WeaponTypes.java] = Weapon.getMaxAmmoAmountSpecificWeapon(Weapon.WeaponTypes.java);
+            AmmunitionAmmountList[Weapon.WeaponTypes.csharp] = Weapon.getMaxAmmoAmountSpecificWeapon(Weapon.WeaponTypes.csharp);
+            AmmunitionAmmountList[Weapon.WeaponTypes.maschinensprache] = Weapon.getMaxAmmoAmountSpecificWeapon(Weapon.WeaponTypes.maschinensprache);
         }
 
 
@@ -77,12 +96,36 @@ namespace BugHunter
             {
                 for (int x = 0; x < CollisionMapArray[y].Length; x++)
                 {
-
                     if ((((Position.Y >= Settings.TilePixelSize * y) || (Position.Y + Texture.Height >= Settings.TilePixelSize * y)) && ((Position.Y <= Settings.TilePixelSize * (y + 1)) || (Position.Y <= Settings.TilePixelSize * (y + 1))))
                         && (((Position.X >= Settings.TilePixelSize * x + 32) || (Position.X + Texture.Width >= Settings.TilePixelSize * x + 32)) && ((Position.X <= Settings.TilePixelSize * (x + 1) + 32) || (Position.X <= Settings.TilePixelSize * (x + 1) + 32))))
-
                     {
-                        // Abfragen und co
+                        if(CollisionMapArray[y][x] == Settings.ReloadTileId)
+                        {
+                            IsReloading = true;
+                            if(gameTime.TotalGameTime.TotalSeconds - ReloadTime > 0.5)
+                            {
+                                ReloadTime = gameTime.TotalGameTime.TotalSeconds;
+                                if (AmmunitionAmmountList[Weapon.WeaponTypes.c] < Weapon.getMaxAmmoAmountSpecificWeapon(Weapon.WeaponTypes.c))
+                                    AmmunitionAmmountList[Weapon.WeaponTypes.c] += 1;
+
+                                if (AmmunitionAmmountList[Weapon.WeaponTypes.cpp] < Weapon.getMaxAmmoAmountSpecificWeapon(Weapon.WeaponTypes.cpp))
+                                    AmmunitionAmmountList[Weapon.WeaponTypes.cpp] += 1;
+
+                                if (AmmunitionAmmountList[Weapon.WeaponTypes.csharp] < Weapon.getMaxAmmoAmountSpecificWeapon(Weapon.WeaponTypes.csharp))
+                                    AmmunitionAmmountList[Weapon.WeaponTypes.csharp] += 1;
+
+                                if (AmmunitionAmmountList[Weapon.WeaponTypes.java] < Weapon.getMaxAmmoAmountSpecificWeapon(Weapon.WeaponTypes.java))
+                                    AmmunitionAmmountList[Weapon.WeaponTypes.java] += 1;
+
+                                if (AmmunitionAmmountList[Weapon.WeaponTypes.maschinensprache] < Weapon.getMaxAmmoAmountSpecificWeapon(Weapon.WeaponTypes.maschinensprache))
+                                    AmmunitionAmmountList[Weapon.WeaponTypes.maschinensprache] += 1;
+                            }
+                        }
+                        else
+                        {
+                            IsReloading = false;
+                            ReloadTime = gameTime.TotalGameTime.TotalSeconds;
+                        }
                     }
                 }
             }
@@ -126,15 +169,18 @@ namespace BugHunter
             // Waffenart updaten
             WeaponUpdate();
 
-            // Initialisiert Projektil und stellt richtung, Position und Waffenart ein
-            for (int i = 0; i < 1; i++)
+            // Prüft ob noch Munition vorhanden ist
+            if(AmmunitionAmmountList[aktWeapon] > 0)
             {
+                // Initialisiert Projektil und stellt richtung, Position und Waffenart ein
                 if (kstate.IsKeyDown(Keys.Right))
                 {
-                    foreach(Projectile p in projectiles)
+
+                    foreach (Projectile p in projectiles)
                     {
-                        if (!p.IsActive && gameTime.TotalGameTime.TotalMilliseconds - lastTimeShot >= Weapon.getDelayforAktWeapon(aktWeapon))
+                        if (!p.IsActive && gameTime.TotalGameTime.TotalMilliseconds - lastTimeShot >= Weapon.getDelayAktWeapon(aktWeapon))
                         {
+                            AmmunitionAmmountList[aktWeapon]--;
                             p.IsActive = true;
                             p.ProjectilePosition = this.Position;
                             p.TimeSinceShot = gameTime.TotalGameTime.TotalSeconds;
@@ -145,15 +191,14 @@ namespace BugHunter
                             lastTimeShot = gameTime.TotalGameTime.TotalMilliseconds;
                         }
                     }
-                    break;
                 }
-
-                if (kstate.IsKeyDown(Keys.Left))
+                else if (kstate.IsKeyDown(Keys.Left))
                 {
                     foreach (Projectile p in projectiles)
                     {
-                        if (!p.IsActive && gameTime.TotalGameTime.TotalMilliseconds - lastTimeShot >= Weapon.getDelayforAktWeapon(aktWeapon))
+                        if (!p.IsActive && gameTime.TotalGameTime.TotalMilliseconds - lastTimeShot >= Weapon.getDelayAktWeapon(aktWeapon))
                         {
+                            AmmunitionAmmountList[aktWeapon]--;
                             p.IsActive = true;
                             p.ProjectilePosition = this.Position;
                             p.TimeSinceShot = gameTime.TotalGameTime.TotalSeconds;
@@ -164,14 +209,14 @@ namespace BugHunter
                             lastTimeShot = gameTime.TotalGameTime.TotalMilliseconds;
                         }
                     }
-                    break;
                 }
-                if (kstate.IsKeyDown(Keys.Left))
+                else if (kstate.IsKeyDown(Keys.Left))
                 {
                     foreach (Projectile p in projectiles)
                     {
-                        if (!p.IsActive && gameTime.TotalGameTime.TotalMilliseconds - lastTimeShot >= Weapon.getDelayforAktWeapon(aktWeapon))
+                        if (!p.IsActive && gameTime.TotalGameTime.TotalMilliseconds - lastTimeShot >= Weapon.getDelayAktWeapon(aktWeapon))
                         {
+                            AmmunitionAmmountList[aktWeapon]--;
                             p.IsActive = true;
                             p.ProjectilePosition = this.Position;
                             p.TimeSinceShot = gameTime.TotalGameTime.TotalSeconds;
@@ -182,15 +227,14 @@ namespace BugHunter
                             lastTimeShot = gameTime.TotalGameTime.TotalMilliseconds;
                         }
                     }
-                    break;
                 }
-
-                if (kstate.IsKeyDown(Keys.Up))
+                else if (kstate.IsKeyDown(Keys.Up))
                 {
                     foreach (Projectile p in projectiles)
                     {
-                        if (!p.IsActive && gameTime.TotalGameTime.TotalMilliseconds - lastTimeShot >= Weapon.getDelayforAktWeapon(aktWeapon))
+                        if (!p.IsActive && gameTime.TotalGameTime.TotalMilliseconds - lastTimeShot >= Weapon.getDelayAktWeapon(aktWeapon))
                         {
+                            AmmunitionAmmountList[aktWeapon]--;
                             p.IsActive = true;
                             p.ProjectilePosition = this.Position;
                             p.TimeSinceShot = gameTime.TotalGameTime.TotalSeconds;
@@ -201,15 +245,14 @@ namespace BugHunter
                             lastTimeShot = gameTime.TotalGameTime.TotalMilliseconds;
                         }
                     }
-                    break;
                 }
-
-                if (kstate.IsKeyDown(Keys.Down))
+                else if (kstate.IsKeyDown(Keys.Down))
                 {
                     foreach (Projectile p in projectiles)
                     {
-                        if (!p.IsActive && gameTime.TotalGameTime.TotalMilliseconds - lastTimeShot >= Weapon.getDelayforAktWeapon(aktWeapon))
+                        if (!p.IsActive && gameTime.TotalGameTime.TotalMilliseconds - lastTimeShot >= Weapon.getDelayAktWeapon(aktWeapon))
                         {
+                            AmmunitionAmmountList[aktWeapon]--;
                             p.IsActive = true;
                             p.ProjectilePosition = this.Position;
                             p.TimeSinceShot = gameTime.TotalGameTime.TotalSeconds;
@@ -220,9 +263,10 @@ namespace BugHunter
                             lastTimeShot = gameTime.TotalGameTime.TotalMilliseconds;
                         }
                     }
-                    break;
                 }
-            }       
+            }
+
+            
 
             // Updated jedes aktive Projektil im Array
             foreach(Projectile p in projectiles)

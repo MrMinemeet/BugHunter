@@ -27,12 +27,7 @@
  // TODO: iOS Gegner
  // TODO: JavaScript Waffe
  // TODO: Bestimmte anzahl von Munition, wonach man nicht mehr schießen kann und zum PC aufstocken muss
- // TODO: Gegner erhält bei respawnen 0,02% mehr leben
  // TODO: Highscore in Documents/MyGames/BugHunter speichern und im Pause Screen anzeigen
-
-
-
-
 
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -56,7 +51,7 @@ namespace BugHunter
         int AktuelleMap = 0;
 
         // Standardeinstellungen setzen
-        Settings settings = new Settings(1920, 1080, false, false);
+        Settings settings = new Settings(1920, 1080, false, true);
          
         public int[][] MapArray;
 
@@ -65,7 +60,7 @@ namespace BugHunter
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
         SpriteFont font;
-        SpriteFont MenuFont;
+        public SpriteFont MenuFont;
 
 
         // DEBUG Featurese
@@ -147,8 +142,7 @@ namespace BugHunter
 
 
             player.Init(settings, this);
-
-
+            
 
             // Setze Spielerposition auf SpawnTilekoordinaten
             player.SetSpawnFromMap(MapArray);

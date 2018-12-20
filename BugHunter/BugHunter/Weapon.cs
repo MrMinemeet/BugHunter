@@ -22,10 +22,16 @@ namespace BugHunter
         public const int CsharpDamage = 15;
         public const int MaschinenspracheDamage = 100;
 
+        // Max Munition für Waffe
+        public const int CppAmmoAmout = 30;
+        public const int CAmmoAmount = 28;
+        public const int JavaAmmoAmount = 50;
+        public const int CsharpAmmoAmount = 60;
+        public const int MaschinenspracheAmmoAmount = 20;
 
         public enum WeaponTypes : byte { cpp, java, c, csharp, maschinensprache }
 
-        public static int getDelayforAktWeapon(WeaponTypes aktWeapon)
+        public static int getDelayAktWeapon(WeaponTypes aktWeapon)
         {
             switch (aktWeapon)
             {
@@ -43,7 +49,7 @@ namespace BugHunter
 
             return -1;
         }
-        public static int getDamageforAWeapon(WeaponTypes aktWeapon)
+        public static int getDamageAktWeapon(WeaponTypes aktWeapon)
         {
             switch (aktWeapon)
             {
@@ -57,6 +63,42 @@ namespace BugHunter
                     return MaschinenspracheDamage;
                 case WeaponTypes.csharp:
                     return CsharpDamage;
+            }
+
+            return -1;
+        }
+        public static int getMaxAmmoAmountAktWeapon(WeaponTypes aktWeapon)
+        {
+            switch (aktWeapon)
+            {
+                case WeaponTypes.cpp:
+                    return CppAmmoAmout;
+                case WeaponTypes.c:
+                    return CAmmoAmount;
+                case WeaponTypes.java:
+                    return JavaAmmoAmount;
+                case WeaponTypes.maschinensprache:
+                    return MaschinenspracheAmmoAmount;
+                case WeaponTypes.csharp:
+                    return CsharpAmmoAmount;
+            }
+
+            return -1;
+        }
+        public static int getMaxAmmoAmountSpecificWeapon(WeaponTypes weaponType)
+        {
+            switch (weaponType)
+            {
+                case WeaponTypes.cpp:
+                    return CppAmmoAmout;
+                case WeaponTypes.c:
+                    return CAmmoAmount;
+                case WeaponTypes.java:
+                    return JavaAmmoAmount;
+                case WeaponTypes.maschinensprache:
+                    return MaschinenspracheAmmoAmount;
+                case WeaponTypes.csharp:
+                    return CsharpAmmoAmount;
             }
 
             return -1;

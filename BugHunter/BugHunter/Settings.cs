@@ -31,9 +31,10 @@ namespace BugHunter
         public int MapSizeHeight { get; set; }
         public int MapSizeWidth { get; set; }
         public const int TilePixelSize = 64;
-        public const int HitBoxTileNumber = 18;
-        public const int PlayerSpawnTileId = 21;
-        public const int EnemeySpawnTileId = 19;
+        public const byte HitBoxTileNumber = 18;
+        public const byte PlayerSpawnTileId = 21;
+        public const byte EnemeySpawnTileId = 19;
+        public const byte ReloadTileId = 20;
 
         public Texture2D EmptyTexture { get; set; }
 

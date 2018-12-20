@@ -110,7 +110,7 @@ namespace BugHunter
                     {
                         if (p.CheckForHit(this))
                         {
-                            this.Health -= Weapon.getDamageforAWeapon(player.aktWeapon);
+                            this.Health -= Weapon.getDamageAktWeapon(player.aktWeapon);
 
 
                             // Falls Gegner 0 leben hat, soll dieser despawnen und der Score erhöht werden.

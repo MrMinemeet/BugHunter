@@ -20,6 +20,7 @@ namespace BugHunter
 
         private int previousScrollValue = 0;
         private double lastWeaponChangeTime = 0;
+        private int AmmunitionAmmount = -1;
 
         public void Init(Game1 game)
         {
@@ -56,6 +57,8 @@ namespace BugHunter
                 previousScrollValue = Mouse.GetState().ScrollWheelValue;
                 lastWeaponChangeTime = gameTime.TotalGameTime.TotalMilliseconds;
             }
+
+            this.AmmunitionAmmount = player.AmmunitionAmmountList[player.aktWeapon];
         }
 
         private void GoWeaponUpByOne(Player player)
@@ -156,6 +159,16 @@ namespace BugHunter
             spriteBatch.DrawString(font, game.Score.ToString(), new Vector2(player.Position.X, player.camera.Position.Y), Color.White);
 
             spriteBatch.DrawString(font, player.Health.ToString(),HeartStatusTextPosition, Color.White);
+
+            spriteBatch.DrawString(font,
+                this.AmmunitionAmmount.ToString() + " / " + Weapon.getMaxAmmoAmountAktWeapon(player.aktWeapon),
+                new Vector2(player.camera.Position.X + 1750, player.camera.Position.Y + 930),
+                Color.White);
+
+            if (player.IsReloading)
+            {
+                spriteBatch.DrawString(game.MenuFont, "NACHLADEN", new Vector2(player.Position.X - 200, player.Position.Y - 30), Color.WhiteSmoke);
+            }
         }
     }
 }
