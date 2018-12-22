@@ -44,8 +44,5 @@ namespace BugHunter
         public const byte ReloadTileId = 20;
 
         public Texture2D EmptyTexture { get; set; }
-
-
-
     }
 }

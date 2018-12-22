@@ -142,42 +142,40 @@ namespace BugHunter
             {
                 for (int x = 0; x < CollisionMapArray[y].Length; x++)
                 {
-                    // Schauen ob aktuelles Tile ein Trigger Tile ist
-                    if (CollisionMapArray[y][x].Equals(Settings.ReloadTileId))
+                    
+                    // Rechtecke über Spieler und aktuelles Tile ziehen
+                    MapTriggerRectangle = new Rectangle((x * Settings.TilePixelSize), (y * Settings.TilePixelSize), Settings.TilePixelSize, Settings.TilePixelSize);
+                    PotNewPlayerCollision = new Rectangle((int)(PotNewPlayerPosition.X - Texture.Width / 2), (int)(PotNewPlayerPosition.Y - Texture.Height / 2), Texture.Width, Texture.Height);
+                    // Überprüfen ob sich die beiden Rechtecke überschneiden
+                    if (PotNewPlayerCollision.Intersects(MapTriggerRectangle))
                     {
-                        // Rechtecke über Spieler und aktuelles Tile ziehen
-                        MapTriggerRectangle = new Rectangle((x * Settings.TilePixelSize), (y * Settings.TilePixelSize), Settings.TilePixelSize, Settings.TilePixelSize);
-                        PotNewPlayerCollision = new Rectangle((int)(PotNewPlayerPosition.X - Texture.Width / 2), (int)(PotNewPlayerPosition.Y - Texture.Height / 2), Texture.Width, Texture.Height);
-                        // Überprüfen ob sich die beiden Rechtecke überschneiden
-                        if (PotNewPlayerCollision.Intersects(MapTriggerRectangle))
+                        // Schauen ob aktuelles Tile ein Trigger Tile ist
+                        if (CollisionMapArray[y][x].Equals(Settings.ReloadTileId))
                         {
-                            if (CollisionMapArray[y][x] == Settings.ReloadTileId)
+                            this.IsReloading = true;
+                            if (gameTime.TotalGameTime.TotalSeconds - ReloadTime > 0.5)
                             {
-                                IsReloading = true;
-                                if (gameTime.TotalGameTime.TotalSeconds - ReloadTime > 0.5)
-                                {
-                                    ReloadTime = gameTime.TotalGameTime.TotalSeconds;
-                                    if (AmmunitionAmmountList[Weapon.WeaponTypes.c] < Weapon.getMaxAmmoAmountSpecificWeapon(Weapon.WeaponTypes.c))
-                                        AmmunitionAmmountList[Weapon.WeaponTypes.c] += 1;
-
-                                    if (AmmunitionAmmountList[Weapon.WeaponTypes.cpp] < Weapon.getMaxAmmoAmountSpecificWeapon(Weapon.WeaponTypes.cpp))
-                                        AmmunitionAmmountList[Weapon.WeaponTypes.cpp] += 1;
-
-                                    if (AmmunitionAmmountList[Weapon.WeaponTypes.csharp] < Weapon.getMaxAmmoAmountSpecificWeapon(Weapon.WeaponTypes.csharp))
-                                        AmmunitionAmmountList[Weapon.WeaponTypes.csharp] += 1;
-
-                                    if (AmmunitionAmmountList[Weapon.WeaponTypes.java] < Weapon.getMaxAmmoAmountSpecificWeapon(Weapon.WeaponTypes.java))
-                                        AmmunitionAmmountList[Weapon.WeaponTypes.java] += 1;
-
-                                    if (AmmunitionAmmountList[Weapon.WeaponTypes.maschinensprache] < Weapon.getMaxAmmoAmountSpecificWeapon(Weapon.WeaponTypes.maschinensprache))
-                                        AmmunitionAmmountList[Weapon.WeaponTypes.maschinensprache] += 1;
-                                }
-                            }
-                            else
-                            {
-                                IsReloading = false;
                                 ReloadTime = gameTime.TotalGameTime.TotalSeconds;
+                                if (AmmunitionAmmountList[Weapon.WeaponTypes.c] < Weapon.getMaxAmmoAmountSpecificWeapon(Weapon.WeaponTypes.c))
+                                    AmmunitionAmmountList[Weapon.WeaponTypes.c] += 1;
+
+                                if (AmmunitionAmmountList[Weapon.WeaponTypes.cpp] < Weapon.getMaxAmmoAmountSpecificWeapon(Weapon.WeaponTypes.cpp))
+                                    AmmunitionAmmountList[Weapon.WeaponTypes.cpp] += 1;
+
+                                if (AmmunitionAmmountList[Weapon.WeaponTypes.csharp] < Weapon.getMaxAmmoAmountSpecificWeapon(Weapon.WeaponTypes.csharp))
+                                    AmmunitionAmmountList[Weapon.WeaponTypes.csharp] += 1;
+
+                                if (AmmunitionAmmountList[Weapon.WeaponTypes.java] < Weapon.getMaxAmmoAmountSpecificWeapon(Weapon.WeaponTypes.java))
+                                    AmmunitionAmmountList[Weapon.WeaponTypes.java] += 1;
+
+                                if (AmmunitionAmmountList[Weapon.WeaponTypes.maschinensprache] < Weapon.getMaxAmmoAmountSpecificWeapon(Weapon.WeaponTypes.maschinensprache))
+                                    AmmunitionAmmountList[Weapon.WeaponTypes.maschinensprache] += 1;
                             }
+                        }
+                        else
+                        {
+                            this.IsReloading = false;
+                            ReloadTime = gameTime.TotalGameTime.TotalSeconds;
                         }
                     }
                 }

@@ -22,37 +22,6 @@ namespace BugHunter
 {
     class Converter
     {
-        [Obsolete()]
-        public static int[][] TmxToIntArray(string path)
-        {
-            StreamReader sr = new StreamReader(path);
-            var lines = new List<string[]>();
-            int Row = 0;
-            while (!sr.EndOfStream)
-            {
-                string[] Line = sr.ReadLine().Split(',');
-                lines.Add(Line);
-                Row++;
-            }
-
-            string[][] stringvar = lines.ToArray();
-
-            int[][] intvar = new int[70 - 39][];
-
-            for (int row = 39, i = 0; row < 70; row++, i++)
-            {
-                intvar[i] = new int[stringvar[row].Length];
-                for (int col = 0; col < stringvar[row].Length - 1; col++)
-                {
-                    intvar[i][col] = int.Parse(stringvar[row][col]);
-                    Console.Write(intvar[i][col] + " ");
-                }
-                Console.WriteLine();
-            }
-
-            return intvar;
-        }
-
         public static int[][] MapToIntArray(TiledMap map, Settings _settings)
         {
             TiledMapTileLayer tml = map.GetLayer<TiledMapTileLayer>("Collision/Trigger");
@@ -61,25 +30,25 @@ namespace BugHunter
             Settings settings = _settings;
             int[][] MapArray = new int[settings.MapSizeHeight][];
 
+            // TiledMapLayer wie 2D Array Durchlaufen
             for (int y = 0; y < settings.MapSizeHeight; y++)
             {
                 MapArray[y] = new int[settings.MapSizeWidth];
 
                 for(int x = 0; x < MapArray[y].Length; x++)
                 {
+                    // Inhalt von TiledMapLayer Tile auf MapArray übertragen
                     tmt = tml.GetTile((ushort)x, (ushort)y);
                     if(tmt != null)
                     {
                         MapArray[y][x] = tmt.Value.GlobalIdentifier;
-                        
 
-                        Console.Write(MapArray[y][x] + "  ");
+                        Console.Write(MapArray[y][x] + "\t");
                     }
                 }
                 Console.WriteLine();
             }
-
-
+            
             return MapArray;
         }
     }
