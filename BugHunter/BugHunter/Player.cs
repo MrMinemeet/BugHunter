@@ -11,7 +11,6 @@ namespace BugHunter
 {
     class Player
     {
-        public Rectangle CollisionBox;
         public Texture2D Texture { get; set; }
         public Vector2 Position;
         public float Speed { get; set; }
@@ -88,37 +87,15 @@ namespace BugHunter
         /// <param name="map"></param>
         public void Update(GameTime gameTime, int[][] CollisionMapArray, TiledMap map)
         {
+            Rectangle MapTriggerRectangle;
+            Rectangle PotNewPlayerCollision;
+
             var kstate = Keyboard.GetState();
             this.CollisionMapArray = CollisionMapArray;
             this.map = map;
-            PotNewPlayerPosition = Position;
+            PotNewPlayerPosition = Position;       
 
-            
-            // TODO Waffen NeuLaden Check neu schreiben
-
-      
-                            IsReloading = true;
-                            if(gameTime.TotalGameTime.TotalSeconds - ReloadTime > 0.5)
-                            {
-                                ReloadTime = gameTime.TotalGameTime.TotalSeconds;
-                                if (AmmunitionAmmountList[Weapon.WeaponTypes.c] < Weapon.getMaxAmmoAmountSpecificWeapon(Weapon.WeaponTypes.c))
-                                    AmmunitionAmmountList[Weapon.WeaponTypes.c] += 1;
-
-                                if (AmmunitionAmmountList[Weapon.WeaponTypes.cpp] < Weapon.getMaxAmmoAmountSpecificWeapon(Weapon.WeaponTypes.cpp))
-                                    AmmunitionAmmountList[Weapon.WeaponTypes.cpp] += 1;
-
-                                if (AmmunitionAmmountList[Weapon.WeaponTypes.csharp] < Weapon.getMaxAmmoAmountSpecificWeapon(Weapon.WeaponTypes.csharp))
-                                    AmmunitionAmmountList[Weapon.WeaponTypes.csharp] += 1;
-
-                                if (AmmunitionAmmountList[Weapon.WeaponTypes.java] < Weapon.getMaxAmmoAmountSpecificWeapon(Weapon.WeaponTypes.java))
-                                    AmmunitionAmmountList[Weapon.WeaponTypes.java] += 1;
-
-                                if (AmmunitionAmmountList[Weapon.WeaponTypes.maschinensprache] < Weapon.getMaxAmmoAmountSpecificWeapon(Weapon.WeaponTypes.maschinensprache))
-                                    AmmunitionAmmountList[Weapon.WeaponTypes.maschinensprache] += 1;
-                            }
-                            IsReloading = false;
-                            ReloadTime = gameTime.TotalGameTime.TotalSeconds;
-                        
+            // SPRINT CHECK
 
             float Speed;
             if (kstate.IsKeyDown(Keys.LeftShift))
@@ -130,6 +107,7 @@ namespace BugHunter
                 Speed = this.Speed;
             }
 
+            // MOVEMENT
 
             if (kstate.IsKeyDown(Keys.W))
             {
@@ -156,6 +134,57 @@ namespace BugHunter
             {
                 this.Position = this.PotNewPlayerPosition;
             }
+
+            // RELOAD ÜBERPRÜFUNG
+
+            // Array durchlaufen
+            for (int y = 0; y * Settings.TilePixelSize < map.HeightInPixels; y++)
+            {
+                for (int x = 0; x < CollisionMapArray[y].Length; x++)
+                {
+                    // Schauen ob aktuelles Tile ein Trigger Tile ist
+                    if (CollisionMapArray[y][x].Equals(Settings.ReloadTileId))
+                    {
+                        // Rechtecke über Spieler und aktuelles Tile ziehen
+                        MapTriggerRectangle = new Rectangle((x * Settings.TilePixelSize), (y * Settings.TilePixelSize), Settings.TilePixelSize, Settings.TilePixelSize);
+                        PotNewPlayerCollision = new Rectangle((int)(PotNewPlayerPosition.X - Texture.Width / 2), (int)(PotNewPlayerPosition.Y - Texture.Height / 2), Texture.Width, Texture.Height);
+                        // Überprüfen ob sich die beiden Rechtecke überschneiden
+                        if (PotNewPlayerCollision.Intersects(MapTriggerRectangle))
+                        {
+                            if (CollisionMapArray[y][x] == Settings.ReloadTileId)
+                            {
+                                IsReloading = true;
+                                if (gameTime.TotalGameTime.TotalSeconds - ReloadTime > 0.5)
+                                {
+                                    ReloadTime = gameTime.TotalGameTime.TotalSeconds;
+                                    if (AmmunitionAmmountList[Weapon.WeaponTypes.c] < Weapon.getMaxAmmoAmountSpecificWeapon(Weapon.WeaponTypes.c))
+                                        AmmunitionAmmountList[Weapon.WeaponTypes.c] += 1;
+
+                                    if (AmmunitionAmmountList[Weapon.WeaponTypes.cpp] < Weapon.getMaxAmmoAmountSpecificWeapon(Weapon.WeaponTypes.cpp))
+                                        AmmunitionAmmountList[Weapon.WeaponTypes.cpp] += 1;
+
+                                    if (AmmunitionAmmountList[Weapon.WeaponTypes.csharp] < Weapon.getMaxAmmoAmountSpecificWeapon(Weapon.WeaponTypes.csharp))
+                                        AmmunitionAmmountList[Weapon.WeaponTypes.csharp] += 1;
+
+                                    if (AmmunitionAmmountList[Weapon.WeaponTypes.java] < Weapon.getMaxAmmoAmountSpecificWeapon(Weapon.WeaponTypes.java))
+                                        AmmunitionAmmountList[Weapon.WeaponTypes.java] += 1;
+
+                                    if (AmmunitionAmmountList[Weapon.WeaponTypes.maschinensprache] < Weapon.getMaxAmmoAmountSpecificWeapon(Weapon.WeaponTypes.maschinensprache))
+                                        AmmunitionAmmountList[Weapon.WeaponTypes.maschinensprache] += 1;
+                                }
+                            }
+                            else
+                            {
+                                IsReloading = false;
+                                ReloadTime = gameTime.TotalGameTime.TotalSeconds;
+                            }
+                        }
+                    }
+                }
+            }
+
+
+
             Random random = new Random();
             // Waffenart updaten
             WeaponUpdate();
@@ -344,8 +373,7 @@ namespace BugHunter
                         // Überprüfen ob sich die beiden Rechtecke überschneiden
                         if (PotNewPlayerCollision.Intersects(MapCollisionRectangle))
                         {
-                            CollisionBox = PotNewPlayerCollision;
-                            // COllision wurde ausgelöst
+                            // Collision wurde ausgelöst
                             return true;
                         }
                     }

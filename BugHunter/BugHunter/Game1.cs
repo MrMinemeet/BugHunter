@@ -26,7 +26,6 @@
  // TODO: Windows Gegner
  // TODO: iOS Gegner
  // TODO: JavaScript Waffe
- // TODO: Bestimmte anzahl von Munition, wonach man nicht mehr schießen kann und zum PC aufstocken muss
  // TODO: Highscore in Documents/MyGames/BugHunter speichern und im Pause Screen anzeigen
 
 using Microsoft.Xna.Framework;

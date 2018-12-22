@@ -149,25 +149,32 @@ namespace BugHunter
             if(projectileFrame == null)
                 return false;
 
-            // TODO Projectile Hit Collision neu schreiben
+            Rectangle MapCollisionRectangle;
+            Rectangle ProjectileCollision;
 
-
-
-
-                    /*
-                    if ((((ProjectilePosition.Y >= Settings.TilePixelSize * y) || (ProjectilePosition.Y + projectileFrame.Size.Y >= Settings.TilePixelSize * y)) && ((ProjectilePosition.Y <= Settings.TilePixelSize * (y + 1)) || (ProjectilePosition.Y <= Settings.TilePixelSize * (y + 1))))
-                       && (((ProjectilePosition.X >= Settings.TilePixelSize * x + 32) || (ProjectilePosition.X + projectileFrame.Size.X >= Settings.TilePixelSize * x + 32)) && ((ProjectilePosition.X <= Settings.TilePixelSize * (x + 1) + 32) || (ProjectilePosition.X <= Settings.TilePixelSize * (x + 1) + 32))))
-
+            // Integer Map Array durchlaufen
+            for (int y = 0; y * Settings.TilePixelSize < map.HeightInPixels; y++)
+            {
+                for (int x = 0; x < CollisionMapArray[y].Length; x++)
+                {
+                    // Schauen ob aktuelles Tile ein Hitbox Tile ist
+                    if (CollisionMapArray[y][x].Equals(Settings.HitBoxTileNumber))
                     {
-                        if (CollisionMapArray[y][x] == Settings.HitBoxTileNumber)
+                        // Rechtecke über Spieler und aktuelles Tile ziehen
+                        MapCollisionRectangle = new Rectangle((x * Settings.TilePixelSize), (y * Settings.TilePixelSize), Settings.TilePixelSize, Settings.TilePixelSize);
+                        ProjectileCollision = new Rectangle((int)(this.ProjectilePosition.X - projectileFrame.Size.X / 2), (int)(ProjectilePosition.Y - projectileFrame.Size.Y / 2), (int)projectileFrame.Size.X, (int)projectileFrame.Size.Y);
+
+                        // Überprüfen ob sich die beiden Rechtecke überschneiden
+                        if (ProjectileCollision.Intersects(MapCollisionRectangle))
                         {
+                            // COllision wurde ausgelöst
                             return true;
                         }
                     }
-                    */
+                }
+            }
 
-
-
+            // Keine Collision erkannt
             return false;
         }
 

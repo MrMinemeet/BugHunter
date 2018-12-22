@@ -12,6 +12,13 @@ namespace BugHunter
         public bool IsMouseVisible;
         public bool AreDebugInformationsVisible = false;
 
+        /// <summary>
+        /// Erstellt ein Object mit den Einstellungen
+        /// </summary>
+        /// <param name="resolutionWidth">Auflösung - Breite</param>
+        /// <param name="resolutionHeight">Auflösung - Höhe</param>
+        /// <param name="IsFullscreen"> Einstellung für Vollbild</param>
+        /// <param name="IsMouseVisible">Einstellung ob Maus sichtbar ist</param>
         public Settings(int resolutionWidth, int resolutionHeight, bool IsFullscreen, bool IsMouseVisible)
         {
             this.resolutionWidth = resolutionWidth;

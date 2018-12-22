@@ -141,14 +141,14 @@ namespace BugHunter
 
             }
 
-            if (player.Health * 0.5f > player.MaxHealth)
+            if (player.Health > player.MaxHealth / 2)
             {
                 spriteRender.Draw(
                     spriteSheet.Sprite(TexturePackerMonoGameDefinitions.gui.Heart_full),
                     this.HeartPosition,
                     Color.White);
             }
-            if (player.Health * 0.5f <= player.MaxHealth)
+            if (player.Health <= player.MaxHealth / 2)
             {
                 spriteRender.Draw(
                     spriteSheet.Sprite(TexturePackerMonoGameDefinitions.gui.Heart_half),
