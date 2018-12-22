@@ -11,6 +11,7 @@ namespace BugHunter
 {
     class Player
     {
+        public Rectangle CollisionBox;
         public Texture2D Texture { get; set; }
         public Vector2 Position;
         public float Speed { get; set; }
@@ -92,15 +93,10 @@ namespace BugHunter
             this.map = map;
             PotNewPlayerPosition = Position;
 
-            for (int y = 0; y * Settings.TilePixelSize <= map.HeightInPixels; y++)
-            {
-                for (int x = 0; x < CollisionMapArray[y].Length; x++)
-                {
-                    if ((((Position.Y >= Settings.TilePixelSize * y) || (Position.Y + Texture.Height >= Settings.TilePixelSize * y)) && ((Position.Y <= Settings.TilePixelSize * (y + 1)) || (Position.Y <= Settings.TilePixelSize * (y + 1))))
-                        && (((Position.X >= Settings.TilePixelSize * x + 32) || (Position.X + Texture.Width >= Settings.TilePixelSize * x + 32)) && ((Position.X <= Settings.TilePixelSize * (x + 1) + 32) || (Position.X <= Settings.TilePixelSize * (x + 1) + 32))))
-                    {
-                        if(CollisionMapArray[y][x] == Settings.ReloadTileId)
-                        {
+            
+            // TODO Waffen NeuLaden Check neu schreiben
+
+      
                             IsReloading = true;
                             if(gameTime.TotalGameTime.TotalSeconds - ReloadTime > 0.5)
                             {
@@ -120,15 +116,10 @@ namespace BugHunter
                                 if (AmmunitionAmmountList[Weapon.WeaponTypes.maschinensprache] < Weapon.getMaxAmmoAmountSpecificWeapon(Weapon.WeaponTypes.maschinensprache))
                                     AmmunitionAmmountList[Weapon.WeaponTypes.maschinensprache] += 1;
                             }
-                        }
-                        else
-                        {
                             IsReloading = false;
                             ReloadTime = gameTime.TotalGameTime.TotalSeconds;
-                        }
-                    }
-                }
-            }
+                        
+
             float Speed;
             if (kstate.IsKeyDown(Keys.LeftShift))
             {
@@ -335,22 +326,33 @@ namespace BugHunter
         /// <returns></returns>
         private bool DidHitCollision(int[][] CollisionMapArray, TiledMap map)
         {
-            for (int y = 0; y * Settings.TilePixelSize <= map.HeightInPixels; y++)
+            Rectangle MapCollisionRectangle;
+            Rectangle PotNewPlayerCollision;
+            
+            // Integer Map Array durchlaufen
+            for (int y = 0; y * Settings.TilePixelSize < map.HeightInPixels; y++)
             {
                 for (int x = 0; x < CollisionMapArray[y].Length; x++)
                 {
-
-                    if ((((PotNewPlayerPosition.Y >= Settings.TilePixelSize * y) || (PotNewPlayerPosition.Y + Texture.Height >= Settings.TilePixelSize * y)) && ((PotNewPlayerPosition.Y <= Settings.TilePixelSize * (y + 1)) || (PotNewPlayerPosition.Y <= Settings.TilePixelSize * (y + 1))))
-                        && (((PotNewPlayerPosition.X >= Settings.TilePixelSize * x + 32) || (PotNewPlayerPosition.X + Texture.Width >= Settings.TilePixelSize * x + 32)) && ((PotNewPlayerPosition.X <= Settings.TilePixelSize * (x + 1) + 32) || (PotNewPlayerPosition.X <= Settings.TilePixelSize * (x + 1) + 32))))
-
+                    // Schauen ob aktuelles Tile ein Hitbox Tile ist
+                    if (CollisionMapArray[y][x].Equals(Settings.HitBoxTileNumber))
                     {
-                        if (CollisionMapArray[y][x] == Settings.HitBoxTileNumber)
+                        // Rechtecke über Spieler und aktuelles Tile ziehen
+                        MapCollisionRectangle = new Rectangle((x * Settings.TilePixelSize), (y * Settings.TilePixelSize), Settings.TilePixelSize, Settings.TilePixelSize);
+                        PotNewPlayerCollision = new Rectangle((int)(PotNewPlayerPosition.X - Texture.Width / 2), (int)(PotNewPlayerPosition.Y - Texture.Height / 2), Texture.Width, Texture.Height);
+
+                        // Überprüfen ob sich die beiden Rechtecke überschneiden
+                        if (PotNewPlayerCollision.Intersects(MapCollisionRectangle))
                         {
+                            CollisionBox = PotNewPlayerCollision;
+                            // COllision wurde ausgelöst
                             return true;
                         }
                     }
                 }
             }
+
+            // Keine Collision erkannt
             return false;
         }
 
@@ -404,7 +406,7 @@ namespace BugHunter
                 );
             }
 
-            // Zeichnet alle aktiven Projektile im Arraye
+            // Zeichnet alle aktiven Projektile im Array
             foreach (Projectile p in projectiles)
             {
                 if (p.IsActive)
@@ -412,6 +414,7 @@ namespace BugHunter
                     p.DrawShot(spriteBatch, this.WeaponSpriteSheet);
                 }
             }
+            
         }
 
         /// <summary>

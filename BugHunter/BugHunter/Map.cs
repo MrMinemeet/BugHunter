@@ -6,7 +6,7 @@ namespace BugHunter
     public class Map
     {
         // The tile map
-        private TiledMap maplevel;
+        public TiledMap maplevel;
         // The renderer for the map
         public TiledMapRenderer mapRenderer;
         

@@ -149,21 +149,11 @@ namespace BugHunter
             if(projectileFrame == null)
                 return false;
 
-            for (int y = 0; y * Settings.TilePixelSize <= map.HeightInPixels; y++)
-            {
-                for (int x = 0; x < CollisionMapArray[y].Length; x++)
-                {
+            // TODO Projectile Hit Collision neu schreiben
 
-                    if(
-                        (((ProjectilePosition.Y >= Settings.TilePixelSize * y) || (ProjectilePosition.Y + projectileFrame.Size.Y >= Settings.TilePixelSize * y)) && ((ProjectilePosition.Y <= Settings.TilePixelSize * (y + 1)) || (ProjectilePosition.Y <= Settings.TilePixelSize * (y + 1))))
-                        && (((ProjectilePosition.X >= Settings.TilePixelSize * x) || (ProjectilePosition.X + projectileFrame.Size.X >= Settings.TilePixelSize * x)) && ((ProjectilePosition.X <= Settings.TilePixelSize * (x + 1)) || (ProjectilePosition.X <= Settings.TilePixelSize * (x + 1))))
-                    )               
-                    {
-                        if (CollisionMapArray[y][x] == Settings.HitBoxTileNumber)
-                        {
-                            return true;
-                        }
-                    }
+
+
+
                     /*
                     if ((((ProjectilePosition.Y >= Settings.TilePixelSize * y) || (ProjectilePosition.Y + projectileFrame.Size.Y >= Settings.TilePixelSize * y)) && ((ProjectilePosition.Y <= Settings.TilePixelSize * (y + 1)) || (ProjectilePosition.Y <= Settings.TilePixelSize * (y + 1))))
                        && (((ProjectilePosition.X >= Settings.TilePixelSize * x + 32) || (ProjectilePosition.X + projectileFrame.Size.X >= Settings.TilePixelSize * x + 32)) && ((ProjectilePosition.X <= Settings.TilePixelSize * (x + 1) + 32) || (ProjectilePosition.X <= Settings.TilePixelSize * (x + 1) + 32))))
@@ -175,8 +165,9 @@ namespace BugHunter
                         }
                     }
                     */
-                }
-            }
+
+
+
             return false;
         }
 

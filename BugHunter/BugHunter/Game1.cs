@@ -127,7 +127,7 @@ namespace BugHunter
             settings.EmptyTexture = Content.Load<Texture2D>("sprites/empty");
 
             // TMX (wie CSV) Map in 2D Array wandeln
-            MapArray = Converter.TmxToIntArray(@"C:\Users\Alexa\Google Drive\Schule\4AHELS\Werkstätte\BugHunter\BugHunter\BugHunter\Content\map1.tmx");
+            MapArray = Converter.MapToIntArray(map[AktuelleMap].maplevel, settings);
             
             font = Content.Load<SpriteFont>("Font");
             DebugFont = Content.Load<SpriteFont>("Debug");
@@ -235,7 +235,6 @@ namespace BugHunter
             {
                 android.Reset(MapArray, 1.1f);
             }
-            
 
             base.Update(gameTime);
         }

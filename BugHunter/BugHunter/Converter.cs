@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MonoGame.Extended.Tiled;
+using System;
 using System.Collections.Generic;
 using System.IO;
 
@@ -21,6 +22,7 @@ namespace BugHunter
 {
     class Converter
     {
+        [Obsolete()]
         public static int[][] TmxToIntArray(string path)
         {
             StreamReader sr = new StreamReader(path);
@@ -51,23 +53,34 @@ namespace BugHunter
             return intvar;
         }
 
-
-        public static int[][] TmxToIntArray2(string[][] stringvar)
+        public static int[][] MapToIntArray(TiledMap map, Settings _settings)
         {
-            int[][] intvar = new int[70 - 39][];
+            TiledMapTileLayer tml = map.GetLayer<TiledMapTileLayer>("Collision/Trigger");
+            TiledMapTile? tmt;
 
-            for (int row = 39, i = 0; row < 70; row++, i++)
+            Settings settings = _settings;
+            int[][] MapArray = new int[settings.MapSizeHeight][];
+
+            for (int y = 0; y < settings.MapSizeHeight; y++)
             {
-                intvar[i] = new int[stringvar[row].Length];
-                for (int col = 0; col < stringvar[row].Length - 1; col++)
+                MapArray[y] = new int[settings.MapSizeWidth];
+
+                for(int x = 0; x < MapArray[y].Length; x++)
                 {
-                    intvar[i][col] = int.Parse(stringvar[row][col]);
-                    Console.Write(intvar[i][col] + " ");
+                    tmt = tml.GetTile((ushort)x, (ushort)y);
+                    if(tmt != null)
+                    {
+                        MapArray[y][x] = tmt.Value.GlobalIdentifier;
+                        
+
+                        Console.Write(MapArray[y][x] + "  ");
+                    }
                 }
                 Console.WriteLine();
             }
 
-            return intvar;
+
+            return MapArray;
         }
     }
 }
