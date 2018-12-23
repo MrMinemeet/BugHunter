@@ -26,7 +26,6 @@
  // TODO: Windows Gegner
  // TODO: iOS Gegner
  // TODO: JavaScript Waffe
- // TODO: Highscore in Documents/MyGames/BugHunter speichern und im Pause Screen anzeigen
 
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -50,7 +49,7 @@ namespace BugHunter
         int AktuelleMap = 0;
 
         // Standardeinstellungen setzen
-        Settings settings = new Settings(1920, 1080, false, true);
+        Settings settings = new Settings();
          
         public int[][] MapArray;
 
@@ -124,6 +123,9 @@ namespace BugHunter
             settings.MapSizeHeight = map[AktuelleMap].getTiledMap().Height;
             settings.MapSizeWidth = map[AktuelleMap].getTiledMap().Width;
             settings.EmptyTexture = Content.Load<Texture2D>("sprites/empty");
+            settings.Init(this);
+            settings.LoadSettings();
+
 
             // TMX (wie CSV) Map in 2D Array wandeln
             MapArray = Converter.MapToIntArray(map[AktuelleMap].maplevel, settings);
@@ -168,7 +170,10 @@ namespace BugHunter
         {
             // Spiel schließen
             if (Keyboard.GetState().IsKeyDown(Keys.Delete) && Keyboard.GetState().IsKeyDown(Keys.LeftAlt))
+            {
+                settings.SaveSettings();
                 Exit();
+            }
 
             // Spiel in Vollbild machen
             if (Keyboard.GetState().IsKeyDown(Keys.F11) || (Keyboard.GetState().IsKeyDown(Keys.LeftAlt) && Keyboard.GetState().IsKeyDown(Keys.Enter)))
@@ -200,13 +205,18 @@ namespace BugHunter
 
                 // Update the fps
                 fps.Update(gameTime);
+
+                if (this.Score > settings.HighScore)
+                    settings.HighScore = Score;
             }
 
+            // Deathscreen
             if(player.Health == 0)
             {
                 CurrentGameState = GameState.DeathScreen;
             }
 
+            // Respawn wenn in Deathscreen
             if(Keyboard.GetState().IsKeyDown(Keys.R) && CurrentGameState == GameState.DeathScreen)
             {
                 player.Reset(MapArray);
@@ -274,6 +284,8 @@ namespace BugHunter
             {
                 spriteBatch.Draw(gui.PausedBackground, new Vector2(player.Position.X - 960, player.Position.Y - 540), Color.White);
                 spriteBatch.DrawString(MenuFont, "PAUSE",new Vector2(player.Position.X - 100, player.Position.Y - 64),Color.White);
+                spriteBatch.DrawString(MenuFont, "Highscore: " + settings.HighScore,
+                    new Vector2(player.camera.Position.X + 750, player.camera.Position.Y), Color.White);
             }
 
             if(CurrentGameState == GameState.DeathScreen)
