@@ -28,6 +28,7 @@
  // TODO: JavaScript Waffe
 
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using MonoGame.Extended;
@@ -73,6 +74,10 @@ namespace BugHunter
 
         // Score
         public int Score { get; set; }
+
+
+        // AUDIO
+        private SoundEffect ScoreSound;
 
         public Game1()
         {
@@ -126,34 +131,34 @@ namespace BugHunter
             settings.Init(this);
             settings.LoadSettings();
 
-
             // TMX (wie CSV) Map in 2D Array wandeln
             MapArray = Converter.MapToIntArray(map[AktuelleMap].maplevel, settings);
-            
+
+            // Audio
+            ScoreSound = Content.Load<SoundEffect>("audio/Score");
+
+            // Schriften
             font = Content.Load<SpriteFont>("Font");
             DebugFont = Content.Load<SpriteFont>("Debug");
             MenuFont = Content.Load<SpriteFont>("MenuFont");
 
-            // Spieler Sprite laden
+            // Spieler Init
             player.Texture = Content.Load<Texture2D>("sprites/player/afk_0001");
             player.OriginTexture = Content.Load<Texture2D>("sprites/originSpot");
             player.DamageTexture = Content.Load<Texture2D>("damaged");
             player.WeaponSpriteSheet = spriteSheetLoader.Load("weapons_packed.png");
-            gui.PausedBackground = Content.Load<Texture2D>("paused_background");
-
-
             player.Init(settings, this);
             
-
             // Setze Spielerposition auf SpawnTilekoordinaten
             player.SetSpawnFromMap(MapArray);
 
+            // Android Init
             android.OriginTexture = Content.Load<Texture2D>("sprites/originSpot");
             android.spriteSheet = spriteSheetLoader.Load("android_packed.png");
             android.SetSpawnFromMap(MapArray);
-
             
-
+            // GUI Init
+            gui.PausedBackground = Content.Load<Texture2D>("paused_background");
             gui.spriteSheet = spriteSheetLoader.Load("gui_packed.png");
             gui.CustomCurserTexture = Content.Load<Texture2D>("sprites/mauszeiger");
 
@@ -207,7 +212,10 @@ namespace BugHunter
                 fps.Update(gameTime);
 
                 if (this.Score > settings.HighScore)
+                {
                     settings.HighScore = Score;
+                    ScoreSound.Play(0.5f,0,0);
+                }
             }
 
             // Deathscreen
@@ -225,17 +233,14 @@ namespace BugHunter
                 this.Score = 0;
             }
 
+            // PAUSE
             if(Keyboard.GetState().IsKeyDown(Keys.Escape) && gameTime.TotalGameTime.TotalMilliseconds - LastKeyStrokeInput >= 500)
             {
-                switch(CurrentGameState)
-                {
-                    case GameState.Ingame:
-                        CurrentGameState = GameState.Paused;
-                        break;
-                    case GameState.Paused:
-                        CurrentGameState = GameState.Ingame;
-                        break;
-                }
+
+                if (CurrentGameState == GameState.Ingame)
+                    CurrentGameState = GameState.Paused;
+                else if (CurrentGameState == GameState.Paused)
+                    CurrentGameState = GameState.Ingame;
 
                 LastKeyStrokeInput = gameTime.TotalGameTime.TotalMilliseconds;
             }

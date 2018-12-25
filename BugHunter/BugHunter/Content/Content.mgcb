@@ -20,6 +20,12 @@
 #begin android_packed.txt
 /copy:android_packed.txt
 
+#begin audio/Score.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:audio/Score.wav
+
 #begin damaged.png
 /importer:TextureImporter
 /processor:TextureProcessor

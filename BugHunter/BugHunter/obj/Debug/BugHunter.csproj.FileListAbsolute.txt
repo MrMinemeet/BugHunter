@@ -99,3 +99,4 @@ C:\Users\Alexa\Google Drive\Schule\4AHELS\Werkstätte\BugHunter\BugHunter\BugHun
 C:\Users\Alexa\Google Drive\Schule\4AHELS\Werkstätte\BugHunter\BugHunter\BugHunter\obj\Debug\BugHunter.csproj.CopyComplete
 C:\Users\Alexa\Google Drive\Schule\4AHELS\Werkstätte\BugHunter\BugHunter\BugHunter\obj\Debug\BugHunter.exe
 C:\Users\Alexa\Google Drive\Schule\4AHELS\Werkstätte\BugHunter\BugHunter\BugHunter\obj\Debug\BugHunter.pdb
+C:\Users\Alexa\Google Drive\Schule\4AHELS\Werkstätte\BugHunter\BugHunter\BugHunter\bin\DesktopGL\AnyCPU\Debug\Content\audio\Score.xnb
