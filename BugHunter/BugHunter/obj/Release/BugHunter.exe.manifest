@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <asmv1:assembly xsi:schemaLocation="urn:schemas-microsoft-com:asm.v1 assembly.adaptive.xsd" manifestVersion="1.0" xmlns:asmv1="urn:schemas-microsoft-com:asm.v1" xmlns="urn:schemas-microsoft-com:asm.v2" xmlns:asmv2="urn:schemas-microsoft-com:asm.v2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:co.v1="urn:schemas-microsoft-com:clickonce.v1" xmlns:asmv3="urn:schemas-microsoft-com:asm.v3" xmlns:dsig="http://www.w3.org/2000/09/xmldsig#" xmlns:co.v2="urn:schemas-microsoft-com:clickonce.v2">
-  <asmv1:assemblyIdentity name="BugHunter.exe" version="1.0.0.2" publicKeyToken="0000000000000000" language="neutral" processorArchitecture="msil" type="win32" />
+  <asmv1:assemblyIdentity name="BugHunter.exe" version="1.0.0.6" publicKeyToken="0000000000000000" language="de" processorArchitecture="msil" type="win32" />
   <description asmv2:iconFile="Icon.ico" xmlns="urn:schemas-microsoft-com:asm.v1" />
   <application />
   <entryPoint>
@@ -31,14 +31,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="BugHunter.exe" size="706000">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="BugHunter.exe" size="706512">
       <assemblyIdentity name="BugHunter" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>vrr1xZoFQNfClcNfep7hmyq1lx5OWuBnFEUnOR0uVQQ=</dsig:DigestValue>
+        <dsig:DigestValue>/PDSNUH5NOofc/3I1ETNBLAXd/yIIXoxw9rmV57yLDU=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -130,6 +130,33 @@
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
       <dsig:DigestValue>0na7WdHHYlir5gpog2CHU30W1AaREVPzNrEkRLdY2XI=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Content\audio\Musik.ogg" size="1760131">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>j+aRZmk9Hg5CeJi3hl6kpVJJi4vqbrGOM8tpoA7Glsw=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Content\audio\Musik.xnb" size="14119017">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>4Z93GwXSLg4QaZyfnApPAIDcsoGr+WOcEV5lCCYztqk=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Content\audio\Schuss.xnb" size="16197">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>JMQL6O04X0XZQDT3/LRAgyOv38ouFzq7SYzHcQZq2rw=</dsig:DigestValue>
     </hash>
   </file>
   <file name="Content\audio\Score.xnb" size="22405">

@@ -98,17 +98,11 @@ namespace BugHunter
                 path = path + @"\Configuration.config";
                 sw = new StreamWriter(path);
 
-                sw.WriteLine("Highscore=" + game.Score);
+                sw.WriteLine("Highscore=" + this.HighScore);
             }
             catch (Exception ex)
             {
                 Console.WriteLine(ex.Message);
-
-                if(sw != null)
-                {
-                    sw.WriteLine("ERROR ACCURED");
-                    sw.Close();
-                }
             }
             finally
             {

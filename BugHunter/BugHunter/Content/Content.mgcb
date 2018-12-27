@@ -20,6 +20,18 @@
 #begin android_packed.txt
 /copy:android_packed.txt
 
+#begin audio/Musik.mp3
+/importer:Mp3Importer
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:audio/Musik.mp3
+
+#begin audio/Schuss.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:audio/Schuss.wav
+
 #begin audio/Score.wav
 /importer:WavImporter
 /processor:SoundEffectProcessor

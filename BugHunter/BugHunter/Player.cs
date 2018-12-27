@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using MonoGame.Extended;
 using MonoGame.Extended.Tiled;
+using ProjectWhitespace;
 using System;
 using System.Collections.Generic;
 using TexturePackerLoader;
@@ -44,6 +45,7 @@ namespace BugHunter
 
 
         Settings settings;
+        SoundFX sound;
 
         Game1 game;
 
@@ -198,6 +200,7 @@ namespace BugHunter
                     {
                         if (!p.IsActive && gameTime.TotalGameTime.TotalMilliseconds - lastTimeShot >= Weapon.getDelayAktWeapon(aktWeapon))
                         {
+                            sound.Schuss.Play();
                             AmmunitionAmmountList[aktWeapon]--;
                             p.IsActive = true;
                             p.ProjectilePosition = this.Position;
@@ -216,6 +219,7 @@ namespace BugHunter
                     {
                         if (!p.IsActive && gameTime.TotalGameTime.TotalMilliseconds - lastTimeShot >= Weapon.getDelayAktWeapon(aktWeapon))
                         {
+                            sound.Schuss.Play();
                             AmmunitionAmmountList[aktWeapon]--;
                             p.IsActive = true;
                             p.ProjectilePosition = this.Position;
@@ -234,6 +238,7 @@ namespace BugHunter
                     {
                         if (!p.IsActive && gameTime.TotalGameTime.TotalMilliseconds - lastTimeShot >= Weapon.getDelayAktWeapon(aktWeapon))
                         {
+                            sound.Schuss.Play();
                             AmmunitionAmmountList[aktWeapon]--;
                             p.IsActive = true;
                             p.ProjectilePosition = this.Position;
@@ -252,6 +257,7 @@ namespace BugHunter
                     {
                         if (!p.IsActive && gameTime.TotalGameTime.TotalMilliseconds - lastTimeShot >= Weapon.getDelayAktWeapon(aktWeapon))
                         {
+                            sound.Schuss.Play();
                             AmmunitionAmmountList[aktWeapon]--;
                             p.IsActive = true;
                             p.ProjectilePosition = this.Position;
@@ -270,6 +276,7 @@ namespace BugHunter
                     {
                         if (!p.IsActive && gameTime.TotalGameTime.TotalMilliseconds - lastTimeShot >= Weapon.getDelayAktWeapon(aktWeapon))
                         {
+                            sound.Schuss.Play();
                             AmmunitionAmmountList[aktWeapon]--;
                             p.IsActive = true;
                             p.ProjectilePosition = this.Position;
@@ -385,10 +392,11 @@ namespace BugHunter
         /// <summary>
         /// Initialisiert Dinge für Spieler
         /// </summary>
-        public void Init(Settings settings, Game1 game)
+        public void Init(Settings settings, Game1 game, SoundFX sound)
         {
             this.game = game;   
             this.settings = settings;
+            this.sound = sound;
             for (int i = 0; i < projectiles.Length; i++)
             {
                 projectiles[i] = new Projectile();

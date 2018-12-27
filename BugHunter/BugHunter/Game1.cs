@@ -46,6 +46,7 @@ namespace BugHunter
         Android android = new Android(30f, 30);
         public Map[] map = new Map[1];
         GUI gui = new GUI();
+        public SoundFX sound = new SoundFX();
 
         int AktuelleMap = 0;
 
@@ -74,10 +75,6 @@ namespace BugHunter
 
         // Score
         public int Score { get; set; }
-
-
-        // AUDIO
-        private SoundEffect ScoreSound;
 
         public Game1()
         {
@@ -135,7 +132,10 @@ namespace BugHunter
             MapArray = Converter.MapToIntArray(map[AktuelleMap].maplevel, settings);
 
             // Audio
-            ScoreSound = Content.Load<SoundEffect>("audio/Score");
+            sound.ScoreSound = Content.Load<SoundEffect>("audio/Score");
+            sound.HintergrundMusik = Content.Load<SoundEffect>("audio/Musik");
+            sound.HintergrundMusikEffect = sound.HintergrundMusik.CreateInstance();
+            sound.Schuss = Content.Load<SoundEffect>("audio/Schuss");
 
             // Schriften
             font = Content.Load<SpriteFont>("Font");
@@ -147,7 +147,7 @@ namespace BugHunter
             player.OriginTexture = Content.Load<Texture2D>("sprites/originSpot");
             player.DamageTexture = Content.Load<Texture2D>("damaged");
             player.WeaponSpriteSheet = spriteSheetLoader.Load("weapons_packed.png");
-            player.Init(settings, this);
+            player.Init(this.settings, this, this.sound);
             
             // Setze Spielerposition auf SpawnTilekoordinaten
             player.SetSpawnFromMap(MapArray);
@@ -214,8 +214,16 @@ namespace BugHunter
                 if (this.Score > settings.HighScore)
                 {
                     settings.HighScore = Score;
-                    ScoreSound.Play(0.5f,0,0);
+                    sound.ScoreSound.Play(0.5f,0,0);
                 }
+
+                sound.HintergrundMusikEffect.Volume = 0.05f;
+
+                if(sound.HintergrundMusikEffect.State == SoundState.Stopped)
+                {
+                    sound.HintergrundMusikEffect.Play();
+                }
+                
             }
 
             // Deathscreen
@@ -236,11 +244,25 @@ namespace BugHunter
             // PAUSE
             if(Keyboard.GetState().IsKeyDown(Keys.Escape) && gameTime.TotalGameTime.TotalMilliseconds - LastKeyStrokeInput >= 500)
             {
-
                 if (CurrentGameState == GameState.Ingame)
+                {
+                    // Hintergrundmusik pausieren
+                    if (sound.HintergrundMusikEffect.State == SoundState.Playing)
+                    {
+                        sound.HintergrundMusikEffect.Pause();
+                    }
                     CurrentGameState = GameState.Paused;
+                }
                 else if (CurrentGameState == GameState.Paused)
+                {
+                    // Hintergrundmusik pausieren
+                    if (sound.HintergrundMusikEffect.State == SoundState.Paused)
+                    {
+                        sound.HintergrundMusikEffect.Resume();
+                    }
                     CurrentGameState = GameState.Ingame;
+
+                }
 
                 LastKeyStrokeInput = gameTime.TotalGameTime.TotalMilliseconds;
             }

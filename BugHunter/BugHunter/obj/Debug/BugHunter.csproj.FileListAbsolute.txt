@@ -100,3 +100,10 @@ C:\Users\Alexa\Google Drive\Schule\4AHELS\Werkstätte\BugHunter\BugHunter\BugHun
 C:\Users\Alexa\Google Drive\Schule\4AHELS\Werkstätte\BugHunter\BugHunter\BugHunter\obj\Debug\BugHunter.exe
 C:\Users\Alexa\Google Drive\Schule\4AHELS\Werkstätte\BugHunter\BugHunter\BugHunter\obj\Debug\BugHunter.pdb
 C:\Users\Alexa\Google Drive\Schule\4AHELS\Werkstätte\BugHunter\BugHunter\BugHunter\bin\DesktopGL\AnyCPU\Debug\Content\audio\Score.xnb
+C:\Users\Alexa\Google Drive\Schule\4AHELS\Werkstätte\BugHunter\BugHunter\BugHunter\bin\DesktopGL\AnyCPU\Debug\BugHunter.exe.manifest
+C:\Users\Alexa\Google Drive\Schule\4AHELS\Werkstätte\BugHunter\BugHunter\BugHunter\bin\DesktopGL\AnyCPU\Debug\BugHunter.application
+C:\Users\Alexa\Google Drive\Schule\4AHELS\Werkstätte\BugHunter\BugHunter\BugHunter\obj\Debug\BugHunter.exe.manifest
+C:\Users\Alexa\Google Drive\Schule\4AHELS\Werkstätte\BugHunter\BugHunter\BugHunter\obj\Debug\BugHunter.application
+C:\Users\Alexa\Google Drive\Schule\4AHELS\Werkstätte\BugHunter\BugHunter\BugHunter\bin\DesktopGL\AnyCPU\Debug\Content\audio\Schuss.xnb
+C:\Users\Alexa\Google Drive\Schule\4AHELS\Werkstätte\BugHunter\BugHunter\BugHunter\bin\DesktopGL\AnyCPU\Debug\Content\audio\Musik.ogg
+C:\Users\Alexa\Google Drive\Schule\4AHELS\Werkstätte\BugHunter\BugHunter\BugHunter\bin\DesktopGL\AnyCPU\Debug\Content\audio\Musik.xnb

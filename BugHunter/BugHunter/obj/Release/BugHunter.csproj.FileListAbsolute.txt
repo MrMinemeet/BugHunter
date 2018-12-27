@@ -55,6 +55,9 @@ C:\Users\Alexa\Google Drive\Schule\4AHELS\Werkstätte\BugHunter\BugHunter\BugHun
 C:\Users\Alexa\Google Drive\Schule\4AHELS\Werkstätte\BugHunter\BugHunter\BugHunter\bin\DesktopGL\AnyCPU\Release\Content\sprites\empty.xnb
 C:\Users\Alexa\Google Drive\Schule\4AHELS\Werkstätte\BugHunter\BugHunter\BugHunter\bin\DesktopGL\AnyCPU\Release\Content\sprites\mauszeiger.xnb
 C:\Users\Alexa\Google Drive\Schule\4AHELS\Werkstätte\BugHunter\BugHunter\BugHunter\bin\DesktopGL\AnyCPU\Release\Content\sprites\originSpot.xnb
+C:\Users\Alexa\Google Drive\Schule\4AHELS\Werkstätte\BugHunter\BugHunter\BugHunter\bin\DesktopGL\AnyCPU\Release\Content\audio\Musik.ogg
+C:\Users\Alexa\Google Drive\Schule\4AHELS\Werkstätte\BugHunter\BugHunter\BugHunter\bin\DesktopGL\AnyCPU\Release\Content\audio\Musik.xnb
+C:\Users\Alexa\Google Drive\Schule\4AHELS\Werkstätte\BugHunter\BugHunter\BugHunter\bin\DesktopGL\AnyCPU\Release\Content\audio\Schuss.xnb
 C:\Users\Alexa\Google Drive\Schule\4AHELS\Werkstätte\BugHunter\BugHunter\BugHunter\bin\DesktopGL\AnyCPU\Release\Content\audio\Score.xnb
 C:\Users\Alexa\Google Drive\Schule\4AHELS\Werkstätte\BugHunter\BugHunter\BugHunter\bin\DesktopGL\AnyCPU\Release\Content\android_packed.png
 C:\Users\Alexa\Google Drive\Schule\4AHELS\Werkstätte\BugHunter\BugHunter\BugHunter\bin\DesktopGL\AnyCPU\Release\Content\android_packed.txt
@@ -80,8 +83,12 @@ C:\Users\Alexa\Google Drive\Schule\4AHELS\Werkstätte\BugHunter\BugHunter\BugHun
 C:\Users\Alexa\Google Drive\Schule\4AHELS\Werkstätte\BugHunter\BugHunter\BugHunter\bin\DesktopGL\AnyCPU\Release\x64\libopenal.so.1
 C:\Users\Alexa\Google Drive\Schule\4AHELS\Werkstätte\BugHunter\BugHunter\BugHunter\bin\DesktopGL\AnyCPU\Release\libSDL2-2.0.0.dylib
 C:\Users\Alexa\Google Drive\Schule\4AHELS\Werkstätte\BugHunter\BugHunter\BugHunter\bin\DesktopGL\AnyCPU\Release\libopenal.1.dylib
+C:\Users\Alexa\Google Drive\Schule\4AHELS\Werkstätte\BugHunter\BugHunter\BugHunter\bin\DesktopGL\AnyCPU\Release\BugHunter.exe.manifest
+C:\Users\Alexa\Google Drive\Schule\4AHELS\Werkstätte\BugHunter\BugHunter\BugHunter\bin\DesktopGL\AnyCPU\Release\BugHunter.application
 C:\Users\Alexa\Google Drive\Schule\4AHELS\Werkstätte\BugHunter\BugHunter\BugHunter\bin\DesktopGL\AnyCPU\Release\BugHunter.exe
 C:\Users\Alexa\Google Drive\Schule\4AHELS\Werkstätte\BugHunter\BugHunter\BugHunter\bin\DesktopGL\AnyCPU\Release\BugHunter.pdb
+C:\Users\Alexa\Google Drive\Schule\4AHELS\Werkstätte\BugHunter\BugHunter\BugHunter\bin\DesktopGL\AnyCPU\Release\BugHunter.exe.CodeAnalysisLog.xml
+C:\Users\Alexa\Google Drive\Schule\4AHELS\Werkstätte\BugHunter\BugHunter\BugHunter\bin\DesktopGL\AnyCPU\Release\BugHunter.exe.lastcodeanalysissucceeded
 C:\Users\Alexa\Google Drive\Schule\4AHELS\Werkstätte\BugHunter\BugHunter\BugHunter\bin\DesktopGL\AnyCPU\Release\MonoGame.Extended.Content.Pipeline.dll
 C:\Users\Alexa\Google Drive\Schule\4AHELS\Werkstätte\BugHunter\BugHunter\BugHunter\bin\DesktopGL\AnyCPU\Release\MonoGame.Extended.dll
 C:\Users\Alexa\Google Drive\Schule\4AHELS\Werkstätte\BugHunter\BugHunter\BugHunter\bin\DesktopGL\AnyCPU\Release\MonoGame.Extended.Graphics.dll
@@ -93,11 +100,8 @@ C:\Users\Alexa\Google Drive\Schule\4AHELS\Werkstätte\BugHunter\BugHunter\BugHun
 C:\Users\Alexa\Google Drive\Schule\4AHELS\Werkstätte\BugHunter\BugHunter\BugHunter\bin\DesktopGL\AnyCPU\Release\MonoGame.Extended.Graphics.pdb
 C:\Users\Alexa\Google Drive\Schule\4AHELS\Werkstätte\BugHunter\BugHunter\BugHunter\bin\DesktopGL\AnyCPU\Release\MonoGame.Extended.Tiled.pdb
 C:\Users\Alexa\Google Drive\Schule\4AHELS\Werkstätte\BugHunter\BugHunter\BugHunter\obj\Release\BugHunter.csproj.CoreCompileInputs.cache
+C:\Users\Alexa\Google Drive\Schule\4AHELS\Werkstätte\BugHunter\BugHunter\BugHunter\obj\Release\BugHunter.exe.manifest
+C:\Users\Alexa\Google Drive\Schule\4AHELS\Werkstätte\BugHunter\BugHunter\BugHunter\obj\Release\BugHunter.application
 C:\Users\Alexa\Google Drive\Schule\4AHELS\Werkstätte\BugHunter\BugHunter\BugHunter\obj\Release\BugHunter.csproj.CopyComplete
 C:\Users\Alexa\Google Drive\Schule\4AHELS\Werkstätte\BugHunter\BugHunter\BugHunter\obj\Release\BugHunter.exe
 C:\Users\Alexa\Google Drive\Schule\4AHELS\Werkstätte\BugHunter\BugHunter\BugHunter\obj\Release\BugHunter.pdb
-C:\Users\Alexa\Google Drive\Schule\4AHELS\Werkstätte\BugHunter\BugHunter\BugHunter\bin\DesktopGL\AnyCPU\Release\BugHunter.exe.manifest
-C:\Users\Alexa\Google Drive\Schule\4AHELS\Werkstätte\BugHunter\BugHunter\BugHunter\bin\DesktopGL\AnyCPU\Release\BugHunter.application
-C:\Users\Alexa\Google Drive\Schule\4AHELS\Werkstätte\BugHunter\BugHunter\BugHunter\obj\Release\BugHunter.exe.manifest
-C:\Users\Alexa\Google Drive\Schule\4AHELS\Werkstätte\BugHunter\BugHunter\BugHunter\obj\Release\BugHunter.application
-C:\Users\Alexa\Google Drive\Schule\4AHELS\Werkstätte\BugHunter\BugHunter\BugHunter\obj\Release\BugHunter.csprojAssemblyReference.cache
