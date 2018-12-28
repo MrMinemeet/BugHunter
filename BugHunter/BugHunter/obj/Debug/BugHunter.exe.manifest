@@ -31,14 +31,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="BugHunter.exe" size="708560">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="BugHunter.exe" size="709072">
       <assemblyIdentity name="BugHunter" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>1x9TWkzj7yrOl+WLt8+D/w0E5mgD92dUeyl672JMtgA=</dsig:DigestValue>
+        <dsig:DigestValue>0XlgVQ/93uGBU8c0CIEEja3O5ovXeWoDVvCGUGqNbdM=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -141,31 +141,31 @@
       <dsig:DigestValue>j+aRZmk9Hg5CeJi3hl6kpVJJi4vqbrGOM8tpoA7Glsw=</dsig:DigestValue>
     </hash>
   </file>
-  <file name="Content\audio\Musik.xnb" size="14119017">
+  <file name="Content\audio\Musik.xnb" size="2666601">
     <hash>
       <dsig:Transforms>
         <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-      <dsig:DigestValue>4Z93GwXSLg4QaZyfnApPAIDcsoGr+WOcEV5lCCYztqk=</dsig:DigestValue>
+      <dsig:DigestValue>f5IeX7Fmicii4hyy88EsKHMlQhC7HrPVpLBcPfyBYYM=</dsig:DigestValue>
     </hash>
   </file>
-  <file name="Content\audio\Schuss.xnb" size="16197">
+  <file name="Content\audio\Schuss.xnb" size="3177">
     <hash>
       <dsig:Transforms>
         <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-      <dsig:DigestValue>JMQL6O04X0XZQDT3/LRAgyOv38ouFzq7SYzHcQZq2rw=</dsig:DigestValue>
+      <dsig:DigestValue>8wvyv1/3c8k2EsZDbYBqYkmD3OgV4o0t7m0KSOea48Y=</dsig:DigestValue>
     </hash>
   </file>
-  <file name="Content\audio\Score.xnb" size="22405">
+  <file name="Content\audio\Score.xnb" size="5225">
     <hash>
       <dsig:Transforms>
         <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-      <dsig:DigestValue>JzSAz5G2S12gfCJzPMwp7cBAmEF34RdyB5Lxa1MHaAQ=</dsig:DigestValue>
+      <dsig:DigestValue>ydK5r8yEcasZkRuij0jnCYVFwcJCwehHt3DOrkmh1ww=</dsig:DigestValue>
     </hash>
   </file>
   <file name="Content\collision_0.xnb" size="268">

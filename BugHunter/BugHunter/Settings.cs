@@ -9,6 +9,7 @@ namespace BugHunter
     class Settings
     {
         // Öffentliche Variablen welche geändet werden können
+        public bool IsActive = false;
         public int resolutionWidth = 1920;
         public int resolutionHeight = 1080;
         public bool IsFullscreen = false;

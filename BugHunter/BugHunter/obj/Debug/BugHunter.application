@@ -7,14 +7,14 @@
     <framework targetVersion="4.5" profile="Full" supportedRuntime="4.0.30319" />
   </compatibleFrameworks>
   <dependency>
-    <dependentAssembly dependencyType="install" codebase="BugHunter.exe.manifest" size="19792">
+    <dependentAssembly dependencyType="install" codebase="BugHunter.exe.manifest" size="19789">
       <assemblyIdentity name="BugHunter.exe" version="1.0.0.6" publicKeyToken="0000000000000000" language="de" processorArchitecture="msil" type="win32" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>UbRaVB5MYmhqBBN0yExIUTq/0uCJgSmsVdWNoD17lX8=</dsig:DigestValue>
+        <dsig:DigestValue>MJwCkMToaJlM7u319BCaDDa7P8JmunXIXoPXQlO0Q9M=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>

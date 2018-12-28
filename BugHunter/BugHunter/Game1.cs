@@ -35,6 +35,7 @@ using MonoGame.Extended;
 using MonoGame.Extended.Tiled;
 using MonoGame.Extended.Tiled.Renderers;
 using System;
+using System.Collections.Generic;
 using TexturePackerLoader;
 
 namespace BugHunter
@@ -43,7 +44,11 @@ namespace BugHunter
     public class Game1 : Game
     {
         Player player = new Player(200f,100);
-        Android android = new Android(30f, 30);
+
+        IDictionary<int, Android> Androids = new Dictionary<int, Android>();
+        int maxEnemys = 1;
+        int AndroidHealth = 30;
+
         public Map[] map = new Map[1];
         GUI gui = new GUI();
         public SoundFX sound = new SoundFX();
@@ -105,8 +110,6 @@ namespace BugHunter
 
             gui.Init(this);
 
-            android.Init(this,this.settings);
-
             base.Initialize();
         }
         
@@ -153,10 +156,13 @@ namespace BugHunter
             player.SetSpawnFromMap(MapArray);
 
             // Android Init
-            android.OriginTexture = Content.Load<Texture2D>("sprites/originSpot");
-            android.spriteSheet = spriteSheetLoader.Load("android_packed.png");
-            android.SetSpawnFromMap(MapArray);
-            
+            Androids.Add(0, new Android(50f, 30));
+
+            Androids[0].Init(this, this.settings, this.player);
+            Androids[0].OriginTexture = Content.Load<Texture2D>("sprites/originSpot");
+            Androids[0].spriteSheet = spriteSheetLoader.Load("android_packed.png");
+            Androids[0].SetSpawnFromMap(MapArray);
+
             // GUI Init
             gui.PausedBackground = Content.Load<Texture2D>("paused_background");
             gui.spriteSheet = spriteSheetLoader.Load("gui_packed.png");
@@ -199,8 +205,14 @@ namespace BugHunter
                     LastKeyStrokeInput = gameTime.TotalGameTime.TotalMilliseconds;
                 }
 
-                // Spieler Updaten
-                android.Update(gameTime, MapArray, map[AktuelleMap].getTiledMap(), player);
+                // Updaten
+                for(int i = 0; i < Androids.Count; i++)
+                {
+                    Androids[i].Update(gameTime, MapArray, map[AktuelleMap].maplevel);
+
+                    if (Androids[i].IsDead)
+                        Androids.Remove(i);
+                }
                 player.Update(gameTime, MapArray, map[AktuelleMap].getTiledMap());
                 gui.Update(gameTime, player);
 
@@ -224,10 +236,22 @@ namespace BugHunter
                     sound.HintergrundMusikEffect.Play();
                 }
                 
+
+                // TODO Mehrere Gegner auf einmal
+                for(int i = Androids.Count; i < maxEnemys; i++)
+                {
+                    AndroidHealth = AndroidHealth + (int)(AndroidHealth * 0.07f);
+                    Androids.Add(i, new Android(50f, AndroidHealth));
+
+                    Androids[i].Init(this, this.settings, this.player);
+                    Androids[i].OriginTexture = Content.Load<Texture2D>("sprites/originSpot");
+                    Androids[i].spriteSheet = spriteSheetLoader.Load("android_packed.png");
+                    Androids[i].SetSpawnFromMap(MapArray);
+                }               
             }
 
             // Deathscreen
-            if(player.Health == 0)
+            if (player.Health == 0)
             {
                 CurrentGameState = GameState.DeathScreen;
             }
@@ -236,7 +260,7 @@ namespace BugHunter
             if(Keyboard.GetState().IsKeyDown(Keys.R) && CurrentGameState == GameState.DeathScreen)
             {
                 player.Reset(MapArray);
-                android.Reset(MapArray);
+                // TODO Reset Enemy
                 this.CurrentGameState = GameState.Ingame;
                 this.Score = 0;
             }
@@ -261,16 +285,12 @@ namespace BugHunter
                         sound.HintergrundMusikEffect.Resume();
                     }
                     CurrentGameState = GameState.Ingame;
-
                 }
 
                 LastKeyStrokeInput = gameTime.TotalGameTime.TotalMilliseconds;
             }
 
-            if (!android.IsActive)
-            {
-                android.Reset(MapArray, 1.1f);
-            }
+            
 
             base.Update(gameTime);
         }
@@ -302,9 +322,14 @@ namespace BugHunter
             // MapRenderer zum Zeichnen der aktuell sichtbaren Map
             map[AktuelleMap].mapRenderer.Draw(player.camera.GetViewMatrix());
 
-            // Spieler Sprite ausgeben
+            // Sprite ausgeben
             player.Draw(spriteBatch,font);
-            android.Draw(spriteBatch, font);
+
+            for (int i = 0; i < Androids.Count; i++)
+            {
+                Androids[i].Draw(spriteBatch, font);
+            }
+
             gui.Draw(spriteBatch, font, player);
 
             if(CurrentGameState == GameState.Paused)
@@ -320,7 +345,6 @@ namespace BugHunter
                 spriteBatch.Draw(gui.PausedBackground, new Vector2(player.Position.X - 960, player.Position.Y - 540), Color.White);
                 spriteBatch.DrawString(MenuFont, Texttable.Text_Died, new Vector2(player.Position.X - 300, player.Position.Y - 64), Color.White);
             }
-
 
             spriteBatch.End();
 

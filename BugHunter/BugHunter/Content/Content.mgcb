@@ -23,19 +23,19 @@
 #begin audio/Musik.mp3
 /importer:Mp3Importer
 /processor:SoundEffectProcessor
-/processorParam:Quality=Best
+/processorParam:Quality=Medium
 /build:audio/Musik.mp3
 
 #begin audio/Schuss.wav
 /importer:WavImporter
 /processor:SoundEffectProcessor
-/processorParam:Quality=Best
+/processorParam:Quality=Medium
 /build:audio/Schuss.wav
 
 #begin audio/Score.wav
 /importer:WavImporter
 /processor:SoundEffectProcessor
-/processorParam:Quality=Best
+/processorParam:Quality=Medium
 /build:audio/Score.wav
 
 #begin damaged.png

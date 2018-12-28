@@ -15,6 +15,9 @@ namespace BugHunter
         public Texture2D OriginTexture;
         public bool ShowPlayerOrigin = false;
         public float attackDamage = 1;
+        public Player player;
+
+        public bool IsDead = false;
 
         // Potentielle Neue Position
         public Vector2 PotNewEnemyPosition;
@@ -23,7 +26,6 @@ namespace BugHunter
         public SpriteSheet spriteSheet;
         public SpriteRender spriteRender;
 
-        public bool IsActive = true;
         Settings settings;
 
 
@@ -31,10 +33,11 @@ namespace BugHunter
 
         public Game1 game;
 
-        public void Init(Game1 game, Settings settings)
+        public void Init(Game1 game, Settings settings, Player player)
         {
             this.game = game;
             this.settings = settings;
+            this.player = player;
         }
 
         /// <summary>
@@ -56,90 +59,71 @@ namespace BugHunter
          /// <param name="CollisionMapArray"></param>
          /// <param name="map"></param>
          /// <param name="player"></param>
-        public void Update(GameTime gameTime, int[][] CollisionMapArray, TiledMap map, Player player)
+        public void Update(GameTime gameTime, int[][] CollisionMapArray, TiledMap map)
         {
-            if (IsActive)
+            this.PotNewEnemyPosition = this.Position;
+
+            if (this.Position.X > player.Position.X)
             {
-                this.PotNewEnemyPosition = this.Position;
+                this.PotNewEnemyPosition.X -= this.Speed * (float)gameTime.ElapsedGameTime.TotalSeconds;
+            }
+            if (this.Position.X < player.Position.X)
+            {
+                this.PotNewEnemyPosition.X += this.Speed * (float)gameTime.ElapsedGameTime.TotalSeconds;
+            }
 
-                if (this.Position.X > player.Position.X)
+            if (this.Position.Y > player.Position.Y)
+            {
+                this.PotNewEnemyPosition.Y -= this.Speed * (float)gameTime.ElapsedGameTime.TotalSeconds;
+            }
+
+            if (this.Position.Y < player.Position.Y)
+            {
+                this.PotNewEnemyPosition.Y += this.Speed * (float)gameTime.ElapsedGameTime.TotalSeconds;
+            }
+
+            // Bekommt einen Frame
+            SpriteFrame sp = spriteSheet.Sprite(TexturePackerMonoGameDefinitions.android_packed.Sprites_android1);
+            
+            // Mit sp.Size erhält man einen Vektor mit der größe einer einzelnen Textur. Ist einfach und zudem noch effizienter
+            if (
+                ((PotNewEnemyPosition.X + sp.Size.X / 2 >= player.Position.X - player.Texture.Width / 2 && PotNewEnemyPosition.X - sp.Size.X / 2 <= player.Position.X + player.Texture.Width / 2)
+                && (PotNewEnemyPosition.Y + sp.Size.Y / 2 >= player.Position.Y - player.Texture.Height / 2 && PotNewEnemyPosition.Y - sp.Size.Y / 2 <= player.Position.Y + player.Texture.Height / 2))
+                )
+            {
+                if (gameTime.TotalGameTime.TotalMilliseconds - LastCollisionCheck >= 500)
                 {
-                    this.PotNewEnemyPosition.X -= this.Speed * (float)gameTime.ElapsedGameTime.TotalSeconds;
+                    player.Health = (int)(player.Health - attackDamage);
+                    LastCollisionCheck = gameTime.TotalGameTime.TotalMilliseconds;
+                    player.GotHit(this);
                 }
-                if (this.Position.X < player.Position.X)
+            }
+            else
+            {
+                this.Position = PotNewEnemyPosition;
+            }
+
+            foreach (Projectile p in player.projectiles)
+            {
+                if (p.IsActive)
                 {
-                    this.PotNewEnemyPosition.X += this.Speed * (float)gameTime.ElapsedGameTime.TotalSeconds;
-                }
-
-                if (this.Position.Y > player.Position.Y)
-                {
-                    this.PotNewEnemyPosition.Y -= this.Speed * (float)gameTime.ElapsedGameTime.TotalSeconds;
-                }
-
-                if (this.Position.Y < player.Position.Y)
-                {
-                    this.PotNewEnemyPosition.Y += this.Speed * (float)gameTime.ElapsedGameTime.TotalSeconds;
-                }
-
-                // Bekommt einen Frame
-                SpriteFrame sp = spriteSheet.Sprite(TexturePackerMonoGameDefinitions.android_packed.Sprites_android1);
-
-
-
-                // Mit sp.Size erhält man einen Vektor mit der größe einer einzelnen Textur. Ist einfach und zudem noch effizienter
-                if (
-                    ((PotNewEnemyPosition.X + sp.Size.X / 2 >= player.Position.X - player.Texture.Width / 2 && PotNewEnemyPosition.X - sp.Size.X / 2 <= player.Position.X + player.Texture.Width / 2)
-                    && (PotNewEnemyPosition.Y + sp.Size.Y / 2 >= player.Position.Y - player.Texture.Height / 2 && PotNewEnemyPosition.Y - sp.Size.Y / 2 <= player.Position.Y + player.Texture.Height / 2))
-                    )
-                {
-                    if (gameTime.TotalGameTime.TotalMilliseconds - LastCollisionCheck >= 500)
+                    if (p.CheckForHit(this))
                     {
-                        player.Health = (int)(player.Health - attackDamage);
-                        LastCollisionCheck = gameTime.TotalGameTime.TotalMilliseconds;
-                        player.GotHit(this);
-                    }
-                }
-                else
-                {
-                    this.Position = PotNewEnemyPosition;
-                }
+                        this.Health -= Weapon.getDamageAktWeapon(player.aktWeapon);
 
-                foreach (Projectile p in player.projectiles)
-                {
-                    if (p.IsActive)
-                    {
-                        if (p.CheckForHit(this))
+
+                        // Falls Gegner 0 leben hat, soll dieser despawnen und der Score erhöht werden.
+                        if (this.Health <= 0)
                         {
-                            this.Health -= Weapon.getDamageAktWeapon(player.aktWeapon);
-
-
-                            // Falls Gegner 0 leben hat, soll dieser despawnen und der Score erhöht werden.
-                            if (this.Health <= 0)
-                            {
-                                this.IsActive = false;
-                                this.attackDamage = attackDamage * 1.1f;
-                                game.Score += 100;
-
-                            }
+                            this.attackDamage = attackDamage * 1.1f;
+                            game.Score += 100;
+                            this.IsDead = true;
                         }
                     }
                 }
             }
         }
-               
 
-        /// <summary>
-        /// Setzt Enemy zurück auf starteinstellung
-        /// </summary>
-        /// <param name="MapArray"></param>
-        public void Reset(int[][] MapArray, float HealthMultiplicator = 1f)
-        {
-            SetSpawnFromMap(MapArray);
-            this.MaxHealth = (int)(this.MaxHealth * HealthMultiplicator);
-            this.Health = MaxHealth;
-            this.IsActive = true;
-        }
-        
         // Sucht nach Spawn Tile im Maparray und setzt den Spieler darauf.
         public void SetSpawnFromMap(int[][] MapArray)
         {

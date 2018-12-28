@@ -43,10 +43,10 @@ namespace BugHunter
                     {
                         MapArray[y][x] = tmt.Value.GlobalIdentifier;
 
-                        Console.Write(MapArray[y][x] + "\t");
+                        // Console.Write(MapArray[y][x] + "\t");
                     }
                 }
-                Console.WriteLine();
+                // Console.WriteLine();
             }
             
             return MapArray;
