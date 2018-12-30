@@ -235,19 +235,24 @@ namespace BugHunter
                 {
                     sound.HintergrundMusikEffect.Play();
                 }
-                
-
                 // TODO Mehrere Gegner auf einmal
-                for(int i = Androids.Count; i < maxEnemys; i++)
-                {
-                    AndroidHealth = AndroidHealth + (int)(AndroidHealth * 0.07f);
-                    Androids.Add(i, new Android(50f, AndroidHealth));
 
-                    Androids[i].Init(this, this.settings, this.player);
-                    Androids[i].OriginTexture = Content.Load<Texture2D>("sprites/originSpot");
-                    Androids[i].spriteSheet = spriteSheetLoader.Load("android_packed.png");
-                    Androids[i].SetSpawnFromMap(MapArray);
-                }               
+                maxEnemys = (int)(this.Score / 1000) + 1;
+
+                // Generiert neue Einträge im Dictionary wenn weniger Gegner da sind als max. zulässig sind
+                // Generiert immer dann einen Eintrag wenn der Key nicht verwendet wird
+                for (int i = 0; i < maxEnemys; i++)
+                {
+                    if (!Androids.ContainsKey(i))
+                    {
+                        Androids.Add(i, new Android(50f, AndroidHealth));
+
+                        Androids[i].Init(this, this.settings, this.player);
+                        Androids[i].OriginTexture = Content.Load<Texture2D>("sprites/originSpot");
+                        Androids[i].spriteSheet = spriteSheetLoader.Load("android_packed.png");
+                        Androids[i].SetSpawnFromMap(MapArray);
+                    }
+                }
             }
 
             // Deathscreen
