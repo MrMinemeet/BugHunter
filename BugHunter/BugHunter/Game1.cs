@@ -245,8 +245,14 @@ namespace BugHunter
                 {
                     if (!Androids.ContainsKey(i))
                     {
+                        // Neues Leben für Android berechen
+                        this.AndroidHealth = (int)(AndroidHealth * 1.08f);
+
+
+                        // Neuen Android in Liste erstellen
                         Androids.Add(i, new Android(50f, AndroidHealth));
 
+                        // Android Initialisieren
                         Androids[i].Init(this, this.settings, this.player);
                         Androids[i].OriginTexture = Content.Load<Texture2D>("sprites/originSpot");
                         Androids[i].spriteSheet = spriteSheetLoader.Load("android_packed.png");

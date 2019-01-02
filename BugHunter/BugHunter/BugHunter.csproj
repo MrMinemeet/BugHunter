@@ -91,6 +91,7 @@
     <Compile Include="FpsCounter.cs" />
     <Compile Include="Game1.cs" />
     <Compile Include="GUI.cs" />
+    <Compile Include="PackedTexturesCS\effects_packed.cs" />
     <Compile Include="PackedTexturesCS\gui_packed.cs" />
     <Compile Include="Map.cs" />
     <Compile Include="Player.cs" />
