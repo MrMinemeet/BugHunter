@@ -9,6 +9,7 @@
     <File>C:/Users/Alexa/Google Drive/Schule/4AHELS/Werkstätte/BugHunter/BugHunter/BugHunter/Content/audio/Score.wav</File>
     <File>C:/Users/Alexa/Google Drive/Schule/4AHELS/Werkstätte/BugHunter/BugHunter/BugHunter/Content/damaged.png</File>
     <File>C:/Users/Alexa/Google Drive/Schule/4AHELS/Werkstätte/BugHunter/BugHunter/BugHunter/Content/Debug.spritefont</File>
+    <File>C:/Users/Alexa/Google Drive/Schule/4AHELS/Werkstätte/BugHunter/BugHunter/BugHunter/Content/effects_packed.png</File>
     <File>C:/Users/Alexa/Google Drive/Schule/4AHELS/Werkstätte/BugHunter/BugHunter/BugHunter/Content/Font.spritefont</File>
     <File>C:/Users/Alexa/Google Drive/Schule/4AHELS/Werkstätte/BugHunter/BugHunter/BugHunter/Content/map1.tmx</File>
     <File>C:/Users/Alexa/Google Drive/Schule/4AHELS/Werkstätte/BugHunter/BugHunter/BugHunter/Content/MenuFont.spritefont</File>
@@ -23,6 +24,7 @@
     <File>C:/Users/Alexa/Google Drive/Schule/4AHELS/Werkstätte/BugHunter/BugHunter/BugHunter/Content/sprites/player/afk_0001.png</File>
   </SourceFiles>
   <DestFiles>
+    <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />

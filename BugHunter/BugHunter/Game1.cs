@@ -21,7 +21,6 @@
 
 
  // TODO: Hitmarker bei Schaden
- // TODO: Mehrere Gegnerauf einmal
  // TODO: MacOS Gegner
  // TODO: Windows Gegner
  // TODO: iOS Gegner
@@ -43,6 +42,8 @@ namespace BugHunter
     // This is the main type for your game.
     public class Game1 : Game
     {
+        private readonly TimeSpan timePerFrame = TimeSpan.FromSeconds(3f / 30f);
+
         Player player = new Player(200f,100);
 
         IDictionary<int, Android> Androids = new Dictionary<int, Android>();
@@ -64,6 +65,7 @@ namespace BugHunter
 
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
+        SpriteRender spriteRender;
         SpriteFont font;
         public SpriteFont MenuFont;
 
@@ -80,6 +82,15 @@ namespace BugHunter
 
         // Score
         public int Score { get; set; }
+
+        // Animation
+
+        // POOF Animation
+        private SpriteSheet PoofSpriteSheet;
+        private Animation[] PoofAnimations;
+        private AnimationManager poofAM;
+        private bool PoofIsActive = false;
+        private Vector2 PoofPosition;
 
         public Game1()
         {
@@ -114,11 +125,11 @@ namespace BugHunter
         }
         
         // LoadContent will be called once per game and is the place to load all of your content.
-        
         protected override void LoadContent()
         {
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
+            spriteRender = new SpriteRender(spriteBatch);
 
             // Verarbeitete Map aus Pipeline laden
             map[AktuelleMap].setTiledMap(Content.Load<TiledMap>("map1"));
@@ -168,6 +179,11 @@ namespace BugHunter
             gui.spriteSheet = spriteSheetLoader.Load("gui_packed.png");
             gui.CustomCurserTexture = Content.Load<Texture2D>("sprites/mauszeiger");
 
+            // Animation
+            PoofSpriteSheet = spriteSheetLoader.Load("effects_packed.png");
+
+
+            InitialiseAnimationManager();
         }
 
         // UnloadContent will be called once per game and is the place to unload game-specific content.
@@ -211,7 +227,11 @@ namespace BugHunter
                     Androids[i].Update(gameTime, MapArray, map[AktuelleMap].maplevel);
 
                     if (Androids[i].IsDead)
+                    {
+                        PoofPosition = Androids[i].Position;
+                        PoofIsActive = true;
                         Androids.Remove(i);
+                    }
                 }
                 player.Update(gameTime, MapArray, map[AktuelleMap].getTiledMap());
                 gui.Update(gameTime, player);
@@ -257,6 +277,18 @@ namespace BugHunter
                         Androids[i].OriginTexture = Content.Load<Texture2D>("sprites/originSpot");
                         Androids[i].spriteSheet = spriteSheetLoader.Load("android_packed.png");
                         Androids[i].SetSpawnFromMap(MapArray);
+                    }
+                }
+
+                // Updated poof wenn Aktiv
+                if (PoofIsActive)
+                {
+                    poofAM.Update(gameTime);
+
+                    // Setzt poof auf inaktiv wenn abgelaufen
+                    if (poofAM.CurrentFrame == PoofAnimations[0].Sprites.Length - 1)
+                    {
+                        PoofIsActive = false;
                     }
                 }
             }
@@ -329,7 +361,8 @@ namespace BugHunter
                     new Vector2(player.Position.X - (settings.resolutionWidth / 2), player.Position.Y - (settings.resolutionHeight / 2) + 125),
                     Color.White);
             }
-                
+
+
             // MapRenderer zum Zeichnen der aktuell sichtbaren Map
             map[AktuelleMap].mapRenderer.Draw(player.camera.GetViewMatrix());
 
@@ -343,7 +376,7 @@ namespace BugHunter
 
             gui.Draw(spriteBatch, font, player);
 
-            if(CurrentGameState == GameState.Paused)
+            if (CurrentGameState == GameState.Paused)
             {
                 spriteBatch.Draw(gui.PausedBackground, new Vector2(player.Position.X - 960, player.Position.Y - 540), Color.White);
                 spriteBatch.DrawString(MenuFont, "PAUSE",new Vector2(player.Position.X - 100, player.Position.Y - 64),Color.White);
@@ -357,9 +390,40 @@ namespace BugHunter
                 spriteBatch.DrawString(MenuFont, Texttable.Text_Died, new Vector2(player.Position.X - 300, player.Position.Y - 64), Color.White);
             }
 
+            if (PoofIsActive)
+            {
+                spriteRender.Draw(
+                    poofAM.CurrentSprite,
+                    PoofPosition,
+                    Color.White,0,1,
+                    poofAM.CurrentSpriteEffects);
+            }
+
             spriteBatch.End();
 
             base.Draw(gameTime);
+        }
+
+        private void InitialiseAnimationManager()
+        {
+            var poof = new[] {
+                TexturePackerMonoGameDefinitions.effect_packed.Poof_001,
+                TexturePackerMonoGameDefinitions.effect_packed.Poof_002,
+                TexturePackerMonoGameDefinitions.effect_packed.Poof_003,
+                TexturePackerMonoGameDefinitions.effect_packed.Poof_004,
+                TexturePackerMonoGameDefinitions.effect_packed.Poof_005,
+                TexturePackerMonoGameDefinitions.effect_packed.Poof_006,
+                TexturePackerMonoGameDefinitions.effect_packed.Poof_007
+            };
+            
+            var poofAnimation = new Animation(new Vector2(1, 0), timePerFrame, SpriteEffects.None, poof);
+
+            PoofAnimations = new[]
+            {
+               poofAnimation
+            };
+
+            poofAM = new AnimationManager(PoofSpriteSheet, player.Position, PoofAnimations);
         }
     }
 }

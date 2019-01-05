@@ -58,6 +58,9 @@
 /build:Debug.spritefont
 
 #begin effects_packed.png
+/copy:effects_packed.png
+
+#begin effects_packed.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255

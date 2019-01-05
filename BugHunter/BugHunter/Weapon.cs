@@ -23,11 +23,11 @@ namespace BugHunter
         public const int MaschinenspracheDamage = 100;
 
         // Max Munition für Waffe
-        public const int CppAmmoAmout = 30;
-        public const int CAmmoAmount = 28;
-        public const int JavaAmmoAmount = 50;
-        public const int CsharpAmmoAmount = 60;
-        public const int MaschinenspracheAmmoAmount = 20;
+        public const int CppAmmoAmout = 40;
+        public const int CAmmoAmount = 35;
+        public const int JavaAmmoAmount = 60;
+        public const int CsharpAmmoAmount = 70;
+        public const int MaschinenspracheAmmoAmount = 30;
 
         public enum WeaponTypes : byte { cpp, java, c, csharp, maschinensprache }
 
