@@ -200,7 +200,7 @@ namespace BugHunter
                     {
                         if (!p.IsActive && gameTime.TotalGameTime.TotalMilliseconds - lastTimeShot >= Weapon.getDelayAktWeapon(aktWeapon))
                         {
-                            sound.Schuss.Play();
+                            sound.Schuesse[random.Next(sound.Schuesse.Length - 1)].Play();
                             AmmunitionAmmountList[aktWeapon]--;
                             p.IsActive = true;
                             p.ProjectilePosition = this.Position;
@@ -219,26 +219,7 @@ namespace BugHunter
                     {
                         if (!p.IsActive && gameTime.TotalGameTime.TotalMilliseconds - lastTimeShot >= Weapon.getDelayAktWeapon(aktWeapon))
                         {
-                            sound.Schuss.Play();
-                            AmmunitionAmmountList[aktWeapon]--;
-                            p.IsActive = true;
-                            p.ProjectilePosition = this.Position;
-                            p.TimeSinceShot = gameTime.TotalGameTime.TotalSeconds;
-                            p.aktDirection = Projectile.Directions.Left;
-                            p.ProjectileType = aktWeapon;
-                            p.textureVersion = (byte)random.Next(8);
-
-                            lastTimeShot = gameTime.TotalGameTime.TotalMilliseconds;
-                        }
-                    }
-                }
-                else if (kstate.IsKeyDown(Keys.Left))
-                {
-                    foreach (Projectile p in projectiles)
-                    {
-                        if (!p.IsActive && gameTime.TotalGameTime.TotalMilliseconds - lastTimeShot >= Weapon.getDelayAktWeapon(aktWeapon))
-                        {
-                            sound.Schuss.Play();
+                            sound.Schuesse[random.Next(sound.Schuesse.Length - 1)].Play();
                             AmmunitionAmmountList[aktWeapon]--;
                             p.IsActive = true;
                             p.ProjectilePosition = this.Position;
@@ -257,7 +238,7 @@ namespace BugHunter
                     {
                         if (!p.IsActive && gameTime.TotalGameTime.TotalMilliseconds - lastTimeShot >= Weapon.getDelayAktWeapon(aktWeapon))
                         {
-                            sound.Schuss.Play();
+                            sound.Schuesse[random.Next(sound.Schuesse.Length - 1)].Play();
                             AmmunitionAmmountList[aktWeapon]--;
                             p.IsActive = true;
                             p.ProjectilePosition = this.Position;
@@ -276,7 +257,7 @@ namespace BugHunter
                     {
                         if (!p.IsActive && gameTime.TotalGameTime.TotalMilliseconds - lastTimeShot >= Weapon.getDelayAktWeapon(aktWeapon))
                         {
-                            sound.Schuss.Play();
+                            sound.Schuesse[random.Next(sound.Schuesse.Length - 1)].Play();
                             AmmunitionAmmountList[aktWeapon]--;
                             p.IsActive = true;
                             p.ProjectilePosition = this.Position;

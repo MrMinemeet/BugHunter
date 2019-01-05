@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <SourceFile>C:/Users/Alexa/Google Drive/Schule/4AHELS/Werkstätte/BugHunter/BugHunter/BugHunter/Content/collision.tsx</SourceFile>
-  <SourceTime>2018-12-22T16:19:15.216459+01:00</SourceTime>
+  <SourceTime>2018-12-22T16:19:15+01:00</SourceTime>
   <DestFile>C:/Users/Alexa/Google Drive/Schule/4AHELS/Werkstätte/BugHunter/BugHunter/BugHunter/Content/bin/DesktopGL/collision_0.xnb</DestFile>
-  <DestTime>2019-01-02T20:57:15.0150224+01:00</DestTime>
+  <DestTime>2019-01-05T20:07:59.3348026+01:00</DestTime>
   <Importer>TiledMapTilesetImporter</Importer>
   <ImporterTime>2018-11-26T09:40:58+01:00</ImporterTime>
   <Processor>TiledMapTilesetProcessor</Processor>

@@ -149,7 +149,13 @@ namespace BugHunter
             sound.ScoreSound = Content.Load<SoundEffect>("audio/Score");
             sound.HintergrundMusik = Content.Load<SoundEffect>("audio/Musik");
             sound.HintergrundMusikEffect = sound.HintergrundMusik.CreateInstance();
-            sound.Schuss = Content.Load<SoundEffect>("audio/Schuss");
+
+            // TODO Eigene Sounds aufnehmen
+            sound.Schuesse[0] = Content.Load<SoundEffect>("audio/Schuss/schuss_001");
+            sound.Schuesse[1] = Content.Load<SoundEffect>("audio/Schuss/schuss_002");
+            sound.Schuesse[2] = Content.Load<SoundEffect>("audio/Schuss/schuss_003");
+            sound.Schuesse[3] = Content.Load<SoundEffect>("audio/Schuss/schuss_004");
+            sound.Schuesse[4] = Content.Load<SoundEffect>("audio/Schuss/schuss_005");
 
             // Schriften
             font = Content.Load<SpriteFont>("Font");

@@ -26,11 +26,35 @@
 /processorParam:Quality=Medium
 /build:audio/Musik.mp3
 
-#begin audio/Schuss.wav
+#begin audio/Schuss/schuss_001.wav
 /importer:WavImporter
 /processor:SoundEffectProcessor
-/processorParam:Quality=Medium
-/build:audio/Schuss.wav
+/processorParam:Quality=Best
+/build:audio/Schuss/schuss_001.wav
+
+#begin audio/Schuss/schuss_002.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:audio/Schuss/schuss_002.wav
+
+#begin audio/Schuss/schuss_003.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:audio/Schuss/schuss_003.wav
+
+#begin audio/Schuss/schuss_004.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:audio/Schuss/schuss_004.wav
+
+#begin audio/Schuss/schuss_005.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:audio/Schuss/schuss_005.wav
 
 #begin audio/Score.wav
 /importer:WavImporter
@@ -56,9 +80,6 @@
 /processorParam:PremultiplyAlpha=True
 /processorParam:TextureFormat=Compressed
 /build:Debug.spritefont
-
-#begin effects_packed.png
-/copy:effects_packed.png
 
 #begin effects_packed.png
 /importer:TextureImporter
