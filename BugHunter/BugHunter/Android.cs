@@ -16,6 +16,7 @@ namespace BugHunter
         public bool ShowPlayerOrigin = false;
         public float attackDamage = 1;
         public Player player;
+        
 
         public bool IsDead = false;
 
@@ -25,6 +26,7 @@ namespace BugHunter
         // Textures
         public SpriteSheet spriteSheet;
         public SpriteRender spriteRender;
+
 
         Settings settings;
 
@@ -83,7 +85,7 @@ namespace BugHunter
             }
 
             // Bekommt einen Frame
-            SpriteFrame sp = spriteSheet.Sprite(TexturePackerMonoGameDefinitions.android_packed.Sprites_android1);
+            SpriteFrame sp = spriteSheet.Sprite(TexturePackerMonoGameDefinitions.entities.Android1);
             
             // Mit sp.Size erhält man einen Vektor mit der größe einer einzelnen Textur. Ist einfach und zudem noch effizienter
             if (
@@ -95,6 +97,7 @@ namespace BugHunter
                 {
                     player.Health = (int)(player.Health - attackDamage);
                     LastCollisionCheck = gameTime.TotalGameTime.TotalMilliseconds;
+                    player.hitmarkerTime = (float)gameTime.TotalGameTime.TotalMilliseconds;
                     player.GotHit(this);
                 }
             }
@@ -158,28 +161,28 @@ namespace BugHunter
             if (this.MaxHealth >= this.Health && this.Health > this.MaxHealth * 0.75f)
             {
                 spriteRender.Draw(
-                    spriteSheet.Sprite(TexturePackerMonoGameDefinitions.android_packed.Sprites_android4),
+                    spriteSheet.Sprite(TexturePackerMonoGameDefinitions.entities.Android4),
                     this.Position,
                     Color.White);
             }
             if (this.MaxHealth * 0.75f >= this.Health && this.Health > this.MaxHealth * 0.50f)
             {
                 spriteRender.Draw(
-                    spriteSheet.Sprite(TexturePackerMonoGameDefinitions.android_packed.Sprites_android3),
+                    spriteSheet.Sprite(TexturePackerMonoGameDefinitions.entities.Android3),
                     this.Position,
                     Color.White);
             }
             if (this.MaxHealth * 0.50f >= this.Health && this.Health > this.MaxHealth * 0.25f)
             {
                 spriteRender.Draw(
-                    spriteSheet.Sprite(TexturePackerMonoGameDefinitions.android_packed.Sprites_android2),
+                    spriteSheet.Sprite(TexturePackerMonoGameDefinitions.entities.Android2),
                     this.Position,
                     Color.White);
             }
             if (this.MaxHealth * 0.25f >= this.Health && this.Health > 0)
             {
                 spriteRender.Draw(
-                    spriteSheet.Sprite(TexturePackerMonoGameDefinitions.android_packed.Sprites_android1),
+                    spriteSheet.Sprite(TexturePackerMonoGameDefinitions.entities.Android1),
                     this.Position,
                     Color.White);
             }
@@ -192,7 +195,7 @@ namespace BugHunter
                     null,
                     Color.White,
                 0f,
-                new Vector2(spriteSheet.Sprite("sprites/android1").Texture.Width / 2, spriteSheet.Sprite("sprites/android1").Texture.Height / 2),
+                new Vector2(spriteSheet.Sprite("android1").Texture.Width / 2, spriteSheet.Sprite("android1").Texture.Height / 2),
                 Vector2.One,
                 SpriteEffects.None,
                 0f

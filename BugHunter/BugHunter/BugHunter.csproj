@@ -89,7 +89,7 @@
     <Compile Include="Android.cs" />
     <Compile Include="Animation.cs" />
     <Compile Include="AnimationManager.cs" />
-    <Compile Include="PackedTexturesCS\android_packed.cs" />
+    <Compile Include="Entities.cs" />
     <Compile Include="Converter.cs" />
     <Compile Include="FpsCounter.cs" />
     <Compile Include="Game1.cs" />
@@ -114,7 +114,6 @@
     <Compile Include="TexturePackerLoader\SpriteSheet.cs" />
     <Compile Include="TexturePackerLoader\SpriteSheetLoader.cs" />
     <Compile Include="Weapon.cs" />
-    <Compile Include="PackedTexturesCS\weapons_packed.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="MonoGame.Extended">

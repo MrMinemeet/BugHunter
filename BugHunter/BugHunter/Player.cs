@@ -49,6 +49,13 @@ namespace BugHunter
 
         Game1 game;
 
+
+        // Hitmarker
+        private bool IsHitmarkerActive = false;
+        public Texture2D Hitmarker;
+        public float hitmarkerTime;
+        private int HitmarkerAlpha = 255;
+
         /// <summary>
         /// Konstruktorfür Klasse Android
         /// </summary>
@@ -272,6 +279,19 @@ namespace BugHunter
                 }
             }
 
+            if (IsHitmarkerActive)
+            {
+                
+                if (gameTime.TotalGameTime.TotalMilliseconds - hitmarkerTime >= (2000/255))
+                {
+                    HitmarkerAlpha--;
+                }
+                if(HitmarkerAlpha <= 0)
+                {
+                    IsHitmarkerActive = false;
+                }
+            }
+
             
 
             // Updated jedes aktive Projektil im Array
@@ -293,7 +313,7 @@ namespace BugHunter
         /// <param name="enemyPosition"></param>
         public void GotHit(Android enemy)
         {
-            
+            this.IsHitmarkerActive = true;
         }
 
         // Überprüft ob Waffe gewechselt wird und setzt die richtige aktiv
@@ -393,6 +413,7 @@ namespace BugHunter
         /// <param name="font"></param>
         public void Draw(SpriteBatch spriteBatch, SpriteFont font)
         {
+            // Zeichnet Spieler
             spriteBatch.Draw(
                 Texture,
                 Position,
@@ -404,6 +425,15 @@ namespace BugHunter
                 SpriteEffects.None,
                 0f
             );
+
+            // Zeichent Hitmarker
+            // TODO Fade-out bei Hitmarker
+            if (IsHitmarkerActive)
+            {
+                spriteBatch.Draw(this.Hitmarker,
+                    this.camera.Position,
+                    Color.White * 0.4f);
+            }
             
 
             if (ShowPlayerOrigin)

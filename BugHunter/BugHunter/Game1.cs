@@ -25,6 +25,11 @@
  // TODO: Windows Gegner
  // TODO: iOS Gegner
  // TODO: JavaScript Waffe
+ // TODO: Powerup: Medipack - PC Teile
+ // TODO: Powerup: Ammopack - Tastatur
+ // TODO: Powerup: Erhöhter Schaden - Bücher
+ // TODO: Powerup: Erhöhte Schussgeschwindigkeit - Kaffee
+
 
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Audio;
@@ -149,13 +154,12 @@ namespace BugHunter
             sound.ScoreSound = Content.Load<SoundEffect>("audio/Score");
             sound.HintergrundMusik = Content.Load<SoundEffect>("audio/Musik");
             sound.HintergrundMusikEffect = sound.HintergrundMusik.CreateInstance();
-
-            // TODO Eigene Sounds aufnehmen
             sound.Schuesse[0] = Content.Load<SoundEffect>("audio/Schuss/schuss_001");
             sound.Schuesse[1] = Content.Load<SoundEffect>("audio/Schuss/schuss_002");
             sound.Schuesse[2] = Content.Load<SoundEffect>("audio/Schuss/schuss_003");
             sound.Schuesse[3] = Content.Load<SoundEffect>("audio/Schuss/schuss_004");
             sound.Schuesse[4] = Content.Load<SoundEffect>("audio/Schuss/schuss_005");
+            sound.Schuesse[5] = Content.Load<SoundEffect>("audio/Schuss/schuss_006");
 
             // Schriften
             font = Content.Load<SpriteFont>("Font");
@@ -165,20 +169,12 @@ namespace BugHunter
             // Spieler Init
             player.Texture = Content.Load<Texture2D>("sprites/player/afk_0001");
             player.OriginTexture = Content.Load<Texture2D>("sprites/originSpot");
-            player.DamageTexture = Content.Load<Texture2D>("damaged");
-            player.WeaponSpriteSheet = spriteSheetLoader.Load("weapons_packed.png");
+            player.Hitmarker = Content.Load<Texture2D>("sprites/gui/hitmarker");
+            player.WeaponSpriteSheet = spriteSheetLoader.Load("sprites/entities/entities.png");
             player.Init(this.settings, this, this.sound);
             
             // Setze Spielerposition auf SpawnTilekoordinaten
             player.SetSpawnFromMap(MapArray);
-
-            // Android Init
-            Androids.Add(0, new Android(50f, 30));
-
-            Androids[0].Init(this, this.settings, this.player);
-            Androids[0].OriginTexture = Content.Load<Texture2D>("sprites/originSpot");
-            Androids[0].spriteSheet = spriteSheetLoader.Load("android_packed.png");
-            Androids[0].SetSpawnFromMap(MapArray);
 
             // GUI Init
             gui.PausedBackground = Content.Load<Texture2D>("paused_background");
@@ -187,7 +183,6 @@ namespace BugHunter
 
             // Animation
             PoofSpriteSheet = spriteSheetLoader.Load("effects_packed.png");
-
 
             InitialiseAnimationManager();
         }
@@ -255,13 +250,12 @@ namespace BugHunter
                     sound.ScoreSound.Play(0.5f,0,0);
                 }
 
-                sound.HintergrundMusikEffect.Volume = 0.05f;
+                sound.HintergrundMusikEffect.Volume = 0.1f;
 
                 if(sound.HintergrundMusikEffect.State == SoundState.Stopped)
                 {
                     sound.HintergrundMusikEffect.Play();
                 }
-                // TODO Mehrere Gegner auf einmal
 
                 maxEnemys = (int)(this.Score / 1000) + 1;
 
@@ -281,7 +275,7 @@ namespace BugHunter
                         // Android Initialisieren
                         Androids[i].Init(this, this.settings, this.player);
                         Androids[i].OriginTexture = Content.Load<Texture2D>("sprites/originSpot");
-                        Androids[i].spriteSheet = spriteSheetLoader.Load("android_packed.png");
+                        Androids[i].spriteSheet = spriteSheetLoader.Load("sprites/entities/entities.png");
                         Androids[i].SetSpawnFromMap(MapArray);
                     }
                 }
@@ -309,7 +303,6 @@ namespace BugHunter
             if(Keyboard.GetState().IsKeyDown(Keys.R) && CurrentGameState == GameState.DeathScreen)
             {
                 player.Reset(MapArray);
-                // TODO Reset Enemy
                 this.CurrentGameState = GameState.Ingame;
                 this.Score = 0;
             }
@@ -430,6 +423,14 @@ namespace BugHunter
             };
 
             poofAM = new AnimationManager(PoofSpriteSheet, player.Position, PoofAnimations);
+        }
+
+
+        // Wird beim Schließen aufgerufen
+        protected override void OnExiting(Object sender, EventArgs args)
+        {
+            settings.SaveSettings();
+            base.OnExiting(sender, args);
         }
     }
 }

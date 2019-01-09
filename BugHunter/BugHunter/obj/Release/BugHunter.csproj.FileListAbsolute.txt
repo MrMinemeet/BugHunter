@@ -126,3 +126,4 @@ C:\Users\Alexa\Google Drive\Schule\4AHELS\Werkstätte\BugHunter\BugHunter\BugHun
 C:\Users\Alexa\Google Drive\Schule\4AHELS\Werkstätte\BugHunter\BugHunter\BugHunter\bin\DesktopGL\AnyCPU\Release\Content\audio\Schuss\schuss_003.xnb
 C:\Users\Alexa\Google Drive\Schule\4AHELS\Werkstätte\BugHunter\BugHunter\BugHunter\bin\DesktopGL\AnyCPU\Release\Content\audio\Schuss\schuss_004.xnb
 C:\Users\Alexa\Google Drive\Schule\4AHELS\Werkstätte\BugHunter\BugHunter\BugHunter\bin\DesktopGL\AnyCPU\Release\Content\audio\Schuss\schuss_005.xnb
+C:\Users\Alexa\Google Drive\Schule\4AHELS\Werkstätte\BugHunter\BugHunter\BugHunter\bin\DesktopGL\AnyCPU\Release\Content\audio\Schuss\schuss_006.xnb

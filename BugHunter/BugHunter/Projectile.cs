@@ -75,37 +75,37 @@ namespace BugHunter
             switch (ProjectileType)
             {
                 case Weapon.WeaponTypes.cpp:
-                    spriteRender.Draw(spriteSheet.Sprite(TexturePackerMonoGameDefinitions.weapons.Cpp), this.ProjectilePosition);
+                    spriteRender.Draw(spriteSheet.Sprite(TexturePackerMonoGameDefinitions.entities.Cpp), this.ProjectilePosition);
                     break;
                 case Weapon.WeaponTypes.c:
-                    spriteRender.Draw(spriteSheet.Sprite(TexturePackerMonoGameDefinitions.weapons.C), this.ProjectilePosition);
+                    spriteRender.Draw(spriteSheet.Sprite(TexturePackerMonoGameDefinitions.entities.C), this.ProjectilePosition);
                     break;
                 case Weapon.WeaponTypes.java:
-                    spriteRender.Draw(spriteSheet.Sprite(TexturePackerMonoGameDefinitions.weapons.Java), this.ProjectilePosition);
+                    spriteRender.Draw(spriteSheet.Sprite(TexturePackerMonoGameDefinitions.entities.Java), this.ProjectilePosition);
                     break;
                 case Weapon.WeaponTypes.maschinensprache:
                     switch (this.textureVersion)
                     {
                         case 0:
-                            spriteRender.Draw(spriteSheet.Sprite(TexturePackerMonoGameDefinitions.weapons.Mss000), this.ProjectilePosition); break;
+                            spriteRender.Draw(spriteSheet.Sprite(TexturePackerMonoGameDefinitions.entities.Mss000), this.ProjectilePosition); break;
                         case 1:
-                            spriteRender.Draw(spriteSheet.Sprite(TexturePackerMonoGameDefinitions.weapons.Mss001), this.ProjectilePosition); break;
+                            spriteRender.Draw(spriteSheet.Sprite(TexturePackerMonoGameDefinitions.entities.Mss001), this.ProjectilePosition); break;
                         case 2:
-                            spriteRender.Draw(spriteSheet.Sprite(TexturePackerMonoGameDefinitions.weapons.Mss010), this.ProjectilePosition); break;
+                            spriteRender.Draw(spriteSheet.Sprite(TexturePackerMonoGameDefinitions.entities.Mss010), this.ProjectilePosition); break;
                         case 3:
-                            spriteRender.Draw(spriteSheet.Sprite(TexturePackerMonoGameDefinitions.weapons.Mss011), this.ProjectilePosition); break;
+                            spriteRender.Draw(spriteSheet.Sprite(TexturePackerMonoGameDefinitions.entities.Mss011), this.ProjectilePosition); break;
                         case 4:
-                            spriteRender.Draw(spriteSheet.Sprite(TexturePackerMonoGameDefinitions.weapons.Mss100), this.ProjectilePosition); break;
+                            spriteRender.Draw(spriteSheet.Sprite(TexturePackerMonoGameDefinitions.entities.Mss100), this.ProjectilePosition); break;
                         case 5:
-                            spriteRender.Draw(spriteSheet.Sprite(TexturePackerMonoGameDefinitions.weapons.Mss101), this.ProjectilePosition); break;
+                            spriteRender.Draw(spriteSheet.Sprite(TexturePackerMonoGameDefinitions.entities.Mss101), this.ProjectilePosition); break;
                         case 6:
-                            spriteRender.Draw(spriteSheet.Sprite(TexturePackerMonoGameDefinitions.weapons.Mss110), this.ProjectilePosition); break;
+                            spriteRender.Draw(spriteSheet.Sprite(TexturePackerMonoGameDefinitions.entities.Mss110), this.ProjectilePosition); break;
                         case 7:
-                            spriteRender.Draw(spriteSheet.Sprite(TexturePackerMonoGameDefinitions.weapons.Mss111), this.ProjectilePosition); break;
+                            spriteRender.Draw(spriteSheet.Sprite(TexturePackerMonoGameDefinitions.entities.Mss111), this.ProjectilePosition); break;
                     }
                     break;
                 case Weapon.WeaponTypes.csharp:
-                    spriteRender.Draw(spriteSheet.Sprite(TexturePackerMonoGameDefinitions.weapons.Csharp), this.ProjectilePosition);
+                    spriteRender.Draw(spriteSheet.Sprite(TexturePackerMonoGameDefinitions.entities.Csharp), this.ProjectilePosition);
                     break;
             }
         }
@@ -117,34 +117,34 @@ namespace BugHunter
             switch(ProjectileType)
             {
                 case Weapon.WeaponTypes.cpp:
-                    projectileFrame = player.WeaponSpriteSheet.Sprite(TexturePackerMonoGameDefinitions.weapons.Cpp);    break;
+                    projectileFrame = player.WeaponSpriteSheet.Sprite(TexturePackerMonoGameDefinitions.entities.Cpp);    break;
                 case Weapon.WeaponTypes.c:
-                    projectileFrame = player.WeaponSpriteSheet.Sprite(TexturePackerMonoGameDefinitions.weapons.C);      break;
+                    projectileFrame = player.WeaponSpriteSheet.Sprite(TexturePackerMonoGameDefinitions.entities.C);      break;
                 case Weapon.WeaponTypes.java:
-                    projectileFrame = player.WeaponSpriteSheet.Sprite(TexturePackerMonoGameDefinitions.weapons.Java);   break;
+                    projectileFrame = player.WeaponSpriteSheet.Sprite(TexturePackerMonoGameDefinitions.entities.Java);   break;
                 case Weapon.WeaponTypes.maschinensprache:
                     switch (this.textureVersion)
                     {
                         case 0:
-                            projectileFrame = player.WeaponSpriteSheet.Sprite(TexturePackerMonoGameDefinitions.weapons.Mss000); break;
+                            projectileFrame = player.WeaponSpriteSheet.Sprite(TexturePackerMonoGameDefinitions.entities.Mss000); break;
                         case 1:
-                            projectileFrame = player.WeaponSpriteSheet.Sprite(TexturePackerMonoGameDefinitions.weapons.Mss001); break;
+                            projectileFrame = player.WeaponSpriteSheet.Sprite(TexturePackerMonoGameDefinitions.entities.Mss001); break;
                         case 2:
-                            projectileFrame = player.WeaponSpriteSheet.Sprite(TexturePackerMonoGameDefinitions.weapons.Mss010); break;
+                            projectileFrame = player.WeaponSpriteSheet.Sprite(TexturePackerMonoGameDefinitions.entities.Mss010); break;
                         case 3:
-                            projectileFrame = player.WeaponSpriteSheet.Sprite(TexturePackerMonoGameDefinitions.weapons.Mss011); break;
+                            projectileFrame = player.WeaponSpriteSheet.Sprite(TexturePackerMonoGameDefinitions.entities.Mss011); break;
                         case 4:
-                            projectileFrame = player.WeaponSpriteSheet.Sprite(TexturePackerMonoGameDefinitions.weapons.Mss100); break;
+                            projectileFrame = player.WeaponSpriteSheet.Sprite(TexturePackerMonoGameDefinitions.entities.Mss100); break;
                         case 5:
-                            projectileFrame = player.WeaponSpriteSheet.Sprite(TexturePackerMonoGameDefinitions.weapons.Mss101); break;
+                            projectileFrame = player.WeaponSpriteSheet.Sprite(TexturePackerMonoGameDefinitions.entities.Mss101); break;
                         case 6:
-                            projectileFrame = player.WeaponSpriteSheet.Sprite(TexturePackerMonoGameDefinitions.weapons.Mss110); break;
+                            projectileFrame = player.WeaponSpriteSheet.Sprite(TexturePackerMonoGameDefinitions.entities.Mss110); break;
                         case 7:
-                            projectileFrame = player.WeaponSpriteSheet.Sprite(TexturePackerMonoGameDefinitions.weapons.Mss111); break;
+                            projectileFrame = player.WeaponSpriteSheet.Sprite(TexturePackerMonoGameDefinitions.entities.Mss111); break;
                     }
                     break;
                 case Weapon.WeaponTypes.csharp:
-                    projectileFrame = player.WeaponSpriteSheet.Sprite(TexturePackerMonoGameDefinitions.weapons.Csharp); break;
+                    projectileFrame = player.WeaponSpriteSheet.Sprite(TexturePackerMonoGameDefinitions.entities.Csharp); break;
             }
             if(projectileFrame == null)
                 return false;
@@ -180,40 +180,40 @@ namespace BugHunter
 
         public bool CheckForHit(Android enemy)
         {
-            SpriteFrame enemySpriteFrame = enemy.spriteSheet.Sprite(TexturePackerMonoGameDefinitions.android_packed.Sprites_android1);
+            SpriteFrame enemySpriteFrame = enemy.spriteSheet.Sprite(TexturePackerMonoGameDefinitions.entities.Android1);
 
             SpriteFrame projectileFrame = null;
             switch (ProjectileType)
             {
                 case Weapon.WeaponTypes.cpp:
-                    projectileFrame = player.WeaponSpriteSheet.Sprite(TexturePackerMonoGameDefinitions.weapons.Cpp); break;
+                    projectileFrame = player.WeaponSpriteSheet.Sprite(TexturePackerMonoGameDefinitions.entities.Cpp); break;
                 case Weapon.WeaponTypes.c:
-                    projectileFrame = player.WeaponSpriteSheet.Sprite(TexturePackerMonoGameDefinitions.weapons.C); break;
+                    projectileFrame = player.WeaponSpriteSheet.Sprite(TexturePackerMonoGameDefinitions.entities.C); break;
                 case Weapon.WeaponTypes.java:
-                    projectileFrame = player.WeaponSpriteSheet.Sprite(TexturePackerMonoGameDefinitions.weapons.Java); break;
+                    projectileFrame = player.WeaponSpriteSheet.Sprite(TexturePackerMonoGameDefinitions.entities.Java); break;
                 case Weapon.WeaponTypes.maschinensprache:
                     switch (this.textureVersion)
                     {
                         case 0:
-                            projectileFrame = player.WeaponSpriteSheet.Sprite(TexturePackerMonoGameDefinitions.weapons.Mss000); break;
+                            projectileFrame = player.WeaponSpriteSheet.Sprite(TexturePackerMonoGameDefinitions.entities.Mss000); break;
                         case 1:
-                            projectileFrame = player.WeaponSpriteSheet.Sprite(TexturePackerMonoGameDefinitions.weapons.Mss001); break;
+                            projectileFrame = player.WeaponSpriteSheet.Sprite(TexturePackerMonoGameDefinitions.entities.Mss001); break;
                         case 2:
-                            projectileFrame = player.WeaponSpriteSheet.Sprite(TexturePackerMonoGameDefinitions.weapons.Mss010); break;
+                            projectileFrame = player.WeaponSpriteSheet.Sprite(TexturePackerMonoGameDefinitions.entities.Mss010); break;
                         case 3:
-                            projectileFrame = player.WeaponSpriteSheet.Sprite(TexturePackerMonoGameDefinitions.weapons.Mss011); break;
+                            projectileFrame = player.WeaponSpriteSheet.Sprite(TexturePackerMonoGameDefinitions.entities.Mss011); break;
                         case 4:
-                            projectileFrame = player.WeaponSpriteSheet.Sprite(TexturePackerMonoGameDefinitions.weapons.Mss100); break;
+                            projectileFrame = player.WeaponSpriteSheet.Sprite(TexturePackerMonoGameDefinitions.entities.Mss100); break;
                         case 5:
-                            projectileFrame = player.WeaponSpriteSheet.Sprite(TexturePackerMonoGameDefinitions.weapons.Mss101); break;
+                            projectileFrame = player.WeaponSpriteSheet.Sprite(TexturePackerMonoGameDefinitions.entities.Mss101); break;
                         case 6:
-                            projectileFrame = player.WeaponSpriteSheet.Sprite(TexturePackerMonoGameDefinitions.weapons.Mss110); break;
+                            projectileFrame = player.WeaponSpriteSheet.Sprite(TexturePackerMonoGameDefinitions.entities.Mss110); break;
                         case 7:
-                            projectileFrame = player.WeaponSpriteSheet.Sprite(TexturePackerMonoGameDefinitions.weapons.Mss111); break;
+                            projectileFrame = player.WeaponSpriteSheet.Sprite(TexturePackerMonoGameDefinitions.entities.Mss111); break;
                     }
                     break;
                 case Weapon.WeaponTypes.csharp:
-                    projectileFrame = player.WeaponSpriteSheet.Sprite(TexturePackerMonoGameDefinitions.weapons.Csharp); break;
+                    projectileFrame = player.WeaponSpriteSheet.Sprite(TexturePackerMonoGameDefinitions.entities.Csharp); break;
             }
 
             if (projectileFrame == null)

@@ -16,6 +16,6 @@ namespace BugHunter
         public SoundEffectInstance HintergrundMusikEffect;
         public SoundEffect HintergrundMusik;
 
-        public SoundEffect[] Schuesse = new SoundEffect[5];
+        public SoundEffect[] Schuesse = new SoundEffect[6];
     }
 }

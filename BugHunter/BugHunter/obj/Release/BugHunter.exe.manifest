@@ -38,7 +38,7 @@
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>aPS2EW0NwQfVGE8bGBrF+EsRj45hrNWzDx9fLiSOoH4=</dsig:DigestValue>
+        <dsig:DigestValue>W/X8vSbRSJ2JBcj0VgMLhsWv4Kdvhbsw6iQ/ZunUl6s=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -303,49 +303,58 @@
       <dsig:DigestValue>f5IeX7Fmicii4hyy88EsKHMlQhC7HrPVpLBcPfyBYYM=</dsig:DigestValue>
     </hash>
   </file>
-  <file name="Content\audio\Schuss\schuss_001.xnb" size="15677">
+  <file name="Content\audio\Schuss\schuss_001.xnb" size="41065">
     <hash>
       <dsig:Transforms>
         <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-      <dsig:DigestValue>k2O0qNvdccM29SKK2MR9BRBj5PKaGXZoyXCuKsYbDOw=</dsig:DigestValue>
+      <dsig:DigestValue>n4xHhAbBoH4HKKoVlxPzrZ8dNUPlNGKfp8ErU1JgLhc=</dsig:DigestValue>
     </hash>
   </file>
-  <file name="Content\audio\Schuss\schuss_002.xnb" size="17621">
+  <file name="Content\audio\Schuss\schuss_002.xnb" size="36969">
     <hash>
       <dsig:Transforms>
         <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-      <dsig:DigestValue>1ZmbHCYBc+MVekA46b/hSKP4XiUO3Sjw1H8PSwHs1RU=</dsig:DigestValue>
+      <dsig:DigestValue>LCl++3nbHUZ6Jzz0fVfSuf1jxp0b8K56cRZN+hliewE=</dsig:DigestValue>
     </hash>
   </file>
-  <file name="Content\audio\Schuss\schuss_003.xnb" size="10953">
+  <file name="Content\audio\Schuss\schuss_003.xnb" size="25705">
     <hash>
       <dsig:Transforms>
         <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-      <dsig:DigestValue>tq9eRsMeG8+wg4+SRHd9Ny6UotCgY9aPljlX8PPCMd8=</dsig:DigestValue>
+      <dsig:DigestValue>hzmSuCcxF1Bp6bI/OWySfeKtNsMTkMy1Q/tgO+dvOu4=</dsig:DigestValue>
     </hash>
   </file>
-  <file name="Content\audio\Schuss\schuss_004.xnb" size="23461">
+  <file name="Content\audio\Schuss\schuss_004.xnb" size="50281">
     <hash>
       <dsig:Transforms>
         <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-      <dsig:DigestValue>u25IMDCUTEySqzoe/Mvq+dOPXmNquLegpfzSuWWjLe0=</dsig:DigestValue>
+      <dsig:DigestValue>/y7OQqRx93AlrZZoA+j+PO0YEOQqIyW4sqskeWbbMmg=</dsig:DigestValue>
     </hash>
   </file>
-  <file name="Content\audio\Schuss\schuss_005.xnb" size="18457">
+  <file name="Content\audio\Schuss\schuss_005.xnb" size="57449">
     <hash>
       <dsig:Transforms>
         <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-      <dsig:DigestValue>JdfggpTkU75Zv4035FtDAtxjeBU33i5gTk2bFJa+IGM=</dsig:DigestValue>
+      <dsig:DigestValue>7aDNFhgsuO8r8eptvSHmh9a5NwefudVBvfTgIN2uYZ8=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Content\audio\Schuss\schuss_006.xnb" size="28777">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>Ru2Irk9Ma26K5Fv0Pb8HI1W/2iob4hcAieQF/CUUlf4=</dsig:DigestValue>
     </hash>
   </file>
   <file name="Content\audio\Score.xnb" size="5225">
