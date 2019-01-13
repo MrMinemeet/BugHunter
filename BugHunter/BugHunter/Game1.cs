@@ -25,10 +25,14 @@
  // TODO: Windows Gegner
  // TODO: iOS Gegner
  // TODO: JavaScript Waffe
+ // TODO: Gegner gegen Gegner collision
+ // TODO: Tastatur als Waffe in die Hand
  // TODO: Powerup: Medipack - PC Teile
- // TODO: Powerup: Ammopack - Tastatur
+ // TODO: Powerup: Mehr Ammo - USB Stick
+ // TODO: Ammopack: Lädt komplette Munition nach
  // TODO: Powerup: Erhöhter Schaden - Bücher
  // TODO: Powerup: Erhöhte Schussgeschwindigkeit - Kaffee
+ // TODO: Controllersupport
 
 
 using Microsoft.Xna.Framework;
@@ -38,6 +42,7 @@ using Microsoft.Xna.Framework.Input;
 using MonoGame.Extended;
 using MonoGame.Extended.Tiled;
 using MonoGame.Extended.Tiled.Renderers;
+using ProjectWhitespace;
 using System;
 using System.Collections.Generic;
 using TexturePackerLoader;
@@ -51,9 +56,15 @@ namespace BugHunter
 
         Player player = new Player(200f,100);
 
+        // Android gegner
         IDictionary<int, Android> Androids = new Dictionary<int, Android>();
-        int maxEnemys = 1;
+        int maxAndroids = 1;
         int AndroidHealth = 30;
+
+
+        IDictionary<int, Powerup> Powerups = new Dictionary<int, Powerup>();
+        int maxPowerups = 6;
+
 
         public Map[] map = new Map[1];
         GUI gui = new GUI();
@@ -257,11 +268,11 @@ namespace BugHunter
                     sound.HintergrundMusikEffect.Play();
                 }
 
-                maxEnemys = (int)(this.Score / 1000) + 1;
+                maxAndroids = (int)(this.Score / 1000) + 1;
 
                 // Generiert neue Einträge im Dictionary wenn weniger Gegner da sind als max. zulässig sind
                 // Generiert immer dann einen Eintrag wenn der Key nicht verwendet wird
-                for (int i = 0; i < maxEnemys; i++)
+                for (int i = 0; i < maxAndroids; i++)
                 {
                     if (!Androids.ContainsKey(i))
                     {
@@ -280,6 +291,18 @@ namespace BugHunter
                     }
                 }
 
+                // Generiert neue Einträge im Dictionary wenn weniger Powerup da sind als max. zulässig sind
+                // Generiert immer dann einen Eintrag wenn der Key nicht verwendet wird
+                /*
+                for (int i = 0; i < maxPowerups; i++)
+                {
+                    if (!Powerups.ContainsKey(i))
+                    {
+                        Powerups.Add(i, new Powerup(spriteSheetLoader.Load("sprites/entities/entities.png"), new SpriteRender(spriteBatch), this.settings, this.MapArray));
+                    }
+                }
+                */
+
                 // Updated poof wenn Aktiv
                 if (PoofIsActive)
                 {
@@ -294,13 +317,13 @@ namespace BugHunter
             }
 
             // Deathscreen
-            if (player.Health == 0)
+            if (player.Health <= 0)
             {
                 CurrentGameState = GameState.DeathScreen;
             }
 
             // Respawn wenn in Deathscreen
-            if(Keyboard.GetState().IsKeyDown(Keys.R) && CurrentGameState == GameState.DeathScreen)
+            if((Keyboard.GetState().IsKeyDown(Keys.R) || GamePad.GetState(PlayerIndex.One).IsButtonDown(Buttons.LeftStick)) && CurrentGameState == GameState.DeathScreen)
             {
                 player.Reset(MapArray);
                 this.CurrentGameState = GameState.Ingame;
@@ -308,7 +331,7 @@ namespace BugHunter
             }
 
             // PAUSE
-            if(Keyboard.GetState().IsKeyDown(Keys.Escape) && gameTime.TotalGameTime.TotalMilliseconds - LastKeyStrokeInput >= 500)
+            if((Keyboard.GetState().IsKeyDown(Keys.Escape) || GamePad.GetState(PlayerIndex.One).IsButtonDown(Buttons.Start)) && gameTime.TotalGameTime.TotalMilliseconds - LastKeyStrokeInput >= 500)
             {
                 if (CurrentGameState == GameState.Ingame)
                 {
@@ -373,6 +396,11 @@ namespace BugHunter
                 Androids[i].Draw(spriteBatch, font);
             }
 
+            for (int i = 0; i < Powerups.Count; i++)
+            {
+                Powerups[i].Draw(spriteBatch);
+            }
+
             gui.Draw(spriteBatch, font, player);
 
             if (CurrentGameState == GameState.Paused)
@@ -430,6 +458,7 @@ namespace BugHunter
         protected override void OnExiting(Object sender, EventArgs args)
         {
             settings.SaveSettings();
+            GamePad.SetVibration(PlayerIndex.One, 0f, 0f);
             base.OnExiting(sender, args);
         }
     }

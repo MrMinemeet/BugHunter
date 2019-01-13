@@ -42,7 +42,8 @@ namespace BugHunter
         public SpriteSheet WeaponSpriteSheet;
         private double lastTimeShot = 0;
         public Weapon.WeaponTypes aktWeapon = Weapon.WeaponTypes.c;
-
+        private double lastWeaponChangeLeft = 0;
+        private double lastWeaponChangeRight = 0;
 
         Settings settings;
         SoundFX sound;
@@ -99,50 +100,15 @@ namespace BugHunter
             Rectangle MapTriggerRectangle;
             Rectangle PotNewPlayerCollision;
 
-            var kstate = Keyboard.GetState();
             this.CollisionMapArray = CollisionMapArray;
             this.map = map;
             PotNewPlayerPosition = Position;       
 
-            // SPRINT CHECK
+            // Updaten der Player steuerung
+            UpdatePlayerMovement(gameTime);
 
-            float Speed;
-            if (kstate.IsKeyDown(Keys.LeftShift))
-            {
-                Speed = this.Speed * 2;
-            }
-            else
-            {
-                Speed = this.Speed;
-            }
-
-            // MOVEMENT
-
-            if (kstate.IsKeyDown(Keys.W))
-            {
-
-                this.PotNewPlayerPosition.Y -= Speed * (float)gameTime.ElapsedGameTime.TotalSeconds;
-            }
-
-            if (kstate.IsKeyDown(Keys.S))
-            {
-                this.PotNewPlayerPosition.Y += Speed * (float)gameTime.ElapsedGameTime.TotalSeconds;
-            }
-
-            if (kstate.IsKeyDown(Keys.A))
-            {
-                this.PotNewPlayerPosition.X -= Speed * (float)gameTime.ElapsedGameTime.TotalSeconds;
-            }
-
-            if (kstate.IsKeyDown(Keys.D))
-            {
-                this.PotNewPlayerPosition.X += Speed * (float)gameTime.ElapsedGameTime.TotalSeconds;
-            }
-
-            if(!DidHitCollision(CollisionMapArray,map))
-            {
-                this.Position = this.PotNewPlayerPosition;
-            }
+            // Updaten des Player schießen
+            UpdatePlayerShooting(gameTime);
 
             // RELOAD ÜBERPRÜFUNG
 
@@ -189,18 +155,47 @@ namespace BugHunter
                     }
                 }
             }
-
-
-
-            Random random = new Random();
             // Waffenart updaten
-            WeaponUpdate();
+            WeaponUpdate(gameTime);
+
+            
+            if (IsHitmarkerActive)
+            {
+                if (gameTime.TotalGameTime.TotalMilliseconds - hitmarkerTime >= (2000/255))
+                {
+                    HitmarkerAlpha--;
+                }
+                if(HitmarkerAlpha <= 0)
+                {
+                    IsHitmarkerActive = false;
+                }
+            }
+            
+            // Updated jedes aktive Projektil im Array
+            foreach(Projectile p in projectiles)
+            {
+                if (p.IsActive)
+                {
+                    p.UpdateShot(gameTime, this);
+                }
+            }
+
+            // Kamera über Spieler setzen
+            camera.LookAt(Position);
+        }
+
+        // Method for checking if the player shoots
+        private void UpdatePlayerShooting(GameTime gameTime)
+        {
+            var kstate = Keyboard.GetState();
+            var gamepadState = GamePad.GetState(PlayerIndex.One);
+            Random random = new Random();
 
             // Prüft ob noch Munition vorhanden ist
-            if(AmmunitionAmmountList[aktWeapon] > 0)
+            if (AmmunitionAmmountList[aktWeapon] > 0)
             {
                 // Initialisiert Projektil und stellt richtung, Position und Waffenart ein
-                if (kstate.IsKeyDown(Keys.Right))
+                if (kstate.IsKeyDown(Keys.Right) || gamepadState.IsButtonDown(Buttons.B))
                 {
 
                     foreach (Projectile p in projectiles)
@@ -220,7 +215,7 @@ namespace BugHunter
                         }
                     }
                 }
-                else if (kstate.IsKeyDown(Keys.Left))
+                else if (kstate.IsKeyDown(Keys.Left) || gamepadState.IsButtonDown(Buttons.X))
                 {
                     foreach (Projectile p in projectiles)
                     {
@@ -239,7 +234,7 @@ namespace BugHunter
                         }
                     }
                 }
-                else if (kstate.IsKeyDown(Keys.Up))
+                else if (kstate.IsKeyDown(Keys.Up) || gamepadState.IsButtonDown(Buttons.Y))
                 {
                     foreach (Projectile p in projectiles)
                     {
@@ -258,7 +253,7 @@ namespace BugHunter
                         }
                     }
                 }
-                else if (kstate.IsKeyDown(Keys.Down))
+                else if (kstate.IsKeyDown(Keys.Down) || gamepadState.IsButtonDown(Buttons.A))
                 {
                     foreach (Projectile p in projectiles)
                     {
@@ -278,33 +273,53 @@ namespace BugHunter
                     }
                 }
             }
+        }
 
-            if (IsHitmarkerActive)
+        private void UpdatePlayerMovement(GameTime gameTime)
+        {
+            var kstate = Keyboard.GetState();
+            var gamepadState = GamePad.GetState(PlayerIndex.One);
+
+
+            // Überprüfe auf Sprint
+            float Speed;
+
+            if (kstate.IsKeyDown(Keys.LeftShift) || gamepadState.IsButtonDown(Buttons.LeftTrigger))
             {
-                
-                if (gameTime.TotalGameTime.TotalMilliseconds - hitmarkerTime >= (2000/255))
-                {
-                    HitmarkerAlpha--;
-                }
-                if(HitmarkerAlpha <= 0)
-                {
-                    IsHitmarkerActive = false;
-                }
+                Speed = this.Speed * 2;
+            }
+            else
+            {
+                Speed = this.Speed;
             }
 
             
-
-            // Updated jedes aktive Projektil im Array
-            foreach(Projectile p in projectiles)
+            if (kstate.IsKeyDown(Keys.W) || gamepadState.ThumbSticks.Left.Y > 0)
             {
-                if (p.IsActive)
-                {
-                    p.UpdateShot(gameTime, this);
-                }
+
+                this.PotNewPlayerPosition.Y -= Speed * (float)gameTime.ElapsedGameTime.TotalSeconds;
             }
 
-            // Kamera über Spieler setzen
-            camera.LookAt(Position);
+            if (kstate.IsKeyDown(Keys.S) || gamepadState.ThumbSticks.Left.Y < 0)
+            {
+                this.PotNewPlayerPosition.Y += Speed * (float)gameTime.ElapsedGameTime.TotalSeconds;
+            }
+
+            if (kstate.IsKeyDown(Keys.A) || gamepadState.ThumbSticks.Left.X < 0)
+            {
+                this.PotNewPlayerPosition.X -= Speed * (float)gameTime.ElapsedGameTime.TotalSeconds;
+            }
+
+            if (kstate.IsKeyDown(Keys.D) || gamepadState.ThumbSticks.Left.X > 0)
+            {
+                this.PotNewPlayerPosition.X += Speed * (float)gameTime.ElapsedGameTime.TotalSeconds;
+            }
+
+            if (!DidHitCollision(CollisionMapArray, map))
+            {
+                this.Position = this.PotNewPlayerPosition;
+            }
+
         }
 
         /// <summary>
@@ -317,41 +332,91 @@ namespace BugHunter
         }
 
         // Überprüft ob Waffe gewechselt wird und setzt die richtige aktiv
-        private void WeaponUpdate()
+        private void WeaponUpdate(GameTime gameTime)
         {
-            for (int i = 0; i < 1; i++)
+
+            var gamepadState = GamePad.GetState(PlayerIndex.One);
+
+            if (Keyboard.GetState().IsKeyDown(Keys.D1))
             {
-                if (Keyboard.GetState().IsKeyDown(Keys.D1))
-                {
-                    aktWeapon = Weapon.WeaponTypes.c;
-                    break;
-                }
+                aktWeapon = Weapon.WeaponTypes.c;
+            }
+            else if (Keyboard.GetState().IsKeyDown(Keys.D2))
+            {
+                aktWeapon = Weapon.WeaponTypes.cpp;
+            }
+            else if (Keyboard.GetState().IsKeyDown(Keys.D3))
+            {
+                aktWeapon = Weapon.WeaponTypes.java;
+            }
+            else if (Keyboard.GetState().IsKeyDown(Keys.D4))
+            {
+                aktWeapon = Weapon.WeaponTypes.maschinensprache;
+            }
+            else if (Keyboard.GetState().IsKeyDown(Keys.D5))
+            {
+                aktWeapon = Weapon.WeaponTypes.csharp;
+            }
 
-                if (Keyboard.GetState().IsKeyDown(Keys.D2))
+            if (gamepadState.IsButtonDown(Buttons.LeftShoulder) && gameTime.TotalGameTime.TotalMilliseconds - this.lastWeaponChangeLeft >= 250)
+            {
+                // Waffen nach Links durchwechseln
+                switch (aktWeapon)
                 {
-                    aktWeapon = Weapon.WeaponTypes.cpp;
-                    break;
-                }
-
-                if (Keyboard.GetState().IsKeyDown(Keys.D3))
-                {
-                    aktWeapon = Weapon.WeaponTypes.java;
-                    break;
-                }
-
-                if (Keyboard.GetState().IsKeyDown(Keys.D4))
-                {
-                    aktWeapon = Weapon.WeaponTypes.maschinensprache;
-                    break;
-                }
-
-                if (Keyboard.GetState().IsKeyDown(Keys.D5))
-                {
-                    aktWeapon = Weapon.WeaponTypes.csharp;
-                    break;
+                    case Weapon.WeaponTypes.c:
+                        aktWeapon = Weapon.WeaponTypes.csharp;
+                        this.lastWeaponChangeLeft = gameTime.TotalGameTime.TotalMilliseconds;
+                        break;
+                    case Weapon.WeaponTypes.cpp:
+                        aktWeapon = Weapon.WeaponTypes.c;
+                        this.lastWeaponChangeLeft = gameTime.TotalGameTime.TotalMilliseconds;
+                        break;
+                    case Weapon.WeaponTypes.java:
+                        aktWeapon = Weapon.WeaponTypes.cpp;
+                        this.lastWeaponChangeLeft = gameTime.TotalGameTime.TotalMilliseconds;
+                        break;
+                    case Weapon.WeaponTypes.maschinensprache:
+                        aktWeapon = Weapon.WeaponTypes.java;
+                        this.lastWeaponChangeLeft = gameTime.TotalGameTime.TotalMilliseconds;
+                        break;
+                    case Weapon.WeaponTypes.csharp:
+                        aktWeapon = Weapon.WeaponTypes.maschinensprache;
+                        this.lastWeaponChangeLeft = gameTime.TotalGameTime.TotalMilliseconds;
+                        break;
                 }
             }
+
+            if (gamepadState.IsButtonDown(Buttons.RightShoulder) && gameTime.TotalGameTime.TotalMilliseconds - this.lastWeaponChangeRight >= 250)
+            {
+                // Waffen nach Rechts durchwechseln
+                switch (aktWeapon)
+                {
+                    case Weapon.WeaponTypes.c:
+                        aktWeapon = Weapon.WeaponTypes.cpp;
+                        this.lastWeaponChangeRight = gameTime.TotalGameTime.TotalMilliseconds;
+                        break;
+                    case Weapon.WeaponTypes.cpp:
+                        aktWeapon = Weapon.WeaponTypes.java;
+                        this.lastWeaponChangeRight = gameTime.TotalGameTime.TotalMilliseconds;
+                        break;
+                    case Weapon.WeaponTypes.java:
+                        aktWeapon = Weapon.WeaponTypes.maschinensprache;
+                        this.lastWeaponChangeRight = gameTime.TotalGameTime.TotalMilliseconds;
+                        break;
+                    case Weapon.WeaponTypes.maschinensprache:
+                        aktWeapon = Weapon.WeaponTypes.csharp;
+                        this.lastWeaponChangeRight = gameTime.TotalGameTime.TotalMilliseconds;
+                        break;
+                    case Weapon.WeaponTypes.csharp:
+                        aktWeapon = Weapon.WeaponTypes.c;
+                        this.lastWeaponChangeRight = gameTime.TotalGameTime.TotalMilliseconds;
+                        break;
+                }
+            }
+
         }
+
+
 
         /// <summary>
         /// Überprüft ob Spieler eine Collision der Map berührt

@@ -6,7 +6,7 @@ using System.Text;
 
 namespace BugHunter
 {
-    class Settings
+    public class Settings
     {
         // Öffentliche Variablen welche geändet werden können
         public bool IsActive = false;
@@ -31,9 +31,10 @@ namespace BugHunter
         public int MapSizeWidth { get; set; }
         public const int TilePixelSize = 64;
         public const byte HitBoxTileNumber = 18;
-        public const byte PlayerSpawnTileId = 21;
-        public const byte EnemeySpawnTileId = 19;
-        public const byte ReloadTileId = 20;
+        public const byte PlayerSpawnTileId = 19;
+        public const byte EnemeySpawnTileId = 21;
+        public const byte ReloadTileId = 24;
+        public const byte PowerupTileId = 20;
 
         private Game1 game = null;
 

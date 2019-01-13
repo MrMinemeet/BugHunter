@@ -98,6 +98,7 @@
     <Compile Include="PackedTexturesCS\gui_packed.cs" />
     <Compile Include="Map.cs" />
     <Compile Include="Player.cs" />
+    <Compile Include="Powerup.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Projectile.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

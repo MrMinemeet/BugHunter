@@ -70,7 +70,7 @@ namespace BugHunter
         public void DrawShot(SpriteBatch spriteBatch, SpriteSheet spriteSheet)
         {
             SpriteRender spriteRender = new SpriteRender(spriteBatch);
-                        
+
             // Zeichnet Projektil je nach Projektilart
             switch (ProjectileType)
             {
@@ -167,7 +167,7 @@ namespace BugHunter
                         // Überprüfen ob sich die beiden Rechtecke überschneiden
                         if (ProjectileCollision.Intersects(MapCollisionRectangle))
                         {
-                            // COllision wurde ausgelöst
+                            // Collision wurde ausgelöst
                             return true;
                         }
                     }
