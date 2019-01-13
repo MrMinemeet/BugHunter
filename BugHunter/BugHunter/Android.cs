@@ -98,7 +98,7 @@ namespace BugHunter
                     player.Health = (int)(player.Health - attackDamage);
                     LastCollisionCheck = gameTime.TotalGameTime.TotalMilliseconds;
                     player.hitmarkerTime = (float)gameTime.TotalGameTime.TotalMilliseconds;
-                    player.GotHit(this);
+                    player.GotHit(this, gameTime);
                 }
             }
             else

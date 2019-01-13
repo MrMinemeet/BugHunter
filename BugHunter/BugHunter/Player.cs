@@ -57,6 +57,13 @@ namespace BugHunter
         public float hitmarkerTime;
         private int HitmarkerAlpha = 255;
 
+        // Vibration
+        private bool IsVibrating = false;
+        private float VibrationLeft = 0;
+        private float VibrationRight = 0;
+        private float VibrationTimeStart = 0;
+        private int VibrationDuration = 0;
+
         /// <summary>
         /// Konstruktorfür Klasse Android
         /// </summary>
@@ -157,6 +164,16 @@ namespace BugHunter
             }
             // Waffenart updaten
             WeaponUpdate(gameTime);
+            
+
+            // Überprüfung und ausführung vom Vibrationen
+            if (gameTime.TotalGameTime.TotalMilliseconds - this.VibrationTimeStart >= this.VibrationDuration)
+                this.IsVibrating = false;
+            
+            if (this.IsVibrating)
+            {
+                GamePad.SetVibration(PlayerIndex.One, this.VibrationLeft, this.VibrationRight);
+            }
 
             
             if (IsHitmarkerActive)
@@ -326,9 +343,19 @@ namespace BugHunter
         /// Erkennt von wo der Spieler getroffen wurde und platziert ihn etwas anders
         /// </summary>
         /// <param name="enemyPosition"></param>
-        public void GotHit(Android enemy)
+        public void GotHit(Android enemy, GameTime gameTime)
         {
+            this.SetVibration(0.1f, 0.1f, 250, gameTime);
             this.IsHitmarkerActive = true;
+        }
+
+        private void SetVibration(float VibrationLeft, float VibrationRight, int VibrationDuration, GameTime gameTime)
+        {
+            this.IsVibrating = true;
+            this.VibrationLeft = VibrationLeft;
+            this.VibrationRight  = VibrationRight;
+            this.VibrationDuration = VibrationDuration;
+            this.VibrationTimeStart = (float)gameTime.TotalGameTime.TotalMilliseconds;
         }
 
         // Überprüft ob Waffe gewechselt wird und setzt die richtige aktiv
@@ -413,7 +440,6 @@ namespace BugHunter
                         break;
                 }
             }
-
         }
 
 
