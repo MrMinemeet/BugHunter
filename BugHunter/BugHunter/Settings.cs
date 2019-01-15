@@ -16,7 +16,6 @@ namespace BugHunter
         public bool IsMouseVisible = true;
         public bool AreDebugInformationsVisible = false;
 
-
         public int HighScore = 0;
 
         public void UpdateSettings(GraphicsDeviceManager gdm)
@@ -46,12 +45,17 @@ namespace BugHunter
         
 
         public Texture2D EmptyTexture { get; set; }
-
-        public void LoadSettings()
+        
+        /// <summary>
+        /// Lädt Einstellungen aus MyGames\Bughunter
+        /// </summary>
+        /// <returns>Liefet False wenn nichts geladen wurde</returns>
+        public bool LoadSettings()
         {
             String path = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), @"My games\Bug Hunter");
 
             StreamReader sr = null;
+            bool DidLoad = false;
 
             try
             {
@@ -71,6 +75,7 @@ namespace BugHunter
                         sb = new StringBuilder(line);
                         sb = sb.Remove(0, 10);
                         int.TryParse(sb.ToString(), out HighScore);
+                        DidLoad = true;
                     }
                 }
             }
@@ -83,6 +88,8 @@ namespace BugHunter
                 if (sr != null)
                     sr.Close();
             }
+
+            return DidLoad;
         }
 
         public void SaveSettings()

@@ -33,6 +33,7 @@
  // TODO: Powerup: Erhöhter Schaden - Bücher
  // TODO: Powerup: Erhöhte Schussgeschwindigkeit - Kaffee
  // TODO: Controllersupport
+ // TODO: Hauptmenü
 
 
 using Microsoft.Xna.Framework;
@@ -46,12 +47,49 @@ using ProjectWhitespace;
 using System;
 using System.Collections.Generic;
 using TexturePackerLoader;
+using DiscordRPC.Message;
+using DiscordRPC;
+using System.Timers;
 
 namespace BugHunter
 {
     // This is the main type for your game.
     public class Game1 : Game
     {
+        /// <summary>
+        /// ID of the client
+        /// </summary>
+        private static string ClientID = "534449793288765450";
+
+        /// <summary>
+        /// The level of logging to use.
+        /// </summary>
+        private static DiscordRPC.Logging.LogLevel DiscordLogLevel = DiscordRPC.Logging.LogLevel.Warning;
+
+        /// <summary>
+        /// The current presence to send to discord.
+        /// </summary>
+        private static RichPresence presence = new RichPresence()
+        {
+            Details = "Example Project",
+            State = "csharp example",
+            Assets = new Assets()
+            {
+                LargeImageKey = "image_large",
+                LargeImageText = "Lachee's Discord IPC Library",
+                SmallImageKey = "image_small"
+            }
+        };
+
+        /// <summary>
+        /// The discord client
+        /// </summary>
+        private static DiscordRpcClient client;
+
+        Timer timer;
+
+
+
         private readonly TimeSpan timePerFrame = TimeSpan.FromSeconds(3f / 30f);
 
         Player player = new Player(200f,100);
@@ -90,7 +128,7 @@ namespace BugHunter
         FpsCounter fps = new FpsCounter();
         public SpriteFont DebugFont;
 
-        enum GameState : Byte { Ingame, Paused, DeathScreen };
+        enum GameState : Byte { Ingame, Paused, DeathScreen, Hauptmenu };
         GameState CurrentGameState = GameState.Ingame;
 
         private SpriteSheetLoader spriteSheetLoader;
@@ -107,6 +145,11 @@ namespace BugHunter
         private AnimationManager poofAM;
         private bool PoofIsActive = false;
         private Vector2 PoofPosition;
+
+
+        // HAUPTMENÜ
+        enum Menubuttons : Byte { Spielen, Einstellungen, Stats, Beenden };
+        Menubuttons aktSelectedMenuButton = Menubuttons.Spielen;
 
         public Game1()
         {
@@ -136,6 +179,40 @@ namespace BugHunter
             spriteSheetLoader = new SpriteSheetLoader(Content, GraphicsDevice);
 
             gui.Init(this);
+
+
+            //Create a new client
+            client = new DiscordRpcClient(ClientID);
+
+            //Create the logger
+            client.Logger = new DiscordRPC.Logging.ConsoleLogger() { Level = DiscordLogLevel, Coloured = true };
+
+            //Create some events so we know things are happening
+            client.OnReady += (sender, msg) => { Console.WriteLine("Connected to discord with user {0}", msg.User.Username); };
+            client.OnPresenceUpdate += (sender, msg) => { Console.WriteLine("Presence has been updated!"); };
+
+            //Create a timer that will regularly call invoke
+            timer = new System.Timers.Timer(150);
+            timer.Elapsed += (sender, evt) => { client.Invoke(); };
+            timer.Start();
+
+
+            //Register to the events we care about. We are registering to everyone just to show off the events
+            client.OnReady += OnReady;
+            client.OnClose += OnClose;
+            client.OnError += OnError;
+
+
+            presence.Timestamps = new Timestamps()
+            {
+                Start = DateTime.UtcNow
+            };
+
+
+            client.SetPresence(presence);
+
+            //Connect
+            client.Initialize();
 
             base.Initialize();
         }
@@ -207,6 +284,10 @@ namespace BugHunter
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Update(GameTime gameTime)
         {
+            presence.Details = "Score: " + this.Score;
+            presence.Assets.LargeImageKey = "icon";
+
+
             // Spiel schließen
             if (Keyboard.GetState().IsKeyDown(Keys.Delete) && Keyboard.GetState().IsKeyDown(Keys.LeftAlt))
             {
@@ -224,9 +305,16 @@ namespace BugHunter
                 }
             }
 
+            // Hauptmenü
+            if(CurrentGameState == GameState.Hauptmenu)
+            {
+                presence.State = "Im Hauptmenü";
+            }
+
             // Ingame
             if(CurrentGameState == GameState.Ingame)
             {
+                presence.State = "Am Debuggen";
                 if (Keyboard.GetState().IsKeyDown(Keys.F3) && gameTime.TotalGameTime.TotalMilliseconds - LastKeyStrokeInput >= 500)
                 {
                     settings.AreDebugInformationsVisible = !settings.AreDebugInformationsVisible;
@@ -330,6 +418,11 @@ namespace BugHunter
                 this.Score = 0;
             }
 
+            if(CurrentGameState == GameState.Paused)
+            {
+                presence.State = "Im Pausemenü";
+            }
+
             // PAUSE
             if((Keyboard.GetState().IsKeyDown(Keys.Escape) || GamePad.GetState(PlayerIndex.One).IsButtonDown(Buttons.Start)) && gameTime.TotalGameTime.TotalMilliseconds - LastKeyStrokeInput >= 500)
             {
@@ -355,7 +448,9 @@ namespace BugHunter
                 LastKeyStrokeInput = gameTime.TotalGameTime.TotalMilliseconds;
             }
 
-            
+
+
+            client.SetPresence(presence);
 
             base.Update(gameTime);
         }
@@ -370,6 +465,7 @@ namespace BugHunter
             var transformMatrix = player.camera.GetViewMatrix();
             spriteBatch.Begin(transformMatrix: transformMatrix, samplerState: SamplerState.PointClamp);
 
+           
 
             // Display Debug-Information
             if (settings.AreDebugInformationsVisible)
@@ -384,46 +480,53 @@ namespace BugHunter
                     Color.White);
             }
 
-
-            // MapRenderer zum Zeichnen der aktuell sichtbaren Map
-            map[AktuelleMap].mapRenderer.Draw(player.camera.GetViewMatrix());
-
-            // Sprite ausgeben
-            player.Draw(spriteBatch,font);
-
-            for (int i = 0; i < Androids.Count; i++)
+            if(CurrentGameState != GameState.Hauptmenu)
             {
-                Androids[i].Draw(spriteBatch, font);
+                // MapRenderer zum Zeichnen der aktuell sichtbaren Map
+                map[AktuelleMap].mapRenderer.Draw(player.camera.GetViewMatrix());
+
+                // Sprite ausgeben
+                player.Draw(spriteBatch, font);
+
+                for (int i = 0; i < Androids.Count; i++)
+                {
+                    Androids[i].Draw(spriteBatch, font);
+                }
+
+                for (int i = 0; i < Powerups.Count; i++)
+                {
+                    Powerups[i].Draw(spriteBatch);
+                }
+
+                if (PoofIsActive)
+                {
+                    spriteRender.Draw(
+                        poofAM.CurrentSprite,
+                        PoofPosition,
+                        Color.White, 0, 1,
+                        poofAM.CurrentSpriteEffects);
+                }
+
+                gui.Draw(spriteBatch, font, player);
+
+                if (CurrentGameState == GameState.Paused)
+                {
+                    spriteBatch.Draw(gui.PausedBackground, new Vector2(player.Position.X - 960, player.Position.Y - 540), Color.White);
+                    spriteBatch.DrawString(MenuFont, "PAUSE", new Vector2(player.Position.X - 100, player.Position.Y - 64), Color.White);
+                    spriteBatch.DrawString(MenuFont, "Highscore: " + settings.HighScore,
+                        new Vector2(player.camera.Position.X + 750, player.camera.Position.Y), Color.White);
+                }
+
+                if (CurrentGameState == GameState.DeathScreen)
+                {
+                    spriteBatch.Draw(gui.PausedBackground, new Vector2(player.Position.X - 960, player.Position.Y - 540), Color.White);
+                    spriteBatch.DrawString(MenuFont, Texttable.Text_Died, new Vector2(player.Position.X - 300, player.Position.Y - 64), Color.White);
+                }
             }
 
-            for (int i = 0; i < Powerups.Count; i++)
+            if(CurrentGameState == GameState.Hauptmenu)
             {
-                Powerups[i].Draw(spriteBatch);
-            }
-
-            gui.Draw(spriteBatch, font, player);
-
-            if (CurrentGameState == GameState.Paused)
-            {
-                spriteBatch.Draw(gui.PausedBackground, new Vector2(player.Position.X - 960, player.Position.Y - 540), Color.White);
-                spriteBatch.DrawString(MenuFont, "PAUSE",new Vector2(player.Position.X - 100, player.Position.Y - 64),Color.White);
-                spriteBatch.DrawString(MenuFont, "Highscore: " + settings.HighScore,
-                    new Vector2(player.camera.Position.X + 750, player.camera.Position.Y), Color.White);
-            }
-
-            if(CurrentGameState == GameState.DeathScreen)
-            {
-                spriteBatch.Draw(gui.PausedBackground, new Vector2(player.Position.X - 960, player.Position.Y - 540), Color.White);
-                spriteBatch.DrawString(MenuFont, Texttable.Text_Died, new Vector2(player.Position.X - 300, player.Position.Y - 64), Color.White);
-            }
-
-            if (PoofIsActive)
-            {
-                spriteRender.Draw(
-                    poofAM.CurrentSprite,
-                    PoofPosition,
-                    Color.White,0,1,
-                    poofAM.CurrentSpriteEffects);
+                
             }
 
             spriteBatch.End();
@@ -460,6 +563,33 @@ namespace BugHunter
             settings.SaveSettings();
             GamePad.SetVibration(PlayerIndex.One, 0f, 0f);
             base.OnExiting(sender, args);
+
+
+            //At the very end we need to dispose of it
+            timer.Close();
+            client.Dispose();
         }
+
+        private static void OnReady(object sender, ReadyMessage args)
+		{
+			//This is called when we are all ready to start receiving and sending discord events. 
+			// It will give us some basic information about discord to use in the future.
+			
+			//It can be a good idea to send a inital presence update on this event too, just to setup the inital game state.
+			Console.WriteLine("On Ready. RPC Version: {0}", args.Version);
+
+		}
+		private static void OnClose(object sender, CloseMessage args)
+		{
+			//This is called when our client has closed. The client can no longer send or receive events after this message.
+			// Connection will automatically try to re-establish and another OnReady will be called (unless it was disposed).
+			Console.WriteLine("Lost Connection with client because of '{0}'", args.Reason);
+		}
+		private static void OnError(object sender, ErrorMessage args)
+		{
+			//Some error has occured from one of our messages. Could be a malformed presence for example.
+			// Discord will give us one of these events and its upto us to handle it
+			Console.WriteLine("Error occured within discord. ({1}) {0}", args.Message, args.Code);
+		}
     }
 }

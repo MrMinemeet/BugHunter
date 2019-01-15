@@ -1,0 +1,10 @@
+C:\Users\Alexa\Documents\GitHub\discord-rpc-csharp\Discord RPC\bin\Release\DiscordRPC.xml
+C:\Users\Alexa\Documents\GitHub\discord-rpc-csharp\Discord RPC\bin\Release\DiscordRPC.dll
+C:\Users\Alexa\Documents\GitHub\discord-rpc-csharp\Discord RPC\bin\Release\DiscordRPC.pdb
+C:\Users\Alexa\Documents\GitHub\discord-rpc-csharp\Discord RPC\bin\Release\Newtonsoft.Json.dll
+C:\Users\Alexa\Documents\GitHub\discord-rpc-csharp\Discord RPC\bin\Release\Newtonsoft.Json.xml
+C:\Users\Alexa\Documents\GitHub\discord-rpc-csharp\Discord RPC\obj\Release\DiscordRPC.csprojAssemblyReference.cache
+C:\Users\Alexa\Documents\GitHub\discord-rpc-csharp\Discord RPC\obj\Release\DiscordRPC.csproj.CoreCompileInputs.cache
+C:\Users\Alexa\Documents\GitHub\discord-rpc-csharp\Discord RPC\obj\Release\DiscordRPC.csproj.CopyComplete
+C:\Users\Alexa\Documents\GitHub\discord-rpc-csharp\Discord RPC\obj\Release\DiscordRPC.dll
+C:\Users\Alexa\Documents\GitHub\discord-rpc-csharp\Discord RPC\obj\Release\DiscordRPC.pdb
