@@ -25,15 +25,13 @@
  // TODO: Windows Gegner
  // TODO: iOS Gegner
  // TODO: JavaScript Waffe
- // TODO: Gegner gegen Gegner collision
+ // TODO: Gegner gegen Gegner Collision
  // TODO: Tastatur als Waffe in die Hand
  // TODO: Powerup: Medipack - PC Teile
  // TODO: Powerup: Mehr Ammo - USB Stick
  // TODO: Ammopack: Lädt komplette Munition nach
  // TODO: Powerup: Erhöhter Schaden - Bücher
  // TODO: Powerup: Erhöhte Schussgeschwindigkeit - Kaffee
- // TODO: Controllersupport
- // TODO: Hauptmenü
 
 
 using Microsoft.Xna.Framework;
@@ -101,7 +99,7 @@ namespace BugHunter
 
 
         IDictionary<int, Powerup> Powerups = new Dictionary<int, Powerup>();
-        int maxPowerups = 6;
+        int maxPowerups = 4;
 
 
         public Map[] map = new Map[1];
@@ -129,7 +127,7 @@ namespace BugHunter
         public SpriteFont DebugFont;
 
         enum GameState : Byte { Ingame, Paused, DeathScreen, Hauptmenu };
-        GameState CurrentGameState = GameState.Ingame;
+        GameState CurrentGameState = GameState.Hauptmenu;
 
         private SpriteSheetLoader spriteSheetLoader;
         public GraphicsDevice graphicsDevice;
@@ -149,7 +147,8 @@ namespace BugHunter
 
         // HAUPTMENÜ
         enum Menubuttons : Byte { Spielen, Einstellungen, Stats, Beenden };
-        Menubuttons aktSelectedMenuButton = Menubuttons.Spielen;
+        Menubuttons aktuellerMenupunkt = Menubuttons.Spielen;
+        double lastMenuButtonSwitch = 0;
 
         public Game1()
         {
@@ -309,6 +308,67 @@ namespace BugHunter
             if(CurrentGameState == GameState.Hauptmenu)
             {
                 presence.State = "Im Hauptmenü";
+                if ((Keyboard.GetState().IsKeyDown(Keys.S) || Keyboard.GetState().IsKeyDown(Keys.Down) || GamePad.GetState(PlayerIndex.One).IsButtonDown(Buttons.A)) && gameTime.TotalGameTime.TotalMilliseconds - lastMenuButtonSwitch >= 150)
+                {
+                    switch (aktuellerMenupunkt)
+                    {
+                        case Menubuttons.Spielen:
+                            this.aktuellerMenupunkt = Menubuttons.Stats;
+                            break;
+                        case Menubuttons.Stats:
+                            this.aktuellerMenupunkt = Menubuttons.Einstellungen;
+                            break;
+                        case Menubuttons.Einstellungen:
+                            this.aktuellerMenupunkt = Menubuttons.Beenden;
+                            break;
+                        case Menubuttons.Beenden:
+                            this.aktuellerMenupunkt = Menubuttons.Spielen;
+                            break;
+                    }
+
+                    lastMenuButtonSwitch = gameTime.TotalGameTime.TotalMilliseconds;
+                }
+
+                if ((Keyboard.GetState().IsKeyDown(Keys.W) || Keyboard.GetState().IsKeyDown(Keys.Up) || GamePad.GetState(PlayerIndex.One).IsButtonDown(Buttons.Y)) && gameTime.TotalGameTime.TotalMilliseconds - lastMenuButtonSwitch >= 150)
+                {
+                    switch (aktuellerMenupunkt)
+                    {
+                        case Menubuttons.Spielen:
+                            this.aktuellerMenupunkt = Menubuttons.Beenden;
+                            break;
+                        case Menubuttons.Stats:
+                            this.aktuellerMenupunkt = Menubuttons.Spielen;
+                            break;
+                        case Menubuttons.Einstellungen:
+                            this.aktuellerMenupunkt = Menubuttons.Stats;
+                            break;
+                        case Menubuttons.Beenden:
+                            this.aktuellerMenupunkt = Menubuttons.Einstellungen;
+                            break;
+                    }
+
+                    lastMenuButtonSwitch = gameTime.TotalGameTime.TotalMilliseconds;
+                }
+
+                if (Keyboard.GetState().IsKeyDown(Keys.Enter))
+                {
+                    switch (aktuellerMenupunkt)
+                    {
+                        case Menubuttons.Spielen:
+                            this.CurrentGameState = GameState.Ingame;
+                            break;
+                        case Menubuttons.Stats:
+                            // TODO: Stats
+                            break;
+                        case Menubuttons.Einstellungen:
+                            // TODO: Einstellungen
+                            break;
+                        case Menubuttons.Beenden:
+                            settings.SaveSettings();
+                            Exit();
+                            break;
+                    }
+                }
             }
 
             // Ingame
@@ -381,15 +441,33 @@ namespace BugHunter
 
                 // Generiert neue Einträge im Dictionary wenn weniger Powerup da sind als max. zulässig sind
                 // Generiert immer dann einen Eintrag wenn der Key nicht verwendet wird
-                /*
+                
                 for (int i = 0; i < maxPowerups; i++)
                 {
                     if (!Powerups.ContainsKey(i))
                     {
                         Powerups.Add(i, new Powerup(spriteSheetLoader.Load("sprites/entities/entities.png"), new SpriteRender(spriteBatch), this.settings, this.MapArray));
                     }
+
+                    // Setzt solage eine neue Position bis alle Powerups auf einer unterschiedlichen Position sind
+                    int j = 0;
+                    while (true) { 
+
+                        if(j >= Powerups.Count)
+                        {
+                            break;
+                        }
+
+                        if (Powerups[i].position.Equals(Powerups[j].position) && j != i)
+                        {
+                            Powerups[i].ResetPosition(this.MapArray);
+                            j = 0;
+                        }
+
+                        j++;
+                    }
                 }
-                */
+                
 
                 // Updated poof wenn Aktiv
                 if (PoofIsActive)
@@ -416,6 +494,8 @@ namespace BugHunter
                 player.Reset(MapArray);
                 this.CurrentGameState = GameState.Ingame;
                 this.Score = 0;
+                this.maxAndroids = 1;
+                this.AndroidHealth = 30;
             }
 
             if(CurrentGameState == GameState.Paused)
@@ -523,9 +603,32 @@ namespace BugHunter
                     spriteBatch.DrawString(MenuFont, Texttable.Text_Died, new Vector2(player.Position.X - 300, player.Position.Y - 64), Color.White);
                 }
             }
-
+            
+            // Hauptmenü
             if(CurrentGameState == GameState.Hauptmenu)
             {
+                // Zeichnet alle Menüpunkte
+                spriteBatch.DrawString(MenuFont, Texttable.Menu_Start, new Vector2(player.camera.Origin.X - 400, player.camera.Origin.Y - 200), Color.White);
+                spriteBatch.DrawString(MenuFont, Texttable.Menu_Stats, new Vector2(player.camera.Origin.X - 400, player.camera.Origin.Y - 100), Color.White);
+                spriteBatch.DrawString(MenuFont, Texttable.Menu_Einstellungen, new Vector2(player.camera.Origin.X - 400, player.camera.Origin.Y), Color.White);
+                spriteBatch.DrawString(MenuFont, Texttable.Menu_Ende, new Vector2(player.camera.Origin.X - 400, player.camera.Origin.Y + 100), Color.White);
+
+                // Überzeichnet den Menüpunkt der ausgewählt ist.
+                switch (aktuellerMenupunkt)
+                {
+                    case Menubuttons.Spielen:
+                        spriteBatch.DrawString(MenuFont, Texttable.Menu_Start, new Vector2(player.camera.Origin.X - 400, player.camera.Origin.Y - 200), Color.Gray);
+                        break;
+                    case Menubuttons.Stats:
+                        spriteBatch.DrawString(MenuFont, Texttable.Menu_Stats, new Vector2(player.camera.Origin.X - 400, player.camera.Origin.Y - 100), Color.Gray);
+                        break;
+                    case Menubuttons.Einstellungen:
+                        spriteBatch.DrawString(MenuFont, Texttable.Menu_Einstellungen, new Vector2(player.camera.Origin.X - 400, player.camera.Origin.Y), Color.Gray);
+                        break;
+                    case Menubuttons.Beenden:
+                        spriteBatch.DrawString(MenuFont, Texttable.Menu_Ende, new Vector2(player.camera.Origin.X - 400, player.camera.Origin.Y + 100), Color.Gray);
+                        break;
+                }
                 
             }
 

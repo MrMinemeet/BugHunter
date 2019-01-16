@@ -34,6 +34,7 @@ namespace BugHunter
         public const byte EnemeySpawnTileId = 21;
         public const byte ReloadTileId = 24;
         public const byte PowerupTileId = 20;
+        public const byte generalMaxPowerUps = 6;
 
         private Game1 game = null;
 
