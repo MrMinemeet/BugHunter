@@ -6,7 +6,7 @@ using TexturePackerLoader;
 
 namespace BugHunter
 {
-    class Projectile
+    public class Projectile
     {
         public bool IsActive = false;
         public float ProjectileSpeed = 400f;

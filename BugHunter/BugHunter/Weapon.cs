@@ -6,32 +6,32 @@ using System.Threading.Tasks;
 
 namespace BugHunter
 {
-    class Weapon
+    public class Weapon
     {
         // Delays für Waffen
-        public const int CppDelayMs = 275;
-        public const int CDelayMs = 350;
-        public const int JavaDelayMs = 200;
-        public const int CsharpDelayMs = 175;
-        public const int MaschinenspracheDelayMs = 1000;
+        public int CppDelayMs = 275;
+        public int CDelayMs = 350;
+        public int JavaDelayMs = 200;
+        public int CsharpDelayMs = 175;
+        public int MaschinenspracheDelayMs = 1000;
 
         // Schaden für waffen
-        public const int CppDamage = 20;
-        public const int CDamage = 25;
-        public const int JavaDamage = 15;
-        public const int CsharpDamage = 15;
-        public const int MaschinenspracheDamage = 100;
+        public int CppDamage = 20;
+        public int CDamage = 25;
+        public int JavaDamage = 15;
+        public int CsharpDamage = 15;
+        public int MaschinenspracheDamage = 100;
 
         // Max Munition für Waffe
-        public const int CppAmmoAmout = 40;
-        public const int CAmmoAmount = 35;
-        public const int JavaAmmoAmount = 60;
-        public const int CsharpAmmoAmount = 70;
-        public const int MaschinenspracheAmmoAmount = 30;
+        public int CppAmmoAmout = 40;
+        public int CAmmoAmount = 35;
+        public int JavaAmmoAmount = 60;
+        public int CsharpAmmoAmount = 70;
+        public int MaschinenspracheAmmoAmount = 30;
 
         public enum WeaponTypes : byte { cpp, java, c, csharp, maschinensprache }
 
-        public static int getDelayAktWeapon(WeaponTypes aktWeapon)
+        public int getDelayAktWeapon(WeaponTypes aktWeapon)
         {
             switch (aktWeapon)
             {
@@ -49,7 +49,8 @@ namespace BugHunter
 
             return -1;
         }
-        public static int getDamageAktWeapon(WeaponTypes aktWeapon)
+
+        public int getDamageAktWeapon(WeaponTypes aktWeapon)
         {
             switch (aktWeapon)
             {
@@ -67,7 +68,7 @@ namespace BugHunter
 
             return -1;
         }
-        public static int getMaxAmmoAmountAktWeapon(WeaponTypes aktWeapon)
+        public int getMaxAmmoAmountAktWeapon(WeaponTypes aktWeapon)
         {
             switch (aktWeapon)
             {
@@ -85,7 +86,8 @@ namespace BugHunter
 
             return -1;
         }
-        public static int getMaxAmmoAmountSpecificWeapon(WeaponTypes weaponType)
+
+        public int getMaxAmmoAmountSpecificWeapon(WeaponTypes weaponType)
         {
             switch (weaponType)
             {

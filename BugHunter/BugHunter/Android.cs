@@ -6,7 +6,7 @@ using TexturePackerLoader;
 
 namespace BugHunter
 {
-    class Android
+    public class Android
     {
         public Vector2 Position;
         public float Speed { get; set; }
@@ -106,13 +106,14 @@ namespace BugHunter
                 this.Position = PotNewEnemyPosition;
             }
 
+            // Überprüft ob von Projektil getroffen wurde
             foreach (Projectile p in player.projectiles)
             {
                 if (p.IsActive)
                 {
                     if (p.CheckForHit(this))
                     {
-                        this.Health -= Weapon.getDamageAktWeapon(player.aktWeapon);
+                        this.Health -= game.weapon.getDamageAktWeapon(player.aktWeapon);
 
 
                         // Falls Gegner 0 leben hat, soll dieser despawnen und der Score erhöht werden.

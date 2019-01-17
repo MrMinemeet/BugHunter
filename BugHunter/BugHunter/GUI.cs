@@ -161,7 +161,7 @@ namespace BugHunter
             spriteBatch.DrawString(font, player.Health.ToString(),HeartStatusTextPosition, Color.White);
 
             spriteBatch.DrawString(font,
-                this.AmmunitionAmmount.ToString() + " / " + Weapon.getMaxAmmoAmountAktWeapon(player.aktWeapon),
+                this.AmmunitionAmmount.ToString() + " / " + game.weapon.getMaxAmmoAmountAktWeapon(player.aktWeapon),
                 new Vector2(player.camera.Position.X + 1750, player.camera.Position.Y + 930),
                 Color.White);
 

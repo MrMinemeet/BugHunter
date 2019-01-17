@@ -16,14 +16,16 @@ namespace ProjectWhitespace
         public SpriteRender spriteRender;
         public Vector2 position;
         private Settings settings;
+        private Game1 game;
 
         public enum PowerupTypes { Medipack, Ammoboost, DamageUp, ShootSpeedUp }
 
-        PowerupTypes PowerupTipe;
+        PowerupTypes PowerupType = PowerupTypes.ShootSpeedUp;
+        
 
-
-        public Powerup(SpriteSheet spriteSheet, SpriteRender spriteRender, Settings settings, int[][] MapArray)
+        public Powerup(Game1 game,SpriteSheet spriteSheet, SpriteRender spriteRender, Settings settings, int[][] MapArray)
         {
+            this.game = game;
             this.spriteSheet = spriteSheet;
             this.spriteRender = spriteRender;
             this.settings = settings;
@@ -35,19 +37,18 @@ namespace ProjectWhitespace
             switch (random.Next(System.Enum.GetNames(typeof(PowerupTypes)).Length))
             {
                 case 0:
-                    this.PowerupTipe = PowerupTypes.Medipack;
+                    this.PowerupType = PowerupTypes.Medipack;
                     break;
                 case 1:
-                    this.PowerupTipe = PowerupTypes.Ammoboost;
+                    this.PowerupType = PowerupTypes.Ammoboost;
                     break;
                 case 2:
-                    this.PowerupTipe = PowerupTypes.DamageUp;
+                    this.PowerupType = PowerupTypes.DamageUp;
                     break;
                 case 3:
-                    this.PowerupTipe = PowerupTypes.ShootSpeedUp;
+                    this.PowerupType = PowerupTypes.ShootSpeedUp;
                     break;
             }
-
         }
 
         private Vector2 SetSpawnFromMap(int[][] MapArray, Settings settings)
@@ -88,5 +89,71 @@ namespace ProjectWhitespace
                 this.position,
                 Color.White);
         }
+
+        public void Update(GameTime gameTime, Player player)
+        {
+        }
+
+        public bool WasCollected(Player player)
+        {
+            Rectangle PlayerCollision;
+            Rectangle PowerupCollision;
+            SpriteFrame sp = null;
+
+            // TODO: Player Powerup collision
+            // Bekommt einen Frame
+
+
+            sp = spriteSheet.Sprite(TexturePackerMonoGameDefinitions.entities.Powerup_kaffee);
+
+
+            switch (PowerupType)
+            {
+                case PowerupTypes.ShootSpeedUp:
+                    sp = spriteSheet.Sprite(TexturePackerMonoGameDefinitions.entities.Powerup_kaffee);
+                    break;
+            }
+
+            // Rechtecke über Spieler und Powerup ziehen
+            PlayerCollision = new Rectangle((int)(player.Position.X - player.Texture.Width / 2), (int)(player.Position.Y - player.Texture.Height / 2), player.Texture.Width, player.Texture.Height);
+
+            PowerupCollision = new Rectangle((int)(this.position.X - sp.Size.X / 2), (int)(this.position.Y - sp.Size.Y / 2), (int)sp.Size.X, (int)sp.Size.Y);
+
+            if (PowerupCollision.Intersects(PlayerCollision))
+            {
+
+                switch (PowerupType)
+                {
+                    // Macht alle Sprachen um 10ms schneller
+                    case PowerupTypes.ShootSpeedUp:
+                        if(this.game.weapon.CDelayMs >= 50) { 
+}
+                            this.game.weapon.CDelayMs -= 10;
+
+
+                        if (this.game.weapon.CppDelayMs >= 50)
+                            this.game.weapon.CppDelayMs -= 10;
+
+                        if (this.game.weapon.JavaDelayMs >= 50)
+                            this.game.weapon.JavaDelayMs -= 10;
+
+                        if (this.game.weapon.MaschinenspracheDelayMs >= 50)
+                            this.game.weapon.MaschinenspracheDelayMs -= 10;
+
+                        if (this.game.weapon.CsharpDelayMs >= 50)
+                            this.game.weapon.CsharpDelayMs -= 10;
+
+
+                        Console.WriteLine(this.game.weapon.CsharpDelayMs);
+
+                        break;
+                }
+
+                return true;
+            }
+
+            return false;
+        }
     }
+    
 }

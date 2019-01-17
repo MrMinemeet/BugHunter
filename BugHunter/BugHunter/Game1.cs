@@ -54,6 +54,7 @@ namespace BugHunter
     // This is the main type for your game.
     public class Game1 : Game
     {
+        // Discord RPC
         /// <summary>
         /// ID of the client
         /// </summary>
@@ -90,15 +91,13 @@ namespace BugHunter
 
         private readonly TimeSpan timePerFrame = TimeSpan.FromSeconds(3f / 30f);
 
-        Player player = new Player(200f,100);
-
         // Android gegner
         IDictionary<int, Android> Androids = new Dictionary<int, Android>();
         int maxAndroids = 1;
         int AndroidHealth = 30;
 
 
-        IDictionary<int, Powerup> Powerups = new Dictionary<int, Powerup>();
+        public IDictionary<int, Powerup> Powerups = new Dictionary<int, Powerup>();
         int maxPowerups = 4;
 
 
@@ -120,11 +119,15 @@ namespace BugHunter
         SpriteRender spriteRender;
         SpriteFont font;
         public SpriteFont MenuFont;
+        public Weapon weapon;
+        public Player player;
 
 
         // DEBUG Featurese
         FpsCounter fps = new FpsCounter();
         public SpriteFont DebugFont;
+
+
 
         enum GameState : Byte { Ingame, Paused, DeathScreen, Hauptmenu };
         GameState CurrentGameState = GameState.Hauptmenu;
@@ -171,6 +174,9 @@ namespace BugHunter
 
             this.Score = 0;
 
+            this.weapon = new Weapon();
+            this.player = new Player(this, 200f, 100);
+
             player.camera = new OrthographicCamera(GraphicsDevice);
 
             map[0] = new Map();
@@ -200,7 +206,6 @@ namespace BugHunter
             client.OnReady += OnReady;
             client.OnClose += OnClose;
             client.OnError += OnError;
-
 
             presence.Timestamps = new Timestamps()
             {
@@ -446,7 +451,7 @@ namespace BugHunter
                 {
                     if (!Powerups.ContainsKey(i))
                     {
-                        Powerups.Add(i, new Powerup(spriteSheetLoader.Load("sprites/entities/entities.png"), new SpriteRender(spriteBatch), this.settings, this.MapArray));
+                        Powerups.Add(i, new Powerup(this, spriteSheetLoader.Load("sprites/entities/entities.png"), new SpriteRender(spriteBatch), this.settings, this.MapArray));
                     }
 
                     // Setzt solage eine neue Position bis alle Powerups auf einer unterschiedlichen Position sind
@@ -458,16 +463,44 @@ namespace BugHunter
                             break;
                         }
 
-                        if (Powerups[i].position.Equals(Powerups[j].position) && j != i)
+                        if (Powerups.ContainsKey(i) && Powerups.ContainsKey(j))
                         {
-                            Powerups[i].ResetPosition(this.MapArray);
-                            j = 0;
+                            if (Powerups[i].position.Equals(Powerups[j].position) && j != i)
+                            {
+                                Powerups[i].ResetPosition(this.MapArray);
+                                j = 0;
+                            }
                         }
 
                         j++;
                     }
                 }
-                
+
+                // Updated Powerups
+                for(int i = 0; i <= Powerups.Count; i++)
+                {
+                    if (Powerups.ContainsKey(i))
+                    {
+                        Powerups[i].Update(gameTime, this.player);
+                    }
+                }
+
+                // Überprüft ob Powerup gelöscht wurde und löscht es falls ja
+                for (int i = 0; i <= Powerups.Count; i++)
+                {
+                    if (Powerups.ContainsKey(i))
+                    {
+                        if (Powerups[i].WasCollected(this.player))
+                        {
+                            if (maxPowerups > 0)
+                                maxPowerups--;
+                            Powerups.Remove(i);
+                            break;
+                        }
+                    }
+                }
+
+
 
                 // Updated poof wenn Aktiv
                 if (PoofIsActive)
@@ -527,9 +560,7 @@ namespace BugHunter
 
                 LastKeyStrokeInput = gameTime.TotalGameTime.TotalMilliseconds;
             }
-
-
-
+            
             client.SetPresence(presence);
 
             base.Update(gameTime);
@@ -573,9 +604,12 @@ namespace BugHunter
                     Androids[i].Draw(spriteBatch, font);
                 }
 
-                for (int i = 0; i < Powerups.Count; i++)
+                for (int i = 0; i <= Powerups.Count; i++)
                 {
-                    Powerups[i].Draw(spriteBatch);
+                    if (Powerups.ContainsKey(i))
+                    {
+                        Powerups[i].Draw(spriteBatch);
+                    }
                 }
 
                 if (PoofIsActive)
