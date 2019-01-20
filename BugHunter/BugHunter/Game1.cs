@@ -29,9 +29,9 @@
  // TODO: Tastatur als Waffe in die Hand
  // TODO: Powerup: Medipack - PC Teile
  // TODO: Powerup: Mehr Ammo - USB Stick
- // TODO: Ammopack: Lädt komplette Munition nach
+ // TODO: Powerup: Ammopack - Lädt komplette Munition nach
  // TODO: Powerup: Erhöhter Schaden - Bücher
- // TODO: Powerup: Erhöhte Schussgeschwindigkeit - Kaffee
+ // TODO: Powerup: Schnelleres Nachladen 
 
 
 using Microsoft.Xna.Framework;
@@ -98,7 +98,6 @@ namespace BugHunter
 
 
         public IDictionary<int, Powerup> Powerups = new Dictionary<int, Powerup>();
-        int maxPowerups = 4;
 
 
         public Map[] map = new Map[1];
@@ -296,7 +295,9 @@ namespace BugHunter
             if (Keyboard.GetState().IsKeyDown(Keys.Delete) && Keyboard.GetState().IsKeyDown(Keys.LeftAlt))
             {
                 settings.SaveSettings();
-                Exit();
+                //At the very end we need to dispose of it
+                client?.Dispose();
+                
             }
 
             // Spiel in Vollbild machen
@@ -370,6 +371,9 @@ namespace BugHunter
                             break;
                         case Menubuttons.Beenden:
                             settings.SaveSettings();
+                            //At the very end we need to dispose of it
+                            timer?.Close();
+                            client?.Dispose();
                             Exit();
                             break;
                     }
@@ -386,8 +390,15 @@ namespace BugHunter
                     LastKeyStrokeInput = gameTime.TotalGameTime.TotalMilliseconds;
                 }
 
+                
+                if (this.Score > settings.HighScore)
+                {
+                    settings.HighScore = Score;
+                    sound.ScoreSound.Play(0.5f, 0, 0);
+                }
+
                 // Updaten
-                for(int i = 0; i < Androids.Count; i++)
+                for (int i = 0; i < Androids.Count; i++)
                 {
                     Androids[i].Update(gameTime, MapArray, map[AktuelleMap].maplevel);
 
@@ -396,6 +407,49 @@ namespace BugHunter
                         PoofPosition = Androids[i].Position;
                         PoofIsActive = true;
                         Androids.Remove(i);
+
+                        Random random = new Random();
+
+                        if(random.Next(100) > 80)
+                        {
+                            // Wenn bereits genug Powerups aktiv sind wird das Generieren Übersprungen
+                            if (Powerups.Count == Settings.generalMaxPowerUps)
+                                continue;
+
+                            for (int x = 0; x < Settings.generalMaxPowerUps; x++)
+                            {
+                                if (!Powerups.ContainsKey(x))
+                                {
+                                    Powerups.Add(x, new Powerup(this, spriteSheetLoader.Load("sprites/entities/entities.png"), new SpriteRender(spriteBatch), this.settings, this.MapArray));
+
+
+
+                                    // Setzt solage eine neue Position bis alle Powerups auf einer unterschiedlichen Position sind
+                                    int j = 0;
+                                    while (true)
+                                    {
+
+                                        if (j > Powerups.Count)
+                                        {
+                                            break;
+                                        }
+
+                                        if (Powerups.ContainsKey(x) && Powerups.ContainsKey(j))
+                                        {
+                                            if (Powerups[x].position.Equals(Powerups[j].position) && j != x)
+                                            {
+                                                Powerups[x].ResetPosition(this.MapArray);
+                                                j = 0;
+                                            }
+                                        }
+
+                                        j++;
+                                    }
+
+                                    break;
+                                }
+                            }
+                        }
                     }
                 }
                 player.Update(gameTime, MapArray, map[AktuelleMap].getTiledMap());
@@ -407,12 +461,6 @@ namespace BugHunter
 
                 // Update the fps
                 fps.Update(gameTime);
-
-                if (this.Score > settings.HighScore)
-                {
-                    settings.HighScore = Score;
-                    sound.ScoreSound.Play(0.5f,0,0);
-                }
 
                 sound.HintergrundMusikEffect.Volume = 0.1f;
 
@@ -444,47 +492,6 @@ namespace BugHunter
                     }
                 }
 
-                // Generiert neue Einträge im Dictionary wenn weniger Powerup da sind als max. zulässig sind
-                // Generiert immer dann einen Eintrag wenn der Key nicht verwendet wird
-                
-                for (int i = 0; i < maxPowerups; i++)
-                {
-                    if (!Powerups.ContainsKey(i))
-                    {
-                        Powerups.Add(i, new Powerup(this, spriteSheetLoader.Load("sprites/entities/entities.png"), new SpriteRender(spriteBatch), this.settings, this.MapArray));
-                    }
-
-                    // Setzt solage eine neue Position bis alle Powerups auf einer unterschiedlichen Position sind
-                    int j = 0;
-                    while (true) { 
-
-                        if(j >= Powerups.Count)
-                        {
-                            break;
-                        }
-
-                        if (Powerups.ContainsKey(i) && Powerups.ContainsKey(j))
-                        {
-                            if (Powerups[i].position.Equals(Powerups[j].position) && j != i)
-                            {
-                                Powerups[i].ResetPosition(this.MapArray);
-                                j = 0;
-                            }
-                        }
-
-                        j++;
-                    }
-                }
-
-                // Updated Powerups
-                for(int i = 0; i <= Powerups.Count; i++)
-                {
-                    if (Powerups.ContainsKey(i))
-                    {
-                        Powerups[i].Update(gameTime, this.player);
-                    }
-                }
-
                 // Überprüft ob Powerup gelöscht wurde und löscht es falls ja
                 for (int i = 0; i <= Powerups.Count; i++)
                 {
@@ -492,11 +499,23 @@ namespace BugHunter
                     {
                         if (Powerups[i].WasCollected(this.player))
                         {
-                            if (maxPowerups > 0)
-                                maxPowerups--;
                             Powerups.Remove(i);
                             break;
                         }
+                    }
+                }
+
+                // Generiert neue Einträge im Dictionary wenn weniger Powerup da sind als max. zulässig sind
+                // Generiert immer dann einen Eintrag wenn der Key nicht verwendet wird
+
+                
+
+                // Updated Powerups
+                for(int i = 0; i <= Powerups.Count; i++)
+                {
+                    if (Powerups.ContainsKey(i))
+                    {
+                        Powerups[i].Update(gameTime, this.player);
                     }
                 }
 
@@ -701,10 +720,7 @@ namespace BugHunter
             GamePad.SetVibration(PlayerIndex.One, 0f, 0f);
             base.OnExiting(sender, args);
 
-
-            //At the very end we need to dispose of it
-            timer.Close();
-            client.Dispose();
+            
         }
 
         private static void OnReady(object sender, ReadyMessage args)

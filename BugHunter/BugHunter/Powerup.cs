@@ -126,34 +126,29 @@ namespace ProjectWhitespace
                 {
                     // Macht alle Sprachen um 10ms schneller
                     case PowerupTypes.ShootSpeedUp:
-                        if(this.game.weapon.CDelayMs >= 50) { 
-}
-                            this.game.weapon.CDelayMs -= 10;
+                        if(this.game.weapon.CDelayMs >= 50)
+                            this.game.weapon.CDelayMs -= 20;
 
 
                         if (this.game.weapon.CppDelayMs >= 50)
-                            this.game.weapon.CppDelayMs -= 10;
+                            this.game.weapon.CppDelayMs -= 20;
 
                         if (this.game.weapon.JavaDelayMs >= 50)
-                            this.game.weapon.JavaDelayMs -= 10;
+                            this.game.weapon.JavaDelayMs -= 20;
 
                         if (this.game.weapon.MaschinenspracheDelayMs >= 50)
-                            this.game.weapon.MaschinenspracheDelayMs -= 10;
+                            this.game.weapon.MaschinenspracheDelayMs -= 20;
 
                         if (this.game.weapon.CsharpDelayMs >= 50)
-                            this.game.weapon.CsharpDelayMs -= 10;
-
+                            this.game.weapon.CsharpDelayMs -= 20;
 
                         Console.WriteLine(this.game.weapon.CsharpDelayMs);
 
                         break;
                 }
-
                 return true;
             }
-
             return false;
         }
     }
-    
 }
