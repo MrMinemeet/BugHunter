@@ -50,13 +50,6 @@ namespace BugHunter
 
         Game1 game;
 
-
-        // Hitmarker
-        private bool IsHitmarkerActive = false;
-        public Texture2D Hitmarker;
-        public float hitmarkerTime;
-        private int HitmarkerAlpha = 255;
-
         // Vibration
         private bool IsVibrating = false;
         private float VibrationLeft = 0;
@@ -174,19 +167,6 @@ namespace BugHunter
             if (this.IsVibrating)
             {
                 GamePad.SetVibration(PlayerIndex.One, this.VibrationLeft, this.VibrationRight);
-            }
-
-            
-            if (IsHitmarkerActive)
-            {
-                if (gameTime.TotalGameTime.TotalMilliseconds - hitmarkerTime >= (2000/255))
-                {
-                    HitmarkerAlpha--;
-                }
-                if(HitmarkerAlpha <= 0)
-                {
-                    IsHitmarkerActive = false;
-                }
             }
             
             // Updated jedes aktive Projektil im Array
@@ -347,7 +327,6 @@ namespace BugHunter
         public void GotHit(Android enemy, GameTime gameTime)
         {
             this.SetVibration(0.1f, 0.1f, 250, gameTime);
-            this.IsHitmarkerActive = true;
         }
 
         private void SetVibration(float VibrationLeft, float VibrationRight, int VibrationDuration, GameTime gameTime)
@@ -517,15 +496,6 @@ namespace BugHunter
                 SpriteEffects.None,
                 0f
             );
-
-            // Zeichent Hitmarker
-            // TODO Fade-out bei Hitmarker
-            if (IsHitmarkerActive)
-            {
-                spriteBatch.Draw(this.Hitmarker,
-                    this.camera.Position,
-                    Color.White * 0.4f);
-            }
             
 
             if (ShowPlayerOrigin)

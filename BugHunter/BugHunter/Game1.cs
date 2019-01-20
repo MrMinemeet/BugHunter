@@ -87,7 +87,7 @@ namespace BugHunter
 
         Timer timer;
 
-
+        Texture2D pauseScreen;
 
         private readonly TimeSpan timePerFrame = TimeSpan.FromSeconds(3f / 30f);
 
@@ -211,6 +211,12 @@ namespace BugHunter
                 Start = DateTime.UtcNow
             };
 
+            // Generiergt Pause Screen
+            pauseScreen = new Texture2D(graphics.GraphicsDevice, settings.resolutionWidth, settings.resolutionHeight);
+            Color[] data = new Color[settings.resolutionWidth * settings.resolutionHeight];
+            for (int i = 0; i < data.Length; ++i) data[i] = Color.Chocolate;
+            pauseScreen.SetData(data);
+
 
             client.SetPresence(presence);
 
@@ -260,7 +266,6 @@ namespace BugHunter
             // Spieler Init
             player.Texture = Content.Load<Texture2D>("sprites/player/afk_0001");
             player.OriginTexture = Content.Load<Texture2D>("sprites/originSpot");
-            player.Hitmarker = Content.Load<Texture2D>("sprites/gui/hitmarker");
             player.WeaponSpriteSheet = spriteSheetLoader.Load("sprites/entities/entities.png");
             player.Init(this.settings, this, this.sound);
             
@@ -644,7 +649,9 @@ namespace BugHunter
 
                 if (CurrentGameState == GameState.Paused)
                 {
-                    spriteBatch.Draw(gui.PausedBackground, new Vector2(player.Position.X - 960, player.Position.Y - 540), Color.White);
+                    spriteBatch.Draw(pauseScreen, new Vector2(player.camera.Position.X, player.camera.Position.Y), new Color(0,0,0,128));
+
+
                     spriteBatch.DrawString(MenuFont, "PAUSE", new Vector2(player.Position.X - 100, player.Position.Y - 64), Color.White);
                     spriteBatch.DrawString(MenuFont, "Highscore: " + settings.HighScore,
                         new Vector2(player.camera.Position.X + 750, player.camera.Position.Y), Color.White);
