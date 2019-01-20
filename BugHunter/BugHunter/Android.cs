@@ -14,7 +14,7 @@ namespace BugHunter
         public int Health { get; set; }
         public Texture2D OriginTexture;
         public bool ShowPlayerOrigin = false;
-        public float attackDamage = 1;
+        public int attackDamage = 1;
         public Player player;
         
 
@@ -47,11 +47,12 @@ namespace BugHunter
         /// </summary>
         /// <param name="Speed">Bewegungsgeschwindigkeit</param>
         /// <param name="MaxHealth">Maximales Leben (= Startleben)</param>
-        public Android(float Speed, int MaxHealth)
+        public Android(float Speed, int MaxHealth, int attackDamage)
         {
             this.Speed = Speed;
             this.MaxHealth = MaxHealth;
             this.Health = MaxHealth;
+            this.attackDamage = attackDamage;
         }
 
          /// <summary>
@@ -118,7 +119,6 @@ namespace BugHunter
                         // Falls Gegner 0 leben hat, soll dieser despawnen und der Score erhöht werden.
                         if (this.Health <= 0)
                         {
-                            this.attackDamage = attackDamage * 1.1f;
                             game.Score += 100;
                             this.IsDead = true;
                         }

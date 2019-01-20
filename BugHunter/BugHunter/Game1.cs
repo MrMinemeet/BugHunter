@@ -2,7 +2,7 @@
  * Entwickler: Alexander Voglsperger (4AHELS 2018/2019)
  * Softwarename: BugHunter
  * Entwicklungszeitraum:  18.11.2018 - JETZT
- * 
+0, * 
  * Kurzbeschreibung:
  * Der Spieler muss gegen immer Stärker werdende Wellen von Bugs(Gegnern) kämpfen indem er mit Code auf sie schießt.
  * Neue Munition kann dadurch erhalten werden, wenn der Spieler an einen PC geht.
@@ -32,6 +32,7 @@
  // TODO: Powerup: Ammopack - Lädt komplette Munition nach
  // TODO: Powerup: Erhöhter Schaden - Bücher
  // TODO: Powerup: Schnelleres Nachladen 
+ // TODO: Alle 5000 Punkte +25 Leben und +5 schaden
 
 
 using Microsoft.Xna.Framework;
@@ -95,6 +96,7 @@ namespace BugHunter
         IDictionary<int, Android> Androids = new Dictionary<int, Android>();
         int maxAndroids = 1;
         int AndroidHealth = 30;
+        int AndroidDamage = 1;
 
 
         public IDictionary<int, Powerup> Powerups = new Dictionary<int, Powerup>();
@@ -120,6 +122,10 @@ namespace BugHunter
         public SpriteFont MenuFont;
         public Weapon weapon;
         public Player player;
+
+
+
+        Random random = new Random();
 
 
         // DEBUG Featurese
@@ -319,7 +325,7 @@ namespace BugHunter
             if(CurrentGameState == GameState.Hauptmenu)
             {
                 presence.State = "Im Hauptmenü";
-                if ((Keyboard.GetState().IsKeyDown(Keys.S) || Keyboard.GetState().IsKeyDown(Keys.Down) || GamePad.GetState(PlayerIndex.One).IsButtonDown(Buttons.A)) && gameTime.TotalGameTime.TotalMilliseconds - lastMenuButtonSwitch >= 150)
+                if ((Keyboard.GetState().IsKeyDown(Keys.S) || Keyboard.GetState().IsKeyDown(Keys.Down) || GamePad.GetState(PlayerIndex.One).IsButtonDown(Buttons.DPadUp)) && gameTime.TotalGameTime.TotalMilliseconds - lastMenuButtonSwitch >= 150)
                 {
                     switch (aktuellerMenupunkt)
                     {
@@ -340,7 +346,7 @@ namespace BugHunter
                     lastMenuButtonSwitch = gameTime.TotalGameTime.TotalMilliseconds;
                 }
 
-                if ((Keyboard.GetState().IsKeyDown(Keys.W) || Keyboard.GetState().IsKeyDown(Keys.Up) || GamePad.GetState(PlayerIndex.One).IsButtonDown(Buttons.Y)) && gameTime.TotalGameTime.TotalMilliseconds - lastMenuButtonSwitch >= 150)
+                if ((Keyboard.GetState().IsKeyDown(Keys.W) || Keyboard.GetState().IsKeyDown(Keys.Up) || GamePad.GetState(PlayerIndex.One).IsButtonDown(Buttons.DPadUp)) && gameTime.TotalGameTime.TotalMilliseconds - lastMenuButtonSwitch >= 150)
                 {
                     switch (aktuellerMenupunkt)
                     {
@@ -361,7 +367,7 @@ namespace BugHunter
                     lastMenuButtonSwitch = gameTime.TotalGameTime.TotalMilliseconds;
                 }
 
-                if (Keyboard.GetState().IsKeyDown(Keys.Enter))
+                if (Keyboard.GetState().IsKeyDown(Keys.Enter) || GamePad.GetState(PlayerIndex.One).IsButtonDown(Buttons.A))
                 {
                     switch (aktuellerMenupunkt)
                     {
@@ -411,11 +417,15 @@ namespace BugHunter
                     {
                         PoofPosition = Androids[i].Position;
                         PoofIsActive = true;
+
+                        if(random.Next(10) < 3)
+                        {
+                            AndroidDamage += 1;
+                        }
                         Androids.Remove(i);
-
-                        Random random = new Random();
-
-                        if(random.Next(100) > 80)
+                        
+                        // 20% Chance dass ein Powerup Spawnt
+                        if(random.Next(100) < 20)
                         {
                             // Wenn bereits genug Powerups aktiv sind wird das Generieren Übersprungen
                             if (Powerups.Count == Settings.generalMaxPowerUps)
@@ -483,11 +493,11 @@ namespace BugHunter
                     if (!Androids.ContainsKey(i))
                     {
                         // Neues Leben für Android berechen
-                        this.AndroidHealth = (int)(AndroidHealth * 1.08f);
+                        this.AndroidHealth = (int)(AndroidHealth + 5);
 
 
                         // Neuen Android in Liste erstellen
-                        Androids.Add(i, new Android(50f, AndroidHealth));
+                        Androids.Add(i, new Android(50f, AndroidHealth, AndroidDamage));
 
                         // Android Initialisieren
                         Androids[i].Init(this, this.settings, this.player);
@@ -546,13 +556,14 @@ namespace BugHunter
             }
 
             // Respawn wenn in Deathscreen
-            if((Keyboard.GetState().IsKeyDown(Keys.R) || GamePad.GetState(PlayerIndex.One).IsButtonDown(Buttons.LeftStick)) && CurrentGameState == GameState.DeathScreen)
+            if((Keyboard.GetState().IsKeyDown(Keys.R) || GamePad.GetState(PlayerIndex.One).IsButtonDown(Buttons.A)) && CurrentGameState == GameState.DeathScreen)
             {
                 player.Reset(MapArray);
                 this.CurrentGameState = GameState.Ingame;
                 this.Score = 0;
                 this.maxAndroids = 1;
                 this.AndroidHealth = 30;
+                this.AndroidDamage = 1;
             }
 
             if(CurrentGameState == GameState.Paused)
@@ -585,7 +596,8 @@ namespace BugHunter
                 LastKeyStrokeInput = gameTime.TotalGameTime.TotalMilliseconds;
             }
             
-            client.SetPresence(presence);
+            if(!client.Disposed)
+                client.SetPresence(presence);
 
             base.Update(gameTime);
         }
