@@ -18,9 +18,9 @@ namespace ProjectWhitespace
         private Settings settings;
         private Game1 game;
 
-        public enum PowerupTypes { Medipack, Ammoboost, DamageUp, ShootSpeedUp }
+        public enum PowerupTypes { Medipack, MoreAmmo, DamageUp, ShootSpeedUp }
 
-        PowerupTypes PowerupType = PowerupTypes.ShootSpeedUp;
+        PowerupTypes PowerupType;
         
 
         public Powerup(Game1 game,SpriteSheet spriteSheet, SpriteRender spriteRender, Settings settings, int[][] MapArray)
@@ -31,22 +31,20 @@ namespace ProjectWhitespace
             this.settings = settings;
             this.position = this.SetSpawnFromMap(MapArray, this.settings);
 
-            // Weist einen zufälligen Powerup Typ hinzu
-            Random random = new Random();
-
-            switch (random.Next(System.Enum.GetNames(typeof(PowerupTypes)).Length))
+            //switch (game.random.Next(System.Enum.GetNames(typeof(PowerupTypes)).Length))
+            switch(game.random.Next(2))
             {
                 case 0:
-                    this.PowerupType = PowerupTypes.Medipack;
+                    this.PowerupType = PowerupTypes.ShootSpeedUp;
                     break;
                 case 1:
-                    this.PowerupType = PowerupTypes.Ammoboost;
+                    this.PowerupType = PowerupTypes.MoreAmmo;
                     break;
                 case 2:
                     this.PowerupType = PowerupTypes.DamageUp;
                     break;
                 case 3:
-                    this.PowerupType = PowerupTypes.ShootSpeedUp;
+                    this.PowerupType = PowerupTypes.Medipack;
                     break;
             }
         }
@@ -75,7 +73,7 @@ namespace ProjectWhitespace
         /// <summary>
         /// Setzt Powerup auf neue Position
         /// </summary>
-        /// <param name="MapArray"></param>
+        /// <param name="MapArray"></param>2
         /// <returns></returns>
         public void ResetPosition(int[][] MapArray)
         {
@@ -84,10 +82,21 @@ namespace ProjectWhitespace
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            spriteRender.Draw(
-                spriteSheet.Sprite(TexturePackerMonoGameDefinitions.entities.Powerup_kaffee),
-                this.position,
-                Color.White);
+            switch (PowerupType)
+            {
+                case PowerupTypes.ShootSpeedUp:
+                    spriteRender.Draw(
+                        spriteSheet.Sprite(TexturePackerMonoGameDefinitions.entities.Powerup_kaffee),
+                        this.position,
+                        Color.White);
+                    break;
+                case PowerupTypes.MoreAmmo:
+                    spriteRender.Draw(
+                        spriteSheet.Sprite(TexturePackerMonoGameDefinitions.entities.Powerup_usb),
+                        this.position,
+                        Color.White);
+                    break;
+            }
         }
 
         public void Update(GameTime gameTime, Player player)
@@ -126,23 +135,37 @@ namespace ProjectWhitespace
                 {
                     // Macht alle Sprachen um 10ms schneller
                     case PowerupTypes.ShootSpeedUp:
-                        if(this.game.weapon.CDelayMs >= 50)
+                        if(this.game.weapon.CDelayMs > 50)
                             this.game.weapon.CDelayMs -= 20;
 
 
-                        if (this.game.weapon.CppDelayMs >= 50)
+                        if (this.game.weapon.CppDelayMs > 50)
                             this.game.weapon.CppDelayMs -= 20;
 
-                        if (this.game.weapon.JavaDelayMs >= 50)
+                        if (this.game.weapon.JavaDelayMs > 50)
                             this.game.weapon.JavaDelayMs -= 20;
 
-                        if (this.game.weapon.MaschinenspracheDelayMs >= 50)
+                        if (this.game.weapon.MaschinenspracheDelayMs > 50)
                             this.game.weapon.MaschinenspracheDelayMs -= 20;
 
-                        if (this.game.weapon.CsharpDelayMs >= 50)
+                        if (this.game.weapon.CsharpDelayMs > 50)
                             this.game.weapon.CsharpDelayMs -= 20;
 
-                        Console.WriteLine(this.game.weapon.CsharpDelayMs);
+                        break;
+
+                    // Erhöht max. Munition um 10
+                    case PowerupTypes.MoreAmmo:
+
+                        if (this.game.weapon.CAmmoAmount < Weapon.GeneralMaxAmmo)
+                            this.game.weapon.CAmmoAmount += 10;
+                        if (this.game.weapon.CppAmmoAmout < Weapon.GeneralMaxAmmo)
+                            this.game.weapon.CppAmmoAmout += 10;
+                        if (this.game.weapon.JavaAmmoAmount < Weapon.GeneralMaxAmmo)
+                            this.game.weapon.JavaAmmoAmount += 10;
+                        if (this.game.weapon.MaschinenspracheAmmoAmount < Weapon.GeneralMaxAmmo)
+                            this.game.weapon.MaschinenspracheAmmoAmount += 10;
+                        if (this.game.weapon.CsharpAmmoAmount < Weapon.GeneralMaxAmmo)
+                            this.game.weapon.CsharpAmmoAmount += 10;
 
                         break;
                 }

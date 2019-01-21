@@ -29,6 +29,9 @@ namespace BugHunter
         public int CsharpAmmoAmount = 70;
         public int MaschinenspracheAmmoAmount = 30;
 
+
+        public const int GeneralMaxAmmo = 200;
+
         public enum WeaponTypes : byte { cpp, java, c, csharp, maschinensprache }
 
         public int getDelayAktWeapon(WeaponTypes aktWeapon)

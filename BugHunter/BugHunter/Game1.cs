@@ -49,6 +49,7 @@ using TexturePackerLoader;
 using DiscordRPC.Message;
 using DiscordRPC;
 using System.Timers;
+using System.Diagnostics;
 
 namespace BugHunter
 {
@@ -85,6 +86,8 @@ namespace BugHunter
         /// The discord client
         /// </summary>
         private static DiscordRpcClient client;
+
+        public bool IsDiscordRunning = false;
 
         Timer timer;
 
@@ -125,7 +128,7 @@ namespace BugHunter
 
 
 
-        Random random = new Random();
+        public Random random = new Random();
 
 
         // DEBUG Featurese
@@ -175,6 +178,10 @@ namespace BugHunter
         // related content.  Calling base.Initialize will enumerate through any components and initialize them as well.
         protected override void Initialize()
         {
+            IsDiscordRunning = IsProcessRunning("Discord");
+            if(!IsDiscordRunning)
+                IsDiscordRunning = IsProcessRunning("discord");
+
             this.graphicsDevice = GraphicsDevice;
 
             this.Score = 0;
@@ -191,43 +198,46 @@ namespace BugHunter
             gui.Init(this);
 
 
-            //Create a new client
-            client = new DiscordRpcClient(ClientID);
+            if(IsDiscordRunning){
 
-            //Create the logger
-            client.Logger = new DiscordRPC.Logging.ConsoleLogger() { Level = DiscordLogLevel, Coloured = true };
+                //Create a new client
+                client = new DiscordRpcClient(ClientID);
 
-            //Create some events so we know things are happening
-            client.OnReady += (sender, msg) => { Console.WriteLine("Connected to discord with user {0}", msg.User.Username); };
-            client.OnPresenceUpdate += (sender, msg) => { Console.WriteLine("Presence has been updated!"); };
+                //Create the logger
+                client.Logger = new DiscordRPC.Logging.ConsoleLogger() { Level = DiscordLogLevel, Coloured = true };
 
-            //Create a timer that will regularly call invoke
-            timer = new System.Timers.Timer(150);
-            timer.Elapsed += (sender, evt) => { client.Invoke(); };
-            timer.Start();
+                //Create some events so we know things are happening
+                client.OnReady += (sender, msg) => { Console.WriteLine("Connected to discord with user {0}", msg.User.Username); };
+                client.OnPresenceUpdate += (sender, msg) => { Console.WriteLine("Presence has been updated!"); };
+
+                //Create a timer that will regularly call invoke
+                timer = new System.Timers.Timer(150);
+                timer.Elapsed += (sender, evt) => { client.Invoke(); };
+                timer.Start();
 
 
-            //Register to the events we care about. We are registering to everyone just to show off the events
-            client.OnReady += OnReady;
-            client.OnClose += OnClose;
-            client.OnError += OnError;
+                //Register to the events we care about. We are registering to everyone just to show off the events
+                client.OnReady += OnReady;
+                client.OnClose += OnClose;
+                client.OnError += OnError;
 
-            presence.Timestamps = new Timestamps()
-            {
-                Start = DateTime.UtcNow
-            };
+                presence.Timestamps = new Timestamps()
+                {
+                    Start = DateTime.UtcNow
+                };
 
+
+                client.SetPresence(presence);
+
+
+                //Connect
+                client.Initialize();
+            }
             // Generiergt Pause Screen
             pauseScreen = new Texture2D(graphics.GraphicsDevice, settings.resolutionWidth, settings.resolutionHeight);
             Color[] data = new Color[settings.resolutionWidth * settings.resolutionHeight];
             for (int i = 0; i < data.Length; ++i) data[i] = Color.Chocolate;
             pauseScreen.SetData(data);
-
-
-            client.SetPresence(presence);
-
-            //Connect
-            client.Initialize();
 
             base.Initialize();
         }
@@ -298,8 +308,11 @@ namespace BugHunter
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Update(GameTime gameTime)
         {
-            presence.Details = "Score: " + this.Score;
-            presence.Assets.LargeImageKey = "icon";
+            if (IsDiscordRunning)
+            {
+                presence.Details = "Score: " + this.Score;
+                presence.Assets.LargeImageKey = "icon";
+            }
 
 
             // Spiel schließen
@@ -324,7 +337,8 @@ namespace BugHunter
             // Hauptmenü
             if(CurrentGameState == GameState.Hauptmenu)
             {
-                presence.State = "Im Hauptmenü";
+                if (IsDiscordRunning)
+                    presence.State = "Im Hauptmenü";
                 if ((Keyboard.GetState().IsKeyDown(Keys.S) || Keyboard.GetState().IsKeyDown(Keys.Down) || GamePad.GetState(PlayerIndex.One).IsButtonDown(Buttons.DPadUp)) && gameTime.TotalGameTime.TotalMilliseconds - lastMenuButtonSwitch >= 150)
                 {
                     switch (aktuellerMenupunkt)
@@ -394,7 +408,8 @@ namespace BugHunter
             // Ingame
             if(CurrentGameState == GameState.Ingame)
             {
-                presence.State = "Am Debuggen";
+                if (IsDiscordRunning)
+                    presence.State = "Am Debuggen";
                 if (Keyboard.GetState().IsKeyDown(Keys.F3) && gameTime.TotalGameTime.TotalMilliseconds - LastKeyStrokeInput >= 500)
                 {
                     settings.AreDebugInformationsVisible = !settings.AreDebugInformationsVisible;
@@ -568,7 +583,8 @@ namespace BugHunter
 
             if(CurrentGameState == GameState.Paused)
             {
-                presence.State = "Im Pausemenü";
+                if (IsDiscordRunning)
+                    presence.State = "Im Pausemenü";
             }
 
             // PAUSE
@@ -595,9 +611,10 @@ namespace BugHunter
 
                 LastKeyStrokeInput = gameTime.TotalGameTime.TotalMilliseconds;
             }
-            
-            if(!client.Disposed)
-                client.SetPresence(presence);
+
+            if (IsDiscordRunning)
+                if (!client.Disposed)
+                    client.SetPresence(presence);
 
             base.Update(gameTime);
         }
@@ -738,9 +755,27 @@ namespace BugHunter
             settings.SaveSettings();
             GamePad.SetVibration(PlayerIndex.One, 0f, 0f);
             base.OnExiting(sender, args);
-
-            
         }
+
+        /// <summary>
+        /// Überprüft ob ein Prozess läuft
+        /// </summary>
+        /// <param name="name">Name der Anwendung. Richtig: cmd   Falsch: cmd.exe</param>
+        /// <returns>Liefert true wenn die Anwendung läuft und false wenn nicht</returns>
+        public bool IsProcessRunning(string name)
+        {
+            foreach (Process clsProcess in Process.GetProcesses())
+            {
+                if (clsProcess.ProcessName.Contains(name))
+                {
+                    return true;
+                }
+            }
+
+            return false;
+        }
+        
+
 
         private static void OnReady(object sender, ReadyMessage args)
 		{
