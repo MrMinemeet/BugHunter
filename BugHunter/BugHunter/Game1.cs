@@ -96,7 +96,8 @@ namespace BugHunter
         private readonly TimeSpan timePerFrame = TimeSpan.FromSeconds(3f / 30f);
 
         // Android gegner
-        IDictionary<int, Android> Androids = new Dictionary<int, Android>();
+        // IDictionary<int, Android> Androids = new Dictionary<int, Android>();
+        List<Android> Androids = new List<Android>();
         int maxAndroids = 1;
         int AndroidHealth = 30;
         int AndroidDamage = 1;
@@ -422,6 +423,26 @@ namespace BugHunter
                     settings.HighScore = Score;
                     sound.ScoreSound.Play(0.5f, 0, 0);
                 }
+                
+                maxAndroids = (int)(this.Score / 1000) + 1;
+
+                // Generiert neue Einträge im Dictionary wenn weniger Gegner da sind als max. zulässig sind
+                // Generiert immer dann einen Eintrag wenn der Key nicht verwendet wird
+                for (int i = Androids.Count; i < maxAndroids; i++)
+                {
+                    // Neues Leben für Android berechen
+                    this.AndroidHealth = (int)(AndroidHealth + 5);
+
+
+                    // Neuen Android in Liste erstellen
+                    Androids.Add(new Android(50f, AndroidHealth, AndroidDamage));
+
+                    // Android Initialisieren
+                    Androids[i].Init(this, this.settings, this.player);
+                    Androids[i].OriginTexture = Content.Load<Texture2D>("sprites/originSpot");
+                    Androids[i].spriteSheet = spriteSheetLoader.Load("sprites/entities/entities.png");
+                    Androids[i].SetSpawnFromMap(MapArray);
+                }
 
                 // Updaten
                 for (int i = 0; i < Androids.Count; i++)
@@ -437,7 +458,7 @@ namespace BugHunter
                         {
                             AndroidDamage += 1;
                         }
-                        Androids.Remove(i);
+                        Androids.Remove(Androids[i]);
                         
                         // 20% Chance dass ein Powerup Spawnt
                         if(random.Next(100) < 20)
@@ -499,29 +520,6 @@ namespace BugHunter
                     sound.HintergrundMusikEffect.Play();
                 }
 
-                maxAndroids = (int)(this.Score / 1000) + 1;
-
-                // Generiert neue Einträge im Dictionary wenn weniger Gegner da sind als max. zulässig sind
-                // Generiert immer dann einen Eintrag wenn der Key nicht verwendet wird
-                for (int i = 0; i < maxAndroids; i++)
-                {
-                    if (!Androids.ContainsKey(i))
-                    {
-                        // Neues Leben für Android berechen
-                        this.AndroidHealth = (int)(AndroidHealth + 5);
-
-
-                        // Neuen Android in Liste erstellen
-                        Androids.Add(i, new Android(50f, AndroidHealth, AndroidDamage));
-
-                        // Android Initialisieren
-                        Androids[i].Init(this, this.settings, this.player);
-                        Androids[i].OriginTexture = Content.Load<Texture2D>("sprites/originSpot");
-                        Androids[i].spriteSheet = spriteSheetLoader.Load("sprites/entities/entities.png");
-                        Androids[i].SetSpawnFromMap(MapArray);
-                    }
-                }
-
                 // Überprüft ob Powerup gelöscht wurde und löscht es falls ja
                 for (int i = 0; i <= Powerups.Count; i++)
                 {
@@ -533,12 +531,7 @@ namespace BugHunter
                             break;
                         }
                     }
-                }
-
-                // Generiert neue Einträge im Dictionary wenn weniger Powerup da sind als max. zulässig sind
-                // Generiert immer dann einen Eintrag wenn der Key nicht verwendet wird
-
-                
+                }                
 
                 // Updated Powerups
                 for(int i = 0; i <= Powerups.Count; i++)
