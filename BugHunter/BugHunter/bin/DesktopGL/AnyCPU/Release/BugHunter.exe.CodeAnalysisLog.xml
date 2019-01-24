@@ -12,73 +12,73 @@
          <Members>
           <Member Name="#ClearPresence()" Kind="Method" Static="True" Accessibility="Public" ExternallyVisible="True">
            <Messages>
-            <Message TypeName="MovePInvokesToNativeMethodsClass" Category="Microsoft.Design" CheckId="CA1060" Status="Active" Created="2019-01-20 19:54:27Z" FixCategory="Breaking">
+            <Message TypeName="MovePInvokesToNativeMethodsClass" Category="Microsoft.Design" CheckId="CA1060" Status="Active" Created="2019-01-24 14:15:27Z" FixCategory="Breaking">
              <Issue Certainty="95" Level="CriticalWarning">Als P/Invoke-Methode muss 'DiscordRpc.ClearPresence()' in einer Klasse mit dem Namen NativeMethods, SafeNativeMethods oder UnsafeNativeMethods definiert werden.</Issue>
             </Message>
-            <Message TypeName="PInvokesShouldNotBeVisible" Category="Microsoft.Interoperability" CheckId="CA1401" Status="Active" Created="2019-01-20 19:54:27Z" FixCategory="Breaking">
+            <Message TypeName="PInvokesShouldNotBeVisible" Category="Microsoft.Interoperability" CheckId="CA1401" Status="Active" Created="2019-01-24 14:15:27Z" FixCategory="Breaking">
              <Issue Certainty="50" Level="CriticalError">Ändern Sie den Zugriff auf P/Invoke 'DiscordRpc.ClearPresence()' so, dass die Methode außerhalb der Assembly nicht mehr sichtbar ist.</Issue>
             </Message>
            </Messages>
           </Member>
           <Member Name="#InitializeInternal(System.String,DiscordRpc+EventHandlers&amp;,System.Boolean,System.String,System.Int32)" Kind="Method" Static="True" Accessibility="Private" ExternallyVisible="False">
            <Messages>
-            <Message TypeName="MovePInvokesToNativeMethodsClass" Category="Microsoft.Design" CheckId="CA1060" Status="Active" Created="2019-01-20 19:54:27Z" FixCategory="Breaking">
+            <Message TypeName="MovePInvokesToNativeMethodsClass" Category="Microsoft.Design" CheckId="CA1060" Status="Active" Created="2019-01-24 14:15:27Z" FixCategory="Breaking">
              <Issue Certainty="95" Level="CriticalWarning">Als P/Invoke-Methode muss 'DiscordRpc.InitializeInternal(string, ref DiscordRpc.EventHandlers, bool, string, int)' in einer Klasse mit dem Namen NativeMethods, SafeNativeMethods oder UnsafeNativeMethods definiert werden.</Issue>
             </Message>
-            <Message Id="0" TypeName="SpecifyMarshalingForPInvokeStringArguments" Category="Microsoft.Globalization" CheckId="CA2101" Status="Active" Created="2019-01-20 19:54:27Z" FixCategory="NonBreaking">
+            <Message Id="0" TypeName="SpecifyMarshalingForPInvokeStringArguments" Category="Microsoft.Globalization" CheckId="CA2101" Status="Active" Created="2019-01-24 14:15:27Z" FixCategory="NonBreaking">
              <Issue Name="ParameterImplicitAnsi" Certainty="75" Level="Error">Um Sicherheitsrisiken zu verringern, marshallen Sie den 'applicationId'-Parameter als Unicode, indem Sie DllImport.CharSet auf CharSet.Unicode festlegen oder den Parameter explizit als UnmanagedType.LPWStr marshallen. Wenn Sie diese Zeichenfolge als ANSI oder systemabhängig marshallen müssen, geben Sie MarshalAs explizit an, und legen Sie "BestFitMapping=false" fest. Legen Sie zur Erhöhung der Sicherheit auch "ThrowOnUnmappableChar=true" fest.</Issue>
             </Message>
-            <Message Id="3" TypeName="SpecifyMarshalingForPInvokeStringArguments" Category="Microsoft.Globalization" CheckId="CA2101" Status="Active" Created="2019-01-20 19:54:27Z" FixCategory="NonBreaking">
+            <Message Id="3" TypeName="SpecifyMarshalingForPInvokeStringArguments" Category="Microsoft.Globalization" CheckId="CA2101" Status="Active" Created="2019-01-24 14:15:27Z" FixCategory="NonBreaking">
              <Issue Name="ParameterImplicitAnsi" Certainty="75" Level="Error">Um Sicherheitsrisiken zu verringern, marshallen Sie den 'optionalSteamId'-Parameter als Unicode, indem Sie DllImport.CharSet auf CharSet.Unicode festlegen oder den Parameter explizit als UnmanagedType.LPWStr marshallen. Wenn Sie diese Zeichenfolge als ANSI oder systemabhängig marshallen müssen, geben Sie MarshalAs explizit an, und legen Sie "BestFitMapping=false" fest. Legen Sie zur Erhöhung der Sicherheit auch "ThrowOnUnmappableChar=true" fest.</Issue>
             </Message>
            </Messages>
           </Member>
           <Member Name="#Respond(System.String,DiscordRpc+Reply)" Kind="Method" Static="True" Accessibility="Public" ExternallyVisible="True">
            <Messages>
-            <Message TypeName="MovePInvokesToNativeMethodsClass" Category="Microsoft.Design" CheckId="CA1060" Status="Active" Created="2019-01-20 19:54:27Z" FixCategory="Breaking">
+            <Message TypeName="MovePInvokesToNativeMethodsClass" Category="Microsoft.Design" CheckId="CA1060" Status="Active" Created="2019-01-24 14:15:27Z" FixCategory="Breaking">
              <Issue Certainty="95" Level="CriticalWarning">Als P/Invoke-Methode muss 'DiscordRpc.Respond(string, DiscordRpc.Reply)' in einer Klasse mit dem Namen NativeMethods, SafeNativeMethods oder UnsafeNativeMethods definiert werden.</Issue>
             </Message>
-            <Message TypeName="PInvokesShouldNotBeVisible" Category="Microsoft.Interoperability" CheckId="CA1401" Status="Active" Created="2019-01-20 19:54:27Z" FixCategory="Breaking">
+            <Message TypeName="PInvokesShouldNotBeVisible" Category="Microsoft.Interoperability" CheckId="CA1401" Status="Active" Created="2019-01-24 14:15:27Z" FixCategory="Breaking">
              <Issue Certainty="50" Level="CriticalError">Ändern Sie den Zugriff auf P/Invoke 'DiscordRpc.Respond(string, DiscordRpc.Reply)' so, dass die Methode außerhalb der Assembly nicht mehr sichtbar ist.</Issue>
             </Message>
-            <Message Id="0" TypeName="SpecifyMarshalingForPInvokeStringArguments" Category="Microsoft.Globalization" CheckId="CA2101" Status="Active" Created="2019-01-20 19:54:27Z" FixCategory="NonBreaking">
+            <Message Id="0" TypeName="SpecifyMarshalingForPInvokeStringArguments" Category="Microsoft.Globalization" CheckId="CA2101" Status="Active" Created="2019-01-24 14:15:27Z" FixCategory="NonBreaking">
              <Issue Name="ParameterImplicitAnsi" Certainty="75" Level="Error">Um Sicherheitsrisiken zu verringern, marshallen Sie den 'userId'-Parameter als Unicode, indem Sie DllImport.CharSet auf CharSet.Unicode festlegen oder den Parameter explizit als UnmanagedType.LPWStr marshallen. Wenn Sie diese Zeichenfolge als ANSI oder systemabhängig marshallen müssen, geben Sie MarshalAs explizit an, und legen Sie "BestFitMapping=false" fest. Legen Sie zur Erhöhung der Sicherheit auch "ThrowOnUnmappableChar=true" fest.</Issue>
             </Message>
            </Messages>
           </Member>
           <Member Name="#RunCallbacks()" Kind="Method" Static="True" Accessibility="Public" ExternallyVisible="True">
            <Messages>
-            <Message TypeName="MovePInvokesToNativeMethodsClass" Category="Microsoft.Design" CheckId="CA1060" Status="Active" Created="2019-01-20 19:54:27Z" FixCategory="Breaking">
+            <Message TypeName="MovePInvokesToNativeMethodsClass" Category="Microsoft.Design" CheckId="CA1060" Status="Active" Created="2019-01-24 14:15:27Z" FixCategory="Breaking">
              <Issue Certainty="95" Level="CriticalWarning">Als P/Invoke-Methode muss 'DiscordRpc.RunCallbacks()' in einer Klasse mit dem Namen NativeMethods, SafeNativeMethods oder UnsafeNativeMethods definiert werden.</Issue>
             </Message>
-            <Message TypeName="PInvokesShouldNotBeVisible" Category="Microsoft.Interoperability" CheckId="CA1401" Status="Active" Created="2019-01-20 19:54:27Z" FixCategory="Breaking">
+            <Message TypeName="PInvokesShouldNotBeVisible" Category="Microsoft.Interoperability" CheckId="CA1401" Status="Active" Created="2019-01-24 14:15:27Z" FixCategory="Breaking">
              <Issue Certainty="50" Level="CriticalError">Ändern Sie den Zugriff auf P/Invoke 'DiscordRpc.RunCallbacks()' so, dass die Methode außerhalb der Assembly nicht mehr sichtbar ist.</Issue>
             </Message>
            </Messages>
           </Member>
           <Member Name="#Shutdown()" Kind="Method" Static="True" Accessibility="Public" ExternallyVisible="True">
            <Messages>
-            <Message TypeName="MovePInvokesToNativeMethodsClass" Category="Microsoft.Design" CheckId="CA1060" Status="Active" Created="2019-01-20 19:54:27Z" FixCategory="Breaking">
+            <Message TypeName="MovePInvokesToNativeMethodsClass" Category="Microsoft.Design" CheckId="CA1060" Status="Active" Created="2019-01-24 14:15:27Z" FixCategory="Breaking">
              <Issue Certainty="95" Level="CriticalWarning">Als P/Invoke-Methode muss 'DiscordRpc.Shutdown()' in einer Klasse mit dem Namen NativeMethods, SafeNativeMethods oder UnsafeNativeMethods definiert werden.</Issue>
             </Message>
-            <Message TypeName="PInvokesShouldNotBeVisible" Category="Microsoft.Interoperability" CheckId="CA1401" Status="Active" Created="2019-01-20 19:54:27Z" FixCategory="Breaking">
+            <Message TypeName="PInvokesShouldNotBeVisible" Category="Microsoft.Interoperability" CheckId="CA1401" Status="Active" Created="2019-01-24 14:15:27Z" FixCategory="Breaking">
              <Issue Certainty="50" Level="CriticalError">Ändern Sie den Zugriff auf P/Invoke 'DiscordRpc.Shutdown()' so, dass die Methode außerhalb der Assembly nicht mehr sichtbar ist.</Issue>
             </Message>
            </Messages>
           </Member>
           <Member Name="#UpdateHandlers(DiscordRpc+EventHandlers&amp;)" Kind="Method" Static="True" Accessibility="Public" ExternallyVisible="True">
            <Messages>
-            <Message TypeName="MovePInvokesToNativeMethodsClass" Category="Microsoft.Design" CheckId="CA1060" Status="Active" Created="2019-01-20 19:54:27Z" FixCategory="Breaking">
+            <Message TypeName="MovePInvokesToNativeMethodsClass" Category="Microsoft.Design" CheckId="CA1060" Status="Active" Created="2019-01-24 14:15:27Z" FixCategory="Breaking">
              <Issue Certainty="95" Level="CriticalWarning">Als P/Invoke-Methode muss 'DiscordRpc.UpdateHandlers(ref DiscordRpc.EventHandlers)' in einer Klasse mit dem Namen NativeMethods, SafeNativeMethods oder UnsafeNativeMethods definiert werden.</Issue>
             </Message>
-            <Message TypeName="PInvokesShouldNotBeVisible" Category="Microsoft.Interoperability" CheckId="CA1401" Status="Active" Created="2019-01-20 19:54:27Z" FixCategory="Breaking">
+            <Message TypeName="PInvokesShouldNotBeVisible" Category="Microsoft.Interoperability" CheckId="CA1401" Status="Active" Created="2019-01-24 14:15:27Z" FixCategory="Breaking">
              <Issue Certainty="50" Level="CriticalError">Ändern Sie den Zugriff auf P/Invoke 'DiscordRpc.UpdateHandlers(ref DiscordRpc.EventHandlers)' so, dass die Methode außerhalb der Assembly nicht mehr sichtbar ist.</Issue>
             </Message>
            </Messages>
           </Member>
           <Member Name="#UpdatePresenceNative(DiscordRpc+RichPresenceStruct&amp;)" Kind="Method" Static="True" Accessibility="Private" ExternallyVisible="False">
            <Messages>
-            <Message TypeName="MovePInvokesToNativeMethodsClass" Category="Microsoft.Design" CheckId="CA1060" Status="Active" Created="2019-01-20 19:54:27Z" FixCategory="Breaking">
+            <Message TypeName="MovePInvokesToNativeMethodsClass" Category="Microsoft.Design" CheckId="CA1060" Status="Active" Created="2019-01-24 14:15:27Z" FixCategory="Breaking">
              <Issue Certainty="95" Level="CriticalWarning">Als P/Invoke-Methode muss 'DiscordRpc.UpdatePresenceNative(ref DiscordRpc.RichPresenceStruct)' in einer Klasse mit dem Namen NativeMethods, SafeNativeMethods oder UnsafeNativeMethods definiert werden.</Issue>
             </Message>
            </Messages>
@@ -89,70 +89,70 @@
          <Members>
           <Member Name="#details" Kind="Field" Static="False" Accessibility="Public" ExternallyVisible="True">
            <Messages>
-            <Message TypeName="PointersShouldNotBeVisible" Category="Microsoft.Security" CheckId="CA2111" Status="Active" Created="2019-01-20 19:54:27Z" FixCategory="Breaking">
+            <Message TypeName="PointersShouldNotBeVisible" Category="Microsoft.Security" CheckId="CA2111" Status="Active" Created="2019-01-24 14:15:27Z" FixCategory="Breaking">
              <Issue Certainty="75" Level="CriticalError">Markieren Sie "'DiscordRpc.RichPresenceStruct.details'" als privat.</Issue>
             </Message>
            </Messages>
           </Member>
           <Member Name="#joinSecret" Kind="Field" Static="False" Accessibility="Public" ExternallyVisible="True">
            <Messages>
-            <Message TypeName="PointersShouldNotBeVisible" Category="Microsoft.Security" CheckId="CA2111" Status="Active" Created="2019-01-20 19:54:27Z" FixCategory="Breaking">
+            <Message TypeName="PointersShouldNotBeVisible" Category="Microsoft.Security" CheckId="CA2111" Status="Active" Created="2019-01-24 14:15:27Z" FixCategory="Breaking">
              <Issue Certainty="75" Level="CriticalError">Markieren Sie "'DiscordRpc.RichPresenceStruct.joinSecret'" als privat.</Issue>
             </Message>
            </Messages>
           </Member>
           <Member Name="#largeImageKey" Kind="Field" Static="False" Accessibility="Public" ExternallyVisible="True">
            <Messages>
-            <Message TypeName="PointersShouldNotBeVisible" Category="Microsoft.Security" CheckId="CA2111" Status="Active" Created="2019-01-20 19:54:27Z" FixCategory="Breaking">
+            <Message TypeName="PointersShouldNotBeVisible" Category="Microsoft.Security" CheckId="CA2111" Status="Active" Created="2019-01-24 14:15:27Z" FixCategory="Breaking">
              <Issue Certainty="75" Level="CriticalError">Markieren Sie "'DiscordRpc.RichPresenceStruct.largeImageKey'" als privat.</Issue>
             </Message>
            </Messages>
           </Member>
           <Member Name="#largeImageText" Kind="Field" Static="False" Accessibility="Public" ExternallyVisible="True">
            <Messages>
-            <Message TypeName="PointersShouldNotBeVisible" Category="Microsoft.Security" CheckId="CA2111" Status="Active" Created="2019-01-20 19:54:27Z" FixCategory="Breaking">
+            <Message TypeName="PointersShouldNotBeVisible" Category="Microsoft.Security" CheckId="CA2111" Status="Active" Created="2019-01-24 14:15:27Z" FixCategory="Breaking">
              <Issue Certainty="75" Level="CriticalError">Markieren Sie "'DiscordRpc.RichPresenceStruct.largeImageText'" als privat.</Issue>
             </Message>
            </Messages>
           </Member>
           <Member Name="#matchSecret" Kind="Field" Static="False" Accessibility="Public" ExternallyVisible="True">
            <Messages>
-            <Message TypeName="PointersShouldNotBeVisible" Category="Microsoft.Security" CheckId="CA2111" Status="Active" Created="2019-01-20 19:54:27Z" FixCategory="Breaking">
+            <Message TypeName="PointersShouldNotBeVisible" Category="Microsoft.Security" CheckId="CA2111" Status="Active" Created="2019-01-24 14:15:27Z" FixCategory="Breaking">
              <Issue Certainty="75" Level="CriticalError">Markieren Sie "'DiscordRpc.RichPresenceStruct.matchSecret'" als privat.</Issue>
             </Message>
            </Messages>
           </Member>
           <Member Name="#partyId" Kind="Field" Static="False" Accessibility="Public" ExternallyVisible="True">
            <Messages>
-            <Message TypeName="PointersShouldNotBeVisible" Category="Microsoft.Security" CheckId="CA2111" Status="Active" Created="2019-01-20 19:54:27Z" FixCategory="Breaking">
+            <Message TypeName="PointersShouldNotBeVisible" Category="Microsoft.Security" CheckId="CA2111" Status="Active" Created="2019-01-24 14:15:27Z" FixCategory="Breaking">
              <Issue Certainty="75" Level="CriticalError">Markieren Sie "'DiscordRpc.RichPresenceStruct.partyId'" als privat.</Issue>
             </Message>
            </Messages>
           </Member>
           <Member Name="#smallImageKey" Kind="Field" Static="False" Accessibility="Public" ExternallyVisible="True">
            <Messages>
-            <Message TypeName="PointersShouldNotBeVisible" Category="Microsoft.Security" CheckId="CA2111" Status="Active" Created="2019-01-20 19:54:27Z" FixCategory="Breaking">
+            <Message TypeName="PointersShouldNotBeVisible" Category="Microsoft.Security" CheckId="CA2111" Status="Active" Created="2019-01-24 14:15:27Z" FixCategory="Breaking">
              <Issue Certainty="75" Level="CriticalError">Markieren Sie "'DiscordRpc.RichPresenceStruct.smallImageKey'" als privat.</Issue>
             </Message>
            </Messages>
           </Member>
           <Member Name="#smallImageText" Kind="Field" Static="False" Accessibility="Public" ExternallyVisible="True">
            <Messages>
-            <Message TypeName="PointersShouldNotBeVisible" Category="Microsoft.Security" CheckId="CA2111" Status="Active" Created="2019-01-20 19:54:27Z" FixCategory="Breaking">
+            <Message TypeName="PointersShouldNotBeVisible" Category="Microsoft.Security" CheckId="CA2111" Status="Active" Created="2019-01-24 14:15:27Z" FixCategory="Breaking">
              <Issue Certainty="75" Level="CriticalError">Markieren Sie "'DiscordRpc.RichPresenceStruct.smallImageText'" als privat.</Issue>
             </Message>
            </Messages>
           </Member>
           <Member Name="#spectateSecret" Kind="Field" Static="False" Accessibility="Public" ExternallyVisible="True">
            <Messages>
-            <Message TypeName="PointersShouldNotBeVisible" Category="Microsoft.Security" CheckId="CA2111" Status="Active" Created="2019-01-20 19:54:27Z" FixCategory="Breaking">
+            <Message TypeName="PointersShouldNotBeVisible" Category="Microsoft.Security" CheckId="CA2111" Status="Active" Created="2019-01-24 14:15:27Z" FixCategory="Breaking">
              <Issue Certainty="75" Level="CriticalError">Markieren Sie "'DiscordRpc.RichPresenceStruct.spectateSecret'" als privat.</Issue>
             </Message>
            </Messages>
           </Member>
           <Member Name="#state" Kind="Field" Static="False" Accessibility="Public" ExternallyVisible="True">
            <Messages>
-            <Message TypeName="PointersShouldNotBeVisible" Category="Microsoft.Security" CheckId="CA2111" Status="Active" Created="2019-01-20 19:54:27Z" FixCategory="Breaking">
+            <Message TypeName="PointersShouldNotBeVisible" Category="Microsoft.Security" CheckId="CA2111" Status="Active" Created="2019-01-24 14:15:27Z" FixCategory="Breaking">
              <Issue Certainty="75" Level="CriticalError">Markieren Sie "'DiscordRpc.RichPresenceStruct.state'" als privat.</Issue>
             </Message>
            </Messages>

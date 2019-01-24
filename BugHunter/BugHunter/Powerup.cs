@@ -21,6 +21,8 @@ namespace ProjectWhitespace
         public enum PowerupTypes { Medipack, MoreAmmo, DamageUp, ShootSpeedUp }
 
         PowerupTypes PowerupType;
+
+        private int type;
         
 
         public Powerup(Game1 game,SpriteSheet spriteSheet, SpriteRender spriteRender, Settings settings, int[][] MapArray)
@@ -31,7 +33,6 @@ namespace ProjectWhitespace
             this.settings = settings;
             this.position = this.SetSpawnFromMap(MapArray, this.settings);
 
-            //switch (game.random.Next(System.Enum.GetNames(typeof(PowerupTypes)).Length))
             switch(game.random.Next(2))
             {
                 case 0:
@@ -44,9 +45,14 @@ namespace ProjectWhitespace
                     this.PowerupType = PowerupTypes.DamageUp;
                     break;
                 case 3:
-                    this.PowerupType = PowerupTypes.Medipack;
+                    if(game.player.Health < game.player.MaxHealth)
+                    {
+                        this.PowerupType = PowerupTypes.Medipack;
+                    }
                     break;
             }
+
+            this.type = game.random.Next(1);
         }
 
         private Vector2 SetSpawnFromMap(int[][] MapArray, Settings settings)
@@ -95,6 +101,18 @@ namespace ProjectWhitespace
                         spriteSheet.Sprite(TexturePackerMonoGameDefinitions.entities.Powerup_usb),
                         this.position,
                         Color.White);
+                    break;
+                case PowerupTypes.Medipack:
+                    switch (type)
+                    {
+                        case 0:
+                            spriteRender.Draw(
+                                spriteSheet.Sprite(TexturePackerMonoGameDefinitions.entities.Powerup_CPU),
+                                this.position,
+                                Color.White);
+                            break;
+
+                    }
                     break;
             }
         }
@@ -167,6 +185,16 @@ namespace ProjectWhitespace
                         if (this.game.weapon.CsharpAmmoAmount < Weapon.GeneralMaxAmmo)
                             this.game.weapon.CsharpAmmoAmount += 10;
 
+                        break;
+                    case PowerupTypes.Medipack:
+                        if(player.Health + 25 > player.MaxHealth)
+                        {
+                            player.Health = player.MaxHealth;
+                        }
+                        else
+                        {
+                            player.Health += 25;
+                        }
                         break;
                 }
                 return true;

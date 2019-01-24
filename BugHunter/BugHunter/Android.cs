@@ -107,21 +107,19 @@ namespace BugHunter
             }
 
             // Überprüft ob von Projektil getroffen wurde
-            foreach (Projectile p in player.projectiles)
+            for(int i = 0; i < player.projectiles.Count; i++)
             {
-                if (p.IsActive)
+                if (player.projectiles[i].CheckForHit(this))
                 {
-                    if (p.CheckForHit(this))
+                    this.Health -= game.weapon.getDamageAktWeapon(player.aktWeapon) + player.Damageboost;
+
+                    player.projectiles.Remove(player.projectiles[i]);
+
+                    // Falls Gegner 0 leben hat, soll dieser despawnen und der Score erhöht werden.
+                    if (this.Health <= 0)
                     {
-                        this.Health -= game.weapon.getDamageAktWeapon(player.aktWeapon);
-
-
-                        // Falls Gegner 0 leben hat, soll dieser despawnen und der Score erhöht werden.
-                        if (this.Health <= 0)
-                        {
-                            game.Score += 100;
-                            this.IsDead = true;
-                        }
+                        game.Score += 100;
+                        this.IsDead = true;
                     }
                 }
             }

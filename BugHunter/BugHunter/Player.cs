@@ -20,6 +20,7 @@ namespace BugHunter
         public int Health { get; set; }
         public int MaxHealth { get; set; }
         public bool IsReloading = false;
+        public int Damageboost = 0;
 
         public double ReloadTime = 0;
 
@@ -38,7 +39,7 @@ namespace BugHunter
         private bool ShowPlayerOrigin = false;
 
         // Waffen
-        public Projectile[] projectiles = new Projectile[100];
+        public List<Projectile> projectiles = new List<Projectile>();
         public SpriteSheet WeaponSpriteSheet;
         private double lastTimeShot = 0;
         public Weapon.WeaponTypes aktWeapon = Weapon.WeaponTypes.c;
@@ -81,6 +82,9 @@ namespace BugHunter
         {
             this.Health = MaxHealth;
             SetSpawnFromMap(MapArray);
+
+            this.Damageboost = 0;
+            this.IsVibrating = false;
 
             AmmunitionAmmountList[Weapon.WeaponTypes.c] = game.weapon.getMaxAmmoAmountSpecificWeapon(Weapon.WeaponTypes.c);
             AmmunitionAmmountList[Weapon.WeaponTypes.cpp] = game.weapon.getMaxAmmoAmountSpecificWeapon(Weapon.WeaponTypes.cpp);
@@ -172,9 +176,23 @@ namespace BugHunter
             // Updated jedes aktive Projektil im Array
             foreach(Projectile p in projectiles)
             {
-                if (p.IsActive)
+                p.UpdateShot(gameTime, this);
+            }
+
+            for(int i = 0; i < projectiles.Count; i++)
+            {
+                if (projectiles[i].DidProjectileHitCollision(CollisionMapArray, map))
                 {
-                    p.UpdateShot(gameTime, this);
+                    projectiles.Remove(projectiles[i]);
+                }
+            }
+
+            // Überprüft ob Projektile abgelaufen sind und löscht diese
+            for(int i = 0; i < projectiles.Count; i++)
+            {
+                if (projectiles[i].IsProjectileTimeOver(gameTime))
+                {
+                    projectiles.Remove(projectiles[i]);
                 }
             }
 
@@ -195,79 +213,78 @@ namespace BugHunter
                 // Initialisiert Projektil und stellt richtung, Position und Waffenart ein
                 if (kstate.IsKeyDown(Keys.Right) || gamepadState.IsButtonDown(Buttons.B))
                 {
-
-                    foreach (Projectile p in projectiles)
+                    if (gameTime.TotalGameTime.TotalMilliseconds - lastTimeShot >= game.weapon.getDelayAktWeapon(aktWeapon))
                     {
-                        if (!p.IsActive && gameTime.TotalGameTime.TotalMilliseconds - lastTimeShot >= game.weapon.getDelayAktWeapon(aktWeapon))
-                        {
-                            sound.Schuesse[random.Next(sound.Schuesse.Length - 1)].Play();
-                            AmmunitionAmmountList[aktWeapon]--;
-                            p.IsActive = true;
-                            p.ProjectilePosition = this.Position;
-                            p.TimeSinceShot = gameTime.TotalGameTime.TotalSeconds;
-                            p.aktDirection = Projectile.Directions.Right;
-                            p.ProjectileType = aktWeapon;
-                            p.textureVersion = (byte)random.Next(8);
+                        projectiles.Add(new Projectile());
 
-                            lastTimeShot = gameTime.TotalGameTime.TotalMilliseconds;
-                        }
+
+                        sound.Schuesse[random.Next(sound.Schuesse.Length - 1)].Play();
+                        AmmunitionAmmountList[aktWeapon]--;
+
+                        projectiles[projectiles.Count - 1].Init(this.game, this);
+                        projectiles[projectiles.Count - 1].ProjectilePosition = this.Position;
+                        projectiles[projectiles.Count - 1].TimeSinceShot = gameTime.TotalGameTime.TotalSeconds;
+                        projectiles[projectiles.Count - 1].aktDirection = Projectile.Directions.Right;
+                        projectiles[projectiles.Count - 1].ProjectileType = aktWeapon;
+                        projectiles[projectiles.Count - 1].textureVersion = (byte)random.Next(8);
+
+                        lastTimeShot = gameTime.TotalGameTime.TotalMilliseconds;
                     }
                 }
                 else if (kstate.IsKeyDown(Keys.Left) || gamepadState.IsButtonDown(Buttons.X))
                 {
-                    foreach (Projectile p in projectiles)
+                    if (gameTime.TotalGameTime.TotalMilliseconds - lastTimeShot >= game.weapon.getDelayAktWeapon(aktWeapon))
                     {
-                        if (!p.IsActive && gameTime.TotalGameTime.TotalMilliseconds - lastTimeShot >= game.weapon.getDelayAktWeapon(aktWeapon))
-                        {
-                            sound.Schuesse[random.Next(sound.Schuesse.Length - 1)].Play();
-                            AmmunitionAmmountList[aktWeapon]--;
-                            p.IsActive = true;
-                            p.ProjectilePosition = this.Position;
-                            p.TimeSinceShot = gameTime.TotalGameTime.TotalSeconds;
-                            p.aktDirection = Projectile.Directions.Left;
-                            p.ProjectileType = aktWeapon;
-                            p.textureVersion = (byte)random.Next(8);
+                        projectiles.Add(new Projectile());
+                        sound.Schuesse[random.Next(sound.Schuesse.Length - 1)].Play();
+                        AmmunitionAmmountList[aktWeapon]--;
 
-                            lastTimeShot = gameTime.TotalGameTime.TotalMilliseconds;
-                        }
+                        projectiles[projectiles.Count - 1].Init(this.game, this);
+                        projectiles[projectiles.Count - 1].ProjectilePosition = this.Position;
+                        projectiles[projectiles.Count - 1].TimeSinceShot = gameTime.TotalGameTime.TotalSeconds;
+                        projectiles[projectiles.Count - 1].aktDirection = Projectile.Directions.Left;
+                        projectiles[projectiles.Count - 1].ProjectileType = aktWeapon;
+                        projectiles[projectiles.Count - 1].textureVersion = (byte)random.Next(8);
+
+                        lastTimeShot = gameTime.TotalGameTime.TotalMilliseconds;
                     }
                 }
                 else if (kstate.IsKeyDown(Keys.Up) || gamepadState.IsButtonDown(Buttons.Y))
                 {
-                    foreach (Projectile p in projectiles)
+                    if (gameTime.TotalGameTime.TotalMilliseconds - lastTimeShot >= game.weapon.getDelayAktWeapon(aktWeapon))
                     {
-                        if (!p.IsActive && gameTime.TotalGameTime.TotalMilliseconds - lastTimeShot >= game.weapon.getDelayAktWeapon(aktWeapon))
-                        {
-                            sound.Schuesse[random.Next(sound.Schuesse.Length - 1)].Play();
-                            AmmunitionAmmountList[aktWeapon]--;
-                            p.IsActive = true;
-                            p.ProjectilePosition = this.Position;
-                            p.TimeSinceShot = gameTime.TotalGameTime.TotalSeconds;
-                            p.aktDirection = Projectile.Directions.Up;
-                            p.ProjectileType = aktWeapon;
-                            p.textureVersion = (byte)random.Next(8);
+                        projectiles.Add(new Projectile());
 
-                            lastTimeShot = gameTime.TotalGameTime.TotalMilliseconds;
-                        }
+                        sound.Schuesse[random.Next(sound.Schuesse.Length - 1)].Play();
+                        AmmunitionAmmountList[aktWeapon]--;
+
+                        projectiles[projectiles.Count - 1].Init(this.game, this);
+                        projectiles[projectiles.Count - 1].ProjectilePosition = this.Position;
+                        projectiles[projectiles.Count - 1].TimeSinceShot = gameTime.TotalGameTime.TotalSeconds;
+                        projectiles[projectiles.Count - 1].aktDirection = Projectile.Directions.Up;
+                        projectiles[projectiles.Count - 1].ProjectileType = aktWeapon;
+                        projectiles[projectiles.Count - 1].textureVersion = (byte)random.Next(8);
+
+                        lastTimeShot = gameTime.TotalGameTime.TotalMilliseconds;
                     }
                 }
                 else if (kstate.IsKeyDown(Keys.Down) || gamepadState.IsButtonDown(Buttons.A))
                 {
-                    foreach (Projectile p in projectiles)
+                    if (gameTime.TotalGameTime.TotalMilliseconds - lastTimeShot >= game.weapon.getDelayAktWeapon(aktWeapon))
                     {
-                        if (!p.IsActive && gameTime.TotalGameTime.TotalMilliseconds - lastTimeShot >= game.weapon.getDelayAktWeapon(aktWeapon))
-                        {
-                            sound.Schuesse[random.Next(sound.Schuesse.Length - 1)].Play();
-                            AmmunitionAmmountList[aktWeapon]--;
-                            p.IsActive = true;
-                            p.ProjectilePosition = this.Position;
-                            p.TimeSinceShot = gameTime.TotalGameTime.TotalSeconds;
-                            p.aktDirection = Projectile.Directions.Down;
-                            p.ProjectileType = aktWeapon;
-                            p.textureVersion = (byte)random.Next(8);
+                        projectiles.Add(new Projectile());
 
-                            lastTimeShot = gameTime.TotalGameTime.TotalMilliseconds;
-                        }
+                        sound.Schuesse[random.Next(sound.Schuesse.Length - 1)].Play();
+                        AmmunitionAmmountList[aktWeapon]--;
+
+                        projectiles[projectiles.Count - 1].Init(this.game, this);
+                        projectiles[projectiles.Count - 1].ProjectilePosition = this.Position;
+                        projectiles[projectiles.Count - 1].TimeSinceShot = gameTime.TotalGameTime.TotalSeconds;
+                        projectiles[projectiles.Count - 1].aktDirection = Projectile.Directions.Down;
+                        projectiles[projectiles.Count - 1].ProjectileType = aktWeapon;
+                        projectiles[projectiles.Count - 1].textureVersion = (byte)random.Next(8);
+
+                        lastTimeShot = gameTime.TotalGameTime.TotalMilliseconds;
                     }
                 }
             }
@@ -341,7 +358,6 @@ namespace BugHunter
         // Überprüft ob Waffe gewechselt wird und setzt die richtige aktiv
         private void WeaponUpdate(GameTime gameTime)
         {
-
             var gamepadState = GamePad.GetState(PlayerIndex.One);
 
             if (Keyboard.GetState().IsKeyDown(Keys.D1))
@@ -469,12 +485,6 @@ namespace BugHunter
             this.game = game;   
             this.settings = settings;
             this.sound = sound;
-            for (int i = 0; i < projectiles.Length; i++)
-            {
-                projectiles[i] = new Projectile();
-
-                projectiles[i].Init(game, this);
-            }
         }
 
         /// <summary>
@@ -516,12 +526,8 @@ namespace BugHunter
             // Zeichnet alle aktiven Projektile im Array
             foreach (Projectile p in projectiles)
             {
-                if (p.IsActive)
-                {
-                    p.DrawShot(spriteBatch, this.WeaponSpriteSheet);
-                }
+                p.DrawShot(spriteBatch, this.WeaponSpriteSheet);
             }
-            
         }
 
         /// <summary>

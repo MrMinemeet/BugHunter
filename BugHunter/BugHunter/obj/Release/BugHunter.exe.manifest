@@ -31,14 +31,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="BugHunter.exe" size="854528">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="BugHunter.exe" size="856064">
       <assemblyIdentity name="BugHunter" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>zWMBR6g8eJiDSKzqUJjkuoyeEcSbacITEHT67W7ew+4=</dsig:DigestValue>
+        <dsig:DigestValue>8G2O8VBid8ONwfDFq4D6Qp07ZZBvdAP6wkB753rSiY4=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -495,22 +495,22 @@
       <dsig:DigestValue>XKrcQBeUAhu/Hx0vqh0xIf6b3MI2i/3j7iizUj6fHaA=</dsig:DigestValue>
     </hash>
   </file>
-  <file name="Content\sprites\entities\entities.png" size="1955">
+  <file name="Content\sprites\entities\entities.png" size="2061">
     <hash>
       <dsig:Transforms>
         <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-      <dsig:DigestValue>SEBBHdne5HA1+CL7oLVQgsIikozITJw783Tl5jtuQx0=</dsig:DigestValue>
+      <dsig:DigestValue>b/5zzxbPTwsP5OCoxejYS5P3wMYdRwqalNqCuvDiyu4=</dsig:DigestValue>
     </hash>
   </file>
-  <file name="Content\sprites\entities\entities.txt" size="1118">
+  <file name="Content\sprites\entities\entities.txt" size="1161">
     <hash>
       <dsig:Transforms>
         <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-      <dsig:DigestValue>XfddjgplV4qVe0mJfXchEHuW1YBKO1erBXLnSh9W4EA=</dsig:DigestValue>
+      <dsig:DigestValue>4UIvW+DWKouOVbmeAwQJwpO5oFdezV6DCCOld8e5IZ4=</dsig:DigestValue>
     </hash>
   </file>
   <file name="Content\sprites\entities\player\player.xnb" size="270485">

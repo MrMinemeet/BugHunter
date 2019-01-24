@@ -47,19 +47,95 @@ namespace BugHunter
                     ProjectilePosition.Y += ProjectileSpeed * (float)gameTime.ElapsedGameTime.TotalSeconds;
                     break;
             }
+            
+        }
 
-            // Löscht den Schuss nach 3 Sekunden
-            if (gameTime.TotalGameTime.TotalSeconds - TimeSinceShot >= 3)
+        /// <summary>
+        /// Überprüft ob der Schuss abgelaufen ist
+        /// </summary>
+        /// <param name="gameTime"></param>
+        /// <returns></returns>
+        public bool IsProjectileTimeOver(GameTime gameTime)
+        {
+            if(gameTime.TotalGameTime.TotalSeconds - TimeSinceShot >= 3)
             {
-                this.IsActive = false;
+                return true;
             }
-            
-            // Überprüfen ob Projektil Hitbox der Map getroffen hat
-            if(DidHitCollision(game.MapArray,game.map[0].getTiledMap()))
+
+            return false;
+        }
+
+        /// <summary>
+        /// Überprüft ob der Schuss eine Wand getroffen hat
+        /// </summary>
+        /// <param name="mapArray"></param>
+        /// <returns></returns>
+        public bool DidProjectileHitCollision(int[][] CollisionMapArray, TiledMap map)
+        {
+            SpriteFrame projectileFrame = null;
+
+            switch (ProjectileType)
             {
-                this.IsActive = false;
+                case Weapon.WeaponTypes.cpp:
+                    projectileFrame = player.WeaponSpriteSheet.Sprite(TexturePackerMonoGameDefinitions.entities.Cpp); break;
+                case Weapon.WeaponTypes.c:
+                    projectileFrame = player.WeaponSpriteSheet.Sprite(TexturePackerMonoGameDefinitions.entities.C); break;
+                case Weapon.WeaponTypes.java:
+                    projectileFrame = player.WeaponSpriteSheet.Sprite(TexturePackerMonoGameDefinitions.entities.Java); break;
+                case Weapon.WeaponTypes.maschinensprache:
+                    switch (this.textureVersion)
+                    {
+                        case 0:
+                            projectileFrame = player.WeaponSpriteSheet.Sprite(TexturePackerMonoGameDefinitions.entities.Mss000); break;
+                        case 1:
+                            projectileFrame = player.WeaponSpriteSheet.Sprite(TexturePackerMonoGameDefinitions.entities.Mss001); break;
+                        case 2:
+                            projectileFrame = player.WeaponSpriteSheet.Sprite(TexturePackerMonoGameDefinitions.entities.Mss010); break;
+                        case 3:
+                            projectileFrame = player.WeaponSpriteSheet.Sprite(TexturePackerMonoGameDefinitions.entities.Mss011); break;
+                        case 4:
+                            projectileFrame = player.WeaponSpriteSheet.Sprite(TexturePackerMonoGameDefinitions.entities.Mss100); break;
+                        case 5:
+                            projectileFrame = player.WeaponSpriteSheet.Sprite(TexturePackerMonoGameDefinitions.entities.Mss101); break;
+                        case 6:
+                            projectileFrame = player.WeaponSpriteSheet.Sprite(TexturePackerMonoGameDefinitions.entities.Mss110); break;
+                        case 7:
+                            projectileFrame = player.WeaponSpriteSheet.Sprite(TexturePackerMonoGameDefinitions.entities.Mss111); break;
+                    }
+                    break;
+                case Weapon.WeaponTypes.csharp:
+                    projectileFrame = player.WeaponSpriteSheet.Sprite(TexturePackerMonoGameDefinitions.entities.Csharp); break;
             }
-            
+            if (projectileFrame == null)
+                return false;
+
+            Rectangle MapCollisionRectangle;
+            Rectangle ProjectileCollision;
+
+            // Integer Map Array durchlaufen
+            for (int y = 0; y * Settings.TilePixelSize < map.HeightInPixels; y++)
+            {
+                for (int x = 0; x < CollisionMapArray[y].Length; x++)
+                {
+                    // Schauen ob aktuelles Tile ein Hitbox Tile ist
+                    if (CollisionMapArray[y][x].Equals(Settings.HitBoxTileNumber))
+                    {
+                        // Rechtecke über Spieler und aktuelles Tile ziehen
+                        MapCollisionRectangle = new Rectangle((x * Settings.TilePixelSize), (y * Settings.TilePixelSize), Settings.TilePixelSize, Settings.TilePixelSize);
+                        ProjectileCollision = new Rectangle((int)(this.ProjectilePosition.X - projectileFrame.Size.X / 2), (int)(ProjectilePosition.Y - projectileFrame.Size.Y / 2), (int)projectileFrame.Size.X, (int)projectileFrame.Size.Y);
+
+                        // Überprüfen ob sich die beiden Rechtecke überschneiden
+                        if (ProjectileCollision.Intersects(MapCollisionRectangle))
+                        {
+                            // Collision wurde ausgelöst
+                            return true;
+                        }
+                    }
+                }
+            }
+
+            // Keine Collision erkannt
+            return false;
         }
 
         /// <summary>
@@ -109,75 +185,6 @@ namespace BugHunter
                     break;
             }
         }
-
-        private bool DidHitCollision(int[][] CollisionMapArray, TiledMap map)
-        {
-            SpriteFrame projectileFrame = null;
-            
-            switch(ProjectileType)
-            {
-                case Weapon.WeaponTypes.cpp:
-                    projectileFrame = player.WeaponSpriteSheet.Sprite(TexturePackerMonoGameDefinitions.entities.Cpp);    break;
-                case Weapon.WeaponTypes.c:
-                    projectileFrame = player.WeaponSpriteSheet.Sprite(TexturePackerMonoGameDefinitions.entities.C);      break;
-                case Weapon.WeaponTypes.java:
-                    projectileFrame = player.WeaponSpriteSheet.Sprite(TexturePackerMonoGameDefinitions.entities.Java);   break;
-                case Weapon.WeaponTypes.maschinensprache:
-                    switch (this.textureVersion)
-                    {
-                        case 0:
-                            projectileFrame = player.WeaponSpriteSheet.Sprite(TexturePackerMonoGameDefinitions.entities.Mss000); break;
-                        case 1:
-                            projectileFrame = player.WeaponSpriteSheet.Sprite(TexturePackerMonoGameDefinitions.entities.Mss001); break;
-                        case 2:
-                            projectileFrame = player.WeaponSpriteSheet.Sprite(TexturePackerMonoGameDefinitions.entities.Mss010); break;
-                        case 3:
-                            projectileFrame = player.WeaponSpriteSheet.Sprite(TexturePackerMonoGameDefinitions.entities.Mss011); break;
-                        case 4:
-                            projectileFrame = player.WeaponSpriteSheet.Sprite(TexturePackerMonoGameDefinitions.entities.Mss100); break;
-                        case 5:
-                            projectileFrame = player.WeaponSpriteSheet.Sprite(TexturePackerMonoGameDefinitions.entities.Mss101); break;
-                        case 6:
-                            projectileFrame = player.WeaponSpriteSheet.Sprite(TexturePackerMonoGameDefinitions.entities.Mss110); break;
-                        case 7:
-                            projectileFrame = player.WeaponSpriteSheet.Sprite(TexturePackerMonoGameDefinitions.entities.Mss111); break;
-                    }
-                    break;
-                case Weapon.WeaponTypes.csharp:
-                    projectileFrame = player.WeaponSpriteSheet.Sprite(TexturePackerMonoGameDefinitions.entities.Csharp); break;
-            }
-            if(projectileFrame == null)
-                return false;
-
-            Rectangle MapCollisionRectangle;
-            Rectangle ProjectileCollision;
-
-            // Integer Map Array durchlaufen
-            for (int y = 0; y * Settings.TilePixelSize < map.HeightInPixels; y++)
-            {
-                for (int x = 0; x < CollisionMapArray[y].Length; x++)
-                {
-                    // Schauen ob aktuelles Tile ein Hitbox Tile ist
-                    if (CollisionMapArray[y][x].Equals(Settings.HitBoxTileNumber))
-                    {
-                        // Rechtecke über Spieler und aktuelles Tile ziehen
-                        MapCollisionRectangle = new Rectangle((x * Settings.TilePixelSize), (y * Settings.TilePixelSize), Settings.TilePixelSize, Settings.TilePixelSize);
-                        ProjectileCollision = new Rectangle((int)(this.ProjectilePosition.X - projectileFrame.Size.X / 2), (int)(ProjectilePosition.Y - projectileFrame.Size.Y / 2), (int)projectileFrame.Size.X, (int)projectileFrame.Size.Y);
-
-                        // Überprüfen ob sich die beiden Rechtecke überschneiden
-                        if (ProjectileCollision.Intersects(MapCollisionRectangle))
-                        {
-                            // Collision wurde ausgelöst
-                            return true;
-                        }
-                    }
-                }
-            }
-
-            // Keine Collision erkannt
-            return false;
-        }
-
         public bool CheckForHit(Android enemy)
         {
             SpriteFrame enemySpriteFrame = enemy.spriteSheet.Sprite(TexturePackerMonoGameDefinitions.entities.Android1);

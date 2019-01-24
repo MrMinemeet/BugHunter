@@ -28,7 +28,6 @@
  // TODO: Gegner gegen Gegner Collision
  // TODO: Tastatur als Waffe in die Hand
  // TODO: Powerup: Medipack - PC Teile
- // TODO: Powerup: Mehr Ammo - USB Stick
  // TODO: Powerup: Ammopack - Lädt komplette Munition nach
  // TODO: Powerup: Erhöhter Schaden - Bücher
  // TODO: Powerup: Schnelleres Nachladen 
@@ -89,6 +88,8 @@ namespace BugHunter
 
         public bool IsDiscordRunning = false;
 
+        private int StatsBoostGiven = 1;
+
         Timer timer;
 
         Texture2D pauseScreen;
@@ -126,9 +127,7 @@ namespace BugHunter
         public SpriteFont MenuFont;
         public Weapon weapon;
         public Player player;
-
-
-
+                     
         public Random random = new Random();
 
 
@@ -171,6 +170,10 @@ namespace BugHunter
                 IsFullScreen = settings.IsFullscreen
             };
             IsMouseVisible = settings.IsMouseVisible;
+
+            graphics.SynchronizeWithVerticalRetrace = false;
+            IsFixedTimeStep = false;
+
             Content.RootDirectory = "Content";
         }
 
@@ -322,7 +325,7 @@ namespace BugHunter
                 settings.SaveSettings();
                 //At the very end we need to dispose of it
                 client?.Dispose();
-                
+                Exit();                
             }
 
             // Spiel in Vollbild machen
@@ -409,6 +412,16 @@ namespace BugHunter
             // Ingame
             if(CurrentGameState == GameState.Ingame)
             {
+                if(this.Score % (5000 + StatsBoostGiven) == 0 && Score != 0)
+                {
+
+                    Console.WriteLine("BOOST");
+                    player.MaxHealth += 25;
+                    player.Health += 25;
+                    player.Damageboost += 10;
+                    this.StatsBoostGiven += 5000;
+                }
+
                 if (IsDiscordRunning)
                     presence.State = "Am Debuggen";
                 if (Keyboard.GetState().IsKeyDown(Keys.F3) && gameTime.TotalGameTime.TotalMilliseconds - LastKeyStrokeInput >= 500)
@@ -454,14 +467,15 @@ namespace BugHunter
                         PoofPosition = Androids[i].Position;
                         PoofIsActive = true;
 
-                        if(random.Next(10) < 3)
+                        // 10% Chance das sich der Schaden 
+                        if(random.Next(100) < 10)
                         {
                             AndroidDamage += 1;
                         }
                         Androids.Remove(Androids[i]);
                         
-                        // 20% Chance dass ein Powerup Spawnt
-                        if(random.Next(100) < 20)
+                        // 25% Chance dass ein Powerup spawnt
+                        if(random.Next(100) < 25)
                         {
                             // Wenn bereits genug Powerups aktiv sind wird das Generieren Übersprungen
                             if (Powerups.Count == Settings.generalMaxPowerUps)
@@ -541,9 +555,7 @@ namespace BugHunter
                         Powerups[i].Update(gameTime, this.player);
                     }
                 }
-
-
-
+                
                 // Updated poof wenn Aktiv
                 if (PoofIsActive)
                 {
@@ -713,7 +725,6 @@ namespace BugHunter
                 }
                 
             }
-
             spriteBatch.End();
 
             base.Draw(gameTime);
