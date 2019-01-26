@@ -20,20 +20,6 @@
  */
 
 
- // TODO: Hitmarker bei Schaden
- // TODO: MacOS Gegner
- // TODO: Windows Gegner
- // TODO: iOS Gegner
- // TODO: JavaScript Waffe
- // TODO: Gegner gegen Gegner Collision
- // TODO: Tastatur als Waffe in die Hand
- // TODO: Powerup: Medipack - PC Teile
- // TODO: Powerup: Ammopack - Lädt komplette Munition nach
- // TODO: Powerup: Erhöhter Schaden - Bücher
- // TODO: Powerup: Schnelleres Nachladen 
- // TODO: Alle 5000 Punkte +25 Leben und +5 schaden
-
-
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Graphics;
@@ -88,7 +74,10 @@ namespace BugHunter
 
         public bool IsDiscordRunning = false;
 
+        // Datenbank
         Database database = new Database();
+        double lastDatabaseUpdate = 0;
+
 
         private int StatsBoostGiven = 1;
 
@@ -304,9 +293,6 @@ namespace BugHunter
             
             InitialiseAnimationManager();
 
-            Console.WriteLine(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"));
-
-            database.SendQueryCommand("INSERT INTO `globalscore` (`UserID`, `Name`, `Score`, `DateTime`, `IPAddress`) VALUES('" + settings.GUID + "', '" +  settings.UserName + "', '1000', '"+ DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") +"', 'UNUSED');");
         }
 
         // UnloadContent will be called once per game and is the place to unload game-specific content.
@@ -318,6 +304,14 @@ namespace BugHunter
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Update(GameTime gameTime)
         {
+            // Datenbankstats jede Minute Updaten
+            if(gameTime.TotalGameTime.TotalSeconds - this.lastDatabaseUpdate >= 60)
+            {
+                this.lastDatabaseUpdate = gameTime.TotalGameTime.TotalSeconds;
+
+                database.SendQueryCommand("INSERT INTO `globalscore` (`UserID`, `Name`, `Score`, `DateTime`, `IPAddress`) VALUES('" + settings.GUID + "', '" + settings.UserName + "', '" + this.Score + "', '" + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + "', 'UNUSED');");
+            }
+
             if (IsDiscordRunning)
             {
                 presence.Details = "Score: " + this.Score;
@@ -328,12 +322,7 @@ namespace BugHunter
             // Spiel schließen
             if (Keyboard.GetState().IsKeyDown(Keys.Delete) && Keyboard.GetState().IsKeyDown(Keys.LeftAlt))
             {
-                settings.SaveSettings();
-                //At the very end we need to dispose of it
-                client?.Dispose();
-                database?.Dispose();
-                Exit();         
-                
+                ExitGame();                
             }
 
             // Spiel in Vollbild machen
@@ -761,16 +750,6 @@ namespace BugHunter
             poofAM = new AnimationManager(PoofSpriteSheet, player.Position, PoofAnimations);
         }
 
-
-        // Wird beim Schließen aufgerufen
-        protected override void OnExiting(Object sender, EventArgs args)
-        {
-            settings.SaveSettings();
-            GamePad.SetVibration(PlayerIndex.One, 0f, 0f);
-            database?.Dispose();
-            base.OnExiting(sender, args);
-        }
-
         /// <summary>
         /// Überprüft ob ein Prozess läuft
         /// </summary>
@@ -788,8 +767,6 @@ namespace BugHunter
 
             return false;
         }
-        
-
 
         private static void OnReady(object sender, ReadyMessage args)
 		{
@@ -812,5 +789,28 @@ namespace BugHunter
 			// Discord will give us one of these events and its upto us to handle it
 			Console.WriteLine("Error occured within discord. ({1}) {0}", args.Message, args.Code);
 		}
+
+
+
+        public void ExitGame()
+        {
+            // Stats an Datenbank senden
+            database.SendQueryCommand("INSERT INTO `globalscore` (`UserID`, `Name`, `Score`, `DateTime`, `IPAddress`) VALUES('" + settings.GUID + "', '" + settings.UserName + "', '" + this.Score + "', '" + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + "', 'UNUSED');");
+
+            // Speichern von Daten
+            settings.SaveSettings();
+
+            // Gamepadvibrationen ausschalten
+            GamePad.SetVibration(PlayerIndex.One, 0f, 0f);
+
+            // Datenbank freigeben
+            database?.Dispose();
+
+            // Discord Client freigeben
+            client?.Dispose();
+
+            // Spiel beenden
+            Exit();
+        }
     }
 }
