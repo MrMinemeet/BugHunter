@@ -16,6 +16,8 @@ namespace BugHunter
         public bool IsMouseVisible = true;
         public bool AreDebugInformationsVisible = false;
 
+        public string GUID= "";
+        public string UserName = "";
         public int HighScore = 0;
 
         public void UpdateSettings(GraphicsDeviceManager gdm)
@@ -36,8 +38,14 @@ namespace BugHunter
         public const byte PowerupTileId = 20;
         public const byte generalMaxPowerUps = 6;
 
-        private Game1 game = null;
 
+        public const string host = "projectwhitespace.ddns.net"; // Domain von NoIP.com
+        public const int port = 60457;                           // MySQL Port von Portweiterleitung 
+        public const string database = "BugHunter";              // Datenbankname
+        public const string username = "user";                   // Username
+        public const string password = "Z0pLFsZcviP1eXyK";       // Passwort
+        
+        private Game1 game = null;
 
         public void Init(Game1 game)
         {
@@ -78,6 +86,20 @@ namespace BugHunter
                         int.TryParse(sb.ToString(), out HighScore);
                         DidLoad = true;
                     }
+                    if (line.Contains("GUID="))
+                    {
+                        sb = new StringBuilder(line);
+                        sb = sb.Remove(0, 5);
+                        this.GUID = sb.ToString();
+                        DidLoad = true;
+                    }
+                    if (line.Contains("Username="))
+                    {
+                        sb = new StringBuilder(line);
+                        sb = sb.Remove(0, 9);
+                        this.UserName = sb.ToString();
+                        DidLoad = true;
+                    }
                 }
             }
             catch (Exception ex)
@@ -88,6 +110,11 @@ namespace BugHunter
             {
                 if (sr != null)
                     sr.Close();
+            }
+
+            if(this.GUID.Length == 0)
+            {
+                this.GUID = Guid.NewGuid().ToString();
             }
 
             return DidLoad;
@@ -103,12 +130,16 @@ namespace BugHunter
             {
                 // Ordner Verzeichniss erstellen
                 Directory.CreateDirectory(path);
-
-
+                
                 path = path + @"\Configuration.config";
                 sw = new StreamWriter(path);
 
+                sw.WriteLine("Username=" + this.UserName);
+                sw.WriteLine();
+                sw.WriteLine(" -- Please do not edit anything below this line! Might harm your experience. --");
+                sw.WriteLine();
                 sw.WriteLine("Highscore=" + this.HighScore);
+                sw.WriteLine("GUID=" + this.GUID); 
             }
             catch (Exception ex)
             {

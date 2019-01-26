@@ -88,6 +88,8 @@ namespace BugHunter
 
         public bool IsDiscordRunning = false;
 
+        Database database = new Database();
+
         private int StatsBoostGiven = 1;
 
         Timer timer;
@@ -299,8 +301,12 @@ namespace BugHunter
 
             // Animation
             PoofSpriteSheet = spriteSheetLoader.Load("effects_packed.png");
-
+            
             InitialiseAnimationManager();
+
+            Console.WriteLine(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"));
+
+            database.SendQueryCommand("INSERT INTO `globalscore` (`UserID`, `Name`, `Score`, `DateTime`, `IPAddress`) VALUES('" + settings.GUID + "', '" +  settings.UserName + "', '1000', '"+ DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") +"', 'UNUSED');");
         }
 
         // UnloadContent will be called once per game and is the place to unload game-specific content.
@@ -325,7 +331,9 @@ namespace BugHunter
                 settings.SaveSettings();
                 //At the very end we need to dispose of it
                 client?.Dispose();
-                Exit();                
+                database?.Dispose();
+                Exit();         
+                
             }
 
             // Spiel in Vollbild machen
@@ -403,6 +411,7 @@ namespace BugHunter
                             //At the very end we need to dispose of it
                             timer?.Close();
                             client?.Dispose();
+                            database?.Dispose();
                             Exit();
                             break;
                     }
@@ -758,6 +767,7 @@ namespace BugHunter
         {
             settings.SaveSettings();
             GamePad.SetVibration(PlayerIndex.One, 0f, 0f);
+            database?.Dispose();
             base.OnExiting(sender, args);
         }
 
