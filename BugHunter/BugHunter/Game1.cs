@@ -1,13 +1,14 @@
 ﻿/*
- * Entwickler: Alexander Voglsperger (4AHELS 2018/2019)
+ * Entwickler: Alexander Voglsperger aka. MrMinemeet(4AHELS 2018/2019)
  * Softwarename: BugHunter
  * Entwicklungszeitraum:  18.11.2018 - JETZT
-0, * 
+ * 
+ * 
  * Kurzbeschreibung:
  * Der Spieler muss gegen immer Stärker werdende Wellen von Bugs(Gegnern) kämpfen indem er mit Code auf sie schießt.
  * Neue Munition kann dadurch erhalten werden, wenn der Spieler an einen PC geht.
  * Jede Sprache hat zudem eine unterschiedliche Schussfrequenz und stärke.
- * zB.: Maschinencode schießt langsam aber macht viel Schaden, JS schießt schnell aber macht geringen Schaden
+ * zB.: Maschinencode schießt langsam aber macht viel Schaden, JS schießt schnell aber macht geringen Schaden.
  * 
  * Verwendete Software:
  * Tiled-Editor
@@ -17,6 +18,19 @@
  * MonoGame.Extended Framework
  * Photoshop CC 2019
  * TexturePackerGUI 
+ * 
+ * Datenbank:
+ * MariaDB
+ * NaviCat
+ * PHPmyAdmin
+ * 
+ * APIs:
+ * Discord RPC
+ * MySQL Connect
+ * 
+ * CopyRight:
+ * Alle Rechte der Bilder, Spiellogik und Spielidee gehören den rechtlichen Eigentümern.
+ * Das unerlaubte Kopieren, Veröffentlichen, Verleihen und öffentliches vorführen ist verboten!
  */
 
 

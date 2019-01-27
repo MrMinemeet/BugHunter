@@ -33,7 +33,7 @@ namespace ProjectWhitespace
             this.settings = settings;
             this.position = this.SetSpawnFromMap(MapArray, this.settings);
 
-            switch(game.random.Next(2))
+            switch(game.random.Next(3))
             {
                 case 0:
                     this.PowerupType = PowerupTypes.ShootSpeedUp;
@@ -42,17 +42,17 @@ namespace ProjectWhitespace
                     this.PowerupType = PowerupTypes.MoreAmmo;
                     break;
                 case 2:
-                    this.PowerupType = PowerupTypes.DamageUp;
-                    break;
-                case 3:
                     if(game.player.Health < game.player.MaxHealth)
                     {
                         this.PowerupType = PowerupTypes.Medipack;
                     }
                     break;
+                case 3:
+                    this.PowerupType = PowerupTypes.DamageUp;
+                    break;
             }
 
-            this.type = game.random.Next(1);
+            this.type = game.random.Next(2);
         }
 
         private Vector2 SetSpawnFromMap(int[][] MapArray, Settings settings)
@@ -108,6 +108,12 @@ namespace ProjectWhitespace
                         case 0:
                             spriteRender.Draw(
                                 spriteSheet.Sprite(TexturePackerMonoGameDefinitions.entities.Powerup_CPU),
+                                this.position,
+                                Color.White);
+                            break;
+                        case 1:
+                            spriteRender.Draw(
+                                spriteSheet.Sprite(TexturePackerMonoGameDefinitions.entities.Powerup_Monitor),
                                 this.position,
                                 Color.White);
                             break;

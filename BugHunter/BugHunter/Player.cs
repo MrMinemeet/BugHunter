@@ -3,7 +3,6 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using MonoGame.Extended;
 using MonoGame.Extended.Tiled;
-using ProjectWhitespace;
 using System;
 using System.Collections.Generic;
 using TexturePackerLoader;
