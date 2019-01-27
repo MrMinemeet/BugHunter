@@ -92,6 +92,7 @@ namespace BugHunter
 
         // Datenbank
         Database database = new Database();
+        public bool DataBaseIsActive = false;
         double lastDatabaseUpdate = 0;
 
 
@@ -249,6 +250,13 @@ namespace BugHunter
             Color[] data = new Color[settings.resolutionWidth * settings.resolutionHeight];
             for (int i = 0; i < data.Length; ++i) data[i] = Color.Chocolate;
             pauseScreen.SetData(data);
+
+
+
+            if (database.mySqlConnection.State == System.Data.ConnectionState.Open)
+            {
+                DataBaseIsActive = true;
+            }
 
             base.Initialize();
         }
@@ -826,8 +834,14 @@ namespace BugHunter
             // Spiel beenden
             Exit();
         }
-        static void SyncDatabase(Database database, Settings settings)
+        void SyncDatabase(Database database, Settings settings)
         {
+            // Überprüft ob Datenbank läuft500
+            if (!DataBaseIsActive)
+                return;
+
+
+
             // Stats an Datenbank senden
             MySqlCommand mySqlCommand;
 

@@ -14,7 +14,10 @@ namespace ProjectWhitespace
                  + ";port=" + Settings.port + ";User Id=" + Settings.username + ";password=" + Settings.password;
 
             mySqlConnection = new MySqlConnection(connString);
-            this.mySqlConnection.Open();
+            try
+            {
+                this.mySqlConnection.Open();
+            } catch (Exception) { };
         }
 
         /// <summary>
