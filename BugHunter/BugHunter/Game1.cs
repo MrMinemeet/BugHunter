@@ -49,6 +49,8 @@ using DiscordRPC.Message;
 using DiscordRPC;
 using System.Timers;
 using System.Diagnostics;
+using MySql.Data.MySqlClient;
+using System.Threading.Tasks;
 
 namespace BugHunter
 {
@@ -187,9 +189,9 @@ namespace BugHunter
         // related content.  Calling base.Initialize will enumerate through any components and initialize them as well.
         protected override void Initialize()
         {
-            IsDiscordRunning = IsProcessRunning("Discord");
-            if(!IsDiscordRunning)
-                IsDiscordRunning = IsProcessRunning("discord");
+            // IsDiscordRunning = IsProcessRunning("Discord");
+            // if(!IsDiscordRunning)
+                // IsDiscordRunning = IsProcessRunning("discord");
 
             this.graphicsDevice = GraphicsDevice;
 
@@ -319,11 +321,11 @@ namespace BugHunter
         protected override void Update(GameTime gameTime)
         {
             // Datenbankstats jede Minute Updaten
-            if(gameTime.TotalGameTime.TotalSeconds - this.lastDatabaseUpdate >= 60)
+            if (gameTime.TotalGameTime.TotalSeconds - this.lastDatabaseUpdate >= 15)
             {
                 this.lastDatabaseUpdate = gameTime.TotalGameTime.TotalSeconds;
 
-                database.SendQueryCommand("INSERT INTO `globalscore` (`UserID`, `Name`, `Score`, `DateTime`, `IPAddress`) VALUES('" + settings.GUID + "', '" + settings.UserName + "', '" + this.Score + "', '" + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + "', 'UNUSED');");
+                SyncDatabase(this.database, this.settings);
             }
 
             if (IsDiscordRunning)
@@ -426,8 +428,6 @@ namespace BugHunter
             {
                 if(this.Score % (5000 + StatsBoostGiven) == 0 && Score != 0)
                 {
-
-                    Console.WriteLine("BOOST");
                     player.MaxHealth += 25;
                     player.Health += 25;
                     player.Damageboost += 10;
@@ -808,8 +808,8 @@ namespace BugHunter
 
         public void ExitGame()
         {
-            // Stats an Datenbank senden
-            database.SendQueryCommand("INSERT INTO `globalscore` (`UserID`, `Name`, `Score`, `DateTime`, `IPAddress`) VALUES('" + settings.GUID + "', '" + settings.UserName + "', '" + this.Score + "', '" + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + "', 'UNUSED');");
+
+            SyncDatabase(this.database, this.settings);
 
             // Speichern von Daten
             settings.SaveSettings();
@@ -825,6 +825,54 @@ namespace BugHunter
 
             // Spiel beenden
             Exit();
+        }
+        static void SyncDatabase(Database database, Settings settings)
+        {
+            // Stats an Datenbank senden
+            MySqlCommand mySqlCommand;
+
+            string myInsertQuery = "SELECT `globalscore`.`UserID` FROM `globalscore`";
+            mySqlCommand = new MySqlCommand(myInsertQuery);
+
+            mySqlCommand.Connection = database.mySqlConnection;
+
+            // SELECT rückgabe auslesen
+            MySqlDataReader reader = mySqlCommand.ExecuteReader();
+
+            bool GuidExists = false;
+
+            while (reader.Read())
+            {
+                // GUID in Datenbank gefunden
+                if (reader.GetString(0).Equals(settings.GUID))
+                {
+                    GuidExists = true;
+                    break;
+                }
+            }
+
+            reader.Close();
+            reader.Dispose();
+
+
+            if (GuidExists)
+            {
+                // Datenbankeintrag wird upgedated
+                mySqlCommand.CommandText =
+                    "UPDATE `globalscore` SET `Name` = '" + settings.UserName +
+                    "', `Score` = '" + settings.HighScore +
+                    "', `DateTime` = '" +
+                    DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") +
+                    "' WHERE `globalscore`.`UserID` = '" + settings.GUID + "'";
+                mySqlCommand.ExecuteNonQuery();
+            }
+            else
+            {
+                // Kein Eintrag gefunden, wodurch ein neuer erstellt wird
+                database.SendQueryCommand("INSERT INTO `globalscore` (`UserID`, `Name`, `Score`, `DateTime`, `IPAddress`) VALUES('" + settings.GUID + "', '" + settings.UserName + "', '" + settings.HighScore + "', '" + 
+                DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + "', 'UNUSED');");
+            }
+
         }
     }
 }

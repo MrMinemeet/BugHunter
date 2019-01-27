@@ -203,6 +203,7 @@
                 <false/>
             </struct>
             <key type="filename">powerup/sprites/powerup_CPU.png</key>
+            <key type="filename">powerup/sprites/powerup_Monitor.png</key>
             <key type="filename">powerup/sprites/powerup_usb.png</key>
             <struct type="IndividualSpriteSettings">
                 <key>pivotPoint</key>

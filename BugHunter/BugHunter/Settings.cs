@@ -116,7 +116,10 @@ namespace BugHunter
             {
                 this.GUID = Guid.NewGuid().ToString();
             }
-
+            if(this.UserName.Length == 0)
+            {
+                this.UserName = Environment.UserName;
+            }
             return DidLoad;
         }
 
@@ -136,7 +139,7 @@ namespace BugHunter
 
                 sw.WriteLine("Username=" + this.UserName);
                 sw.WriteLine();
-                sw.WriteLine(" -- Please do not edit anything below this line! Might harm your experience. --");
+                sw.WriteLine(" -- Please do not edit anything below this line! Might harm/break your gaming experience. --");
                 sw.WriteLine();
                 sw.WriteLine("Highscore=" + this.HighScore);
                 sw.WriteLine("GUID=" + this.GUID); 

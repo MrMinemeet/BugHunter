@@ -4,9 +4,9 @@ using System;
 
 namespace ProjectWhitespace
 {
-    class Database
+    public class Database
     {
-        MySqlConnection mySqlConnection = null;
+        public MySqlConnection mySqlConnection = null;
 
         public Database()
         {
@@ -14,6 +14,7 @@ namespace ProjectWhitespace
                  + ";port=" + Settings.port + ";User Id=" + Settings.username + ";password=" + Settings.password;
 
             mySqlConnection = new MySqlConnection(connString);
+            this.mySqlConnection.Open();
         }
 
         /// <summary>
@@ -24,12 +25,11 @@ namespace ProjectWhitespace
         {
             try
             {
+
                 MySqlCommand mySqlCommand = new MySqlCommand(query);
-
+                
                 Console.WriteLine("Openning Connection ...");
-
-                this.mySqlConnection?.Open();
-
+                
                 // Überprüfen ob Datenbankverbindung steht
                 if(mySqlConnection.State == System.Data.ConnectionState.Open){
 
@@ -37,12 +37,9 @@ namespace ProjectWhitespace
 
                     Console.WriteLine("Connection successful!");
 
-                    mySqlCommand.ExecuteNonQuery();
+                    mySqlCommand.ExecuteNonQueryAsync();
 
                     Console.WriteLine("Insetion Done");
-
-                    this.mySqlConnection.Close();
-                    mySqlCommand.Connection.Close();
                 }
 
             }
@@ -54,6 +51,7 @@ namespace ProjectWhitespace
 
         public void Dispose()
         {
+            this.mySqlConnection.Close();
             this.mySqlConnection.Dispose();
         }
     }
