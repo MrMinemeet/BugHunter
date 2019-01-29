@@ -39,12 +39,15 @@ namespace BugHunter
         public const byte generalMaxPowerUps = 6;
 
 
-        public const string host = "projectwhitespace.ddns.net"; // Domain von NoIP.com
-        public const int port = 60457;                           // MySQL Port von Portweiterleitung 
-        public const string database = "BugHunter";              // Datenbankname
-        public const string username = "user";                   // Username
-        public const string password = "Z0pLFsZcviP1eXyK";       // Passwort
-        
+
+
+        // DATABASE LOGIN
+        public const string host = "projectwhitespace.ddns.net"; // Domain von NoIP.com                 (projectwhitespace.ddns.net)
+        public const int port = 60457;                           // MySQL Port von Portweiterleitung    (60457)
+        public const string database = "BugHunter";              // Datenbankname                       (BugHunter)
+        public const string username = "user";                   // Username                            (user)
+        public const string password = "Z0pLFsZcviP1eXyK";       // Passwort                            (Z0pLFsZcviP1eXyK)
+
         private Game1 game = null;
 
         public void Init(Game1 game)
