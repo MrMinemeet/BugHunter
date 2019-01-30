@@ -4,7 +4,7 @@
  * Contains references to each image within the sprite sheet.
  *
  * https://www.codeandweb.com/texturepacker
- * $TexturePacker:SmartUpdate:d5d7424ee21d4b76ab34783e017ef8bd:1bf884bf8e88cca65a0552bfcce20f1e:7de42156f25b693bd0d7ccd72987ff69$
+ * $TexturePacker:SmartUpdate:2f10eda18bb2e114a46cf16a202248bf:1bf884bf8e88cca65a0552bfcce20f1e:7de42156f25b693bd0d7ccd72987ff69$
  *
  */
 namespace TexturePackerMonoGameDefinitions
@@ -31,9 +31,9 @@ namespace TexturePackerMonoGameDefinitions
 		public const string Powerup_kaffee = "powerup_kaffee";
 		public const string Powerup_Monitor = "powerup_Monitor";
 		public const string Powerup_usb = "powerup_usb";
-		public const string Windows_1 = "windows_1";
-		public const string Windows_2 = "windows_2";
-		public const string Windows_3 = "windows_3";
-		public const string Windows_4 = "windows_4";
+		public const string Windows1 = "windows1";
+		public const string Windows2 = "windows2";
+		public const string Windows3 = "windows3";
+		public const string Windows4 = "windows4";
 	}
 }

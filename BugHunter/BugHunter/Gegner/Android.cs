@@ -12,8 +12,6 @@ namespace BugHunter
         public float Speed { get; set; }
         public int MaxHealth { get; set; }
         public int Health { get; set; }
-        public Texture2D OriginTexture;
-        public bool ShowPlayerOrigin = false;
         public int attackDamage = 1;
         public Player player;
         
@@ -35,33 +33,29 @@ namespace BugHunter
 
         public Game1 game;
 
-        public void Init(Game1 game, Settings settings, Player player)
+        /// <summary>
+        /// Konstruktorfür Klasse Android
+        /// </summary>
+        /// <param name="Speed">Bewegungsgeschwindigkeit</param>
+        /// <param name="MaxHealth">Maximales Leben (= Startleben)</param>
+        public Android(float Speed, int MaxHealth, int attackDamage, Game1 game, Settings settings, Player player)
         {
+            this.Speed = Speed;
+            this.MaxHealth = MaxHealth;
+            this.Health = MaxHealth;
+            this.attackDamage = attackDamage;
             this.game = game;
             this.settings = settings;
             this.player = player;
         }
 
         /// <summary>
-        /// Konstruktorfür Klasse Android
+        /// Update für Android
         /// </summary>
-        /// <param name="Speed">Bewegungsgeschwindigkeit</param>
-        /// <param name="MaxHealth">Maximales Leben (= Startleben)</param>
-        public Android(float Speed, int MaxHealth, int attackDamage)
-        {
-            this.Speed = Speed;
-            this.MaxHealth = MaxHealth;
-            this.Health = MaxHealth;
-            this.attackDamage = attackDamage;
-        }
-
-         /// <summary>
-         /// Update für Android
-         /// </summary>
-         /// <param name="gameTime"></param>
-         /// <param name="CollisionMapArray"></param>
-         /// <param name="map"></param>
-         /// <param name="player"></param>
+        /// <param name="gameTime"></param>
+        /// <param name="CollisionMapArray"></param>
+        /// <param name="map"></param>
+        /// <param name="player"></param>
         public void Update(GameTime gameTime, int[][] CollisionMapArray, TiledMap map)
         {
             this.PotNewEnemyPosition = this.Position;
@@ -98,7 +92,7 @@ namespace BugHunter
                 {
                     player.Health = (int)(player.Health - attackDamage);
                     LastCollisionCheck = gameTime.TotalGameTime.TotalMilliseconds;
-                    player.GotHit(this, gameTime);
+                    player.GotHit(gameTime);
                 }
             }
             else
@@ -109,7 +103,7 @@ namespace BugHunter
             // Überprüft ob von Projektil getroffen wurde
             for(int i = 0; i < player.projectiles.Count; i++)
             {
-                if (player.projectiles[i].CheckForHit(this))
+                if (player.projectiles[i].CheckForHitAndroid(this))
                 {
                     this.Health -= game.weapon.getDamageAktWeapon(player.aktWeapon) + player.Damageboost;
 
@@ -183,21 +177,6 @@ namespace BugHunter
                     spriteSheet.Sprite(TexturePackerMonoGameDefinitions.entities.Android1),
                     this.Position,
                     Color.White);
-            }
-            
-            if (ShowPlayerOrigin)
-            {
-                spriteBatch.Draw(
-                    OriginTexture,
-                    Position,
-                    null,
-                    Color.White,
-                0f,
-                new Vector2(spriteSheet.Sprite("android1").Texture.Width / 2, spriteSheet.Sprite("android1").Texture.Height / 2),
-                Vector2.One,
-                SpriteEffects.None,
-                0f
-                );
             }
         }
     }

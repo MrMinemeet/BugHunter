@@ -132,7 +132,7 @@
             <key>classfile</key>
             <struct type="DataFile">
                 <key>name</key>
-                <filename>../../../Entities.cs</filename>
+                <filename>../../../PackedTexturesCS/Entities.cs</filename>
             </struct>
             <key>datafile</key>
             <struct type="DataFile">
@@ -202,6 +202,22 @@
                 <key>scale9FromFile</key>
                 <false/>
             </struct>
+            <key type="filename">enemy/windows/sprites/windows1.png</key>
+            <key type="filename">enemy/windows/sprites/windows2.png</key>
+            <key type="filename">enemy/windows/sprites/windows3.png</key>
+            <key type="filename">enemy/windows/sprites/windows4.png</key>
+            <struct type="IndividualSpriteSettings">
+                <key>pivotPoint</key>
+                <point_f>0.5,0.5</point_f>
+                <key>scale9Enabled</key>
+                <false/>
+                <key>scale9Borders</key>
+                <rect>16,16,32,32</rect>
+                <key>scale9Paddings</key>
+                <rect>16,16,32,32</rect>
+                <key>scale9FromFile</key>
+                <false/>
+            </struct>
             <key type="filename">powerup/sprites/powerup_CPU.png</key>
             <key type="filename">powerup/sprites/powerup_Monitor.png</key>
             <key type="filename">powerup/sprites/powerup_usb.png</key>
@@ -260,6 +276,7 @@
             <filename>enemy/android/sprites</filename>
             <filename>powerup/sprites</filename>
             <filename>weapon/projectile</filename>
+            <filename>enemy/windows/sprites</filename>
         </array>
         <key>ignoreFileList</key>
         <array/>

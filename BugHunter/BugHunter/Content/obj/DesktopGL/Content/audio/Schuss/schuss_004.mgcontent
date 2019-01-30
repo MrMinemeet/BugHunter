@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <SourceFile>C:/Users/Alexa/Google Drive/Schule/4AHELS/Werkstätte/BugHunter/BugHunter/BugHunter/Content/audio/Schuss/schuss_004.wav</SourceFile>
-  <SourceTime>2019-01-06T15:54:35+01:00</SourceTime>
+  <SourceTime>2019-01-06T15:54:35.5186835+01:00</SourceTime>
   <DestFile>C:/Users/Alexa/Google Drive/Schule/4AHELS/Werkstätte/BugHunter/BugHunter/BugHunter/Content/bin/DesktopGL/Content/audio/Schuss/schuss_004.xnb</DestFile>
-  <DestTime>2019-01-06T16:35:51.2234239+01:00</DestTime>
+  <DestTime>2019-01-30T17:07:37.3761013+01:00</DestTime>
   <Importer>WavImporter</Importer>
   <ImporterTime>2018-10-08T15:37:24+02:00</ImporterTime>
   <Processor>SoundEffectProcessor</Processor>

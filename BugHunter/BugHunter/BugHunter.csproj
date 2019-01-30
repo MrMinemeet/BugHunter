@@ -94,15 +94,16 @@
     <ApplicationManifest>app.manifest</ApplicationManifest>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="Android.cs" />
+    <Compile Include="Gegner\Android.cs" />
     <Compile Include="Animation.cs" />
     <Compile Include="AnimationManager.cs" />
     <Compile Include="Database.cs" />
     <Compile Include="DiscordRpc.cs" />
-    <Compile Include="Entities.cs" />
+    <Compile Include="PackedTexturesCS\Entities.cs" />
     <Compile Include="Converter.cs" />
     <Compile Include="FpsCounter.cs" />
     <Compile Include="Game1.cs" />
+    <Compile Include="Gegner\Windows.cs" />
     <Compile Include="GUI.cs" />
     <Compile Include="PackedTexturesCS\effects_packed.cs" />
     <Compile Include="PackedTexturesCS\gui_packed.cs" />

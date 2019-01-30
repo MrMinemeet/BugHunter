@@ -5,7 +5,7 @@
 # https://www.codeandweb.com/texturepacker/monogame
 #
 # Sprite sheet: entities.png (408 x 128)
-# $TexturePacker:SmartUpdate:d5d7424ee21d4b76ab34783e017ef8bd:1bf884bf8e88cca65a0552bfcce20f1e:7de42156f25b693bd0d7ccd72987ff69$
+# $TexturePacker:SmartUpdate:2f10eda18bb2e114a46cf16a202248bf:1bf884bf8e88cca65a0552bfcce20f1e:7de42156f25b693bd0d7ccd72987ff69$
 #
 
 android1;0;1;1;68;76;68;76;0.5;0.5
@@ -28,7 +28,7 @@ powerup_CPU;0;89;79;38;38;48;48;0.5;0.5
 powerup_kaffee;0;1;79;44;48;48;48;0.5;0.5
 powerup_Monitor;1;47;79;40;44;48;48;0.5;0.45
 powerup_usb;1;129;79;25;35;48;48;0.45714285714285713;0.36
-windows_1;0;281;1;62;62;64;64;0.5;0.5
-windows_2;0;281;65;62;62;64;64;0.5;0.5
-windows_3;0;345;1;62;62;64;64;0.5;0.5
-windows_4;0;345;65;62;62;64;64;0.5;0.5
+windows1;0;281;1;62;62;64;64;0.5;0.5
+windows2;0;281;65;62;62;64;64;0.5;0.5
+windows3;0;345;1;62;62;64;64;0.5;0.5
+windows4;0;345;65;62;62;64;64;0.5;0.5

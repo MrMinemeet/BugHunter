@@ -340,7 +340,7 @@ namespace BugHunter
         /// Erkennt von wo der Spieler getroffen wurde und platziert ihn etwas anders
         /// </summary>
         /// <param name="enemyPosition"></param>
-        public void GotHit(Android enemy, GameTime gameTime)
+        public void GotHit(GameTime gameTime)
         {
             this.SetVibration(0.1f, 0.1f, 250, gameTime);
         }

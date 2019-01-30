@@ -34,6 +34,9 @@
  */
 
 
+ // TODO: Windows Gegner implementieren
+
+
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Graphics;
@@ -104,12 +107,16 @@ namespace BugHunter
 
         private readonly TimeSpan timePerFrame = TimeSpan.FromSeconds(3f / 30f);
 
-        // Android gegner
-        // IDictionary<int, Android> Androids = new Dictionary<int, Android>();
-        List<Android> Androids = new List<Android>();
-        int maxAndroids = 1;
+        // Gegner
+        int MaxEnemies = 1;
+
+        List<Android> AndroidsList = new List<Android>();
         int AndroidHealth = 30;
         int AndroidDamage = 1;
+        List<Windows> WindowsList = new List<Windows>();
+        int WindowsHealth = 30;
+        int WindowsDamage = 1;
+
 
 
         public IDictionary<int, Powerup> Powerups = new Dictionary<int, Powerup>();
@@ -457,34 +464,54 @@ namespace BugHunter
                     sound.ScoreSound.Play(0.5f, 0, 0);
                 }
                 
-                maxAndroids = (int)(this.Score / 1000) + 1;
+                MaxEnemies = (int)(this.Score / 1000) + 1;
 
                 // Generiert neue Einträge im Dictionary wenn weniger Gegner da sind als max. zulässig sind
                 // Generiert immer dann einen Eintrag wenn der Key nicht verwendet wird
-                for (int i = Androids.Count; i < maxAndroids; i++)
+                for (int i = AndroidsList.Count; i < AndroidsList.Count; i++)
                 {
                     // Neues Leben für Android berechen
                     this.AndroidHealth = (int)(AndroidHealth + 5);
 
 
                     // Neuen Android in Liste erstellen
-                    Androids.Add(new Android(50f, AndroidHealth, AndroidDamage));
-
-                    // Android Initialisieren
-                    Androids[i].Init(this, this.settings, this.player);
-                    Androids[i].OriginTexture = Content.Load<Texture2D>("sprites/originSpot");
-                    Androids[i].spriteSheet = spriteSheetLoader.Load("sprites/entities/entities.png");
-                    Androids[i].SetSpawnFromMap(MapArray);
+                    AndroidsList.Add(new Android(50f, AndroidHealth, AndroidDamage, this, this.settings, this.player));
+                    AndroidsList[i].spriteSheet = spriteSheetLoader.Load("sprites/entities/entities.png");
+                    AndroidsList[i].SetSpawnFromMap(MapArray);
                 }
 
-                // Updaten
-                for (int i = 0; i < Androids.Count; i++)
+                // Falls weniger Gegner Aktiv sind als Maximal zugelassen sind, dann werden neue gespawnt
+                if(WindowsList.Count + AndroidsList.Count < MaxEnemies)
                 {
-                    Androids[i].Update(gameTime, MapArray, map[AktuelleMap].maplevel);
-
-                    if (Androids[i].IsDead)
+                    switch (random.Next(2))
                     {
-                        PoofPosition = Androids[i].Position;
+                        // Spawn Android
+                        case 0:
+                            this.AndroidHealth += 5;
+                            AndroidsList.Add(new Android(50f, AndroidHealth, AndroidDamage, this, this.settings, this.player));
+                            AndroidsList[AndroidsList.Count - 1].spriteSheet = spriteSheetLoader.Load("sprites/entities/entities.png");
+                            AndroidsList[AndroidsList.Count - 1].SetSpawnFromMap(MapArray);
+                            break;
+
+                        // Spawn Windows
+                        case 1:
+                            this.WindowsHealth += 5;
+                            WindowsList.Add(new Windows(50f, WindowsHealth, WindowsDamage, this, this.settings, this.player));
+                            WindowsList[WindowsList.Count - 1].spriteSheet = spriteSheetLoader.Load("sprites/entities/entities.png");
+                            WindowsList[WindowsList.Count - 1].SetSpawnFromMap(MapArray);
+                            break;
+                    }
+                }
+
+
+                // Updaten
+                for (int i = 0; i < AndroidsList.Count; i++)
+                {
+                    AndroidsList[i].Update(gameTime, MapArray, map[AktuelleMap].maplevel);
+
+                    if (AndroidsList[i].IsDead)
+                    {
+                        PoofPosition = AndroidsList[i].Position;
                         PoofIsActive = true;
 
                         // 10% Chance das sich der Schaden 
@@ -492,9 +519,32 @@ namespace BugHunter
                         {
                             AndroidDamage += 1;
                         }
-                        Androids.Remove(Androids[i]);
-                        
-                        // 25% Chance dass ein Powerup spawnt
+                        AndroidsList.Remove(AndroidsList[i]);                        
+                    }
+                }
+
+
+                for (int i = 0; i < WindowsList.Count; i++)
+                {
+                    WindowsList[i].Update(gameTime, MapArray, map[AktuelleMap].maplevel);
+
+                    if (WindowsList[i].IsDead)
+                    {
+                        PoofPosition = WindowsList[i].Position;
+                        PoofIsActive = true;
+
+                        // 10% Chance das sich der Schaden 
+                        if (random.Next(100) < 10)
+                        {
+                            WindowsDamage += 1;
+                        }
+                        WindowsList.Remove(WindowsList[i]);
+                    }
+                }
+
+
+                /*
+                    // 25% Chance dass ein Powerup spawnt
                         if(random.Next(100) < 25)
                         {
                             // Wenn bereits genug Powerups aktiv sind wird das Generieren Übersprungen
@@ -535,8 +585,8 @@ namespace BugHunter
                                 }
                             }
                         }
-                    }
-                }
+                 */
+
                 player.Update(gameTime, MapArray, map[AktuelleMap].getTiledMap());
                 gui.Update(gameTime, player);
 
@@ -601,7 +651,7 @@ namespace BugHunter
                 player.Reset(MapArray);
                 this.CurrentGameState = GameState.Ingame;
                 this.Score = 0;
-                this.maxAndroids = 1;
+                this.MaxEnemies = 1;
                 this.AndroidHealth = 30;
                 this.AndroidDamage = 1;
             }
@@ -677,9 +727,14 @@ namespace BugHunter
                 // Sprite ausgeben
                 player.Draw(spriteBatch, font);
 
-                for (int i = 0; i < Androids.Count; i++)
+                foreach(Android android in AndroidsList)
                 {
-                    Androids[i].Draw(spriteBatch, font);
+                    android.Draw(spriteBatch, font);
+                }
+
+                foreach(Windows windows in WindowsList)
+                {
+                    windows.Draw(spriteBatch, font);
                 }
 
                 for (int i = 0; i <= Powerups.Count; i++)

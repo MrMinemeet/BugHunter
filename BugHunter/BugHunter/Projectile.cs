@@ -184,7 +184,13 @@ namespace BugHunter
                     break;
             }
         }
-        public bool CheckForHit(Android enemy)
+
+        /// <summary>
+        /// Funktion für das Überprüfen auf dreffern bei Androids
+        /// </summary>
+        /// <param name="enemy"></param>
+        /// <returns></returns>
+        public bool CheckForHitAndroid(Android enemy)
         {
             SpriteFrame enemySpriteFrame = enemy.spriteSheet.Sprite(TexturePackerMonoGameDefinitions.entities.Android1);
 
@@ -238,6 +244,68 @@ namespace BugHunter
 
             return false;
             
+        }
+
+
+        /// <summary>
+        /// Funktion für das Überprüfen auf dreffern bei Windows
+        /// </summary>
+        /// <param name="enemy"></param>
+        /// <returns></returns>
+        public bool CheckForHitWindows(Windows enemy)
+        {
+            SpriteFrame enemySpriteFrame = enemy.spriteSheet.Sprite(TexturePackerMonoGameDefinitions.entities.Android1);
+
+            SpriteFrame projectileFrame = null;
+            switch (ProjectileType)
+            {
+                case Weapon.WeaponTypes.cpp:
+                    projectileFrame = player.WeaponSpriteSheet.Sprite(TexturePackerMonoGameDefinitions.entities.Cpp); break;
+                case Weapon.WeaponTypes.c:
+                    projectileFrame = player.WeaponSpriteSheet.Sprite(TexturePackerMonoGameDefinitions.entities.C); break;
+                case Weapon.WeaponTypes.java:
+                    projectileFrame = player.WeaponSpriteSheet.Sprite(TexturePackerMonoGameDefinitions.entities.Java); break;
+                case Weapon.WeaponTypes.maschinensprache:
+                    switch (this.textureVersion)
+                    {
+                        case 0:
+                            projectileFrame = player.WeaponSpriteSheet.Sprite(TexturePackerMonoGameDefinitions.entities.Mss000); break;
+                        case 1:
+                            projectileFrame = player.WeaponSpriteSheet.Sprite(TexturePackerMonoGameDefinitions.entities.Mss001); break;
+                        case 2:
+                            projectileFrame = player.WeaponSpriteSheet.Sprite(TexturePackerMonoGameDefinitions.entities.Mss010); break;
+                        case 3:
+                            projectileFrame = player.WeaponSpriteSheet.Sprite(TexturePackerMonoGameDefinitions.entities.Mss011); break;
+                        case 4:
+                            projectileFrame = player.WeaponSpriteSheet.Sprite(TexturePackerMonoGameDefinitions.entities.Mss100); break;
+                        case 5:
+                            projectileFrame = player.WeaponSpriteSheet.Sprite(TexturePackerMonoGameDefinitions.entities.Mss101); break;
+                        case 6:
+                            projectileFrame = player.WeaponSpriteSheet.Sprite(TexturePackerMonoGameDefinitions.entities.Mss110); break;
+                        case 7:
+                            projectileFrame = player.WeaponSpriteSheet.Sprite(TexturePackerMonoGameDefinitions.entities.Mss111); break;
+                    }
+                    break;
+                case Weapon.WeaponTypes.csharp:
+                    projectileFrame = player.WeaponSpriteSheet.Sprite(TexturePackerMonoGameDefinitions.entities.Csharp); break;
+            }
+
+            if (projectileFrame == null)
+                return false;
+
+            if (
+                ((ProjectilePosition.X + projectileFrame.Size.X / 2 >= enemy.Position.X - enemySpriteFrame.Size.X / 2 && ProjectilePosition.X - projectileFrame.Size.X / 2 <= enemy.Position.X + enemySpriteFrame.Size.X / 2)
+                && (ProjectilePosition.Y + projectileFrame.Size.Y / 2 >= enemy.Position.Y - enemySpriteFrame.Size.Y / 2 && ProjectilePosition.Y - projectileFrame.Size.Y / 2 <= enemy.Position.Y + enemySpriteFrame.Size.Y / 2))
+                )
+            {
+                // Projektil weg schalten
+                this.IsActive = false;
+
+                return true;
+            }
+
+            return false;
+
         }
     }
 }
