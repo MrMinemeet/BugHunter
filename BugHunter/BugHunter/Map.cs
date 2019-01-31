@@ -3,10 +3,10 @@ using MonoGame.Extended.Tiled.Renderers;
 
 namespace BugHunter
 {
-    class Map
+    public class Map
     {
         // The tile map
-        private TiledMap maplevel;
+        public TiledMap maplevel;
         // The renderer for the map
         public TiledMapRenderer mapRenderer;
         

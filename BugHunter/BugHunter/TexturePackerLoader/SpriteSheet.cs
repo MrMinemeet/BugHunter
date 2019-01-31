@@ -1,7 +1,7 @@
 namespace TexturePackerLoader
 {
     using System.Collections.Generic;
-        public class SpriteSheet
+    public class SpriteSheet
     {
         private readonly IDictionary<string, SpriteFrame> spriteList;
 

@@ -14,23 +14,53 @@
 
 #---------------------------------- Content ---------------------------------#
 
-#begin android_packed.png
-/copy:android_packed.png
+#begin audio/Musik.mp3
+/importer:Mp3Importer
+/processor:SoundEffectProcessor
+/processorParam:Quality=Medium
+/build:audio/Musik.mp3
 
-#begin android_packed.txt
-/copy:android_packed.txt
+#begin audio/Schuss/schuss_001.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:audio/Schuss/schuss_001.wav
 
-#begin damaged.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:damaged.png
+#begin audio/Schuss/schuss_002.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:audio/Schuss/schuss_002.wav
+
+#begin audio/Schuss/schuss_003.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:audio/Schuss/schuss_003.wav
+
+#begin audio/Schuss/schuss_004.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:audio/Schuss/schuss_004.wav
+
+#begin audio/Schuss/schuss_005.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:audio/Schuss/schuss_005.wav
+
+#begin audio/Schuss/schuss_006.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:audio/Schuss/schuss_006.wav
+
+#begin audio/Score.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Medium
+/build:audio/Score.wav
 
 #begin Debug.spritefont
 /importer:FontDescriptionImporter
@@ -39,12 +69,11 @@
 /processorParam:TextureFormat=Compressed
 /build:Debug.spritefont
 
-#begin Font.spritefont
-/importer:FontDescriptionImporter
-/processor:FontDescriptionProcessor
-/processorParam:PremultiplyAlpha=True
-/processorParam:TextureFormat=Compressed
-/build:Font.spritefont
+#begin effects_packed.png
+/copy:effects_packed.png
+
+#begin effects_packed.txt
+/copy:effects_packed.txt
 
 #begin Font.spritefont
 /importer:FontDescriptionImporter
@@ -83,19 +112,13 @@
 /processorParam:TextureFormat=Color
 /build:paused_background.png
 
-#begin sprites/enemy/android/android_packed.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:sprites/enemy/android/android_packed.png
+#begin sprites/entities/entities.png
+/copy:sprites/entities/entities.png
 
-#begin sprites/enemy/android/sprites/Android1.png
+#begin sprites/entities/entities.txt
+/copy:sprites/entities/entities.txt
+
+#begin sprites/entities/player/player.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -105,7 +128,7 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:sprites/enemy/android/sprites/Android1.png
+/build:sprites/entities/player/player.png
 
 #begin sprites/gui/textures/heart_full.png
 /importer:TextureImporter
@@ -154,16 +177,4 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:sprites/originSpot.png
-
-#begin sprites/player/afk_0001.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:sprites/player/afk_0001.png
 

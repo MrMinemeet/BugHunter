@@ -1,0 +1,6 @@
+*.cache
+*.exe
+*.zip
+*.rar
+*.suo
+.vs/

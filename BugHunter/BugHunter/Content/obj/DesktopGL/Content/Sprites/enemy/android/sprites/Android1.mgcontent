@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <SourceFile>C:/Users/Alexa/Google Drive/Schule/4AHELS/Werkstätte/BugHunter/BugHunter/BugHunter/Content/sprites/enemy/android/sprites/Android1.png</SourceFile>
-  <SourceTime>2018-11-24T16:06:08.590786+01:00</SourceTime>
+  <SourceTime>2018-11-24T16:06:08+01:00</SourceTime>
   <DestFile>C:/Users/Alexa/Google Drive/Schule/4AHELS/Werkstätte/BugHunter/BugHunter/BugHunter/Content/bin/DesktopGL/Content/sprites/enemy/android/sprites/Android1.xnb</DestFile>
-  <DestTime>2018-12-03T11:12:12.9768394+01:00</DestTime>
+  <DestTime>2019-01-04T21:53:06.8458853+01:00</DestTime>
   <Importer>TextureImporter</Importer>
   <ImporterTime>2018-10-08T15:37:24+02:00</ImporterTime>
   <Processor>TextureProcessor</Processor>

@@ -4,7 +4,7 @@
         <key>fileFormatVersion</key>
         <int>4</int>
         <key>texturePackerVersion</key>
-        <string>4.9.0</string>
+        <string>4.11.1</string>
         <key>autoSDSettings</key>
         <array>
             <struct type="AutoSDSettings">
@@ -108,7 +108,7 @@
             <key>sizeConstraints</key>
             <enum type="AlgorithmSettings::SizeConstraints">AnySize</enum>
             <key>forceSquared</key>
-            <true/>
+            <false/>
             <key>maxRects</key>
             <struct type="AlgorithmMaxRectsSettings">
                 <key>heuristic</key>
@@ -155,7 +155,7 @@
             <key>scale</key>
             <double>1</double>
             <key>scaleMode</key>
-            <enum type="ScaleMode">Smooth</enum>
+            <enum type="ScaleMode">Fast</enum>
             <key>extrude</key>
             <uint>0</uint>
             <key>trimThreshold</key>
@@ -179,6 +179,7 @@
             <key type="filename">trigger_collision_etc/enemy_spawn.png</key>
             <key type="filename">trigger_collision_etc/munition_reload.png</key>
             <key type="filename">trigger_collision_etc/player_spawn.png</key>
+            <key type="filename">trigger_collision_etc/powerup.png</key>
             <struct type="IndividualSpriteSettings">
                 <key>pivotPoint</key>
                 <point_f>0.5,0.5</point_f>
