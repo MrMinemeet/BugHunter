@@ -31,10 +31,10 @@
  * CopyRight:
  * Alle Rechte der Bilder, Spiellogik und Spielidee gehören den rechtlichen Eigentümern.
  * Das unerlaubte Kopieren, Veröffentlichen, Verleihen und öffentliches vorführen ist verboten!
+ * 
+ * 3809 Zeilen an Code
+ * 
  */
-
-
- // TODO: Windows Gegner implementieren
 
 
 using Microsoft.Xna.Framework;
@@ -53,7 +53,6 @@ using DiscordRPC;
 using System.Timers;
 using System.Diagnostics;
 using MySql.Data.MySqlClient;
-using System.Threading.Tasks;
 
 namespace BugHunter
 {
@@ -94,15 +93,14 @@ namespace BugHunter
         public bool IsDiscordRunning = false;
 
         // Datenbank
-        Database database = new Database();
+        Database database;
         public bool DataBaseIsActive = false;
         double lastDatabaseUpdate = 0;
 
 
         private int StatsBoostGiven = 1;
 
-        Timer timer;
-
+        public Logger logger = null;
         Texture2D pauseScreen;
 
         private readonly TimeSpan timePerFrame = TimeSpan.FromSeconds(3f / 30f);
@@ -186,8 +184,11 @@ namespace BugHunter
             };
             IsMouseVisible = settings.IsMouseVisible;
 
+            /*
+            // Entsperrt den 60fps Framelock
             graphics.SynchronizeWithVerticalRetrace = false;
             IsFixedTimeStep = false;
+            */
 
             Content.RootDirectory = "Content";
         }
@@ -202,6 +203,15 @@ namespace BugHunter
                 // IsDiscordRunning = IsProcessRunning("discord");
 
             this.graphicsDevice = GraphicsDevice;
+
+            logger = new Logger(this.settings.LoggingPath);
+
+            Stopwatch sw = new Stopwatch();
+
+            sw.Start();
+            database = new Database(this);
+            sw.Stop();
+            Console.WriteLine(sw.ElapsedMilliseconds);
 
             this.Score = 0;
 
@@ -228,12 +238,7 @@ namespace BugHunter
                 //Create some events so we know things are happening
                 client.OnReady += (sender, msg) => { Console.WriteLine("Connected to discord with user {0}", msg.User.Username); };
                 client.OnPresenceUpdate += (sender, msg) => { Console.WriteLine("Presence has been updated!"); };
-
-                //Create a timer that will regularly call invoke
-                timer = new System.Timers.Timer(150);
-                timer.Elapsed += (sender, evt) => { client.Invoke(); };
-                timer.Start();
-
+                
 
                 //Register to the events we care about. We are registering to everyone just to show off the events
                 client.OnReady += OnReady;
@@ -258,13 +263,6 @@ namespace BugHunter
             for (int i = 0; i < data.Length; ++i) data[i] = Color.Chocolate;
             pauseScreen.SetData(data);
 
-
-
-            if (database.mySqlConnection.State == System.Data.ConnectionState.Open)
-            {
-                DataBaseIsActive = true;
-            }
-
             base.Initialize();
         }
         
@@ -285,6 +283,7 @@ namespace BugHunter
             settings.EmptyTexture = Content.Load<Texture2D>("sprites/empty");
             settings.Init(this);
             settings.LoadSettings();
+
 
             // TMX (wie CSV) Map in 2D Array wandeln
             MapArray = Converter.MapToIntArray(map[AktuelleMap].maplevel, settings);
@@ -335,6 +334,12 @@ namespace BugHunter
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Update(GameTime gameTime)
         {
+            // Überprüfen ob Datenbankverbindung aufgebaut wurde
+            if (database.mySqlConnection.State == System.Data.ConnectionState.Open)
+            {
+                DataBaseIsActive = true;
+            }
+
             // Datenbankstats jede Minute Updaten
             if (gameTime.TotalGameTime.TotalSeconds - this.lastDatabaseUpdate >= 15)
             {
@@ -427,12 +432,7 @@ namespace BugHunter
                             // TODO: Einstellungen
                             break;
                         case Menubuttons.Beenden:
-                            settings.SaveSettings();
-                            //At the very end we need to dispose of it
-                            timer?.Close();
-                            client?.Dispose();
-                            database?.Dispose();
-                            Exit();
+                            ExitGame();
                             break;
                     }
                 }
@@ -867,8 +867,6 @@ namespace BugHunter
 			Console.WriteLine("Error occured within discord. ({1}) {0}", args.Message, args.Code);
 		}
 
-
-
         public void ExitGame()
         {
 
@@ -887,20 +885,23 @@ namespace BugHunter
             client?.Dispose();
 
             // Spiel beenden
+            logger.Log("Spiel beenden");
             Exit();
         }
         void SyncDatabase(Database database, Settings settings)
         {
             // Überprüft ob Datenbank läuft500
             if (!DataBaseIsActive)
+            {
+                logger.Log("Datenbank nicht aktiv.");
                 return;
-
-
+            }
+            logger.Log("Datenbank aktiv.");
 
             // Stats an Datenbank senden
             MySqlCommand mySqlCommand;
 
-            string myInsertQuery = "SELECT `globalscore`.`UserID` FROM `globalscore`";
+            string myInsertQuery = "SELECT `globalscore`.`UserID`,`globalscore`.`Score` FROM `globalscore`";
             mySqlCommand = new MySqlCommand(myInsertQuery);
 
             mySqlCommand.Connection = database.mySqlConnection;
@@ -915,6 +916,7 @@ namespace BugHunter
                 // GUID in Datenbank gefunden
                 if (reader.GetString(0).Equals(settings.GUID))
                 {
+                    logger.Log("GUID in Datenbank gefunden." + reader.GetString(0));
                     GuidExists = true;
                     break;
                 }
@@ -934,12 +936,15 @@ namespace BugHunter
                     DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") +
                     "' WHERE `globalscore`.`UserID` = '" + settings.GUID + "'";
                 mySqlCommand.ExecuteNonQuery();
+                logger.Log("Datenbankeintrag für " + settings.GUID + " upgedated.");
             }
             else
             {
                 // Kein Eintrag gefunden, wodurch ein neuer erstellt wird
                 database.SendQueryCommand("INSERT INTO `globalscore` (`UserID`, `Name`, `Score`, `DateTime`, `IPAddress`) VALUES('" + settings.GUID + "', '" + settings.UserName + "', '" + settings.HighScore + "', '" + 
                 DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + "', 'UNUSED');");
+
+                logger.Log("Datenbankeintrag für " + settings.GUID + " erstellt.");
             }
 
         }

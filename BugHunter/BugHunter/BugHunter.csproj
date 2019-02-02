@@ -94,11 +94,13 @@
     <ApplicationManifest>app.manifest</ApplicationManifest>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Encrypt.cs" />
     <Compile Include="Gegner\Android.cs" />
     <Compile Include="Animation.cs" />
     <Compile Include="AnimationManager.cs" />
     <Compile Include="Database.cs" />
     <Compile Include="DiscordRpc.cs" />
+    <Compile Include="Logger.cs" />
     <Compile Include="PackedTexturesCS\Entities.cs" />
     <Compile Include="Converter.cs" />
     <Compile Include="FpsCounter.cs" />
@@ -130,6 +132,9 @@
   <ItemGroup>
     <Reference Include="DiscordRPC">
       <HintPath>..\packages\Discord RPC\bin\Debug\DiscordRPC.dll</HintPath>
+    </Reference>
+    <Reference Include="log4net, Version=2.0.8.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
+      <HintPath>..\packages\log4net.2.0.8\lib\net45-full\log4net.dll</HintPath>
     </Reference>
     <Reference Include="MonoGame.Extended">
       <HintPath>..\packages\MonoGame.Extended\Source\MonoGame.Extended\bin\Release\netstandard2.0\MonoGame.Extended.dll</HintPath>

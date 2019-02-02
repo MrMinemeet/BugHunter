@@ -7,17 +7,23 @@ namespace ProjectWhitespace
     public class Database
     {
         public MySqlConnection mySqlConnection = null;
+        private Game1 game = null;
 
-        public Database()
+        public Database(Game1 game)
         {
+            this.game = game;
             String connString = "Server=" + Settings.host + ";Database=" + Settings.database
                  + ";port=" + Settings.port + ";User Id=" + Settings.username + ";password=" + Settings.password;
 
             mySqlConnection = new MySqlConnection(connString);
-            try
-            {
-                this.mySqlConnection.Open();
-            } catch (Exception) { };
+            //try
+            //{
+                this.mySqlConnection.OpenAsync();
+            //}
+            //catch (MySqlException e)
+            //{
+            //    game.logger.Log("Fehler beim Verbinden zu der Datenbank: " + e.Message);
+            //}
         }
 
         /// <summary>
@@ -28,27 +34,22 @@ namespace ProjectWhitespace
         {
             try
             {
-
                 MySqlCommand mySqlCommand = new MySqlCommand(query);
-                
-                Console.WriteLine("Openning Connection ...");
                 
                 // Überprüfen ob Datenbankverbindung steht
                 if(mySqlConnection.State == System.Data.ConnectionState.Open){
 
+                    game.logger.Log("Connection active. Sending Query.");
                     mySqlCommand.Connection = this.mySqlConnection;
-
-                    Console.WriteLine("Connection successful!");
 
                     mySqlCommand.ExecuteNonQueryAsync();
 
                     Console.WriteLine("Insetion Done");
                 }
-
             }
             catch (Exception e)
             {
-                Console.WriteLine("Error: " + e.Message);
+                game.logger.Log(e.Message);
             }
         }
 
