@@ -184,11 +184,11 @@ namespace BugHunter
             };
             IsMouseVisible = settings.IsMouseVisible;
 
-            /*
+            
             // Entsperrt den 60fps Framelock
-            graphics.SynchronizeWithVerticalRetrace = false;
+            graphics.SynchronizeWithVerticalRetrace = true;
             IsFixedTimeStep = false;
-            */
+            
 
             Content.RootDirectory = "Content";
         }

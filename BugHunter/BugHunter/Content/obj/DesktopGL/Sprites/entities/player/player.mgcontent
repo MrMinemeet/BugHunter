@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <SourceFile>C:/Users/Alexa/Google Drive/Schule/4AHELS/Werkstätte/BugHunter/BugHunter/BugHunter/Content/sprites/entities/player/player.png</SourceFile>
-  <SourceTime>2018-11-05T16:31:16+01:00</SourceTime>
-  <DestFile>C:/Users/Alexa/Google Drive/Schule/4AHELS/Werkstätte/BugHunter/BugHunter/BugHunter/Content/bin/DesktopGL/sprites/entities/player/player.xnb</DestFile>
-  <DestTime>2019-01-09T13:52:31.8801189+01:00</DestTime>
+  <SourceFile>H:/Project Whitespace/BugHunter/BugHunter/BugHunter/BugHunter/BugHunter/Content/sprites/entities/player/player.png</SourceFile>
+  <SourceTime>2019-02-02T19:54:18.5944144+01:00</SourceTime>
+  <DestFile>H:/Project Whitespace/BugHunter/BugHunter/BugHunter/BugHunter/BugHunter/Content/bin/DesktopGL/sprites/entities/player/player.xnb</DestFile>
+  <DestTime>2019-02-02T20:31:24.8287579+01:00</DestTime>
   <Importer>TextureImporter</Importer>
   <ImporterTime>2018-10-08T15:37:24+02:00</ImporterTime>
   <Processor>TextureProcessor</Processor>

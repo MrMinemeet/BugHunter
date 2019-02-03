@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <SourceFile>C:/Users/Alexa/Google Drive/Schule/4AHELS/Werkstätte/BugHunter/BugHunter/BugHunter/Content/map1.tmx</SourceFile>
-  <SourceTime>2018-12-20T09:44:54+01:00</SourceTime>
-  <DestFile>C:/Users/Alexa/Google Drive/Schule/4AHELS/Werkstätte/BugHunter/BugHunter/BugHunter/Content/bin/DesktopGL/map1.xnb</DestFile>
-  <DestTime>2019-01-09T13:52:31.3625089+01:00</DestTime>
+  <SourceFile>H:/Project Whitespace/BugHunter/BugHunter/BugHunter/BugHunter/BugHunter/Content/map1.tmx</SourceFile>
+  <SourceTime>2019-02-02T19:54:18.5520492+01:00</SourceTime>
+  <DestFile>H:/Project Whitespace/BugHunter/BugHunter/BugHunter/BugHunter/BugHunter/Content/bin/DesktopGL/map1.xnb</DestFile>
+  <DestTime>2019-02-02T20:31:24.5182887+01:00</DestTime>
   <Importer>TiledMapImporter</Importer>
-  <ImporterTime>2018-11-26T09:40:58+01:00</ImporterTime>
+  <ImporterTime>2019-02-02T19:54:18.9564762+01:00</ImporterTime>
   <Processor>TiledMapProcessor</Processor>
-  <ProcessorTime>2018-11-26T09:40:58+01:00</ProcessorTime>
+  <ProcessorTime>2019-02-02T19:54:18.9564762+01:00</ProcessorTime>
   <Dependencies />
   <BuildAsset>
-    <string>C:/Users/Alexa/Google Drive/Schule/4AHELS/Werkstätte/BugHunter/BugHunter/BugHunter/Content/bin/DesktopGL/tileset_0.xnb</string>
-    <string>C:/Users/Alexa/Google Drive/Schule/4AHELS/Werkstätte/BugHunter/BugHunter/BugHunter/Content/bin/DesktopGL/collision_0.xnb</string>
+    <string>H:/Project Whitespace/BugHunter/BugHunter/BugHunter/BugHunter/BugHunter/Content/bin/DesktopGL/tileset_0.xnb</string>
+    <string>H:/Project Whitespace/BugHunter/BugHunter/BugHunter/BugHunter/BugHunter/Content/bin/DesktopGL/collision_0.xnb</string>
   </BuildAsset>
   <BuildOutput />
 </PipelineBuildEvent>
