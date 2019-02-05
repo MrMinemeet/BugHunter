@@ -33,7 +33,6 @@
  * Das unerlaubte Kopieren, Veröffentlichen, Verleihen und öffentliches Vorführen ist verboten!
  * 
  * 3809 Zeilen an Code
- * 
  */
 
 
@@ -117,7 +116,7 @@ namespace BugHunter
 
 
 
-        public IDictionary<int, Powerup> Powerups = new Dictionary<int, Powerup>();
+        public List<Powerup> Powerups = new List<Powerup>();
 
 
         public Map[] map = new Map[1];
@@ -323,7 +322,6 @@ namespace BugHunter
             PoofSpriteSheet = spriteSheetLoader.Load("effects_packed.png");
             
             InitialiseAnimationManager();
-
         }
 
         // UnloadContent will be called once per game and is the place to unload game-specific content.
@@ -456,7 +454,6 @@ namespace BugHunter
                     settings.AreDebugInformationsVisible = !settings.AreDebugInformationsVisible;
                     LastKeyStrokeInput = gameTime.TotalGameTime.TotalMilliseconds;
                 }
-
                 
                 if (this.Score > settings.HighScore)
                 {
@@ -481,12 +478,13 @@ namespace BugHunter
                             this.AndroidHealth += 5;
                             AndroidsList.Add(new Android(50f, AndroidHealth, AndroidDamage, this, this.settings, this.player));
                             AndroidsList[AndroidsList.Count - 1].spriteSheet = spriteSheetLoader.Load("sprites/entities/entities.png");
+                            AndroidsList[AndroidsList.Count - 1].SetSpawnFromMap(EnemySpawnPointsArray);
 
                             sp = AndroidsList[AndroidsList.Count - 1].spriteSheet.Sprite(TexturePackerMonoGameDefinitions.entities.Android1);
 
                             enemyHitbox = new Rectangle((int)(AndroidsList[AndroidsList.Count - 1].Position.X - sp.Size.X / 2), (int)(AndroidsList[AndroidsList.Count - 1].Position.Y - sp.Size.Y / 2), (int)sp.Size.X, (int)sp.Size.Y);
 
-                            while (!enemyHitbox.Intersects(playersBox))
+                            while (enemyHitbox.Intersects(playersBox))
                             {
                                 AndroidsList[AndroidsList.Count - 1].SetSpawnFromMap(EnemySpawnPointsArray);
                             }
@@ -503,17 +501,13 @@ namespace BugHunter
 
                             enemyHitbox = new Rectangle((int)(WindowsList[WindowsList.Count - 1].Position.X - sp.Size.X / 2), (int)(WindowsList[WindowsList.Count - 1].Position.Y - sp.Size.Y / 2), (int)sp.Size.X, (int)sp.Size.Y);
 
-                            while (!enemyHitbox.Intersects(playersBox))
+                            while (enemyHitbox.Intersects(playersBox))
                             {
                                 WindowsList[WindowsList.Count - 1].SetSpawnFromMap(EnemySpawnPointsArray);
                             }
                             break;
-
-
-                            break;
                     }
                 }
-
 
                 // Updaten
                 for (int i = 0; i < AndroidsList.Count; i++)
@@ -530,10 +524,14 @@ namespace BugHunter
                         {
                             AndroidDamage += 1;
                         }
+                        // 25% Chance dass ein Powerup spawnt
+                        if (random.Next(100) < 25)
+                        {
+                            Powerups.Add(new Powerup(this, spriteSheetLoader.Load("sprites/entities/entities.png"), new SpriteRender(spriteBatch), settings, AndroidsList[i].Position));
+                        }
                         AndroidsList.Remove(AndroidsList[i]);                        
                     }
                 }
-
 
                 for (int i = 0; i < WindowsList.Count; i++)
                 {
@@ -549,54 +547,18 @@ namespace BugHunter
                         {
                             WindowsDamage += 1;
                         }
+
+                        // 25% Chance dass ein Powerup spawnt
+                        if (random.Next(100) < 25)
+                        {
+                            Powerups.Add(new Powerup(this, spriteSheetLoader.Load("sprites/entities/entities.png"), new SpriteRender(spriteBatch), this.settings, WindowsList[i].Position));
+                        }
+
                         WindowsList.Remove(WindowsList[i]);
+
+
                     }
                 }
-
-
-                /*
-                    // 25% Chance dass ein Powerup spawnt
-                        if(random.Next(100) < 25)
-                        {
-                            // Wenn bereits genug Powerups aktiv sind wird das Generieren Übersprungen
-                            if (Powerups.Count == Settings.generalMaxPowerUps)
-                                continue;
-
-                            for (int x = 0; x < Settings.generalMaxPowerUps; x++)
-                            {
-                                if (!Powerups.ContainsKey(x))
-                                {
-                                    Powerups.Add(x, new Powerup(this, spriteSheetLoader.Load("sprites/entities/entities.png"), new SpriteRender(spriteBatch), this.settings, this.MapArray));
-
-
-
-                                    // Setzt solage eine neue Position bis alle Powerups auf einer unterschiedlichen Position sind
-                                    int j = 0;
-                                    while (true)
-                                    {
-
-                                        if (j > Powerups.Count)
-                                        {
-                                            break;
-                                        }
-
-                                        if (Powerups.ContainsKey(x) && Powerups.ContainsKey(j))
-                                        {
-                                            if (Powerups[x].position.Equals(Powerups[j].position) && j != x)
-                                            {
-                                                Powerups[x].ResetPosition(this.MapArray);
-                                                j = 0;
-                                            }
-                                        }
-
-                                        j++;
-                                    }
-
-                                    break;
-                                }
-                            }
-                        }
-                 */
 
                 player.Update(gameTime, MapArray, map[AktuelleMap].getTiledMap());
                 gui.Update(gameTime, player);
@@ -616,26 +578,21 @@ namespace BugHunter
                 }
 
                 // Überprüft ob Powerup gelöscht wurde und löscht es falls ja
-                for (int i = 0; i <= Powerups.Count; i++)
+                for (int i = 0; i < Powerups.Count; i++)
                 {
-                    if (Powerups.ContainsKey(i))
+                    if (Powerups.Contains(Powerups[i]))
                     {
                         if (Powerups[i].WasCollected(this.player))
                         {
-                            Powerups.Remove(i);
+                            Powerups.Remove(Powerups[i]);
                             break;
                         }
                     }
                 }                
 
                 // Updated Powerups
-                for(int i = 0; i <= Powerups.Count; i++)
-                {
-                    if (Powerups.ContainsKey(i))
-                    {
-                        Powerups[i].Update(gameTime, this.player);
-                    }
-                }
+                foreach(Powerup p in Powerups)
+                    p.Update(gameTime, this.player);
                 
                 // Updated poof wenn Aktiv
                 if (PoofIsActive)
@@ -748,13 +705,8 @@ namespace BugHunter
                     windows.Draw(spriteBatch, font);
                 }
 
-                for (int i = 0; i <= Powerups.Count; i++)
-                {
-                    if (Powerups.ContainsKey(i))
-                    {
-                        Powerups[i].Draw(spriteBatch);
-                    }
-                }
+                foreach(Powerup powerup in Powerups)
+                    powerup.Draw(spriteBatch);
 
                 if (PoofIsActive)
                 {

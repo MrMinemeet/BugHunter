@@ -25,13 +25,13 @@ namespace ProjectWhitespace
         private int type;
         
 
-        public Powerup(Game1 game,SpriteSheet spriteSheet, SpriteRender spriteRender, Settings settings, int[][] MapArray)
+        public Powerup(Game1 game,SpriteSheet spriteSheet, SpriteRender spriteRender, Settings settings, Vector2 Position)
         {
             this.game = game;
             this.spriteSheet = spriteSheet;
             this.spriteRender = spriteRender;
             this.settings = settings;
-            this.position = this.SetSpawnFromMap(MapArray, this.settings);
+            this.position = Position;
 
             switch(game.random.Next(3))
             {
@@ -53,37 +53,6 @@ namespace ProjectWhitespace
             }
 
             this.type = game.random.Next(2);
-        }
-
-        private Vector2 SetSpawnFromMap(int[][] MapArray, Settings settings)
-        {
-
-            Random random = new Random((int)DateTime.Now.Ticks & 0x0000FFFF);
-
-            int x, y;
-            while (true)
-            {
-                for (y = random.Next(settings.MapSizeHeight); y < MapArray.Length; y++)
-                {
-                    for (x = random.Next(settings.MapSizeWidth); x < MapArray[y].Length; x++)
-                    {
-                        if (MapArray[y][x].Equals(Settings.PowerupTileId))
-                        {
-
-                            return new Vector2(x * Settings.TilePixelSize, y * Settings.TilePixelSize);
-                        }
-                    }
-                }
-            }
-        }
-        /// <summary>
-        /// Setzt Powerup auf neue Position
-        /// </summary>
-        /// <param name="MapArray"></param>2
-        /// <returns></returns>
-        public void ResetPosition(int[][] MapArray)
-        {
-            this.position = SetSpawnFromMap(MapArray, this.settings);
         }
 
         public void Draw(SpriteBatch spriteBatch)

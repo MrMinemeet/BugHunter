@@ -16,14 +16,14 @@ namespace ProjectWhitespace
                  + ";port=" + Settings.port + ";User Id=" + Settings.username + ";password=" + Settings.password;
 
             mySqlConnection = new MySqlConnection(connString);
-            //try
-            //{
-                this.mySqlConnection.OpenAsync();
-            //}
-            //catch (MySqlException e)
-            //{
-            //    game.logger.Log("Fehler beim Verbinden zu der Datenbank: " + e.Message);
-            //}
+            try
+            {
+                this.mySqlConnection.Open();
+            }
+            catch (MySqlException e)
+            {
+                game.logger.Log("Fehler beim Verbinden zu der Datenbank: " + e.Message);
+            }
         }
 
         /// <summary>
