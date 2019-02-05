@@ -40,12 +40,9 @@ namespace BugHunter
         public readonly string LoggingPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), @"My games\Bug Hunter\log.txt");
 
 
-        // TODO: FIX UNABLE TO CONNECT TO ANY OF THE SPECIFIED MYSQL HOSTS --> MySQl auch von anderen IPS außer lokalhost erlauben
-
-
 
         // DATABASE LOGIN
-        public const string host = "projectwhitespace.ddns.net";              // Domain von NoIP.com                 (projectwhitespace.ddns.net)
+        public const string host = "projectwhitespace.net";      // Domain von NoIP.com                 (projectwhitespace.net)
         public const int port = 60457;                           // MySQL Port von Portweiterleitung    (60457)
         public const string database = "BugHunter";              // Datenbankname                       (BugHunter)
         public const string username = "user";                   // Username                            (user)

@@ -4,12 +4,11 @@ namespace BugHunter
 {
     class Converter
     {
-        public static int[][] MapToIntArray(TiledMap map, Settings _settings)
+        public static int[][] MapToIntArray(TiledMap map, Settings settings, string LayerName)
         {
-            TiledMapTileLayer tml = map.GetLayer<TiledMapTileLayer>("Collision/Trigger");
+            TiledMapTileLayer tml = map.GetLayer<TiledMapTileLayer>(LayerName);
             TiledMapTile? tmt;
 
-            Settings settings = _settings;
             int[][] MapArray = new int[settings.MapSizeHeight][];
 
             // TiledMapLayer wie 2D Array Durchlaufen

@@ -132,11 +132,7 @@ namespace ProjectWhitespace
             Rectangle PlayerCollision;
             Rectangle PowerupCollision;
             SpriteFrame sp = null;
-
-            // TODO: Player Powerup collision
             // Bekommt einen Frame
-
-
             sp = spriteSheet.Sprite(TexturePackerMonoGameDefinitions.entities.Powerup_kaffee);
 
 

@@ -22,15 +22,15 @@
  * Datenbank:
  * MariaDB
  * NaviCat
- * PHPmyAdmin
+ * phpMyAdmin
  * 
  * APIs:
  * Discord RPC
  * MySQL Connect
  * 
  * CopyRight:
- * Alle Rechte der Bilder, Spiellogik und Spielidee gehören den rechtlichen Eigentümern.
- * Das unerlaubte Kopieren, Veröffentlichen, Verleihen und öffentliches vorführen ist verboten!
+ * Alle Rechte der Bilder, Spiellogik und Spielidee gehören den rechtmäßigen Eigentümern.
+ * Das unerlaubte Kopieren, Veröffentlichen, Verleihen und öffentliches Vorführen ist verboten!
  * 
  * 3809 Zeilen an Code
  * 
@@ -130,6 +130,7 @@ namespace BugHunter
         Settings settings = new Settings();
          
         public int[][] MapArray;
+        public int[][] EnemySpawnPointsArray;
 
         private double LastKeyStrokeInput = 0;
 
@@ -184,11 +185,10 @@ namespace BugHunter
             };
             IsMouseVisible = settings.IsMouseVisible;
 
-            /*
-            // Entsperrt den 60fps Framelock
-            graphics.SynchronizeWithVerticalRetrace = false;
-            IsFixedTimeStep = false;
-            */
+            
+            graphics.SynchronizeWithVerticalRetrace = true;
+            // IsFixedTimeStep = false;
+            
 
             Content.RootDirectory = "Content";
         }
@@ -286,7 +286,8 @@ namespace BugHunter
 
 
             // TMX (wie CSV) Map in 2D Array wandeln
-            MapArray = Converter.MapToIntArray(map[AktuelleMap].maplevel, settings);
+            MapArray = Converter.MapToIntArray(map[AktuelleMap].maplevel, settings, @"Collision/Trigger");
+            EnemySpawnPointsArray = Converter.MapToIntArray(map[AktuelleMap].maplevel, settings, @"EnemySpawnPos");
 
             // Audio
             sound.ScoreSound = Content.Load<SoundEffect>("audio/Score");
@@ -353,7 +354,6 @@ namespace BugHunter
                 presence.Details = "Score: " + this.Score;
                 presence.Assets.LargeImageKey = "icon";
             }
-
 
             // Spiel schließen
             if (Keyboard.GetState().IsKeyDown(Keys.Delete) && Keyboard.GetState().IsKeyDown(Keys.LeftAlt))
@@ -466,23 +466,14 @@ namespace BugHunter
                 
                 MaxEnemies = (int)(this.Score / 1000) + 1;
 
-                // Generiert neue Einträge im Dictionary wenn weniger Gegner da sind als max. zulässig sind
-                // Generiert immer dann einen Eintrag wenn der Key nicht verwendet wird
-                for (int i = AndroidsList.Count; i < AndroidsList.Count; i++)
-                {
-                    // Neues Leben für Android berechen
-                    this.AndroidHealth = (int)(AndroidHealth + 5);
-
-
-                    // Neuen Android in Liste erstellen
-                    AndroidsList.Add(new Android(50f, AndroidHealth, AndroidDamage, this, this.settings, this.player));
-                    AndroidsList[i].spriteSheet = spriteSheetLoader.Load("sprites/entities/entities.png");
-                    AndroidsList[i].SetSpawnFromMap(MapArray);
-                }
-
                 // Falls weniger Gegner Aktiv sind als Maximal zugelassen sind, dann werden neue gespawnt
                 if(WindowsList.Count + AndroidsList.Count < MaxEnemies)
                 {
+                    Rectangle enemyHitbox;
+                    Rectangle playersBox = new Rectangle((int)(player.Position.X - Settings.TilePixelSize * 2), (int)(player.Position.Y - Settings.TilePixelSize * 2),Settings.TilePixelSize * 4, Settings.TilePixelSize * 4);
+
+                    SpriteFrame sp = null;
+
                     switch (random.Next(2))
                     {
                         // Spawn Android
@@ -490,7 +481,15 @@ namespace BugHunter
                             this.AndroidHealth += 5;
                             AndroidsList.Add(new Android(50f, AndroidHealth, AndroidDamage, this, this.settings, this.player));
                             AndroidsList[AndroidsList.Count - 1].spriteSheet = spriteSheetLoader.Load("sprites/entities/entities.png");
-                            AndroidsList[AndroidsList.Count - 1].SetSpawnFromMap(MapArray);
+
+                            sp = AndroidsList[AndroidsList.Count - 1].spriteSheet.Sprite(TexturePackerMonoGameDefinitions.entities.Android1);
+
+                            enemyHitbox = new Rectangle((int)(AndroidsList[AndroidsList.Count - 1].Position.X - sp.Size.X / 2), (int)(AndroidsList[AndroidsList.Count - 1].Position.Y - sp.Size.Y / 2), (int)sp.Size.X, (int)sp.Size.Y);
+
+                            while (!enemyHitbox.Intersects(playersBox))
+                            {
+                                AndroidsList[AndroidsList.Count - 1].SetSpawnFromMap(EnemySpawnPointsArray);
+                            }
                             break;
 
                         // Spawn Windows
@@ -498,7 +497,19 @@ namespace BugHunter
                             this.WindowsHealth += 5;
                             WindowsList.Add(new Windows(50f, WindowsHealth, WindowsDamage, this, this.settings, this.player));
                             WindowsList[WindowsList.Count - 1].spriteSheet = spriteSheetLoader.Load("sprites/entities/entities.png");
-                            WindowsList[WindowsList.Count - 1].SetSpawnFromMap(MapArray);
+                            WindowsList[WindowsList.Count - 1].SetSpawnFromMap(EnemySpawnPointsArray);
+
+                            sp = WindowsList[WindowsList.Count - 1].spriteSheet.Sprite(TexturePackerMonoGameDefinitions.entities.Windows1);
+
+                            enemyHitbox = new Rectangle((int)(WindowsList[WindowsList.Count - 1].Position.X - sp.Size.X / 2), (int)(WindowsList[WindowsList.Count - 1].Position.Y - sp.Size.Y / 2), (int)sp.Size.X, (int)sp.Size.Y);
+
+                            while (!enemyHitbox.Intersects(playersBox))
+                            {
+                                WindowsList[WindowsList.Count - 1].SetSpawnFromMap(EnemySpawnPointsArray);
+                            }
+                            break;
+
+
                             break;
                     }
                 }
@@ -507,7 +518,7 @@ namespace BugHunter
                 // Updaten
                 for (int i = 0; i < AndroidsList.Count; i++)
                 {
-                    AndroidsList[i].Update(gameTime, MapArray, map[AktuelleMap].maplevel);
+                    AndroidsList[i].Update(gameTime, EnemySpawnPointsArray, map[AktuelleMap].maplevel);
 
                     if (AndroidsList[i].IsDead)
                     {
@@ -808,13 +819,13 @@ namespace BugHunter
         private void InitialiseAnimationManager()
         {
             var poof = new[] {
-                TexturePackerMonoGameDefinitions.effect_packed.Poof_001,
-                TexturePackerMonoGameDefinitions.effect_packed.Poof_002,
-                TexturePackerMonoGameDefinitions.effect_packed.Poof_003,
-                TexturePackerMonoGameDefinitions.effect_packed.Poof_004,
-                TexturePackerMonoGameDefinitions.effect_packed.Poof_005,
-                TexturePackerMonoGameDefinitions.effect_packed.Poof_006,
-                TexturePackerMonoGameDefinitions.effect_packed.Poof_007
+                TexturePackerMonoGameDefinitions.Effect_packed.Poof_001,
+                TexturePackerMonoGameDefinitions.Effect_packed.Poof_002,
+                TexturePackerMonoGameDefinitions.Effect_packed.Poof_003,
+                TexturePackerMonoGameDefinitions.Effect_packed.Poof_004,
+                TexturePackerMonoGameDefinitions.Effect_packed.Poof_005,
+                TexturePackerMonoGameDefinitions.Effect_packed.Poof_006,
+                TexturePackerMonoGameDefinitions.Effect_packed.Poof_007
             };
             
             var poofAnimation = new Animation(new Vector2(1, 0), timePerFrame, SpriteEffects.None, poof);
