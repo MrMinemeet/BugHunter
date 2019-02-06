@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-16"?>
-<DevTrackerData xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" SolutionTotalEditTime="PT2H44M36.32335S" SolutionTotalViewTime="PT10H25M44.0412637S" SolutionTotalDebugTime="PT23M44.4101585S">
+<DevTrackerData xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" SolutionTotalEditTime="PT2H44M38.5390262S" SolutionTotalViewTime="PT12H35M55.9867439S" SolutionTotalDebugTime="PT23M44.4101585S">
   <FileVersion>
     <Major>1</Major>
     <Minor>0</Minor>
@@ -7,14 +7,15 @@
   <SolutionFolder>C:\Users\Alexa\Google Drive\Schule\4AHELS\Werkstätte\BugHunter\BugHunter</SolutionFolder>
   <SessionTimeList />
   <LastSessionTimeList>
-    <DevTrackerDataItem ViewActiveTime="PT6.4449297S" EditActiveTime="PT0S">
-      <ModifiedDate>0001-01-01T00:00:00</ModifiedDate>
-      <EditedCount>0</EditedCount>
+    <DevTrackerDataItem ViewActiveTime="PT2H10M10.9655389S" EditActiveTime="PT2.2156762S">
+      <ModifiedDate>2019-02-06T09:49:44.842566+01:00</ModifiedDate>
+      <ModifiedBy>Alexa</ModifiedBy>
+      <EditedCount>1</EditedCount>
       <ViewedCount>1</ViewedCount>
       <Item>C:\Users\Alexa\Google Drive\Schule\4AHELS\Werkstätte\BugHunter\BugHunter\BugHunter\Game1.cs</Item>
       <ItemType>ProjectItem</ItemType>
       <ProjectName>C:\Users\Alexa\Google Drive\Schule\4AHELS\Werkstätte\BugHunter\BugHunter\BugHunter\BugHunter.csproj</ProjectName>
-      <CreatedDate>2019-02-06T07:11:30.4174226+01:00</CreatedDate>
+      <CreatedDate>2019-02-06T09:49:15.2795335+01:00</CreatedDate>
       <ViewedBy>Alexa</ViewedBy>
     </DevTrackerDataItem>
   </LastSessionTimeList>
@@ -246,11 +247,11 @@
       <CreatedDate>2019-02-05T20:21:53.8312882+01:00</CreatedDate>
       <ViewedBy>Alexa</ViewedBy>
     </DevTrackerDataItem>
-    <DevTrackerDataItem ViewActiveTime="PT4H7M43.4288491S" EditActiveTime="PT1H26M46.8877521S">
-      <ModifiedDate>2019-02-06T07:08:56.4835358+01:00</ModifiedDate>
+    <DevTrackerDataItem ViewActiveTime="PT6H17M55.3743293S" EditActiveTime="PT1H26M49.1034283S">
+      <ModifiedDate>2019-02-06T09:49:44.842566+01:00</ModifiedDate>
       <ModifiedBy>Alexa</ModifiedBy>
-      <EditedCount>20</EditedCount>
-      <ViewedCount>31</ViewedCount>
+      <EditedCount>21</EditedCount>
+      <ViewedCount>33</ViewedCount>
       <Item>C:\Users\Alexa\Google Drive\Schule\4AHELS\Werkstätte\BugHunter\BugHunter\BugHunter\Game1.cs</Item>
       <ItemType>ProjectItem</ItemType>
       <ProjectName>C:\Users\Alexa\Google Drive\Schule\4AHELS\Werkstätte\BugHunter\BugHunter\BugHunter\BugHunter.csproj</ProjectName>
@@ -589,6 +590,27 @@
     </DevTrackerDataItem>
   </TotalTimeList>
   <HistoryTimeList>
+    <DevTrackerDataItem ViewActiveTime="PT2H10M10.9605528S" EditActiveTime="PT2.2156762S">
+      <ModifiedDate>2019-02-06T09:49:44.842566+01:00</ModifiedDate>
+      <ModifiedBy>Alexa</ModifiedBy>
+      <EditedCount>1</EditedCount>
+      <ViewedCount>1</ViewedCount>
+      <Item>C:\Users\Alexa\Google Drive\Schule\4AHELS\Werkstätte\BugHunter\BugHunter\BugHunter\Game1.cs</Item>
+      <ItemType>ProjectItem</ItemType>
+      <ProjectName>C:\Users\Alexa\Google Drive\Schule\4AHELS\Werkstätte\BugHunter\BugHunter\BugHunter\BugHunter.csproj</ProjectName>
+      <CreatedDate>2019-02-06T09:49:15.2795335+01:00</CreatedDate>
+      <ViewedBy>Alexa</ViewedBy>
+    </DevTrackerDataItem>
+    <DevTrackerDataItem ViewActiveTime="PT1.0068688S" EditActiveTime="PT0S">
+      <ModifiedDate>0001-01-01T00:00:00</ModifiedDate>
+      <EditedCount>0</EditedCount>
+      <ViewedCount>1</ViewedCount>
+      <Item>C:\Users\Alexa\Google Drive\Schule\4AHELS\Werkstätte\BugHunter\BugHunter\BugHunter\Game1.cs</Item>
+      <ItemType>ProjectItem</ItemType>
+      <ProjectName>C:\Users\Alexa\Google Drive\Schule\4AHELS\Werkstätte\BugHunter\BugHunter\BugHunter\BugHunter.csproj</ProjectName>
+      <CreatedDate>2019-02-06T07:45:08.6606127+01:00</CreatedDate>
+      <ViewedBy>Alexa</ViewedBy>
+    </DevTrackerDataItem>
     <DevTrackerDataItem ViewActiveTime="PT6.4399398S" EditActiveTime="PT0S">
       <ModifiedDate>0001-01-01T00:00:00</ModifiedDate>
       <EditedCount>0</EditedCount>

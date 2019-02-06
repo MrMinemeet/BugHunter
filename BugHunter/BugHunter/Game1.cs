@@ -49,7 +49,6 @@ using System.Collections.Generic;
 using TexturePackerLoader;
 using DiscordRPC.Message;
 using DiscordRPC;
-using System.Timers;
 using System.Diagnostics;
 using MySql.Data.MySqlClient;
 
@@ -187,8 +186,6 @@ namespace BugHunter
             
             graphics.SynchronizeWithVerticalRetrace = true;
             // IsFixedTimeStep = false;
-            
-
             Content.RootDirectory = "Content";
         }
 
@@ -450,15 +447,16 @@ namespace BugHunter
 
                 if (IsDiscordRunning)
                     presence.State = "Am Debuggen";
+
                 if (Keyboard.GetState().IsKeyDown(Keys.F3) && gameTime.TotalGameTime.TotalMilliseconds - LastKeyStrokeInput >= 500)
                 {
                     settings.AreDebugInformationsVisible = !settings.AreDebugInformationsVisible;
                     LastKeyStrokeInput = gameTime.TotalGameTime.TotalMilliseconds;
                 }
                 
-                if (this.Score > settings.HighScore)
+                if (this.Score > int.Parse(settings.HighScore))
                 {
-                    settings.HighScore = Score;
+                    settings.HighScore = Score.ToString();
                     sound.ScoreSound.Play(0.5f, 0, 0);
                 }
                 
@@ -505,6 +503,8 @@ namespace BugHunter
                             while (enemyHitbox.Intersects(playersBox))
                             {
                                 WindowsList[WindowsList.Count - 1].SetSpawnFromMap(EnemySpawnPointsArray);
+
+                                enemyHitbox = new Rectangle((int)(WindowsList[WindowsList.Count - 1].Position.X - sp.Size.X / 2), (int)(WindowsList[WindowsList.Count - 1].Position.Y - sp.Size.Y / 2), (int)sp.Size.X, (int)sp.Size.Y);
                             }
                             break;
                     }
@@ -542,22 +542,17 @@ namespace BugHunter
                     {
                         PoofPosition = WindowsList[i].Position;
                         PoofIsActive = true;
-
                         // 10% Chance das sich der Schaden 
                         if (random.Next(100) < 10)
                         {
                             WindowsDamage += 1;
                         }
-
                         // 25% Chance dass ein Powerup spawnt
                         if (random.Next(100) < 25)
                         {
                             Powerups.Add(new Powerup(this, spriteSheetLoader.Load("sprites/entities/entities.png"), new SpriteRender(spriteBatch), this.settings, WindowsList[i].Position));
                         }
-
                         WindowsList.Remove(WindowsList[i]);
-
-
                     }
                 }
 

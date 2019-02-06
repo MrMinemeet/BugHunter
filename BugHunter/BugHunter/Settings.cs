@@ -19,7 +19,7 @@ namespace BugHunter
 
         public string GUID= "";
         public string UserName = "";
-        public int HighScore = 0;
+        public string HighScore = "0";
 
         public void UpdateSettings(GraphicsDeviceManager gdm)
         {
@@ -177,7 +177,7 @@ namespace BugHunter
                 // Wert als String einlesen
                 input = br.ReadString();
 
-                this.HighScore = int.Parse(Encrypt.DecryptString(input, this.GUID));
+                this.HighScore = Encrypt.DecryptString(input, this.GUID);
             }
             catch (Exception ex)
             {
@@ -200,8 +200,6 @@ namespace BugHunter
             String path = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), @"My games\Bug Hunter");
 
             BinaryWriter bw = null;
-
-            bool DidLoad = false;
 
             try
             {
