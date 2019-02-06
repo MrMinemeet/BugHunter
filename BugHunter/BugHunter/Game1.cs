@@ -282,6 +282,7 @@ namespace BugHunter
             settings.EmptyTexture = Content.Load<Texture2D>("sprites/empty");
             settings.Init(this);
             settings.LoadSettings();
+            settings.LoadGamedata();
 
 
             // TMX (wie CSV) Map in 2D Array wandeln
@@ -835,8 +836,11 @@ namespace BugHunter
 
             SyncDatabase(this.database, this.settings);
 
-            // Speichern von Daten
+            // Speichern von Einstellungen
             settings.SaveSettings();
+
+            // Speichern von Spielkritischen Daten
+            settings.SaveGamedata();
 
             // Gamepadvibrationen ausschalten
             GamePad.SetVibration(PlayerIndex.One, 0f, 0f);
