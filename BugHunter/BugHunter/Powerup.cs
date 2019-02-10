@@ -147,8 +147,8 @@ namespace ProjectWhitespace
 
                         if (this.game.weapon.CAmmoAmount < Weapon.GeneralMaxAmmo)
                             this.game.weapon.CAmmoAmount += 10;
-                        if (this.game.weapon.CppAmmoAmout < Weapon.GeneralMaxAmmo)
-                            this.game.weapon.CppAmmoAmout += 10;
+                        if (this.game.weapon.CppAmmoAmount < Weapon.GeneralMaxAmmo)
+                            this.game.weapon.CppAmmoAmount += 10;
                         if (this.game.weapon.JavaAmmoAmount < Weapon.GeneralMaxAmmo)
                             this.game.weapon.JavaAmmoAmount += 10;
                         if (this.game.weapon.MaschinenspracheAmmoAmount < Weapon.GeneralMaxAmmo)

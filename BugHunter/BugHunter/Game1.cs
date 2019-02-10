@@ -226,10 +226,12 @@ namespace BugHunter
             if(IsDiscordRunning){
 
                 //Create a new client
-                client = new DiscordRpcClient(ClientID);
+                client = new DiscordRpcClient(ClientID)
+                {
 
-                //Create the logger
-                client.Logger = new DiscordRPC.Logging.ConsoleLogger() { Level = DiscordLogLevel, Coloured = true };
+                    //Create the logger
+                    Logger = new DiscordRPC.Logging.ConsoleLogger() { Level = DiscordLogLevel, Coloured = true }
+                };
 
                 //Create some events so we know things are happening
                 client.OnReady += (sender, msg) => { Console.WriteLine("Connected to discord with user {0}", msg.User.Username); };
@@ -270,12 +272,12 @@ namespace BugHunter
             spriteRender = new SpriteRender(spriteBatch);
 
             // Verarbeitete Map aus Pipeline laden
-            map[AktuelleMap].setTiledMap(Content.Load<TiledMap>("map1"));
+            map[AktuelleMap].SetTiledMap(Content.Load<TiledMap>("map1"));
             // MapRenderer für die Map erstellen
-            map[AktuelleMap].mapRenderer = new TiledMapRenderer(GraphicsDevice, map[AktuelleMap].getTiledMap());
+            map[AktuelleMap].mapRenderer = new TiledMapRenderer(GraphicsDevice, map[AktuelleMap].GetTiledMap());
 
-            settings.MapSizeHeight = map[AktuelleMap].getTiledMap().Height;
-            settings.MapSizeWidth = map[AktuelleMap].getTiledMap().Width;
+            settings.MapSizeHeight = map[AktuelleMap].GetTiledMap().Height;
+            settings.MapSizeWidth = map[AktuelleMap].GetTiledMap().Width;
             settings.EmptyTexture = Content.Load<Texture2D>("sprites/empty");
             settings.Init(this);
             settings.LoadSettings();
@@ -556,7 +558,7 @@ namespace BugHunter
                     }
                 }
 
-                player.Update(gameTime, MapArray, map[AktuelleMap].getTiledMap());
+                player.Update(gameTime, MapArray, map[AktuelleMap].GetTiledMap());
                 gui.Update(gameTime, player);
 
                 // MapRenderer  updaten
@@ -864,9 +866,10 @@ namespace BugHunter
             MySqlCommand mySqlCommand;
 
             string myInsertQuery = "SELECT `globalscore`.`UserID`,`globalscore`.`Score` FROM `globalscore`";
-            mySqlCommand = new MySqlCommand(myInsertQuery);
-
-            mySqlCommand.Connection = database.mySqlConnection;
+            mySqlCommand = new MySqlCommand(myInsertQuery)
+            {
+                Connection = database.mySqlConnection
+            };
 
             // SELECT rückgabe auslesen
             MySqlDataReader reader = mySqlCommand.ExecuteReader();

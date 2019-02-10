@@ -10,11 +10,11 @@ namespace BugHunter
         // The renderer for the map
         public TiledMapRenderer mapRenderer;
         
-        public void setTiledMap(TiledMap value)
+        public void SetTiledMap(TiledMap value)
         {
             this.maplevel = value;
         }
-        public TiledMap getTiledMap()
+        public TiledMap GetTiledMap()
         {
             return this.maplevel;
         }

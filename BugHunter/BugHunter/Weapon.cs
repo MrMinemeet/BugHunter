@@ -3,32 +3,57 @@
     public class Weapon
     {
         // Delays für Waffen
-        public int CppDelayMs = 275;
-        public int CDelayMs = 350;
-        public int JavaDelayMs = 200;
-        public int CsharpDelayMs = 175;
-        public int MaschinenspracheDelayMs = 1000;
+        public int CppDelayMs { get; set; }
+        public int CDelayMs { get; set; }
+        public int JavaDelayMs { get; set; }
+        public int CsharpDelayMs { get; set; }
+        public int MaschinenspracheDelayMs { get; set; }
 
         // Schaden für waffen
-        public int CppDamage = 20;
-        public int CDamage = 25;
-        public int JavaDamage = 15;
-        public int CsharpDamage = 15;
-        public int MaschinenspracheDamage = 100;
+        public int CppDamage { get; set; }
+        public int CDamage { get; set; }
+        public int JavaDamage { get; set; }
+        public int CsharpDamage { get; set; }
+        public int MaschinenspracheDamage { get; set; }
 
         // Max Munition für Waffe
-        public int CppAmmoAmout = 40;
-        public int CAmmoAmount = 35;
-        public int JavaAmmoAmount = 60;
-        public int CsharpAmmoAmount = 70;
-        public int MaschinenspracheAmmoAmount = 30;
+        public int CppAmmoAmount { get; set; }
+        public int CAmmoAmount { get; set; }
+        public int JavaAmmoAmount { get; set; }
+        public int CsharpAmmoAmount { get; set; }
+        public int MaschinenspracheAmmoAmount { get; set; }
 
 
         public const int GeneralMaxAmmo = 200;
 
         public enum WeaponTypes : byte { cpp, java, c, csharp, maschinensprache }
 
-        public int getDelayAktWeapon(WeaponTypes aktWeapon)
+        public Weapon()
+        {
+
+        // Delays für Waffen
+        CppDelayMs = 275;
+        CDelayMs = 350;
+        JavaDelayMs = 200;
+        CsharpDelayMs = 175;
+        MaschinenspracheDelayMs = 1000;
+
+        // Schaden für waffen
+        CppDamage = 20;
+        CDamage = 25;
+        JavaDamage = 15;
+        CsharpDamage = 15;
+        MaschinenspracheDamage = 100;
+
+        // Max Munition für Waffe
+        CppAmmoAmount = 40;
+        CAmmoAmount = 35;
+        JavaAmmoAmount = 60;
+        CsharpAmmoAmount = 70;
+        MaschinenspracheAmmoAmount = 30;
+    }
+            
+        public int GetDelayAktWeapon(WeaponTypes aktWeapon)
         {
             switch (aktWeapon)
             {
@@ -44,10 +69,10 @@
                     return CsharpDelayMs;
             }
 
-            return -1;
+            return 0;
         }
 
-        public int getDamageAktWeapon(WeaponTypes aktWeapon)
+        public int GetDamageAktWeapon(WeaponTypes aktWeapon)
         {
             switch (aktWeapon)
             {
@@ -63,14 +88,14 @@
                     return CsharpDamage;
             }
 
-            return -1;
+            return 0;
         }
-        public int getMaxAmmoAmountAktWeapon(WeaponTypes aktWeapon)
+        public int GetMaxAmmoAmountAktWeapon(WeaponTypes aktWeapon)
         {
             switch (aktWeapon)
             {
                 case WeaponTypes.cpp:
-                    return CppAmmoAmout;
+                    return CppAmmoAmount;
                 case WeaponTypes.c:
                     return CAmmoAmount;
                 case WeaponTypes.java:
@@ -81,26 +106,7 @@
                     return CsharpAmmoAmount;
             }
 
-            return -1;
-        }
-
-        public int getMaxAmmoAmountSpecificWeapon(WeaponTypes weaponType)
-        {
-            switch (weaponType)
-            {
-                case WeaponTypes.cpp:
-                    return CppAmmoAmout;
-                case WeaponTypes.c:
-                    return CAmmoAmount;
-                case WeaponTypes.java:
-                    return JavaAmmoAmount;
-                case WeaponTypes.maschinensprache:
-                    return MaschinenspracheAmmoAmount;
-                case WeaponTypes.csharp:
-                    return CsharpAmmoAmount;
-            }
-
-            return -1;
+            return 0;
         }
     }
 }
