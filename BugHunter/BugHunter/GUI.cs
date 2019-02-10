@@ -22,7 +22,7 @@ namespace BugHunter
         private double lastWeaponChangeTime = 0;
         private int AmmunitionAmmount = -1;
 
-        public void Init(Game1 game)
+        public GUI(Game1 game)
         {
             this.game = game;
         }

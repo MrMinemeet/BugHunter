@@ -222,3 +222,4 @@ C:\Users\Alexa\Documents\GitHub\BugHunter\BugHunter\BugHunter\obj\Debug\BugHunte
 C:\Users\Alexa\Documents\GitHub\BugHunter\BugHunter\BugHunter\obj\Debug\BugHunter.csproj.CopyComplete
 C:\Users\Alexa\Documents\GitHub\BugHunter\BugHunter\BugHunter\obj\Debug\BugHunter.exe
 C:\Users\Alexa\Documents\GitHub\BugHunter\BugHunter\BugHunter\obj\Debug\BugHunter.pdb
+C:\Users\Alexa\Documents\GitHub\BugHunter\BugHunter\BugHunter\obj\Debug\BugHunter.csprojAssemblyReference.cache

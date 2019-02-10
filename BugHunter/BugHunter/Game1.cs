@@ -51,6 +51,7 @@ using DiscordRPC.Message;
 using DiscordRPC;
 using System.Diagnostics;
 using MySql.Data.MySqlClient;
+using System.Threading;
 
 namespace BugHunter
 {
@@ -119,13 +120,13 @@ namespace BugHunter
 
 
         public Map[] map = new Map[1];
-        GUI gui = new GUI();
+        GUI gui;
         public SoundFX sound = new SoundFX();
 
         int AktuelleMap = 0;
 
         // Standardeinstellungen setzen
-        Settings settings = new Settings();
+        public Settings settings = new Settings();
          
         public int[][] MapArray;
         public int[][] EnemySpawnPointsArray;
@@ -141,6 +142,8 @@ namespace BugHunter
         public Player player;
                      
         public Random random = new Random();
+
+        Thread updateThread;
 
 
         // DEBUG Featurese
@@ -203,11 +206,7 @@ namespace BugHunter
             logger = new Logger(this.settings.LoggingPath);
 
             Stopwatch sw = new Stopwatch();
-
-            sw.Start();
             database = new Database(this);
-            sw.Stop();
-            Console.WriteLine(sw.ElapsedMilliseconds);
 
             this.Score = 0;
 
@@ -220,10 +219,10 @@ namespace BugHunter
 
             spriteSheetLoader = new SpriteSheetLoader(Content, GraphicsDevice);
 
-            gui.Init(this);
+            updateThread = new Thread(() => Database.UpdateDatabase(this));
 
 
-            if(IsDiscordRunning){
+            if (IsDiscordRunning){
 
                 //Create a new client
                 client = new DiscordRpcClient(ClientID)
@@ -283,6 +282,8 @@ namespace BugHunter
             settings.LoadSettings();
             settings.LoadGamedata();
 
+            gui = new GUI(this);
+
 
             // TMX (wie CSV) Map in 2D Array wandeln
             MapArray = Converter.MapToIntArray(map[AktuelleMap].maplevel, settings, @"Collision/Trigger");
@@ -322,22 +323,27 @@ namespace BugHunter
             PoofSpriteSheet = spriteSheetLoader.Load("effects_packed.png");
             
             InitialiseAnimationManager();
+
+            updateThread.Start();
         }
 
         // UnloadContent will be called once per game and is the place to unload game-specific content.
         protected override void UnloadContent()
         {
+            updateThread.Abort();
         }
 
         // Allows the game to run logic such as updating the world, checking for collisions, gathering input, and playing audio.
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Update(GameTime gameTime)
         {
+            /*
             // Überprüfen ob Datenbankverbindung aufgebaut wurde
             if (database.mySqlConnection.State == System.Data.ConnectionState.Open)
             {
                 DataBaseIsActive = true;
             }
+            */
 
             // Datenbankstats jede Minute Updaten
             if (gameTime.TotalGameTime.TotalSeconds - this.lastDatabaseUpdate >= 15)
@@ -488,6 +494,8 @@ namespace BugHunter
                             while (enemyHitbox.Intersects(playersBox))
                             {
                                 AndroidsList[AndroidsList.Count - 1].SetSpawnFromMap(EnemySpawnPointsArray);
+
+                                enemyHitbox = new Rectangle((int)(AndroidsList[AndroidsList.Count - 1].Position.X - sp.Size.X / 2), (int)(AndroidsList[AndroidsList.Count - 1].Position.Y - sp.Size.Y / 2), (int)sp.Size.X, (int)sp.Size.Y);
                             }
                             break;
 
@@ -853,7 +861,7 @@ namespace BugHunter
             Exit();
         }
         void SyncDatabase(Database database, Settings settings)
-        {
+        {/*
             // Überprüft ob Datenbank läuft500
             if (!DataBaseIsActive)
             {
@@ -865,24 +873,24 @@ namespace BugHunter
             // Stats an Datenbank senden
             MySqlCommand mySqlCommand;
 
-            string myInsertQuery = "SELECT `globalscore`.`UserID`,`globalscore`.`Score` FROM `globalscore`";
-            mySqlCommand = new MySqlCommand(myInsertQuery)
+            string myinsertquery = "select `globalscore`.`userid`,`globalscore`.`score` from `globalscore`";
+            mysqlcommand = new mysqlcommand(myinsertquery)
             {
-                Connection = database.mySqlConnection
+                connection = database.mysqlconnection
             };
 
-            // SELECT rückgabe auslesen
-            MySqlDataReader reader = mySqlCommand.ExecuteReader();
+            // select rückgabe auslesen
+            mysqldatareader reader = mysqlcommand.executereader();
 
-            bool GuidExists = false;
+            bool guidexists = false;
 
-            while (reader.Read())
+            while (reader.read())
             {
-                // GUID in Datenbank gefunden
-                if (reader.GetString(0).Equals(settings.GUID))
+                // guid in datenbank gefunden
+                if (reader.getstring(0).equals(settings.guid))
                 {
-                    logger.Log("GUID in Datenbank gefunden." + reader.GetString(0));
-                    GuidExists = true;
+                    logger.log("guid in datenbank gefunden." + reader.getstring(0));
+                    guidexists = true;
                     break;
                 }
             }
@@ -911,6 +919,8 @@ namespace BugHunter
 
                 logger.Log("Datenbankeintrag für " + settings.GUID + " erstellt.");
             }
+
+            */
 
         }
     }
