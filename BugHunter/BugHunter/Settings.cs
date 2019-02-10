@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using ProjectWhitespace;
 using System;
 using System.IO;
 using System.Text;
@@ -18,7 +19,7 @@ namespace BugHunter
 
         public string GUID= "";
         public string UserName = "";
-        public int HighScore = 0;
+        public string HighScore = "0";
 
         public void UpdateSettings(GraphicsDeviceManager gdm)
         {
@@ -40,12 +41,9 @@ namespace BugHunter
         public readonly string LoggingPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), @"My games\Bug Hunter\log.txt");
 
 
-        // TODO: FIX UNABLE TO CONNECT TO ANY OF THE SPECIFIED MYSQL HOSTS --> MySQl auch von anderen IPS außer lokalhost erlauben
-
-
 
         // DATABASE LOGIN
-        public const string host = "projectwhitespace.ddns.net";              // Domain von NoIP.com                 (projectwhitespace.ddns.net)
+        public const string host = "projectwhitespace.net";      // Domain von NoIP.com                 (projectwhitespace.net)
         public const int port = 60457;                           // MySQL Port von Portweiterleitung    (60457)
         public const string database = "BugHunter";              // Datenbankname                       (BugHunter)
         public const string username = "user";                   // Username                            (user)
@@ -85,13 +83,6 @@ namespace BugHunter
                 StringBuilder sb;
                 while ((line = sr.ReadLine()) != null)
                 {
-                    if (line.Contains("Highscore="))
-                    {
-                        sb = new StringBuilder(line);
-                        sb = sb.Remove(0, 10);
-                        int.TryParse(sb.ToString(), out HighScore);
-                        DidLoad = true;
-                    }
                     if (line.Contains("GUID="))
                     {
                         sb = new StringBuilder(line);
@@ -147,7 +138,6 @@ namespace BugHunter
                 sw.WriteLine();
                 sw.WriteLine(" -- Please do not edit anything below this line! Might harm/break your gaming experience. --");
                 sw.WriteLine();
-                sw.WriteLine("Highscore=" + this.HighScore);
                 sw.WriteLine("GUID=" + this.GUID); 
             }
             catch (Exception ex)
@@ -170,7 +160,8 @@ namespace BugHunter
         {
             String path = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), @"My games\Bug Hunter");
 
-            StreamReader sr = null;
+            BinaryReader br = null;
+
             bool DidLoad = false;
 
             try
@@ -178,35 +169,15 @@ namespace BugHunter
                 // Ordner Verzeichniss erstellen
                 Directory.CreateDirectory(path);
 
-                path = path + @"\Configuration.config";
-                sr = new StreamReader(path);
+                path = path + @"\Game.data";
+                br = new BinaryReader(new FileStream(path, FileMode.Open));
 
-                string line;
-                StringBuilder sb;
-                while ((line = sr.ReadLine()) != null)
-                {
-                    if (line.Contains("Highscore="))
-                    {
-                        sb = new StringBuilder(line);
-                        sb = sb.Remove(0, 10);
-                        int.TryParse(sb.ToString(), out HighScore);
-                        DidLoad = true;
-                    }
-                    if (line.Contains("GUID="))
-                    {
-                        sb = new StringBuilder(line);
-                        sb = sb.Remove(0, 5);
-                        this.GUID = sb.ToString();
-                        DidLoad = true;
-                    }
-                    if (line.Contains("Username="))
-                    {
-                        sb = new StringBuilder(line);
-                        sb = sb.Remove(0, 9);
-                        this.UserName = sb.ToString();
-                        DidLoad = true;
-                    }
-                }
+                string input;
+
+                // Wert als String einlesen
+                input = br.ReadString();
+
+                this.HighScore = Encrypt.DecryptString(input, this.GUID);
             }
             catch (Exception ex)
             {
@@ -214,18 +185,10 @@ namespace BugHunter
             }
             finally
             {
-                if (sr != null)
-                    sr.Close();
+                if (br != null)
+                    br.Close();
             }
 
-            if (this.GUID.Length == 0)
-            {
-                this.GUID = Guid.NewGuid().ToString();
-            }
-            if (this.UserName.Length == 0)
-            {
-                this.UserName = Environment.UserName;
-            }
             return DidLoad;
         }
 
@@ -243,10 +206,11 @@ namespace BugHunter
                 // Ordner Verzeichniss erstellen
                 Directory.CreateDirectory(path);
 
-                path = path + @"\Configuration.config";
-                bw = new BinaryWriter(new FileStream(path, FileMode.Open));
+                path = path + @"\Game.data";
+                bw = new BinaryWriter(new FileStream(path, FileMode.OpenOrCreate));
 
-                bw.Write(this.HighScore);
+                // Wert als String einlesen
+                bw.Write(Encrypt.EncryptString(this.HighScore.ToString(),this.GUID));
             }
             catch (Exception ex)
             {

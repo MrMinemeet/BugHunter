@@ -13,6 +13,7 @@ namespace BugHunter
     {
         public Texture2D Texture { get; set; }
         public Vector2 Position;
+        public Vector2 PotNewPosition;
         public float Speed { get; set; }
         public Texture2D OriginTexture { get; set; }
         public Texture2D DamageTexture { get; set; }
@@ -25,10 +26,6 @@ namespace BugHunter
 
         // Munitionsanzahl
         public IDictionary<Weapon.WeaponTypes, int> AmmunitionAmmountList = new Dictionary<Weapon.WeaponTypes, int>();
-
-
-        // Potentielle Neue Position
-        private Vector2 PotNewPlayerPosition;
 
 
         private int[][] CollisionMapArray;
@@ -69,11 +66,11 @@ namespace BugHunter
             this.MaxHealth = MaxHealth;
             this.Health = MaxHealth;
 
-            AmmunitionAmmountList.Add(Weapon.WeaponTypes.c, game.weapon.getMaxAmmoAmountSpecificWeapon(Weapon.WeaponTypes.c));
-            AmmunitionAmmountList.Add(Weapon.WeaponTypes.cpp, game.weapon.getMaxAmmoAmountSpecificWeapon(Weapon.WeaponTypes.cpp));
-            AmmunitionAmmountList.Add(Weapon.WeaponTypes.java, game.weapon.getMaxAmmoAmountSpecificWeapon(Weapon.WeaponTypes.java));
-            AmmunitionAmmountList.Add(Weapon.WeaponTypes.csharp, game.weapon.getMaxAmmoAmountSpecificWeapon(Weapon.WeaponTypes.csharp));
-            AmmunitionAmmountList.Add(Weapon.WeaponTypes.maschinensprache, game.weapon.getMaxAmmoAmountSpecificWeapon(Weapon.WeaponTypes.maschinensprache));
+            AmmunitionAmmountList.Add(Weapon.WeaponTypes.c, game.weapon.CAmmoAmount);
+            AmmunitionAmmountList.Add(Weapon.WeaponTypes.cpp, game.weapon.CppAmmoAmout);
+            AmmunitionAmmountList.Add(Weapon.WeaponTypes.java, game.weapon.JavaAmmoAmount);
+            AmmunitionAmmountList.Add(Weapon.WeaponTypes.csharp, game.weapon.CsharpAmmoAmount);
+            AmmunitionAmmountList.Add(Weapon.WeaponTypes.maschinensprache, game.weapon.MaschinenspracheAmmoAmount);
         }
 
 
@@ -85,11 +82,11 @@ namespace BugHunter
             this.Damageboost = 0;
             this.IsVibrating = false;
 
-            AmmunitionAmmountList[Weapon.WeaponTypes.c] = game.weapon.getMaxAmmoAmountSpecificWeapon(Weapon.WeaponTypes.c);
-            AmmunitionAmmountList[Weapon.WeaponTypes.cpp] = game.weapon.getMaxAmmoAmountSpecificWeapon(Weapon.WeaponTypes.cpp);
-            AmmunitionAmmountList[Weapon.WeaponTypes.java] = game.weapon.getMaxAmmoAmountSpecificWeapon(Weapon.WeaponTypes.java);
-            AmmunitionAmmountList[Weapon.WeaponTypes.csharp] = game.weapon.getMaxAmmoAmountSpecificWeapon(Weapon.WeaponTypes.csharp);
-            AmmunitionAmmountList[Weapon.WeaponTypes.maschinensprache] = game.weapon.getMaxAmmoAmountSpecificWeapon(Weapon.WeaponTypes.maschinensprache);
+            AmmunitionAmmountList[Weapon.WeaponTypes.c] = game.weapon.CAmmoAmount;
+            AmmunitionAmmountList[Weapon.WeaponTypes.cpp] = game.weapon.CppAmmoAmout;
+            AmmunitionAmmountList[Weapon.WeaponTypes.java] = game.weapon.JavaAmmoAmount;
+            AmmunitionAmmountList[Weapon.WeaponTypes.csharp] = game.weapon.CsharpAmmoAmount;
+            AmmunitionAmmountList[Weapon.WeaponTypes.maschinensprache] = game.weapon.MaschinenspracheAmmoAmount;
         }
 
 
@@ -106,10 +103,10 @@ namespace BugHunter
 
             this.CollisionMapArray = CollisionMapArray;
             this.map = map;
-            PotNewPlayerPosition = Position;       
+            PotNewPosition = Position;
 
             // Updaten der Player steuerung
-            UpdatePlayerMovement(gameTime);
+            Movement(gameTime);
 
             // Updaten des Player schießen
             UpdatePlayerShooting(gameTime);
@@ -120,11 +117,10 @@ namespace BugHunter
             for (int y = 0; y * Settings.TilePixelSize < map.HeightInPixels; y++)
             {
                 for (int x = 0; x < CollisionMapArray[y].Length; x++)
-                {
-                    
+                {                    
                     // Rechtecke über Spieler und aktuelles Tile ziehen
                     MapTriggerRectangle = new Rectangle((x * Settings.TilePixelSize), (y * Settings.TilePixelSize), Settings.TilePixelSize, Settings.TilePixelSize);
-                    PotNewPlayerCollision = new Rectangle((int)(PotNewPlayerPosition.X - Texture.Width / 2), (int)(PotNewPlayerPosition.Y - Texture.Height / 2), Texture.Width, Texture.Height);
+                    PotNewPlayerCollision = new Rectangle((int)(PotNewPosition.X - Texture.Width / 2), (int)(PotNewPosition.Y - Texture.Height / 2), Texture.Width, Texture.Height);
                     // Überprüfen ob sich die beiden Rechtecke überschneiden
                     if (PotNewPlayerCollision.Intersects(MapTriggerRectangle))
                     {
@@ -135,19 +131,19 @@ namespace BugHunter
                             if (gameTime.TotalGameTime.TotalSeconds - ReloadTime > 0.5)
                             {
                                 ReloadTime = gameTime.TotalGameTime.TotalSeconds;
-                                if (AmmunitionAmmountList[Weapon.WeaponTypes.c] < game.weapon.getMaxAmmoAmountSpecificWeapon(Weapon.WeaponTypes.c))
+                                if (AmmunitionAmmountList[Weapon.WeaponTypes.c] < game.weapon.CAmmoAmount)
                                     AmmunitionAmmountList[Weapon.WeaponTypes.c] += 1;
 
-                                if (AmmunitionAmmountList[Weapon.WeaponTypes.cpp] < game.weapon.getMaxAmmoAmountSpecificWeapon(Weapon.WeaponTypes.cpp))
+                                if (AmmunitionAmmountList[Weapon.WeaponTypes.cpp] < game.weapon.CppAmmoAmout)
                                     AmmunitionAmmountList[Weapon.WeaponTypes.cpp] += 1;
 
-                                if (AmmunitionAmmountList[Weapon.WeaponTypes.csharp] < game.weapon.getMaxAmmoAmountSpecificWeapon(Weapon.WeaponTypes.csharp))
+                                if (AmmunitionAmmountList[Weapon.WeaponTypes.csharp] < game.weapon.CsharpAmmoAmount)
                                     AmmunitionAmmountList[Weapon.WeaponTypes.csharp] += 1;
 
-                                if (AmmunitionAmmountList[Weapon.WeaponTypes.java] < game.weapon.getMaxAmmoAmountSpecificWeapon(Weapon.WeaponTypes.java))
+                                if (AmmunitionAmmountList[Weapon.WeaponTypes.java] < game.weapon.JavaAmmoAmount)
                                     AmmunitionAmmountList[Weapon.WeaponTypes.java] += 1;
 
-                                if (AmmunitionAmmountList[Weapon.WeaponTypes.maschinensprache] < game.weapon.getMaxAmmoAmountSpecificWeapon(Weapon.WeaponTypes.maschinensprache))
+                                if (AmmunitionAmmountList[Weapon.WeaponTypes.maschinensprache] < game.weapon.MaschinenspracheAmmoAmount)
                                     AmmunitionAmmountList[Weapon.WeaponTypes.maschinensprache] += 1;
                             }
                         }
@@ -160,8 +156,7 @@ namespace BugHunter
                 }
             }
             // Waffenart updaten
-            WeaponUpdate(gameTime);
-            
+            WeaponUpdate(gameTime);            
 
             // Überprüfung und ausführung vom Vibrationen
             if (gameTime.TotalGameTime.TotalMilliseconds - this.VibrationTimeStart >= this.VibrationDuration)
@@ -178,22 +173,76 @@ namespace BugHunter
                 p.UpdateShot(gameTime, this);
             }
 
-            for(int i = 0; i < projectiles.Count; i++)
+            // Überprüft ob Projektile abgelaufen oder collided sind und löscht diese
+            for (int i = 0; i < projectiles.Count; i++)
             {
-                if (projectiles[i].DidProjectileHitCollision(CollisionMapArray, map))
+                if (projectiles[i].DidProjectileHitCollision(CollisionMapArray, map) || projectiles[i].IsProjectileTimeOver(gameTime))
                 {
                     projectiles.Remove(projectiles[i]);
                 }
+            }
+        }
+
+        /// <summary>
+        /// Überprüft collision für den Spieler
+        /// </summary>
+        public void CheckCollisions()
+        {
+            if(DidHitCollision(this.CollisionMapArray, game.map[game.AktuelleMap].maplevel))
+            {
+                this.PotNewPosition = this.Position;
+            }
+        }
+
+        /// <summary>
+        /// Berechnet neue theoretische Position
+        /// </summary>
+        public void Movement(GameTime gameTime)
+        {
+            var kstate = Keyboard.GetState();
+            var gamepadState = GamePad.GetState(PlayerIndex.One);
+
+            // Überprüfe auf Sprint
+            float Speed;
+
+            if (kstate.IsKeyDown(Keys.LeftShift) || gamepadState.IsButtonDown(Buttons.LeftTrigger))
+            {
+                Speed = this.Speed * 2;
+            }
+            else
+            {
+                Speed = this.Speed;
             }
 
-            // Überprüft ob Projektile abgelaufen sind und löscht diese
-            for(int i = 0; i < projectiles.Count; i++)
+
+            if (kstate.IsKeyDown(Keys.W) || gamepadState.ThumbSticks.Left.Y > 0)
             {
-                if (projectiles[i].IsProjectileTimeOver(gameTime))
-                {
-                    projectiles.Remove(projectiles[i]);
-                }
+
+                this.PotNewPosition.Y -= Speed * (float)gameTime.ElapsedGameTime.TotalSeconds;
             }
+
+            if (kstate.IsKeyDown(Keys.S) || gamepadState.ThumbSticks.Left.Y < 0)
+            {
+                this.PotNewPosition.Y += Speed * (float)gameTime.ElapsedGameTime.TotalSeconds;
+            }
+
+            if (kstate.IsKeyDown(Keys.A) || gamepadState.ThumbSticks.Left.X < 0)
+            {
+                this.PotNewPosition.X -= Speed * (float)gameTime.ElapsedGameTime.TotalSeconds;
+            }
+
+            if (kstate.IsKeyDown(Keys.D) || gamepadState.ThumbSticks.Left.X > 0)
+            {
+                this.PotNewPosition.X += Speed * (float)gameTime.ElapsedGameTime.TotalSeconds;
+            }
+        }
+
+        /// <summary>
+        /// Bewegt Spieler auf neue Position
+        /// </summary>
+        public void Move()
+        {
+            this.Position = this.PotNewPosition;
 
             // Kamera über Spieler setzen
             camera.LookAt(Position);
@@ -287,53 +336,6 @@ namespace BugHunter
                     }
                 }
             }
-        }
-
-        private void UpdatePlayerMovement(GameTime gameTime)
-        {
-            var kstate = Keyboard.GetState();
-            var gamepadState = GamePad.GetState(PlayerIndex.One);
-
-
-            // Überprüfe auf Sprint
-            float Speed;
-
-            if (kstate.IsKeyDown(Keys.LeftShift) || gamepadState.IsButtonDown(Buttons.LeftTrigger))
-            {
-                Speed = this.Speed * 2;
-            }
-            else
-            {
-                Speed = this.Speed;
-            }
-
-            
-            if (kstate.IsKeyDown(Keys.W) || gamepadState.ThumbSticks.Left.Y > 0)
-            {
-
-                this.PotNewPlayerPosition.Y -= Speed * (float)gameTime.ElapsedGameTime.TotalSeconds;
-            }
-
-            if (kstate.IsKeyDown(Keys.S) || gamepadState.ThumbSticks.Left.Y < 0)
-            {
-                this.PotNewPlayerPosition.Y += Speed * (float)gameTime.ElapsedGameTime.TotalSeconds;
-            }
-
-            if (kstate.IsKeyDown(Keys.A) || gamepadState.ThumbSticks.Left.X < 0)
-            {
-                this.PotNewPlayerPosition.X -= Speed * (float)gameTime.ElapsedGameTime.TotalSeconds;
-            }
-
-            if (kstate.IsKeyDown(Keys.D) || gamepadState.ThumbSticks.Left.X > 0)
-            {
-                this.PotNewPlayerPosition.X += Speed * (float)gameTime.ElapsedGameTime.TotalSeconds;
-            }
-
-            if (!DidHitCollision(CollisionMapArray, map))
-            {
-                this.Position = this.PotNewPlayerPosition;
-            }
-
         }
 
         /// <summary>
@@ -460,7 +462,7 @@ namespace BugHunter
                     {
                         // Rechtecke über Spieler und aktuelles Tile ziehen
                         MapCollisionRectangle = new Rectangle((x * Settings.TilePixelSize), (y * Settings.TilePixelSize), Settings.TilePixelSize, Settings.TilePixelSize);
-                        PotNewPlayerCollision = new Rectangle((int)(PotNewPlayerPosition.X - Texture.Width / 2), (int)(PotNewPlayerPosition.Y - Texture.Height / 2), Texture.Width, Texture.Height);
+                        PotNewPlayerCollision = new Rectangle((int)(PotNewPosition.X - Texture.Width / 2), (int)(PotNewPosition.Y - Texture.Height / 2), Texture.Width, Texture.Height);
 
                         // Überprüfen ob sich die beiden Rechtecke überschneiden
                         if (PotNewPlayerCollision.Intersects(MapCollisionRectangle))

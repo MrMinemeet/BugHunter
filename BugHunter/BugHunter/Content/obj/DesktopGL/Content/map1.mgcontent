@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <SourceFile>C:/Users/Alexa/Google Drive/Schule/4AHELS/Werkstätte/BugHunter/BugHunter/BugHunter/Content/map1.tmx</SourceFile>
-  <SourceTime>2019-01-10T11:46:50+01:00</SourceTime>
+  <SourceTime>2019-02-05T21:50:49.576868+01:00</SourceTime>
   <DestFile>C:/Users/Alexa/Google Drive/Schule/4AHELS/Werkstätte/BugHunter/BugHunter/BugHunter/Content/bin/DesktopGL/Content/map1.xnb</DestFile>
-  <DestTime>2019-01-30T17:07:39.6181535+01:00</DestTime>
+  <DestTime>2019-02-06T07:02:29.9010041+01:00</DestTime>
   <Importer>TiledMapImporter</Importer>
   <ImporterTime>2018-11-26T09:40:58+01:00</ImporterTime>
   <Processor>TiledMapProcessor</Processor>
