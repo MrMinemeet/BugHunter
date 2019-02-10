@@ -1,1 +1,0 @@
-gource --font-size 12 --key --title "Bug Hunter"

@@ -16,7 +16,7 @@ namespace BugHunter
 
         private TimeSpan previousMovementTime = TimeSpan.Zero;
 
-        private readonly SpriteSheet spriteSheet;
+        private SpriteSheet spriteSheet;
 
         private Vector2 currentPosition;
 

@@ -9,7 +9,7 @@
  */
 namespace TexturePackerMonoGameDefinitions
 {
-	public class Effect_packed
+	public class effect_packed
 	{
 		public const string Poof_001 = "poof_001";
 		public const string Poof_002 = "poof_002";

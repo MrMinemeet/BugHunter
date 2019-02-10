@@ -22,7 +22,7 @@ namespace BugHunter
         private double lastWeaponChangeTime = 0;
         private int AmmunitionAmmount = -1;
 
-        public GUI(Game1 game)
+        public void Init(Game1 game)
         {
             this.game = game;
         }
@@ -156,9 +156,9 @@ namespace BugHunter
                     Color.White);
             }
 
-            spriteBatch.DrawString(font, game.Score.ToString(), new Vector2(player.camera.Position.X + (game.settings.resolutionWidth / 2), player.camera.Position.Y), Color.White);
+            spriteBatch.DrawString(font, game.Score.ToString(), new Vector2(player.Position.X, player.camera.Position.Y), Color.White);
 
-            spriteBatch.DrawString(font, player.Health.ToString() + " / " + player.MaxHealth.ToString(),HeartStatusTextPosition, Color.White);
+            spriteBatch.DrawString(font, player.Health.ToString(),HeartStatusTextPosition, Color.White);
 
             spriteBatch.DrawString(font,
                 this.AmmunitionAmmount.ToString() + " / " + game.weapon.getMaxAmmoAmountAktWeapon(player.aktWeapon),

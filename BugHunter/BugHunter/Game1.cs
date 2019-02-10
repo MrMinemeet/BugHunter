@@ -22,17 +22,18 @@
  * Datenbank:
  * MariaDB
  * NaviCat
- * phpMyAdmin
+ * PHPmyAdmin
  * 
  * APIs:
  * Discord RPC
  * MySQL Connect
  * 
  * CopyRight:
- * Alle Rechte der Bilder, Spiellogik und Spielidee gehören den rechtmäßigen Eigentümern.
- * Das unerlaubte Kopieren, Veröffentlichen, Verleihen und öffentliches Vorführen ist verboten!
+ * Alle Rechte der Bilder, Spiellogik und Spielidee gehören den rechtlichen Eigentümern.
+ * Das unerlaubte Kopieren, Veröffentlichen, Verleihen und öffentliches vorführen ist verboten!
  * 
  * 3809 Zeilen an Code
+ * 
  */
 
 
@@ -49,9 +50,9 @@ using System.Collections.Generic;
 using TexturePackerLoader;
 using DiscordRPC.Message;
 using DiscordRPC;
+using System.Timers;
 using System.Diagnostics;
 using MySql.Data.MySqlClient;
-using System.Threading;
 
 namespace BugHunter
 {
@@ -95,7 +96,8 @@ namespace BugHunter
         Database database;
         public bool DataBaseIsActive = false;
         double lastDatabaseUpdate = 0;
-        
+
+
         private int StatsBoostGiven = 1;
 
         public Logger logger = null;
@@ -115,20 +117,19 @@ namespace BugHunter
 
 
 
-        public List<Powerup> Powerups = new List<Powerup>();
+        public IDictionary<int, Powerup> Powerups = new Dictionary<int, Powerup>();
 
 
         public Map[] map = new Map[1];
-        GUI gui;
+        GUI gui = new GUI();
         public SoundFX sound = new SoundFX();
 
-        public int AktuelleMap = 0;
+        int AktuelleMap = 0;
 
         // Standardeinstellungen setzen
-        public Settings settings = new Settings();
+        Settings settings = new Settings();
          
         public int[][] MapArray;
-        public int[][] EnemySpawnPointsArray;
 
         private double LastKeyStrokeInput = 0;
 
@@ -168,9 +169,6 @@ namespace BugHunter
         private Vector2 PoofPosition;
 
 
-        private Thread DataBaseSyncThread;
-
-
         // HAUPTMENÜ
         enum Menubuttons : Byte { Spielen, Einstellungen, Stats, Beenden };
         Menubuttons aktuellerMenupunkt = Menubuttons.Spielen;
@@ -186,9 +184,12 @@ namespace BugHunter
             };
             IsMouseVisible = settings.IsMouseVisible;
 
-            
-            graphics.SynchronizeWithVerticalRetrace = true;
-            // IsFixedTimeStep = false;
+            /*
+            // Entsperrt den 60fps Framelock
+            graphics.SynchronizeWithVerticalRetrace = false;
+            IsFixedTimeStep = false;
+            */
+
             Content.RootDirectory = "Content";
         }
 
@@ -199,9 +200,7 @@ namespace BugHunter
         {
             // IsDiscordRunning = IsProcessRunning("Discord");
             // if(!IsDiscordRunning)
-            // IsDiscordRunning = IsProcessRunning("discord");
-
-            DataBaseSyncThread = new Thread(() => ThreadWork.DoWork(this));
+                // IsDiscordRunning = IsProcessRunning("discord");
 
             this.graphicsDevice = GraphicsDevice;
 
@@ -225,16 +224,16 @@ namespace BugHunter
 
             spriteSheetLoader = new SpriteSheetLoader(Content, GraphicsDevice);
 
+            gui.Init(this);
+
 
             if(IsDiscordRunning){
 
                 //Create a new client
-                client = new DiscordRpcClient(ClientID)
-                {
+                client = new DiscordRpcClient(ClientID);
 
-                    //Create the logger
-                    Logger = new DiscordRPC.Logging.ConsoleLogger() { Level = DiscordLogLevel, Coloured = true }
-                };
+                //Create the logger
+                client.Logger = new DiscordRPC.Logging.ConsoleLogger() { Level = DiscordLogLevel, Coloured = true };
 
                 //Create some events so we know things are happening
                 client.OnReady += (sender, msg) => { Console.WriteLine("Connected to discord with user {0}", msg.User.Username); };
@@ -284,14 +283,10 @@ namespace BugHunter
             settings.EmptyTexture = Content.Load<Texture2D>("sprites/empty");
             settings.Init(this);
             settings.LoadSettings();
-            settings.LoadGamedata();
-
-            gui = new GUI(this);
 
 
             // TMX (wie CSV) Map in 2D Array wandeln
-            MapArray = Converter.MapToIntArray(map[AktuelleMap].maplevel, settings, @"Collision/Trigger");
-            EnemySpawnPointsArray = Converter.MapToIntArray(map[AktuelleMap].maplevel, settings, @"EnemySpawnPos");
+            MapArray = Converter.MapToIntArray(map[AktuelleMap].maplevel, settings);
 
             // Audio
             sound.ScoreSound = Content.Load<SoundEffect>("audio/Score");
@@ -328,8 +323,6 @@ namespace BugHunter
             
             InitialiseAnimationManager();
 
-            DataBaseSyncThread.Start();
-
         }
 
         // UnloadContent will be called once per game and is the place to unload game-specific content.
@@ -341,13 +334,11 @@ namespace BugHunter
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Update(GameTime gameTime)
         {
-            /*
             // Überprüfen ob Datenbankverbindung aufgebaut wurde
             if (database.mySqlConnection.State == System.Data.ConnectionState.Open)
             {
                 DataBaseIsActive = true;
             }
-            */
 
             // Datenbankstats jede Minute Updaten
             if (gameTime.TotalGameTime.TotalSeconds - this.lastDatabaseUpdate >= 15)
@@ -362,6 +353,7 @@ namespace BugHunter
                 presence.Details = "Score: " + this.Score;
                 presence.Assets.LargeImageKey = "icon";
             }
+
 
             // Spiel schließen
             if (Keyboard.GetState().IsKeyDown(Keys.Delete) && Keyboard.GetState().IsKeyDown(Keys.LeftAlt))
@@ -459,29 +451,38 @@ namespace BugHunter
 
                 if (IsDiscordRunning)
                     presence.State = "Am Debuggen";
-
                 if (Keyboard.GetState().IsKeyDown(Keys.F3) && gameTime.TotalGameTime.TotalMilliseconds - LastKeyStrokeInput >= 500)
                 {
                     settings.AreDebugInformationsVisible = !settings.AreDebugInformationsVisible;
                     LastKeyStrokeInput = gameTime.TotalGameTime.TotalMilliseconds;
                 }
+
                 
-                if (this.Score > int.Parse(settings.HighScore))
+                if (this.Score > settings.HighScore)
                 {
-                    settings.HighScore = Score.ToString();
+                    settings.HighScore = Score;
                     sound.ScoreSound.Play(0.5f, 0, 0);
                 }
                 
-                MaxEnemies = (int)(this.Score / 1500) + 1;
+                MaxEnemies = (int)(this.Score / 1000) + 1;
+
+                // Generiert neue Einträge im Dictionary wenn weniger Gegner da sind als max. zulässig sind
+                // Generiert immer dann einen Eintrag wenn der Key nicht verwendet wird
+                for (int i = AndroidsList.Count; i < AndroidsList.Count; i++)
+                {
+                    // Neues Leben für Android berechen
+                    this.AndroidHealth = (int)(AndroidHealth + 5);
+
+
+                    // Neuen Android in Liste erstellen
+                    AndroidsList.Add(new Android(50f, AndroidHealth, AndroidDamage, this, this.settings, this.player));
+                    AndroidsList[i].spriteSheet = spriteSheetLoader.Load("sprites/entities/entities.png");
+                    AndroidsList[i].SetSpawnFromMap(MapArray);
+                }
 
                 // Falls weniger Gegner Aktiv sind als Maximal zugelassen sind, dann werden neue gespawnt
                 if(WindowsList.Count + AndroidsList.Count < MaxEnemies)
                 {
-                    Rectangle enemyHitbox;
-                    Rectangle playersBox = new Rectangle((int)(player.Position.X - Settings.TilePixelSize * 2), (int)(player.Position.Y - Settings.TilePixelSize * 2),Settings.TilePixelSize * 4, Settings.TilePixelSize * 4);
-
-                    SpriteFrame sp = null;
-
                     switch (random.Next(2))
                     {
                         // Spawn Android
@@ -489,18 +490,7 @@ namespace BugHunter
                             this.AndroidHealth += 5;
                             AndroidsList.Add(new Android(50f, AndroidHealth, AndroidDamage, this, this.settings, this.player));
                             AndroidsList[AndroidsList.Count - 1].spriteSheet = spriteSheetLoader.Load("sprites/entities/entities.png");
-                            AndroidsList[AndroidsList.Count - 1].SetSpawnFromMap(EnemySpawnPointsArray);
-
-                            sp = AndroidsList[AndroidsList.Count - 1].spriteSheet.Sprite(TexturePackerMonoGameDefinitions.entities.Android1);
-
-                            enemyHitbox = new Rectangle((int)(AndroidsList[AndroidsList.Count - 1].Position.X - sp.Size.X / 2), (int)(AndroidsList[AndroidsList.Count - 1].Position.Y - sp.Size.Y / 2), (int)sp.Size.X, (int)sp.Size.Y);
-
-                            while (enemyHitbox.Intersects(playersBox))
-                            {
-                                AndroidsList[AndroidsList.Count - 1].SetSpawnFromMap(EnemySpawnPointsArray);
-
-                                enemyHitbox = new Rectangle((int)(AndroidsList[AndroidsList.Count - 1].Position.X - sp.Size.X / 2), (int)(AndroidsList[AndroidsList.Count - 1].Position.Y - sp.Size.Y / 2), (int)sp.Size.X, (int)sp.Size.Y);
-                            }
+                            AndroidsList[AndroidsList.Count - 1].SetSpawnFromMap(MapArray);
                             break;
 
                         // Spawn Windows
@@ -508,26 +498,16 @@ namespace BugHunter
                             this.WindowsHealth += 5;
                             WindowsList.Add(new Windows(50f, WindowsHealth, WindowsDamage, this, this.settings, this.player));
                             WindowsList[WindowsList.Count - 1].spriteSheet = spriteSheetLoader.Load("sprites/entities/entities.png");
-                            WindowsList[WindowsList.Count - 1].SetSpawnFromMap(EnemySpawnPointsArray);
-
-                            sp = WindowsList[WindowsList.Count - 1].spriteSheet.Sprite(TexturePackerMonoGameDefinitions.entities.Windows1);
-
-                            enemyHitbox = new Rectangle((int)(WindowsList[WindowsList.Count - 1].Position.X - sp.Size.X / 2), (int)(WindowsList[WindowsList.Count - 1].Position.Y - sp.Size.Y / 2), (int)sp.Size.X, (int)sp.Size.Y);
-
-                            while (enemyHitbox.Intersects(playersBox))
-                            {
-                                WindowsList[WindowsList.Count - 1].SetSpawnFromMap(EnemySpawnPointsArray);
-
-                                enemyHitbox = new Rectangle((int)(WindowsList[WindowsList.Count - 1].Position.X - sp.Size.X / 2), (int)(WindowsList[WindowsList.Count - 1].Position.Y - sp.Size.Y / 2), (int)sp.Size.X, (int)sp.Size.Y);
-                            }
+                            WindowsList[WindowsList.Count - 1].SetSpawnFromMap(MapArray);
                             break;
                     }
                 }
 
+
                 // Updaten
                 for (int i = 0; i < AndroidsList.Count; i++)
                 {
-                    AndroidsList[i].Update(gameTime, EnemySpawnPointsArray, map[AktuelleMap].maplevel);
+                    AndroidsList[i].Update(gameTime, MapArray, map[AktuelleMap].maplevel);
 
                     if (AndroidsList[i].IsDead)
                     {
@@ -539,14 +519,10 @@ namespace BugHunter
                         {
                             AndroidDamage += 1;
                         }
-                        // 25% Chance dass ein Powerup spawnt
-                        if (random.Next(100) < 25)
-                        {
-                            Powerups.Add(new Powerup(this, spriteSheetLoader.Load("sprites/entities/entities.png"), new SpriteRender(spriteBatch), settings, AndroidsList[i].Position));
-                        }
                         AndroidsList.Remove(AndroidsList[i]);                        
                     }
                 }
+
 
                 for (int i = 0; i < WindowsList.Count; i++)
                 {
@@ -556,19 +532,60 @@ namespace BugHunter
                     {
                         PoofPosition = WindowsList[i].Position;
                         PoofIsActive = true;
+
                         // 10% Chance das sich der Schaden 
                         if (random.Next(100) < 10)
                         {
                             WindowsDamage += 1;
                         }
-                        // 25% Chance dass ein Powerup spawnt
-                        if (random.Next(100) < 25)
-                        {
-                            Powerups.Add(new Powerup(this, spriteSheetLoader.Load("sprites/entities/entities.png"), new SpriteRender(spriteBatch), this.settings, WindowsList[i].Position));
-                        }
                         WindowsList.Remove(WindowsList[i]);
                     }
                 }
+
+
+                /*
+                    // 25% Chance dass ein Powerup spawnt
+                        if(random.Next(100) < 25)
+                        {
+                            // Wenn bereits genug Powerups aktiv sind wird das Generieren Übersprungen
+                            if (Powerups.Count == Settings.generalMaxPowerUps)
+                                continue;
+
+                            for (int x = 0; x < Settings.generalMaxPowerUps; x++)
+                            {
+                                if (!Powerups.ContainsKey(x))
+                                {
+                                    Powerups.Add(x, new Powerup(this, spriteSheetLoader.Load("sprites/entities/entities.png"), new SpriteRender(spriteBatch), this.settings, this.MapArray));
+
+
+
+                                    // Setzt solage eine neue Position bis alle Powerups auf einer unterschiedlichen Position sind
+                                    int j = 0;
+                                    while (true)
+                                    {
+
+                                        if (j > Powerups.Count)
+                                        {
+                                            break;
+                                        }
+
+                                        if (Powerups.ContainsKey(x) && Powerups.ContainsKey(j))
+                                        {
+                                            if (Powerups[x].position.Equals(Powerups[j].position) && j != x)
+                                            {
+                                                Powerups[x].ResetPosition(this.MapArray);
+                                                j = 0;
+                                            }
+                                        }
+
+                                        j++;
+                                    }
+
+                                    break;
+                                }
+                            }
+                        }
+                 */
 
                 player.Update(gameTime, MapArray, map[AktuelleMap].getTiledMap());
                 gui.Update(gameTime, player);
@@ -588,25 +605,26 @@ namespace BugHunter
                 }
 
                 // Überprüft ob Powerup gelöscht wurde und löscht es falls ja
-                for (int i = 0; i < Powerups.Count; i++)
+                for (int i = 0; i <= Powerups.Count; i++)
                 {
-                    if (Powerups.Contains(Powerups[i]))
+                    if (Powerups.ContainsKey(i))
                     {
                         if (Powerups[i].WasCollected(this.player))
                         {
-                            Powerups.Remove(Powerups[i]);
+                            Powerups.Remove(i);
                             break;
                         }
                     }
-                }
-
-                player.CheckCollisions();
-
-                player.Move();
+                }                
 
                 // Updated Powerups
-                foreach(Powerup p in Powerups)
-                    p.Update(gameTime, this.player);
+                for(int i = 0; i <= Powerups.Count; i++)
+                {
+                    if (Powerups.ContainsKey(i))
+                    {
+                        Powerups[i].Update(gameTime, this.player);
+                    }
+                }
                 
                 // Updated poof wenn Aktiv
                 if (PoofIsActive)
@@ -719,8 +737,13 @@ namespace BugHunter
                     windows.Draw(spriteBatch, font);
                 }
 
-                foreach(Powerup powerup in Powerups)
-                    powerup.Draw(spriteBatch);
+                for (int i = 0; i <= Powerups.Count; i++)
+                {
+                    if (Powerups.ContainsKey(i))
+                    {
+                        Powerups[i].Draw(spriteBatch);
+                    }
+                }
 
                 if (PoofIsActive)
                 {
@@ -785,13 +808,13 @@ namespace BugHunter
         private void InitialiseAnimationManager()
         {
             var poof = new[] {
-                TexturePackerMonoGameDefinitions.Effect_packed.Poof_001,
-                TexturePackerMonoGameDefinitions.Effect_packed.Poof_002,
-                TexturePackerMonoGameDefinitions.Effect_packed.Poof_003,
-                TexturePackerMonoGameDefinitions.Effect_packed.Poof_004,
-                TexturePackerMonoGameDefinitions.Effect_packed.Poof_005,
-                TexturePackerMonoGameDefinitions.Effect_packed.Poof_006,
-                TexturePackerMonoGameDefinitions.Effect_packed.Poof_007
+                TexturePackerMonoGameDefinitions.effect_packed.Poof_001,
+                TexturePackerMonoGameDefinitions.effect_packed.Poof_002,
+                TexturePackerMonoGameDefinitions.effect_packed.Poof_003,
+                TexturePackerMonoGameDefinitions.effect_packed.Poof_004,
+                TexturePackerMonoGameDefinitions.effect_packed.Poof_005,
+                TexturePackerMonoGameDefinitions.effect_packed.Poof_006,
+                TexturePackerMonoGameDefinitions.effect_packed.Poof_007
             };
             
             var poofAnimation = new Animation(new Vector2(1, 0), timePerFrame, SpriteEffects.None, poof);
@@ -849,11 +872,8 @@ namespace BugHunter
 
             SyncDatabase(this.database, this.settings);
 
-            // Speichern von Einstellungen
+            // Speichern von Daten
             settings.SaveSettings();
-
-            // Speichern von Spielkritischen Daten
-            settings.SaveGamedata();
 
             // Gamepadvibrationen ausschalten
             GamePad.SetVibration(PlayerIndex.One, 0f, 0f);
@@ -870,7 +890,62 @@ namespace BugHunter
         }
         void SyncDatabase(Database database, Settings settings)
         {
-            
+            // Überprüft ob Datenbank läuft500
+            if (!DataBaseIsActive)
+            {
+                logger.Log("Datenbank nicht aktiv.");
+                return;
+            }
+            logger.Log("Datenbank aktiv.");
+
+            // Stats an Datenbank senden
+            MySqlCommand mySqlCommand;
+
+            string myInsertQuery = "SELECT `globalscore`.`UserID`,`globalscore`.`Score` FROM `globalscore`";
+            mySqlCommand = new MySqlCommand(myInsertQuery);
+
+            mySqlCommand.Connection = database.mySqlConnection;
+
+            // SELECT rückgabe auslesen
+            MySqlDataReader reader = mySqlCommand.ExecuteReader();
+
+            bool GuidExists = false;
+
+            while (reader.Read())
+            {
+                // GUID in Datenbank gefunden
+                if (reader.GetString(0).Equals(settings.GUID))
+                {
+                    logger.Log("GUID in Datenbank gefunden." + reader.GetString(0));
+                    GuidExists = true;
+                    break;
+                }
+            }
+
+            reader.Close();
+            reader.Dispose();
+
+
+            if (GuidExists)
+            {
+                // Datenbankeintrag wird upgedated
+                mySqlCommand.CommandText =
+                    "UPDATE `globalscore` SET `Name` = '" + settings.UserName +
+                    "', `Score` = '" + settings.HighScore +
+                    "', `DateTime` = '" +
+                    DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") +
+                    "' WHERE `globalscore`.`UserID` = '" + settings.GUID + "'";
+                mySqlCommand.ExecuteNonQuery();
+                logger.Log("Datenbankeintrag für " + settings.GUID + " upgedated.");
+            }
+            else
+            {
+                // Kein Eintrag gefunden, wodurch ein neuer erstellt wird
+                database.SendQueryCommand("INSERT INTO `globalscore` (`UserID`, `Name`, `Score`, `DateTime`, `IPAddress`) VALUES('" + settings.GUID + "', '" + settings.UserName + "', '" + settings.HighScore + "', '" + 
+                DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + "', 'UNUSED');");
+
+                logger.Log("Datenbankeintrag für " + settings.GUID + " erstellt.");
+            }
 
         }
     }
