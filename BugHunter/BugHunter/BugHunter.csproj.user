@@ -2,7 +2,7 @@
 <Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <PublishUrlHistory>publish\</PublishUrlHistory>
-    <InstallUrlHistory />
+    <InstallUrlHistory>https://projectwhitespace.net/</InstallUrlHistory>
     <SupportUrlHistory>https://discord.gg/qn7DQ75</SupportUrlHistory>
     <UpdateUrlHistory />
     <BootstrapperUrlHistory />

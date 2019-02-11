@@ -5,4 +5,5 @@
 *.suo
 .vs/
 Debug/
+Release/
 *.xnb

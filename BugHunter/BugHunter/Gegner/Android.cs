@@ -15,7 +15,6 @@ namespace BugHunter
         public int attackDamage = 1;
         public Player player;
         
-
         public bool IsDead = false;
 
         // Potentielle Neue Position
@@ -25,9 +24,7 @@ namespace BugHunter
         public SpriteSheet spriteSheet;
         public SpriteRender spriteRender;
 
-
         Settings settings;
-
 
         public double LastCollisionCheck = 0;
 

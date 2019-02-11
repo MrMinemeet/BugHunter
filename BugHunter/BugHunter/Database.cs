@@ -7,62 +7,11 @@ namespace ProjectWhitespace
 {
     public class Database
     {
-        public MySqlConnection mySqlConnection = null;
-        private Game1 game = null;
-
-        public Database(Game1 game)
-        {
-            this.game = game;
-            String connString = "Server=" + Settings.host + ";Database=" + Settings.database
-                 + ";port=" + Settings.port + ";UserId=" + Settings.username + ";password=" + Settings.password;
-
-            mySqlConnection = new MySqlConnection(connString);
-            try
-            {
-                // this.mySqlConnection.Open();
-            }
-            catch (MySqlException e)
-            {
-                game.logger.Log("Fehler beim Verbinden zu der Datenbank: " + e.Message);
-            }
-        }
-
         /// <summary>
-        /// Sendet query an SQL-Server
+        /// Threadmethode um Highscore in Datenbank zu aktualisieren
         /// </summary>
-        /// <param name="query">SQL-Query als String</param>
-        public void SendQueryCommand(string query)
-        {
-            try
-            {
-                MySqlCommand mySqlCommand = new MySqlCommand(query);
-                
-                // Überprüfen ob Datenbankverbindung steht
-                if(mySqlConnection.State == System.Data.ConnectionState.Open){
-
-                    game.logger.Log("Connection active. Sending Query.");
-                    mySqlCommand.Connection = this.mySqlConnection;
-
-                    mySqlCommand.ExecuteNonQueryAsync();
-
-                    Console.WriteLine("Insetion Done");
-                }
-            }
-            catch (Exception e)
-            {
-                game.logger.Log(e.Message);
-            }
-        }
-
-        public void Dispose()
-        {
-            this.mySqlConnection.Close();
-            this.mySqlConnection.Dispose();
-        }
-
-
-
-        public static void UpdateDatabase(Game1 game)
+        /// <param name="game">Game Objekt um auf Einstellungen und Highscore zugreifen zu können</param>
+        public static void UpdateDatabaseThread(Game1 game)
         {
 
             String connString = "Server=" + Settings.host + ";Database=" + Settings.database
@@ -82,12 +31,15 @@ namespace ProjectWhitespace
                     if(connection.State != System.Data.ConnectionState.Open)
                     {
                         // Verbindung muss erst aufgebaut werden
+                        game.logger.Log("Datenbankverbindung wird aufgebaut");
                         connection.Open();
+
                     }
 
                     if(connection.State == System.Data.ConnectionState.Open)
                     {
                         // Datenbankverbindung steht
+                        game.logger.Log("Datenbankverbindung steht");
 
                         string query = "select `globalscore`.`userid`,`globalscore`.`score` from `globalscore`";
                         command = new MySqlCommand(query);
@@ -112,20 +64,27 @@ namespace ProjectWhitespace
 
                         if (GuidExists)
                         {
+                            game.logger.Log("GUID war vorhanden. Eintrag wird upgedated");
                             // Datenbankeintrag wird upgedated
                             command.CommandText =
                                 "UPDATE `globalscore` SET `Name` = '" + game.settings.UserName +
                                 "', `Score` = '" + game.settings.HighScore +
                                 "', `DateTime` = '" +
                                 DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") +
-                                "' WHERE `globalscore`.`UserID` = '" + game.settings.GUID + "'";
+                                "' WHERE `globalscore`.`UserID` = '" +
+                                game.settings.GUID + "'";
                             command.ExecuteNonQuery();
                         }
                         else
                         {
+                            game.logger.Log("GUID nicht gefunden. Neuer Eintrag wird erstellt");
                             // Kein Eintrag gefunden, wodurch ein neuer erstellt wird
-                            command = new MySqlCommand("INSERT INTO `globalscore` (`UserID`, `Name`, `Score`, `DateTime`, `IPAddress`) VALUES('" + game.settings.GUID + "', '" + game.settings.UserName + "', '" + game.settings.HighScore + "', '" +
-                            DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + "', 'UNUSED');");
+                            command = new MySqlCommand("INSERT INTO `globalscore` (`UserID`, `Name`, `Score`, `DateTime`, `IPAddress`) VALUES('" +
+                                game.settings.GUID + "', '" +
+                                game.settings.UserName + "', '" +
+                                game.settings.HighScore + "', '" +
+                            DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") +
+                            "', 'UNUSED');");
 
                             command.Connection = connection;
 
@@ -134,13 +93,15 @@ namespace ProjectWhitespace
 
                     }
                 }
-                catch(Exception e)
+                catch(MySqlException e)
                 {
                     Console.WriteLine(e.Message);
+                    game.logger.Log(e.Message, "Error");
                 }
                 finally
                 {
                     connection.Close();
+                    game.logger.Log("Datenbankverbindung geschlossen");
                 }
             }
 

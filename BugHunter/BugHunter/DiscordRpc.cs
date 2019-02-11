@@ -113,7 +113,6 @@ public class DiscordRpc
         UpdatePresenceNative(ref presencestruct);
         presence.FreeMem();
     }
-
     public class RichPresence
     {
         private RichPresenceStruct _presence;

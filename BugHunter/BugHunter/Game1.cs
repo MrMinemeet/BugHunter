@@ -1,5 +1,6 @@
 ﻿/*
  * Entwickler: Alexander Voglsperger aka. MrMinemeet(4AHELS 2018/2019)
+ * Gamestudio: Project-Whitespace (ProjectWhitespace.net)
  * Softwarename: BugHunter
  * Entwicklungszeitraum:  18.11.2018 - JETZT
  * 
@@ -90,12 +91,6 @@ namespace BugHunter
         private static DiscordRpcClient client;
 
         public bool IsDiscordRunning = false;
-
-        // Datenbank
-        Database database;
-        public bool DataBaseIsActive = false;
-        double lastDatabaseUpdate = 0;
-
 
         private int StatsBoostGiven = 1;
 
@@ -206,7 +201,6 @@ namespace BugHunter
             logger = new Logger(this.settings.LoggingPath);
 
             Stopwatch sw = new Stopwatch();
-            database = new Database(this);
 
             this.Score = 0;
 
@@ -219,7 +213,7 @@ namespace BugHunter
 
             spriteSheetLoader = new SpriteSheetLoader(Content, GraphicsDevice);
 
-            updateThread = new Thread(() => Database.UpdateDatabase(this));
+            updateThread = new Thread(() => Database.UpdateDatabaseThread(this));
 
 
             if (IsDiscordRunning){
@@ -227,7 +221,6 @@ namespace BugHunter
                 //Create a new client
                 client = new DiscordRpcClient(ClientID)
                 {
-
                     //Create the logger
                     Logger = new DiscordRPC.Logging.ConsoleLogger() { Level = DiscordLogLevel, Coloured = true }
                 };
@@ -344,14 +337,6 @@ namespace BugHunter
                 DataBaseIsActive = true;
             }
             */
-
-            // Datenbankstats jede Minute Updaten
-            if (gameTime.TotalGameTime.TotalSeconds - this.lastDatabaseUpdate >= 15)
-            {
-                this.lastDatabaseUpdate = gameTime.TotalGameTime.TotalSeconds;
-
-                SyncDatabase(this.database, this.settings);
-            }
 
             if (IsDiscordRunning)
             {
@@ -838,9 +823,6 @@ namespace BugHunter
 
         public void ExitGame()
         {
-
-            SyncDatabase(this.database, this.settings);
-
             // Speichern von Einstellungen
             settings.SaveSettings();
 
@@ -850,78 +832,12 @@ namespace BugHunter
             // Gamepadvibrationen ausschalten
             GamePad.SetVibration(PlayerIndex.One, 0f, 0f);
 
-            // Datenbank freigeben
-            database?.Dispose();
-
             // Discord Client freigeben
             client?.Dispose();
 
             // Spiel beenden
             logger.Log("Spiel beenden");
             Exit();
-        }
-        void SyncDatabase(Database database, Settings settings)
-        {/*
-            // Überprüft ob Datenbank läuft500
-            if (!DataBaseIsActive)
-            {
-                logger.Log("Datenbank nicht aktiv.");
-                return;
-            }
-            logger.Log("Datenbank aktiv.");
-
-            // Stats an Datenbank senden
-            MySqlCommand mySqlCommand;
-
-            string myinsertquery = "select `globalscore`.`userid`,`globalscore`.`score` from `globalscore`";
-            mysqlcommand = new mysqlcommand(myinsertquery)
-            {
-                connection = database.mysqlconnection
-            };
-
-            // select rückgabe auslesen
-            mysqldatareader reader = mysqlcommand.executereader();
-
-            bool guidexists = false;
-
-            while (reader.read())
-            {
-                // guid in datenbank gefunden
-                if (reader.getstring(0).equals(settings.guid))
-                {
-                    logger.log("guid in datenbank gefunden." + reader.getstring(0));
-                    guidexists = true;
-                    break;
-                }
-            }
-
-            reader.Close();
-            reader.Dispose();
-
-
-            if (GuidExists)
-            {
-                // Datenbankeintrag wird upgedated
-                mySqlCommand.CommandText =
-                    "UPDATE `globalscore` SET `Name` = '" + settings.UserName +
-                    "', `Score` = '" + settings.HighScore +
-                    "', `DateTime` = '" +
-                    DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") +
-                    "' WHERE `globalscore`.`UserID` = '" + settings.GUID + "'";
-                mySqlCommand.ExecuteNonQuery();
-                logger.Log("Datenbankeintrag für " + settings.GUID + " upgedated.");
-            }
-            else
-            {
-                // Kein Eintrag gefunden, wodurch ein neuer erstellt wird
-                database.SendQueryCommand("INSERT INTO `globalscore` (`UserID`, `Name`, `Score`, `DateTime`, `IPAddress`) VALUES('" + settings.GUID + "', '" + settings.UserName + "', '" + settings.HighScore + "', '" + 
-                DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + "', 'UNUSED');");
-
-                logger.Log("Datenbankeintrag für " + settings.GUID + " erstellt.");
-            }
-
-            */
-
         }
     }
 }
