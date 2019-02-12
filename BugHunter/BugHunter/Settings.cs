@@ -19,14 +19,12 @@ namespace BugHunter
 
         public string GUID= "";
         public string UserName = "";
-        public string HighScore = "0";
 
         public void UpdateSettings(GraphicsDeviceManager gdm)
         {
             gdm.IsFullScreen = IsFullscreen;
             gdm.ApplyChanges();
         }
-        
 
         // Programm Interne Einstellungen / Constanten
         public int MapSizeHeight { get; set; }
@@ -40,8 +38,6 @@ namespace BugHunter
         public const byte generalMaxPowerUps = 6;
         public readonly string LoggingPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), @"My games\Bug Hunter\log.txt");
 
-
-
         // DATABASE LOGIN
         public const string host = "projectwhitespace.net";      // Domain von NoIP.com                 (projectwhitespace.net)
         public const int port = 60457;                           // MySQL Port von Portweiterleitung    (60457)
@@ -51,11 +47,10 @@ namespace BugHunter
 
         private Game1 game = null;
 
-        public void Init(Game1 game)
+        public Settings(Game1 game)
         {
             this.game = game;
         }
-        
 
         public Texture2D EmptyTexture { get; set; }
         
@@ -151,7 +146,6 @@ namespace BugHunter
             }
         }
 
-
         /// <summary>
         /// Lädt Informationen Spiel
         /// </summary>
@@ -174,14 +168,20 @@ namespace BugHunter
 
                 string input;
 
-                // Wert als String einlesen
+                // Highscore einlesen und entschlüsseln
                 input = br.ReadString();
+                game.gameStats.HighScore = Encrypt.DecryptString(input, this.GUID);
 
-                this.HighScore = Encrypt.DecryptString(input, this.GUID);
+                // Killed Enemies einlesen
+                game.gameStats.KilledEnemies = br.ReadInt32();
+                game.gameStats.CollectedPowerups = br.ReadInt32();
+                game.gameStats.AnzahlSchuesse = br.ReadInt32();
+                game.gameStats.AnzahlTreffer = br.ReadInt32();
             }
             catch (Exception ex)
             {
                 Console.WriteLine(ex.Message);
+                DidLoad = false;
             }
             finally
             {
@@ -210,7 +210,13 @@ namespace BugHunter
                 bw = new BinaryWriter(new FileStream(path, FileMode.OpenOrCreate));
 
                 // Wert als String einlesen
-                bw.Write(Encrypt.EncryptString(this.HighScore.ToString(),this.GUID));
+                bw.Write(Encrypt.EncryptString(game.gameStats.HighScore.ToString(),this.GUID));
+
+
+                bw.Write(game.gameStats.KilledEnemies);
+                bw.Write(game.gameStats.CollectedPowerups);
+                bw.Write(game.gameStats.AnzahlSchuesse);
+                bw.Write(game.gameStats.AnzahlTreffer);
             }
             catch (Exception ex)
             {

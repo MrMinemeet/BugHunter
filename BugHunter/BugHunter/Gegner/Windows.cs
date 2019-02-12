@@ -22,7 +22,6 @@ namespace BugHunter
         public Vector2 PotNewEnemyPosition;
 
         // Textures
-        public SpriteSheet spriteSheet;
         public SpriteRender spriteRender;
 
 
@@ -81,7 +80,7 @@ namespace BugHunter
             }
 
             // Bekommt einen Frame
-            SpriteFrame sp = spriteSheet.Sprite(TexturePackerMonoGameDefinitions.entities.Android1);
+            SpriteFrame sp = game.spriteSheet.Sprite(TexturePackerMonoGameDefinitions.entities.Android1);
 
             // Mit sp.Size erhält man einen Vektor mit der größe einer einzelnen Textur. Ist einfach und zudem noch effizienter
             if (
@@ -109,6 +108,7 @@ namespace BugHunter
                     this.Health -= game.weapon.GetDamageAktWeapon(player.aktWeapon) + player.Damageboost;
 
                     player.projectiles.Remove(player.projectiles[i]);
+                    game.gameStats.AnzahlTreffer++;
 
                     // Falls Gegner 0 leben hat, soll dieser despawnen und der Score erhöht werden.
                     if (this.Health <= 0)
@@ -154,28 +154,28 @@ namespace BugHunter
             if (this.MaxHealth >= this.Health && this.Health > this.MaxHealth * 0.75f)
             {
                 spriteRender.Draw(
-                    spriteSheet.Sprite(TexturePackerMonoGameDefinitions.entities.Windows4),
+                    game.spriteSheet.Sprite(TexturePackerMonoGameDefinitions.entities.Windows4),
                     this.Position,
                     Color.White);
             }
             if (this.MaxHealth * 0.75f >= this.Health && this.Health > this.MaxHealth * 0.50f)
             {
                 spriteRender.Draw(
-                    spriteSheet.Sprite(TexturePackerMonoGameDefinitions.entities.Windows3),
+                    game.spriteSheet.Sprite(TexturePackerMonoGameDefinitions.entities.Windows3),
                     this.Position,
                     Color.White);
             }
             if (this.MaxHealth * 0.50f >= this.Health && this.Health > this.MaxHealth * 0.25f)
             {
                 spriteRender.Draw(
-                    spriteSheet.Sprite(TexturePackerMonoGameDefinitions.entities.Windows2),
+                    game.spriteSheet.Sprite(TexturePackerMonoGameDefinitions.entities.Windows2),
                     this.Position,
                     Color.White);
             }
             if (this.MaxHealth * 0.25f >= this.Health && this.Health > 0)
             {
                 spriteRender.Draw(
-                    spriteSheet.Sprite(TexturePackerMonoGameDefinitions.entities.Windows1),
+                    game.spriteSheet.Sprite(TexturePackerMonoGameDefinitions.entities.Windows1),
                     this.Position,
                     Color.White);
             }

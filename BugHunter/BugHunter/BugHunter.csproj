@@ -125,6 +125,7 @@
     </Compile>
     <Compile Include="Settings.cs" />
     <Compile Include="Sound.cs" />
+    <Compile Include="Stats.cs" />
     <Compile Include="Texttable.cs" />
     <Compile Include="TexturePackerLoader\SpriteFrame.cs" />
     <Compile Include="TexturePackerLoader\SpriteRender.cs" />

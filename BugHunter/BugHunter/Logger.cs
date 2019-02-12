@@ -22,7 +22,6 @@ namespace ProjectWhitespace
             StreamWriter swNew = null;
             StreamWriter swAppend = null;
 
-
             try
             {
                 if (!File.Exists(this.LogPath))

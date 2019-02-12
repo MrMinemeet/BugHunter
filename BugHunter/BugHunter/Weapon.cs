@@ -30,28 +30,27 @@
 
         public Weapon()
         {
+            // Delays für Waffen
+            CppDelayMs = 275;
+            CDelayMs = 350;
+            JavaDelayMs = 200;
+            CsharpDelayMs = 175;
+            MaschinenspracheDelayMs = 1000;
 
-        // Delays für Waffen
-        CppDelayMs = 275;
-        CDelayMs = 350;
-        JavaDelayMs = 200;
-        CsharpDelayMs = 175;
-        MaschinenspracheDelayMs = 1000;
+            // Schaden für waffen
+            CppDamage = 20;
+            CDamage = 25;
+            JavaDamage = 15;
+            CsharpDamage = 15;
+            MaschinenspracheDamage = 100;
 
-        // Schaden für waffen
-        CppDamage = 20;
-        CDamage = 25;
-        JavaDamage = 15;
-        CsharpDamage = 15;
-        MaschinenspracheDamage = 100;
-
-        // Max Munition für Waffe
-        CppAmmoAmount = 40;
-        CAmmoAmount = 35;
-        JavaAmmoAmount = 60;
-        CsharpAmmoAmount = 70;
-        MaschinenspracheAmmoAmount = 30;
-    }
+            // Max Munition für Waffe
+            CppAmmoAmount = 40;
+            CAmmoAmount = 35;
+            JavaAmmoAmount = 60;
+            CsharpAmmoAmount = 70;
+            MaschinenspracheAmmoAmount = 30;
+        }
             
         public int GetDelayAktWeapon(WeaponTypes aktWeapon)
         {

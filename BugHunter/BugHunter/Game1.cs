@@ -121,7 +121,7 @@ namespace BugHunter
         int AktuelleMap = 0;
 
         // Standardeinstellungen setzen
-        public Settings settings = new Settings();
+        public Settings settings;
          
         public int[][] MapArray;
         public int[][] EnemySpawnPointsArray;
@@ -138,20 +138,22 @@ namespace BugHunter
                      
         public Random random = new Random();
 
+        // Threads
         Thread updateThread;
+        Thread RankingListUpdateThread;
 
 
         // DEBUG Featurese
         FpsCounter fps = new FpsCounter();
         public SpriteFont DebugFont;
 
-
-
-        enum GameState : Byte { Ingame, Paused, DeathScreen, Hauptmenu };
+        enum GameState : Byte { Ingame, Paused, DeathScreen, Hauptmenu, Stats };
         GameState CurrentGameState = GameState.Hauptmenu;
 
         private SpriteSheetLoader spriteSheetLoader;
         public GraphicsDevice graphicsDevice;
+
+        public Stats gameStats;
 
         // Score
         public int Score { get; set; }
@@ -165,7 +167,9 @@ namespace BugHunter
         private bool PoofIsActive = false;
         private Vector2 PoofPosition;
 
-
+        // Texturen
+        public SpriteSheet spriteSheet;
+        
         // HAUPTMENÜ
         enum Menubuttons : Byte { Spielen, Einstellungen, Stats, Beenden };
         Menubuttons aktuellerMenupunkt = Menubuttons.Spielen;
@@ -173,6 +177,8 @@ namespace BugHunter
 
         public Game1()
         {
+            gameStats = new Stats();
+            this.settings = new Settings(this);
             graphics = new GraphicsDeviceManager(this)
             {
                 PreferredBackBufferWidth = settings.resolutionWidth,
@@ -204,16 +210,12 @@ namespace BugHunter
 
             this.Score = 0;
 
-            this.weapon = new Weapon();
-            this.player = new Player(this, 200f, 100);
-
-            player.camera = new OrthographicCamera(GraphicsDevice);
-
             map[0] = new Map();
 
             spriteSheetLoader = new SpriteSheetLoader(Content, GraphicsDevice);
 
             updateThread = new Thread(() => Database.UpdateDatabaseThread(this));
+            RankingListUpdateThread = new Thread(() => Database.GetRankingListThread(this));
 
 
             if (IsDiscordRunning){
@@ -239,11 +241,9 @@ namespace BugHunter
                 {
                     Start = DateTime.UtcNow
                 };
-
-
+            
                 client.SetPresence(presence);
-
-
+                
                 //Connect
                 client.Initialize();
             }
@@ -263,6 +263,13 @@ namespace BugHunter
             spriteBatch = new SpriteBatch(GraphicsDevice);
             spriteRender = new SpriteRender(spriteBatch);
 
+            this.spriteSheet = spriteSheetLoader.Load("sprites/entities/entities.png");
+
+            this.weapon = new Weapon();
+            this.player = new Player(this, 200f, 100);
+
+            player.camera = new OrthographicCamera(GraphicsDevice);
+
             // Verarbeitete Map aus Pipeline laden
             map[AktuelleMap].SetTiledMap(Content.Load<TiledMap>("map1"));
             // MapRenderer für die Map erstellen
@@ -271,12 +278,10 @@ namespace BugHunter
             settings.MapSizeHeight = map[AktuelleMap].GetTiledMap().Height;
             settings.MapSizeWidth = map[AktuelleMap].GetTiledMap().Width;
             settings.EmptyTexture = Content.Load<Texture2D>("sprites/empty");
-            settings.Init(this);
             settings.LoadSettings();
             settings.LoadGamedata();
 
             gui = new GUI(this);
-
 
             // TMX (wie CSV) Map in 2D Array wandeln
             MapArray = Converter.MapToIntArray(map[AktuelleMap].maplevel, settings, @"Collision/Trigger");
@@ -301,7 +306,6 @@ namespace BugHunter
             // Spieler Init
             player.Texture = Content.Load<Texture2D>("sprites/player/afk_0001");
             player.OriginTexture = Content.Load<Texture2D>("sprites/originSpot");
-            player.WeaponSpriteSheet = spriteSheetLoader.Load("sprites/entities/entities.png");
             player.Init(this.settings, this, this.sound);
             
             // Setze Spielerposition auf SpawnTilekoordinaten
@@ -313,17 +317,35 @@ namespace BugHunter
             gui.CustomCurserTexture = Content.Load<Texture2D>("sprites/mauszeiger");
 
             // Animation
-            PoofSpriteSheet = spriteSheetLoader.Load("effects_packed.png");
-            
+
+            this.PoofSpriteSheet = spriteSheetLoader.Load("effects_packed.png");
             InitialiseAnimationManager();
 
+            // Threads Starten
             updateThread.Start();
+            RankingListUpdateThread.Start();
         }
 
         // UnloadContent will be called once per game and is the place to unload game-specific content.
         protected override void UnloadContent()
         {
             updateThread.Abort();
+            RankingListUpdateThread.Abort();
+
+            // Speichern von Einstellungen
+            settings.SaveSettings();
+
+            // Speichern von Spielkritischen Daten
+            settings.SaveGamedata();
+
+            // Gamepadvibrationen ausschalten
+            GamePad.SetVibration(PlayerIndex.One, 0f, 0f);
+
+            // Discord Client freigeben
+            client?.Dispose();
+
+            // Spiel beenden
+            logger.Log("Spiel beenden");
         }
 
         // Allows the game to run logic such as updating the world, checking for collisions, gathering input, and playing audio.
@@ -347,7 +369,7 @@ namespace BugHunter
             // Spiel schließen
             if (Keyboard.GetState().IsKeyDown(Keys.Delete) && Keyboard.GetState().IsKeyDown(Keys.LeftAlt))
             {
-                ExitGame();                
+                Exit();               
             }
 
             // Spiel in Vollbild machen
@@ -415,16 +437,23 @@ namespace BugHunter
                             this.CurrentGameState = GameState.Ingame;
                             break;
                         case Menubuttons.Stats:
-                            // TODO: Stats
+                            this.CurrentGameState = GameState.Stats;
                             break;
                         case Menubuttons.Einstellungen:
                             // TODO: Einstellungen
                             break;
                         case Menubuttons.Beenden:
-                            ExitGame();
+                            Exit();
                             break;
                     }
                 }
+            }
+
+            // Stats
+            if(CurrentGameState == GameState.Stats)
+            {
+                if (Keyboard.GetState().IsKeyDown(Keys.Escape) && gameTime.TotalGameTime.TotalMilliseconds - LastKeyStrokeInput >= 500)
+                    this.CurrentGameState = GameState.Hauptmenu;
             }
 
             // Ingame
@@ -447,9 +476,9 @@ namespace BugHunter
                     LastKeyStrokeInput = gameTime.TotalGameTime.TotalMilliseconds;
                 }
                 
-                if (this.Score > int.Parse(settings.HighScore))
+                if (this.Score > int.Parse(gameStats.HighScore))
                 {
-                    settings.HighScore = Score.ToString();
+                    gameStats.HighScore = Score.ToString();
                     sound.ScoreSound.Play(0.5f, 0, 0);
                 }
                 
@@ -468,11 +497,10 @@ namespace BugHunter
                         // Spawn Android
                         case 0:
                             this.AndroidHealth += 5;
-                            AndroidsList.Add(new Android(50f, AndroidHealth, AndroidDamage, this, this.settings, this.player));
-                            AndroidsList[AndroidsList.Count - 1].spriteSheet = spriteSheetLoader.Load("sprites/entities/entities.png");
+                            AndroidsList.Add(new Android(50f, AndroidHealth, AndroidDamage, this));
                             AndroidsList[AndroidsList.Count - 1].SetSpawnFromMap(EnemySpawnPointsArray);
 
-                            sp = AndroidsList[AndroidsList.Count - 1].spriteSheet.Sprite(TexturePackerMonoGameDefinitions.entities.Android1);
+                            sp = spriteSheet.Sprite(TexturePackerMonoGameDefinitions.entities.Android1);
 
                             enemyHitbox = new Rectangle((int)(AndroidsList[AndroidsList.Count - 1].Position.X - sp.Size.X / 2), (int)(AndroidsList[AndroidsList.Count - 1].Position.Y - sp.Size.Y / 2), (int)sp.Size.X, (int)sp.Size.Y);
 
@@ -488,10 +516,9 @@ namespace BugHunter
                         case 1:
                             this.WindowsHealth += 5;
                             WindowsList.Add(new Windows(50f, WindowsHealth, WindowsDamage, this, this.settings, this.player));
-                            WindowsList[WindowsList.Count - 1].spriteSheet = spriteSheetLoader.Load("sprites/entities/entities.png");
                             WindowsList[WindowsList.Count - 1].SetSpawnFromMap(EnemySpawnPointsArray);
 
-                            sp = WindowsList[WindowsList.Count - 1].spriteSheet.Sprite(TexturePackerMonoGameDefinitions.entities.Windows1);
+                            sp = spriteSheet.Sprite(TexturePackerMonoGameDefinitions.entities.Windows1);
 
                             enemyHitbox = new Rectangle((int)(WindowsList[WindowsList.Count - 1].Position.X - sp.Size.X / 2), (int)(WindowsList[WindowsList.Count - 1].Position.Y - sp.Size.Y / 2), (int)sp.Size.X, (int)sp.Size.Y);
 
@@ -512,6 +539,7 @@ namespace BugHunter
 
                     if (AndroidsList[i].IsDead)
                     {
+                        gameStats.KilledEnemies++;
                         PoofPosition = AndroidsList[i].Position;
                         PoofIsActive = true;
 
@@ -535,6 +563,7 @@ namespace BugHunter
 
                     if (WindowsList[i].IsDead)
                     {
+                        gameStats.KilledEnemies++;
                         PoofPosition = WindowsList[i].Position;
                         PoofIsActive = true;
                         // 10% Chance das sich der Schaden 
@@ -575,6 +604,7 @@ namespace BugHunter
                     {
                         if (Powerups[i].WasCollected(this.player))
                         {
+                            gameStats.CollectedPowerups++;
                             Powerups.Remove(Powerups[i]);
                             break;
                         }
@@ -678,7 +708,25 @@ namespace BugHunter
                     Color.White);
             }
 
-            if(CurrentGameState != GameState.Hauptmenu)
+            if(CurrentGameState == GameState.Stats)
+            {
+                spriteBatch.DrawString(font, Texttable.Stats_Getötete_Gegner + gameStats.KilledEnemies, new Vector2(player.camera.Origin.X - 900, player.camera.Origin.Y - 500), Color.White);
+                spriteBatch.DrawString(font, Texttable.Stats_Gesammelte_Powerups + gameStats.CollectedPowerups, new Vector2(player.camera.Origin.X - 900, player.camera.Origin.Y - 450), Color.White);
+                spriteBatch.DrawString(font, Texttable.Stats_Anzahl_Geschossen + gameStats.AnzahlSchuesse, new Vector2(player.camera.Origin.X - 900, player.camera.Origin.Y - 400), Color.White);
+                spriteBatch.DrawString(font, Texttable.Stats_Anzahl_Treffer + gameStats.AnzahlTreffer, new Vector2(player.camera.Origin.X - 900, player.camera.Origin.Y - 350), Color.White);
+                spriteBatch.DrawString(font, Texttable.Stats_Trefferrate + ((float)gameStats.AnzahlTreffer / (float)gameStats.AnzahlSchuesse).ToString("P"), new Vector2(player.camera.Origin.X - 900, player.camera.Origin.Y - 300), Color.White);
+
+
+                // Global Ranking Liste
+                spriteBatch.DrawString(MenuFont, "Top 10 Spieler", new Vector2(player.camera.Origin.X - 100, player.camera.Origin.Y - 500), Color.White);
+
+                for (int i = 0; i < gameStats.Top10Names.Count; i++)
+                {
+                    spriteBatch.DrawString(font, gameStats.Top10Names[i] + ":  " + gameStats.Top10Score[i], new Vector2(player.camera.Origin.X - 100, player.camera.Origin.Y + (50*i) - 400), Color.White);
+                }
+            }
+
+            if(CurrentGameState == GameState.Ingame || CurrentGameState == GameState.Paused || CurrentGameState == GameState.DeathScreen)
             {
                 // MapRenderer zum Zeichnen der aktuell sichtbaren Map
                 map[AktuelleMap].mapRenderer.Draw(player.camera.GetViewMatrix());
@@ -716,7 +764,7 @@ namespace BugHunter
 
 
                     spriteBatch.DrawString(MenuFont, "PAUSE", new Vector2(player.Position.X - 100, player.Position.Y - 64), Color.White);
-                    spriteBatch.DrawString(MenuFont, "Highscore: " + settings.HighScore,
+                    spriteBatch.DrawString(MenuFont, "Highscore: " + gameStats.HighScore,
                         new Vector2(player.camera.Position.X + 750, player.camera.Position.Y), Color.White);
                 }
 
@@ -752,13 +800,11 @@ namespace BugHunter
                         spriteBatch.DrawString(MenuFont, Texttable.Menu_Ende, new Vector2(player.camera.Origin.X - 400, player.camera.Origin.Y + 100), Color.Gray);
                         break;
                 }
-                
             }
             spriteBatch.End();
 
             base.Draw(gameTime);
         }
-
         private void InitialiseAnimationManager()
         {
             var poof = new[] {
@@ -820,24 +866,5 @@ namespace BugHunter
 			// Discord will give us one of these events and its upto us to handle it
 			Console.WriteLine("Error occured within discord. ({1}) {0}", args.Message, args.Code);
 		}
-
-        public void ExitGame()
-        {
-            // Speichern von Einstellungen
-            settings.SaveSettings();
-
-            // Speichern von Spielkritischen Daten
-            settings.SaveGamedata();
-
-            // Gamepadvibrationen ausschalten
-            GamePad.SetVibration(PlayerIndex.One, 0f, 0f);
-
-            // Discord Client freigeben
-            client?.Dispose();
-
-            // Spiel beenden
-            logger.Log("Spiel beenden");
-            Exit();
-        }
     }
 }

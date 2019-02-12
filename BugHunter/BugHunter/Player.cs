@@ -39,7 +39,6 @@ namespace BugHunter
 
         // Waffen
         public List<Projectile> projectiles = new List<Projectile>();
-        public SpriteSheet WeaponSpriteSheet;
         private double lastTimeShot = 0;
         public Weapon.WeaponTypes aktWeapon = Weapon.WeaponTypes.c;
         private double lastWeaponChangeLeft = 0;
@@ -214,13 +213,12 @@ namespace BugHunter
                 {
                     if (gameTime.TotalGameTime.TotalMilliseconds - lastTimeShot >= game.weapon.GetDelayAktWeapon(aktWeapon))
                     {
-                        projectiles.Add(new Projectile());
+                        projectiles.Add(new Projectile(game));
 
-
+                        game.gameStats.AnzahlSchuesse++;
                         sound.Schuesse[random.Next(sound.Schuesse.Length - 1)].Play();
                         AmmunitionAmmountList[aktWeapon]--;
 
-                        projectiles[projectiles.Count - 1].Init(this.game, this);
                         projectiles[projectiles.Count - 1].ProjectilePosition = this.Position;
                         projectiles[projectiles.Count - 1].TimeSinceShot = gameTime.TotalGameTime.TotalSeconds;
                         projectiles[projectiles.Count - 1].aktDirection = Projectile.Directions.Right;
@@ -234,11 +232,12 @@ namespace BugHunter
                 {
                     if (gameTime.TotalGameTime.TotalMilliseconds - lastTimeShot >= game.weapon.GetDelayAktWeapon(aktWeapon))
                     {
-                        projectiles.Add(new Projectile());
+                        projectiles.Add(new Projectile(game));
+
+                        game.gameStats.AnzahlSchuesse++;
                         sound.Schuesse[random.Next(sound.Schuesse.Length - 1)].Play();
                         AmmunitionAmmountList[aktWeapon]--;
-
-                        projectiles[projectiles.Count - 1].Init(this.game, this);
+                        
                         projectiles[projectiles.Count - 1].ProjectilePosition = this.Position;
                         projectiles[projectiles.Count - 1].TimeSinceShot = gameTime.TotalGameTime.TotalSeconds;
                         projectiles[projectiles.Count - 1].aktDirection = Projectile.Directions.Left;
@@ -252,12 +251,12 @@ namespace BugHunter
                 {
                     if (gameTime.TotalGameTime.TotalMilliseconds - lastTimeShot >= game.weapon.GetDelayAktWeapon(aktWeapon))
                     {
-                        projectiles.Add(new Projectile());
+                        projectiles.Add(new Projectile(game));
 
+                        game.gameStats.AnzahlSchuesse++;
                         sound.Schuesse[random.Next(sound.Schuesse.Length - 1)].Play();
                         AmmunitionAmmountList[aktWeapon]--;
-
-                        projectiles[projectiles.Count - 1].Init(this.game, this);
+                        
                         projectiles[projectiles.Count - 1].ProjectilePosition = this.Position;
                         projectiles[projectiles.Count - 1].TimeSinceShot = gameTime.TotalGameTime.TotalSeconds;
                         projectiles[projectiles.Count - 1].aktDirection = Projectile.Directions.Up;
@@ -271,12 +270,12 @@ namespace BugHunter
                 {
                     if (gameTime.TotalGameTime.TotalMilliseconds - lastTimeShot >= game.weapon.GetDelayAktWeapon(aktWeapon))
                     {
-                        projectiles.Add(new Projectile());
+                        projectiles.Add(new Projectile(game));
 
+                        game.gameStats.AnzahlSchuesse++;
                         sound.Schuesse[random.Next(sound.Schuesse.Length - 1)].Play();
                         AmmunitionAmmountList[aktWeapon]--;
-
-                        projectiles[projectiles.Count - 1].Init(this.game, this);
+                        
                         projectiles[projectiles.Count - 1].ProjectilePosition = this.Position;
                         projectiles[projectiles.Count - 1].TimeSinceShot = gameTime.TotalGameTime.TotalSeconds;
                         projectiles[projectiles.Count - 1].aktDirection = Projectile.Directions.Down;
@@ -525,7 +524,7 @@ namespace BugHunter
             // Zeichnet alle aktiven Projektile im Array
             foreach (Projectile p in projectiles)
             {
-                p.DrawShot(spriteBatch, this.WeaponSpriteSheet);
+                p.DrawShot(spriteBatch, game.spriteSheet);
             }
         }
 

@@ -31,14 +31,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="BugHunter.exe" size="867328">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="BugHunter.exe" size="867840">
       <assemblyIdentity name="BugHunter" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>dzNurKUFGQnVsu1NdMhRA0T6m4bop6I0Sh1h6XTCB+E=</dsig:DigestValue>
+        <dsig:DigestValue>QJnJjERqHCk3U6iTVx4cNrpPFXT649oNBQDuof2KT1I=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -474,13 +474,13 @@
       <dsig:DigestValue>cz59UqFrpn+xFSNC90oqtiyLwfCZczTm4qYRPCksz0o=</dsig:DigestValue>
     </hash>
   </file>
-  <file name="Content\MenuFont.xnb" size="269900">
+  <file name="Content\MenuFont.xnb" size="532044">
     <hash>
       <dsig:Transforms>
         <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-      <dsig:DigestValue>oeA5e0NiOSfCl9rpM53XwHHWTfz/e8WUiIHHFsJAu5c=</dsig:DigestValue>
+      <dsig:DigestValue>YdXEt+nKKqY26fACq9jekM5/WQPvJhIHv8NjCgYvS9c=</dsig:DigestValue>
     </hash>
   </file>
   <file name="Content\paused_background.xnb" size="8294485">
