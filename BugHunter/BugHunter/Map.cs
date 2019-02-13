@@ -9,7 +9,7 @@ namespace BugHunter
         public TiledMap maplevel;
         // The renderer for the map
         public TiledMapRenderer mapRenderer;
-        
+
         public void SetTiledMap(TiledMap value)
         {
             this.maplevel = value;

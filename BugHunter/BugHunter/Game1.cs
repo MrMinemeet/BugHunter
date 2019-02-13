@@ -114,7 +114,6 @@ namespace BugHunter
         public List<Powerup> Powerups = new List<Powerup>();
 
 
-        public Map[] map = new Map[1];
         GUI gui;
         public SoundFX sound = new SoundFX();
 
@@ -210,7 +209,7 @@ namespace BugHunter
 
             this.Score = 0;
 
-            map[0] = new Map();
+            map.Add(new Map());
 
             spriteSheetLoader = new SpriteSheetLoader(Content, GraphicsDevice);
 
@@ -247,6 +246,9 @@ namespace BugHunter
                 //Connect
                 client.Initialize();
             }
+
+            weapon = new Weapon();
+
             // Generiergt Pause Screen
             pauseScreen = new Texture2D(graphics.GraphicsDevice, settings.resolutionWidth, settings.resolutionHeight);
             Color[] data = new Color[settings.resolutionWidth * settings.resolutionHeight];
@@ -265,13 +267,9 @@ namespace BugHunter
 
             this.spriteSheet = spriteSheetLoader.Load("sprites/entities/entities.png");
 
-            this.weapon = new Weapon();
-            this.player = new Player(this, 200f, 100);
-
-            player.camera = new OrthographicCamera(GraphicsDevice);
 
             // Verarbeitete Map aus Pipeline laden
-            map[AktuelleMap].SetTiledMap(Content.Load<TiledMap>("map1"));
+            map[AktuelleMap].maplevel = Content.Load<TiledMap>("map1");
             // MapRenderer für die Map erstellen
             map[AktuelleMap].mapRenderer = new TiledMapRenderer(GraphicsDevice, map[AktuelleMap].GetTiledMap());
 
@@ -304,6 +302,8 @@ namespace BugHunter
             MenuFont = Content.Load<SpriteFont>("MenuFont");
 
             // Spieler Init
+            player = new Player(this,200f,100);
+            player.camera = new OrthographicCamera(GraphicsDevice);
             player.Texture = Content.Load<Texture2D>("sprites/player/afk_0001");
             player.OriginTexture = Content.Load<Texture2D>("sprites/originSpot");
             player.Init(this.settings, this, this.sound);
@@ -434,6 +434,7 @@ namespace BugHunter
                     switch (aktuellerMenupunkt)
                     {
                         case Menubuttons.Spielen:
+                            ResetGame();
                             this.CurrentGameState = GameState.Ingame;
                             break;
                         case Menubuttons.Stats:
@@ -638,11 +639,7 @@ namespace BugHunter
             if((Keyboard.GetState().IsKeyDown(Keys.R) || GamePad.GetState(PlayerIndex.One).IsButtonDown(Buttons.A)) && CurrentGameState == GameState.DeathScreen)
             {
                 player.Reset(MapArray);
-                this.CurrentGameState = GameState.Ingame;
-                this.Score = 0;
-                this.MaxEnemies = 1;
-                this.AndroidHealth = 30;
-                this.AndroidDamage = 1;
+                this.CurrentGameState = GameState.Hauptmenu;
             }
 
             if(CurrentGameState == GameState.Paused)
@@ -825,6 +822,22 @@ namespace BugHunter
             };
 
             poofAM = new AnimationManager(PoofSpriteSheet, player.Position, PoofAnimations);
+        }
+
+
+        private void ResetGame()
+        {
+            AndroidHealth = 30;
+            AndroidDamage = 1;
+            WindowsHealth = 30;
+            WindowsDamage = 1;
+            Score = 0;
+
+            weapon = new Weapon();
+            player.Reset(MapArray);
+
+            AndroidsList.RemoveRange(0, AndroidsList.Count);
+            WindowsList.RemoveRange(0, WindowsList.Count);
         }
 
         /// <summary>
