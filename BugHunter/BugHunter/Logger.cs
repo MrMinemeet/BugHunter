@@ -30,6 +30,7 @@ namespace ProjectWhitespace
                     swNew = File.CreateText(this.LogPath);
                     swNew.WriteLine(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + " - " + tag + ":\t" + message);
                 }
+
                 else
                 {
                     // Wenn Logdatei bereits vorhanden ist wird der aktuellle Log angehangen

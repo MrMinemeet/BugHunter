@@ -80,7 +80,6 @@ namespace BugHunter
         {
             this.Health = MaxHealth;
             SetSpawnFromMap(MapArray);
-            this.camera.LookAt(new Vector2(0, 0));
 
             this.Damageboost = 0;
             this.IsVibrating = false;

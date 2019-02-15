@@ -15,5 +15,6 @@ namespace ProjectWhitespace
         public int CollectedPowerups = 0;
         public int AnzahlSchuesse = 0;
         public int AnzahlTreffer = 0;
+        public int AnzahlTode = 0;
     }
 }

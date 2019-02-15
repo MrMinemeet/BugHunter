@@ -4,7 +4,7 @@
         <key>fileFormatVersion</key>
         <int>4</int>
         <key>texturePackerVersion</key>
-        <string>4.11.1</string>
+        <string>4.12.0</string>
         <key>autoSDSettings</key>
         <array>
             <struct type="AutoSDSettings">
@@ -56,7 +56,7 @@
         <key>jxrCompressionLevel</key>
         <uint>0</uint>
         <key>ditherType</key>
-        <enum type="SettingsBase::DitherType">NearestNeighbour</enum>
+        <enum type="SettingsBase::DitherType">PngQuantLow</enum>
         <key>backgroundColor</key>
         <uint>0</uint>
         <key>libGdx</key>
@@ -82,7 +82,7 @@
         <key>atfFormats</key>
         <string></string>
         <key>textureFormat</key>
-        <enum type="SettingsBase::TextureFormat">png</enum>
+        <enum type="SettingsBase::TextureFormat">png8</enum>
         <key>borderPadding</key>
         <uint>0</uint>
         <key>maxTextureSize</key>
@@ -202,6 +202,10 @@
                 <key>scale9FromFile</key>
                 <false/>
             </struct>
+            <key type="filename">enemy/windows/sprites/WindowsVista_1.png</key>
+            <key type="filename">enemy/windows/sprites/WindowsVista_2.png</key>
+            <key type="filename">enemy/windows/sprites/WindowsVista_3.png</key>
+            <key type="filename">enemy/windows/sprites/WindowsVista_4.png</key>
             <key type="filename">enemy/windows/sprites/windows1.png</key>
             <key type="filename">enemy/windows/sprites/windows2.png</key>
             <key type="filename">enemy/windows/sprites/windows3.png</key>

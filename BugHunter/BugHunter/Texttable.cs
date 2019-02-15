@@ -16,5 +16,6 @@
         public const string Stats_Anzahl_Geschossen = "Geschossen: ";
         public const string Stats_Anzahl_Treffer = "Treffer: ";
         public const string Stats_Trefferrate = "Trefferrate: ";
+        public const string Stats_Tode = "Tode: ";
     }
 }

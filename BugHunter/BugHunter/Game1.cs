@@ -114,6 +114,7 @@ namespace BugHunter
         public List<Powerup> Powerups = new List<Powerup>();
 
 
+        public List<Map> map = new List<Map>();
         GUI gui;
         public SoundFX sound = new SoundFX();
 
@@ -151,7 +152,6 @@ namespace BugHunter
 
         private SpriteSheetLoader spriteSheetLoader;
         public GraphicsDevice graphicsDevice;
-
         public Stats gameStats;
 
         // Score
@@ -185,7 +185,6 @@ namespace BugHunter
                 IsFullScreen = settings.IsFullscreen
             };
             IsMouseVisible = settings.IsMouseVisible;
-
             
             graphics.SynchronizeWithVerticalRetrace = true;
             // IsFixedTimeStep = false;
@@ -307,7 +306,7 @@ namespace BugHunter
             player.Texture = Content.Load<Texture2D>("sprites/player/afk_0001");
             player.OriginTexture = Content.Load<Texture2D>("sprites/originSpot");
             player.Init(this.settings, this, this.sound);
-            
+
             // Setze Spielerposition auf SpawnTilekoordinaten
             player.SetSpawnFromMap(MapArray);
 
@@ -352,18 +351,16 @@ namespace BugHunter
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Update(GameTime gameTime)
         {
-            /*
-            // Überprüfen ob Datenbankverbindung aufgebaut wurde
-            if (database.mySqlConnection.State == System.Data.ConnectionState.Open)
-            {
-                DataBaseIsActive = true;
-            }
-            */
-
             if (IsDiscordRunning)
             {
                 presence.Details = "Score: " + this.Score;
                 presence.Assets.LargeImageKey = "icon";
+            }
+
+            if (Keyboard.GetState().IsKeyDown(Keys.F1))
+            {
+                CurrentGameState = GameState.Paused;
+                System.Diagnostics.Process.Start("https://discordapp.com/invite/rDzmQeC");
             }
 
             // Spiel schließen
@@ -372,7 +369,7 @@ namespace BugHunter
                 Exit();               
             }
 
-            // Spiel in Vollbild machen
+            // Spiel in Vollbild machenx
             if (Keyboard.GetState().IsKeyDown(Keys.F11) || (Keyboard.GetState().IsKeyDown(Keys.LeftAlt) && Keyboard.GetState().IsKeyDown(Keys.Enter)))
             {
                 if(gameTime.TotalGameTime.TotalMilliseconds - LastKeyStrokeInput >= 500)
@@ -581,6 +578,11 @@ namespace BugHunter
                     }
                 }
 
+                if (Keyboard.GetState().IsKeyDown(Keys.F4) && Keyboard.GetState().IsKeyDown(Keys.LeftControl))
+                {
+                    player.Health = 5;
+                }
+
                 player.Update(gameTime, MapArray, map[AktuelleMap].GetTiledMap());
                 gui.Update(gameTime, player);
 
@@ -630,15 +632,16 @@ namespace BugHunter
             }
 
             // Deathscreen
-            if (player.Health <= 0)
+            if (player.Health <= 0 && CurrentGameState == GameState.Ingame)
             {
+                gameStats.AnzahlTode++;
                 CurrentGameState = GameState.DeathScreen;
             }
 
             // Respawn wenn in Deathscreen
             if((Keyboard.GetState().IsKeyDown(Keys.R) || GamePad.GetState(PlayerIndex.One).IsButtonDown(Buttons.A)) && CurrentGameState == GameState.DeathScreen)
             {
-                player.Reset(MapArray);
+                player.Health = player.MaxHealth;
                 this.CurrentGameState = GameState.Hauptmenu;
             }
 
@@ -686,32 +689,18 @@ namespace BugHunter
         { 
             // Schwarzer Hintergrund
             GraphicsDevice.Clear(Color.TransparentBlack);
-            
-            var transformMatrix = player.camera.GetViewMatrix();
-            spriteBatch.Begin(transformMatrix: transformMatrix, samplerState: SamplerState.PointClamp);
 
-           
 
-            // Display Debug-Information
-            if (settings.AreDebugInformationsVisible)
+
+            if (CurrentGameState == GameState.Stats)
             {
-                fps.DrawFps(spriteBatch, DebugFont,
-                    player.camera.Position,
-                    Color.White);
-
-                spriteBatch.DrawString(DebugFont,
-                    "Player:\n" + " X: " + ((int)player.Position.X).ToString() + " Y: " + ((int)player.Position.Y).ToString(),
-                    new Vector2(player.Position.X - (settings.resolutionWidth / 2), player.Position.Y - (settings.resolutionHeight / 2) + 125),
-                    Color.White);
-            }
-
-            if(CurrentGameState == GameState.Stats)
-            {
+                spriteBatch.Begin();
                 spriteBatch.DrawString(font, Texttable.Stats_Getötete_Gegner + gameStats.KilledEnemies, new Vector2(player.camera.Origin.X - 900, player.camera.Origin.Y - 500), Color.White);
                 spriteBatch.DrawString(font, Texttable.Stats_Gesammelte_Powerups + gameStats.CollectedPowerups, new Vector2(player.camera.Origin.X - 900, player.camera.Origin.Y - 450), Color.White);
                 spriteBatch.DrawString(font, Texttable.Stats_Anzahl_Geschossen + gameStats.AnzahlSchuesse, new Vector2(player.camera.Origin.X - 900, player.camera.Origin.Y - 400), Color.White);
                 spriteBatch.DrawString(font, Texttable.Stats_Anzahl_Treffer + gameStats.AnzahlTreffer, new Vector2(player.camera.Origin.X - 900, player.camera.Origin.Y - 350), Color.White);
                 spriteBatch.DrawString(font, Texttable.Stats_Trefferrate + ((float)gameStats.AnzahlTreffer / (float)gameStats.AnzahlSchuesse).ToString("P"), new Vector2(player.camera.Origin.X - 900, player.camera.Origin.Y - 300), Color.White);
+                spriteBatch.DrawString(font, Texttable.Stats_Tode + gameStats.AnzahlTode, new Vector2(player.camera.Origin.X - 900, player.camera.Origin.Y - 250), Color.White);
 
 
                 // Global Ranking Liste
@@ -719,87 +708,108 @@ namespace BugHunter
 
                 for (int i = 0; i < gameStats.Top10Names.Count; i++)
                 {
-                    spriteBatch.DrawString(font, gameStats.Top10Names[i] + ":  " + gameStats.Top10Score[i], new Vector2(player.camera.Origin.X - 100, player.camera.Origin.Y + (50*i) - 400), Color.White);
+                    spriteBatch.DrawString(font, gameStats.Top10Names[i] + ":  " + gameStats.Top10Score[i], new Vector2(player.camera.Origin.X - 100, player.camera.Origin.Y + (50 * i) - 400), Color.White);
                 }
+                spriteBatch.End();
             }
 
-            if(CurrentGameState == GameState.Ingame || CurrentGameState == GameState.Paused || CurrentGameState == GameState.DeathScreen)
+            if (CurrentGameState == GameState.Ingame || CurrentGameState == GameState.Paused || CurrentGameState == GameState.DeathScreen)
             {
-                // MapRenderer zum Zeichnen der aktuell sichtbaren Map
-                map[AktuelleMap].mapRenderer.Draw(player.camera.GetViewMatrix());
 
-                // Sprite ausgeben
-                player.Draw(spriteBatch, font);
+                var transformMatrix = player.camera.GetViewMatrix();
+                spriteBatch.Begin(transformMatrix: transformMatrix, samplerState: SamplerState.PointClamp);
 
-                foreach(Android android in AndroidsList)
+                // Display Debug-Information
+                if (settings.AreDebugInformationsVisible)
                 {
-                    android.Draw(spriteBatch, font);
+                    fps.DrawFps(spriteBatch, DebugFont,
+                        player.camera.Position,
+                        Color.White);
+
+                    spriteBatch.DrawString(DebugFont,
+                        "Player:\n" + " X: " + ((int)player.Position.X).ToString() + " Y: " + ((int)player.Position.Y).ToString(),
+                        new Vector2(player.Position.X - (settings.resolutionWidth / 2), player.Position.Y - (settings.resolutionHeight / 2) + 125),
+                        Color.White);
                 }
 
-                foreach(Windows windows in WindowsList)
+                if (CurrentGameState == GameState.Ingame || CurrentGameState == GameState.Paused || CurrentGameState == GameState.DeathScreen)
                 {
-                    windows.Draw(spriteBatch, font);
+                    // MapRenderer zum Zeichnen der aktuell sichtbaren Map
+                    map[AktuelleMap].mapRenderer.Draw(player.camera.GetViewMatrix());
+
+                    // Sprite ausgeben
+                    player.Draw(spriteBatch, font);
+
+                    foreach (Android android in AndroidsList)
+                    {
+                        android.Draw(spriteBatch, font);
+                    }
+
+                    foreach (Windows windows in WindowsList)
+                    {
+                        windows.Draw(spriteBatch, font);
+                    }
+
+                    foreach (Powerup powerup in Powerups)
+                        powerup.Draw(spriteBatch);
+
+                    if (PoofIsActive)
+                    {
+                        spriteRender.Draw(
+                            poofAM.CurrentSprite,
+                            PoofPosition,
+                            Color.White, 0, 1,
+                            poofAM.CurrentSpriteEffects);
+                    }
+
+                    gui.Draw(spriteBatch, font, player);
+
+                    if (CurrentGameState == GameState.Paused)
+                    {
+                        spriteBatch.Draw(pauseScreen, new Vector2(player.camera.Position.X, player.camera.Position.Y), new Color(0, 0, 0, 128));
+
+
+                        spriteBatch.DrawString(MenuFont, "PAUSE", new Vector2(player.Position.X - 100, player.Position.Y - 64), Color.White);
+                        spriteBatch.DrawString(MenuFont, "Highscore: " + gameStats.HighScore,
+                            new Vector2(player.camera.Position.X + 750, player.camera.Position.Y), Color.White);
+                    }
+
+                    if (CurrentGameState == GameState.DeathScreen)
+                    {
+                        spriteBatch.Draw(gui.PausedBackground, new Vector2(player.Position.X - 960, player.Position.Y - 540), Color.White);
+                        spriteBatch.DrawString(MenuFont, Texttable.Text_Died, new Vector2(player.Position.X - 300, player.Position.Y - 64), Color.White);
+                    }
                 }
-
-                foreach(Powerup powerup in Powerups)
-                    powerup.Draw(spriteBatch);
-
-                if (PoofIsActive)
-                {
-                    spriteRender.Draw(
-                        poofAM.CurrentSprite,
-                        PoofPosition,
-                        Color.White, 0, 1,
-                        poofAM.CurrentSpriteEffects);
-                }
-
-                gui.Draw(spriteBatch, font, player);
-
-                if (CurrentGameState == GameState.Paused)
-                {
-                    spriteBatch.Draw(pauseScreen, new Vector2(player.camera.Position.X, player.camera.Position.Y), new Color(0,0,0,128));
-
-
-                    spriteBatch.DrawString(MenuFont, "PAUSE", new Vector2(player.Position.X - 100, player.Position.Y - 64), Color.White);
-                    spriteBatch.DrawString(MenuFont, "Highscore: " + gameStats.HighScore,
-                        new Vector2(player.camera.Position.X + 750, player.camera.Position.Y), Color.White);
-                }
-
-                if (CurrentGameState == GameState.DeathScreen)
-                {
-                    spriteBatch.Draw(gui.PausedBackground, new Vector2(player.Position.X - 960, player.Position.Y - 540), Color.White);
-                    spriteBatch.DrawString(MenuFont, Texttable.Text_Died, new Vector2(player.Position.X - 300, player.Position.Y - 64), Color.White);
-                }
+                spriteBatch.End();
             }
-            
             // Hauptmenü
-            if(CurrentGameState == GameState.Hauptmenu)
+            if (CurrentGameState == GameState.Hauptmenu)
             {
+                spriteBatch.Begin();
                 // Zeichnet alle Menüpunkte
-                spriteBatch.DrawString(MenuFont, Texttable.Menu_Start, new Vector2(player.camera.Origin.X - 400, player.camera.Origin.Y - 200), Color.White);
-                spriteBatch.DrawString(MenuFont, Texttable.Menu_Stats, new Vector2(player.camera.Origin.X - 400, player.camera.Origin.Y - 100), Color.White);
-                spriteBatch.DrawString(MenuFont, Texttable.Menu_Einstellungen, new Vector2(player.camera.Origin.X - 400, player.camera.Origin.Y), Color.White);
-                spriteBatch.DrawString(MenuFont, Texttable.Menu_Ende, new Vector2(player.camera.Origin.X - 400, player.camera.Origin.Y + 100), Color.White);
+                spriteBatch.DrawString(MenuFont, Texttable.Menu_Start, new Vector2(400, 300), Color.White);
+                spriteBatch.DrawString(MenuFont, Texttable.Menu_Stats, new Vector2(400, 400), Color.White);
+                spriteBatch.DrawString(MenuFont, Texttable.Menu_Einstellungen, new Vector2(400, 500), Color.White);
+                spriteBatch.DrawString(MenuFont, Texttable.Menu_Ende, new Vector2(400, 600), Color.White);
 
                 // Überzeichnet den Menüpunkt der ausgewählt ist.
                 switch (aktuellerMenupunkt)
                 {
                     case Menubuttons.Spielen:
-                        spriteBatch.DrawString(MenuFont, Texttable.Menu_Start, new Vector2(player.camera.Origin.X - 400, player.camera.Origin.Y - 200), Color.Gray);
+                        spriteBatch.DrawString(MenuFont, Texttable.Menu_Start, new Vector2(400,300), Color.YellowGreen);
                         break;
                     case Menubuttons.Stats:
-                        spriteBatch.DrawString(MenuFont, Texttable.Menu_Stats, new Vector2(player.camera.Origin.X - 400, player.camera.Origin.Y - 100), Color.Gray);
+                        spriteBatch.DrawString(MenuFont, Texttable.Menu_Stats, new Vector2(400,400), Color.YellowGreen);
                         break;
                     case Menubuttons.Einstellungen:
-                        spriteBatch.DrawString(MenuFont, Texttable.Menu_Einstellungen, new Vector2(player.camera.Origin.X - 400, player.camera.Origin.Y), Color.Gray);
+                        spriteBatch.DrawString(MenuFont, Texttable.Menu_Einstellungen, new Vector2(400,500), Color.YellowGreen);
                         break;
                     case Menubuttons.Beenden:
-                        spriteBatch.DrawString(MenuFont, Texttable.Menu_Ende, new Vector2(player.camera.Origin.X - 400, player.camera.Origin.Y + 100), Color.Gray);
+                        spriteBatch.DrawString(MenuFont, Texttable.Menu_Ende, new Vector2(400,600), Color.YellowGreen);
                         break;
                 }
+                spriteBatch.End();
             }
-            spriteBatch.End();
-
             base.Draw(gameTime);
         }
         private void InitialiseAnimationManager()

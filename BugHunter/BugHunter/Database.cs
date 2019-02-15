@@ -20,7 +20,7 @@ namespace ProjectWhitespace
             MySqlConnection connection = new MySqlConnection(connString);
             MySqlCommand command;
             MySqlDataReader reader;
-
+           
             while (true)
             {
                 try

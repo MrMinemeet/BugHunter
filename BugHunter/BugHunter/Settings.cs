@@ -177,6 +177,7 @@ namespace BugHunter
                 game.gameStats.CollectedPowerups = br.ReadInt32();
                 game.gameStats.AnzahlSchuesse = br.ReadInt32();
                 game.gameStats.AnzahlTreffer = br.ReadInt32();
+                game.gameStats.AnzahlTode = br.ReadInt32();
             }
             catch (Exception ex)
             {
@@ -217,6 +218,7 @@ namespace BugHunter
                 bw.Write(game.gameStats.CollectedPowerups);
                 bw.Write(game.gameStats.AnzahlSchuesse);
                 bw.Write(game.gameStats.AnzahlTreffer);
+                bw.Write(game.gameStats.AnzahlTode);
             }
             catch (Exception ex)
             {

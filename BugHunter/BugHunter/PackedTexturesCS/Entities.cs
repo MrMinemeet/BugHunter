@@ -4,7 +4,7 @@
  * Contains references to each image within the sprite sheet.
  *
  * https://www.codeandweb.com/texturepacker
- * $TexturePacker:SmartUpdate:2f10eda18bb2e114a46cf16a202248bf:1bf884bf8e88cca65a0552bfcce20f1e:7de42156f25b693bd0d7ccd72987ff69$
+ * $TexturePacker:SmartUpdate:4b307741e390fdabdc6e57aba30d4f79:1997fec8f822c696b2547066d8d30894:7de42156f25b693bd0d7ccd72987ff69$
  *
  */
 namespace TexturePackerMonoGameDefinitions
@@ -35,5 +35,9 @@ namespace TexturePackerMonoGameDefinitions
 		public const string Windows2 = "windows2";
 		public const string Windows3 = "windows3";
 		public const string Windows4 = "windows4";
+		public const string WindowsVista_1 = "WindowsVista_1";
+		public const string WindowsVista_2 = "WindowsVista_2";
+		public const string WindowsVista_3 = "WindowsVista_3";
+		public const string WindowsVista_4 = "WindowsVista_4";
 	}
 }

@@ -14,6 +14,7 @@ namespace BugHunter
         public int Health { get; set; }
         public int attackDamage = 1;
         public Player player;
+        private int Type;
 
 
         public bool IsDead = false;
@@ -47,10 +48,12 @@ namespace BugHunter
             this.game = game;
             this.settings = settings;
             this.player = player;
+
+            this.Type = game.random.Next(2);
         }
 
         /// <summary>
-        /// Update für Android
+        /// Update für Windows
         /// </summary>
         /// <param name="gameTime"></param>
         /// <param name="CollisionMapArray"></param>
@@ -120,7 +123,7 @@ namespace BugHunter
             }
         }
 
-        // Sucht nach Spawn Tile im Maparray und setzt den Spieler darauf.
+        // Sucht nach Spawn Tile im Maparray und setzt den Windows Gegner darauf.
         public void SetSpawnFromMap(int[][] MapArray)
         {
             Random random = new Random();
@@ -144,40 +147,80 @@ namespace BugHunter
         }
 
         /// <summary>
-        /// Draw Funktion für Android
+        /// Draw Funktion für Windows
         /// </summary>
         /// <param name="spriteBatch"></param>
         /// <param name="font"></param>
         public void Draw(SpriteBatch spriteBatch, SpriteFont font)
         {
             spriteRender = new SpriteRender(spriteBatch);
-            if (this.MaxHealth >= this.Health && this.Health > this.MaxHealth * 0.75f)
+
+            switch (Type)
             {
-                spriteRender.Draw(
-                    game.spriteSheet.Sprite(TexturePackerMonoGameDefinitions.entities.Windows4),
-                    this.Position,
-                    Color.White);
-            }
-            if (this.MaxHealth * 0.75f >= this.Health && this.Health > this.MaxHealth * 0.50f)
-            {
-                spriteRender.Draw(
-                    game.spriteSheet.Sprite(TexturePackerMonoGameDefinitions.entities.Windows3),
-                    this.Position,
-                    Color.White);
-            }
-            if (this.MaxHealth * 0.50f >= this.Health && this.Health > this.MaxHealth * 0.25f)
-            {
-                spriteRender.Draw(
-                    game.spriteSheet.Sprite(TexturePackerMonoGameDefinitions.entities.Windows2),
-                    this.Position,
-                    Color.White);
-            }
-            if (this.MaxHealth * 0.25f >= this.Health && this.Health > 0)
-            {
-                spriteRender.Draw(
-                    game.spriteSheet.Sprite(TexturePackerMonoGameDefinitions.entities.Windows1),
-                    this.Position,
-                    Color.White);
+                // Normal Windows
+                case 0:
+
+                    if (this.MaxHealth >= this.Health && this.Health > this.MaxHealth * 0.75f)
+                    {
+                        spriteRender.Draw(
+                            game.spriteSheet.Sprite(TexturePackerMonoGameDefinitions.entities.Windows4),
+                            this.Position,
+                            Color.White);
+                    }
+                    if (this.MaxHealth * 0.75f >= this.Health && this.Health > this.MaxHealth * 0.50f)
+                    {
+                        spriteRender.Draw(
+                            game.spriteSheet.Sprite(TexturePackerMonoGameDefinitions.entities.Windows3),
+                            this.Position,
+                            Color.White);
+                    }
+                    if (this.MaxHealth * 0.50f >= this.Health && this.Health > this.MaxHealth * 0.25f)
+                    {
+                        spriteRender.Draw(
+                            game.spriteSheet.Sprite(TexturePackerMonoGameDefinitions.entities.Windows2),
+                            this.Position,
+                            Color.White);
+                    }
+                    if (this.MaxHealth * 0.25f >= this.Health && this.Health > 0)
+                    {
+                        spriteRender.Draw(
+                            game.spriteSheet.Sprite(TexturePackerMonoGameDefinitions.entities.Windows1),
+                            this.Position,
+                            Color.White);
+                    }
+                    break;
+
+                // Windows Vista
+                case 1:
+                    if (this.MaxHealth >= this.Health && this.Health > this.MaxHealth * 0.75f)
+                    {
+                        spriteRender.Draw(
+                            game.spriteSheet.Sprite(TexturePackerMonoGameDefinitions.entities.WindowsVista_4),
+                            this.Position,
+                            Color.White);
+                    }
+                    if (this.MaxHealth * 0.75f >= this.Health && this.Health > this.MaxHealth * 0.50f)
+                    {
+                        spriteRender.Draw(
+                            game.spriteSheet.Sprite(TexturePackerMonoGameDefinitions.entities.WindowsVista_3),
+                            this.Position,
+                            Color.White);
+                    }
+                    if (this.MaxHealth * 0.50f >= this.Health && this.Health > this.MaxHealth * 0.25f)
+                    {
+                        spriteRender.Draw(
+                            game.spriteSheet.Sprite(TexturePackerMonoGameDefinitions.entities.WindowsVista_2),
+                            this.Position,
+                            Color.White);
+                    }
+                    if (this.MaxHealth * 0.25f >= this.Health && this.Health > 0)
+                    {
+                        spriteRender.Draw(
+                            game.spriteSheet.Sprite(TexturePackerMonoGameDefinitions.entities.WindowsVista_1),
+                            this.Position,
+                            Color.White);
+                    }
+                    break;
             }
         }
     }
