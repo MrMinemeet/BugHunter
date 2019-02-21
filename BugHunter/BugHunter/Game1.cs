@@ -303,7 +303,7 @@ namespace BugHunter
             // Spieler Init
             player = new Player(this,200f,100);
             player.camera = new OrthographicCamera(GraphicsDevice);
-            player.Texture = Content.Load<Texture2D>("sprites/player/afk_0001");
+            player.Texture = Content.Load<Texture2D>("sprites/entities/player/idle");
             player.OriginTexture = Content.Load<Texture2D>("sprites/originSpot");
             player.Init(this.settings, this, this.sound);
 

@@ -4,7 +4,7 @@
  * Contains references to each image within the sprite sheet.
  *
  * https://www.codeandweb.com/texturepacker
- * $TexturePacker:SmartUpdate:4b307741e390fdabdc6e57aba30d4f79:1997fec8f822c696b2547066d8d30894:7de42156f25b693bd0d7ccd72987ff69$
+ * $TexturePacker:SmartUpdate:93ad83053eda4f86ee7c70745c4b5d81:3085b2ea03e2d97691f873330092aa75:7de42156f25b693bd0d7ccd72987ff69$
  *
  */
 namespace TexturePackerMonoGameDefinitions
@@ -18,6 +18,18 @@ namespace TexturePackerMonoGameDefinitions
 		public const string C = "c";
 		public const string Cpp = "cpp";
 		public const string Csharp = "csharp";
+		public const string Idle_000 = "idle_000";
+		public const string Idle_001 = "idle_001";
+		public const string Idle_002 = "idle_002";
+		public const string Idle_003 = "idle_003";
+		public const string Idle_004 = "idle_004";
+		public const string Idle_005 = "idle_005";
+		public const string Idle_006 = "idle_006";
+		public const string Idle_007 = "idle_007";
+		public const string Idle_008 = "idle_008";
+		public const string Idle_009 = "idle_009";
+		public const string Idle_010 = "idle_010";
+		public const string Idle_011 = "idle_011";
 		public const string Java = "java";
 		public const string Mss000 = "mss000";
 		public const string Mss001 = "mss001";

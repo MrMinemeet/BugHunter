@@ -17,6 +17,7 @@ namespace ProjectWhitespace
         public Vector2 position;
         private Settings settings;
         private Game1 game;
+        public bool DidSpawn { get; }
 
         public enum PowerupTypes { Medipack, MoreAmmo, DamageUp, ShootSpeedUp }
 
@@ -32,27 +33,35 @@ namespace ProjectWhitespace
             this.spriteRender = spriteRender;
             this.settings = settings;
             this.position = Position;
+            DidSpawn = false;
 
-            switch(game.random.Next(3))
+            while (!DidSpawn)
             {
-                case 0:
-                    this.PowerupType = PowerupTypes.ShootSpeedUp;
-                    break;
-                case 1:
-                    this.PowerupType = PowerupTypes.MoreAmmo;
-                    break;
-                case 2:
-                    if(game.player.Health < game.player.MaxHealth)
-                    {
-                        this.PowerupType = PowerupTypes.Medipack;
-                    }
-                    break;
-                case 3:
-                    this.PowerupType = PowerupTypes.DamageUp;
-                    break;
-            }
+                switch (game.random.Next(3))
+                {
+                    case 0:
+                        this.PowerupType = PowerupTypes.ShootSpeedUp;
+                        DidSpawn = true;
+                        break;
+                    case 1:
+                        this.PowerupType = PowerupTypes.MoreAmmo;
+                        DidSpawn = true;
+                        break;
+                    case 2:
+                        if (game.player.Health < game.player.MaxHealth)
+                        {
+                            this.PowerupType = PowerupTypes.Medipack;
+                            DidSpawn = true;
+                        }
+                        break;
+                    case 3:
+                        this.PowerupType = PowerupTypes.DamageUp;
+                        DidSpawn = true;
+                        break;
+                }
 
-            this.type = game.random.Next(2);
+                this.type = game.random.Next(2);
+            }
         }
 
         public void Draw(SpriteBatch spriteBatch)
@@ -125,20 +134,20 @@ namespace ProjectWhitespace
                     // Macht alle Sprachen um 10ms schneller
                     case PowerupTypes.ShootSpeedUp:
                         if(this.game.weapon.CDelayMs > 50)
-                            this.game.weapon.CDelayMs -= 25;
+                            this.game.weapon.CDelayMs -= 15;
 
 
                         if (this.game.weapon.CppDelayMs > 50)
-                            this.game.weapon.CppDelayMs -= 25;
+                            this.game.weapon.CppDelayMs -= 15;
 
                         if (this.game.weapon.JavaDelayMs > 50)
-                            this.game.weapon.JavaDelayMs -= 25;
+                            this.game.weapon.JavaDelayMs -= 15;
 
                         if (this.game.weapon.MaschinenspracheDelayMs > 50)
-                            this.game.weapon.MaschinenspracheDelayMs -= 25;
+                            this.game.weapon.MaschinenspracheDelayMs -= 15;
 
                         if (this.game.weapon.CsharpDelayMs > 50)
-                            this.game.weapon.CsharpDelayMs -= 20;
+                            this.game.weapon.CsharpDelayMs -= 15;
 
                         break;
 

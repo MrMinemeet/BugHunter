@@ -118,6 +118,18 @@
 #begin sprites/entities/entities.txt
 /copy:sprites/entities/entities.txt
 
+#begin sprites/entities/player/idle.gif
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:sprites/entities/player/idle.gif
+
 #begin sprites/entities/player/player.png
 /importer:TextureImporter
 /processor:TextureProcessor
