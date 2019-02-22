@@ -26,7 +26,7 @@
             </struct>
         </array>
         <key>allowRotation</key>
-        <true/>
+        <false/>
         <key>shapeDebug</key>
         <false/>
         <key>dpi</key>
@@ -222,6 +222,42 @@
                 <key>scale9FromFile</key>
                 <false/>
             </struct>
+            <key type="filename">player/idle/idle_000.png</key>
+            <key type="filename">player/idle/idle_001.png</key>
+            <key type="filename">player/idle/idle_002.png</key>
+            <struct type="IndividualSpriteSettings">
+                <key>pivotPoint</key>
+                <point_f>0.5,0.5</point_f>
+                <key>scale9Enabled</key>
+                <false/>
+                <key>scale9Borders</key>
+                <rect>9,16,18,32</rect>
+                <key>scale9Paddings</key>
+                <rect>9,16,18,32</rect>
+                <key>scale9FromFile</key>
+                <false/>
+            </struct>
+            <key type="filename">player/idle/idle_003.png</key>
+            <key type="filename">player/idle/idle_004.png</key>
+            <key type="filename">player/idle/idle_005.png</key>
+            <key type="filename">player/idle/idle_006.png</key>
+            <key type="filename">player/idle/idle_007.png</key>
+            <key type="filename">player/idle/idle_008.png</key>
+            <key type="filename">player/idle/idle_009.png</key>
+            <key type="filename">player/idle/idle_010.png</key>
+            <key type="filename">player/idle/idle_011.png</key>
+            <struct type="IndividualSpriteSettings">
+                <key>pivotPoint</key>
+                <point_f>0.5,0.5</point_f>
+                <key>scale9Enabled</key>
+                <false/>
+                <key>scale9Borders</key>
+                <rect>9,16,17,32</rect>
+                <key>scale9Paddings</key>
+                <rect>9,16,17,32</rect>
+                <key>scale9FromFile</key>
+                <false/>
+            </struct>
             <key type="filename">powerup/sprites/powerup_CPU.png</key>
             <key type="filename">powerup/sprites/powerup_Monitor.png</key>
             <key type="filename">powerup/sprites/powerup_usb.png</key>
@@ -281,6 +317,7 @@
             <filename>powerup/sprites</filename>
             <filename>weapon/projectile</filename>
             <filename>enemy/windows/sprites</filename>
+            <filename>player/idle</filename>
         </array>
         <key>ignoreFileList</key>
         <array/>

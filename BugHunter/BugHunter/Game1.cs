@@ -311,7 +311,6 @@ namespace BugHunter
             player.SetSpawnFromMap(MapArray);
 
             // GUI Init
-            gui.PausedBackground = Content.Load<Texture2D>("paused_background");
             gui.spriteSheet = spriteSheetLoader.Load("gui_packed.png");
             gui.CustomCurserTexture = Content.Load<Texture2D>("sprites/mauszeiger");
 
@@ -814,6 +813,7 @@ namespace BugHunter
         }
         private void InitialiseAnimationManager()
         {
+            // Poof
             var poof = new[] {
                 TexturePackerMonoGameDefinitions.Effect_packed.Poof_001,
                 TexturePackerMonoGameDefinitions.Effect_packed.Poof_002,
@@ -832,6 +832,33 @@ namespace BugHunter
             };
 
             poofAM = new AnimationManager(PoofSpriteSheet, player.Position, PoofAnimations);
+
+            // Player Idle
+            var idle = new[]
+            {
+                TexturePackerMonoGameDefinitions.entities.Idle_000,
+                TexturePackerMonoGameDefinitions.entities.Idle_001,
+                TexturePackerMonoGameDefinitions.entities.Idle_002,
+                TexturePackerMonoGameDefinitions.entities.Idle_003,
+                TexturePackerMonoGameDefinitions.entities.Idle_004,
+                TexturePackerMonoGameDefinitions.entities.Idle_005,
+                TexturePackerMonoGameDefinitions.entities.Idle_006,
+                TexturePackerMonoGameDefinitions.entities.Idle_007,
+                TexturePackerMonoGameDefinitions.entities.Idle_008,
+                TexturePackerMonoGameDefinitions.entities.Idle_009,
+                TexturePackerMonoGameDefinitions.entities.Idle_010,
+                TexturePackerMonoGameDefinitions.entities.Idle_011
+            };
+
+            var idleAnimation = new Animation(new Vector2(0, 0), timePerFrame, SpriteEffects.None, idle);
+
+
+            player.IdleAnimations = new[]
+            {
+               idleAnimation
+            };
+
+            player.IdleAM = new AnimationManager(this.spriteSheet, player.Position, player.IdleAnimations);
         }
 
 

@@ -49,12 +49,20 @@ namespace BugHunter
 
         Game1 game;
 
+        public enum PlayerState : byte { Idle, WalkingLeft, WalkingRight };
+        public PlayerState AktState = PlayerState.Idle;
+
         // Vibration
         private bool IsVibrating = false;
         private float VibrationLeft = 0;
         private float VibrationRight = 0;
         private float VibrationTimeStart = 0;
         private int VibrationDuration = 0;
+
+
+        // Animations
+        public Animation[] IdleAnimations;
+        public AnimationManager IdleAM;
 
         /// <summary>
         /// Konstruktorfür Klasse Android
@@ -105,7 +113,10 @@ namespace BugHunter
 
             this.CollisionMapArray = CollisionMapArray;
             this.map = map;
-            PotNewPlayerPosition = Position;       
+            PotNewPlayerPosition = Position;
+
+            // Animationen updaten
+            IdleAM.Update(gameTime);
 
             // Updaten der Player steuerung
             UpdatePlayerMovement(gameTime);
@@ -292,7 +303,7 @@ namespace BugHunter
         {
             var kstate = Keyboard.GetState();
             var gamepadState = GamePad.GetState(PlayerIndex.One);
-
+            Vector2 oldPosition = this.Position;
 
             // Überprüfe auf Sprint
             float Speed;
@@ -331,6 +342,10 @@ namespace BugHunter
             if (!DidHitCollision(CollisionMapArray, map))
             {
                 this.Position = this.PotNewPlayerPosition;
+            }
+            if(oldPosition.Equals(this.Position))
+            {
+                AktState = PlayerState.Idle;
             }
 
         }
@@ -493,18 +508,18 @@ namespace BugHunter
         public void Draw(SpriteBatch spriteBatch, SpriteFont font)
         {
             // Zeichnet Spieler
-            spriteBatch.Draw(
-                Texture,
-                Position,
-                null,
-                Color.White,
-                0f,
-                new Vector2(Texture.Width / 2, Texture.Height / 2),
-                Vector2.One,
-                SpriteEffects.None,
-                0f
-            );
-            
+
+            SpriteRender spriteRender = new SpriteRender(spriteBatch);
+
+            if (AktState.Equals(PlayerState.Idle))
+            {
+                spriteRender.Draw(
+                    IdleAM.CurrentSprite,
+                    Position,
+                    Color.White, 0, 1,
+                    IdleAM.CurrentSpriteEffects);
+            }
+
 
             if (ShowPlayerOrigin)
             {
