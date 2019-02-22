@@ -182,7 +182,7 @@
             <key>defaultPivotPoint</key>
             <point_f>0.5,0.5</point_f>
             <key>writePivotPoints</key>
-            <false/>
+            <true/>
         </struct>
         <key>individualSpriteSettings</key>
         <map type="IndividualSpriteSettingsMap">
@@ -258,6 +258,86 @@
                 <key>scale9FromFile</key>
                 <false/>
             </struct>
+            <key type="filename">player/run/runRight_000.png</key>
+            <struct type="IndividualSpriteSettings">
+                <key>pivotPoint</key>
+                <point_f>0.5,0.5</point_f>
+                <key>scale9Enabled</key>
+                <false/>
+                <key>scale9Borders</key>
+                <rect>19,28,39,55</rect>
+                <key>scale9Paddings</key>
+                <rect>19,28,39,55</rect>
+                <key>scale9FromFile</key>
+                <false/>
+            </struct>
+            <key type="filename">player/run/runRight_001.png</key>
+            <key type="filename">player/run/runRight_006.png</key>
+            <struct type="IndividualSpriteSettings">
+                <key>pivotPoint</key>
+                <point_f>0.5,0.5</point_f>
+                <key>scale9Enabled</key>
+                <false/>
+                <key>scale9Borders</key>
+                <rect>16,28,32,55</rect>
+                <key>scale9Paddings</key>
+                <rect>16,28,32,55</rect>
+                <key>scale9FromFile</key>
+                <false/>
+            </struct>
+            <key type="filename">player/run/runRight_002.png</key>
+            <key type="filename">player/run/runRight_003.png</key>
+            <struct type="IndividualSpriteSettings">
+                <key>pivotPoint</key>
+                <point_f>0.5,0.5</point_f>
+                <key>scale9Enabled</key>
+                <false/>
+                <key>scale9Borders</key>
+                <rect>15,28,30,55</rect>
+                <key>scale9Paddings</key>
+                <rect>15,28,30,55</rect>
+                <key>scale9FromFile</key>
+                <false/>
+            </struct>
+            <key type="filename">player/run/runRight_004.png</key>
+            <struct type="IndividualSpriteSettings">
+                <key>pivotPoint</key>
+                <point_f>0.5,0.5</point_f>
+                <key>scale9Enabled</key>
+                <false/>
+                <key>scale9Borders</key>
+                <rect>17,28,33,55</rect>
+                <key>scale9Paddings</key>
+                <rect>17,28,33,55</rect>
+                <key>scale9FromFile</key>
+                <false/>
+            </struct>
+            <key type="filename">player/run/runRight_005.png</key>
+            <struct type="IndividualSpriteSettings">
+                <key>pivotPoint</key>
+                <point_f>0.5,0.5</point_f>
+                <key>scale9Enabled</key>
+                <false/>
+                <key>scale9Borders</key>
+                <rect>13,28,27,55</rect>
+                <key>scale9Paddings</key>
+                <rect>13,28,27,55</rect>
+                <key>scale9FromFile</key>
+                <false/>
+            </struct>
+            <key type="filename">player/run/runRight_007.png</key>
+            <struct type="IndividualSpriteSettings">
+                <key>pivotPoint</key>
+                <point_f>0.5,0.5</point_f>
+                <key>scale9Enabled</key>
+                <false/>
+                <key>scale9Borders</key>
+                <rect>18,28,35,55</rect>
+                <key>scale9Paddings</key>
+                <rect>18,28,35,55</rect>
+                <key>scale9FromFile</key>
+                <false/>
+            </struct>
             <key type="filename">powerup/sprites/powerup_CPU.png</key>
             <key type="filename">powerup/sprites/powerup_Monitor.png</key>
             <key type="filename">powerup/sprites/powerup_usb.png</key>
@@ -318,6 +398,7 @@
             <filename>weapon/projectile</filename>
             <filename>enemy/windows/sprites</filename>
             <filename>player/idle</filename>
+            <filename>player/run</filename>
         </array>
         <key>ignoreFileList</key>
         <array/>

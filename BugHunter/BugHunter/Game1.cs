@@ -859,6 +859,40 @@ namespace BugHunter
             };
 
             player.IdleAM = new AnimationManager(this.spriteSheet, player.Position, player.IdleAnimations);
+
+            // Player Run Right
+            var runRight = new[]
+            {
+                TexturePackerMonoGameDefinitions.entities.RunRight_000,
+                TexturePackerMonoGameDefinitions.entities.RunRight_001,
+                TexturePackerMonoGameDefinitions.entities.RunRight_002,
+                TexturePackerMonoGameDefinitions.entities.RunRight_003,
+                TexturePackerMonoGameDefinitions.entities.RunRight_004,
+                TexturePackerMonoGameDefinitions.entities.RunRight_005,
+                TexturePackerMonoGameDefinitions.entities.RunRight_006,
+                TexturePackerMonoGameDefinitions.entities.RunRight_007
+            };
+
+            var runRightAnimation = new Animation(new Vector2(0, 0), timePerFrame, SpriteEffects.None, runRight);
+
+
+            player.RunRightAnimations = new[]
+            {
+               runRightAnimation
+            };
+
+            player.RunRightAM = new AnimationManager(this.spriteSheet, player.Position, player.RunRightAnimations);
+
+            // Player Run Left
+            var runLeft = new Animation(new Vector2(0, 0), timePerFrame, SpriteEffects.FlipHorizontally, runRight);
+
+
+            player.RunLeftAnimations = new[]
+            {
+               runLeft
+            };
+
+            player.RunLeftAM = new AnimationManager(this.spriteSheet, player.Position, player.RunLeftAnimations);
         }
 
 

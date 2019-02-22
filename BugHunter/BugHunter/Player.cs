@@ -63,6 +63,10 @@ namespace BugHunter
         // Animations
         public Animation[] IdleAnimations;
         public AnimationManager IdleAM;
+        public Animation[] RunRightAnimations;
+        public AnimationManager RunRightAM;
+        public Animation[] RunLeftAnimations;
+        public AnimationManager RunLeftAM;
 
         /// <summary>
         /// Konstruktorfür Klasse Android
@@ -117,6 +121,8 @@ namespace BugHunter
 
             // Animationen updaten
             IdleAM.Update(gameTime);
+            RunRightAM.Update(gameTime);
+            RunLeftAM.Update(gameTime);
 
             // Updaten der Player steuerung
             UpdatePlayerMovement(gameTime);
@@ -322,21 +328,25 @@ namespace BugHunter
             {
 
                 this.PotNewPlayerPosition.Y -= Speed * (float)gameTime.ElapsedGameTime.TotalSeconds;
+                this.AktState = PlayerState.WalkingRight;
             }
 
             if (kstate.IsKeyDown(Keys.S) || gamepadState.ThumbSticks.Left.Y < 0)
             {
                 this.PotNewPlayerPosition.Y += Speed * (float)gameTime.ElapsedGameTime.TotalSeconds;
+                this.AktState = PlayerState.WalkingRight;
             }
 
             if (kstate.IsKeyDown(Keys.A) || gamepadState.ThumbSticks.Left.X < 0)
             {
                 this.PotNewPlayerPosition.X -= Speed * (float)gameTime.ElapsedGameTime.TotalSeconds;
+                this.AktState = PlayerState.WalkingLeft;
             }
 
             if (kstate.IsKeyDown(Keys.D) || gamepadState.ThumbSticks.Left.X > 0)
             {
                 this.PotNewPlayerPosition.X += Speed * (float)gameTime.ElapsedGameTime.TotalSeconds;
+                this.AktState = PlayerState.WalkingRight;
             }
 
             if (!DidHitCollision(CollisionMapArray, map))
@@ -511,6 +521,7 @@ namespace BugHunter
 
             SpriteRender spriteRender = new SpriteRender(spriteBatch);
 
+            // Idle animation
             if (AktState.Equals(PlayerState.Idle))
             {
                 spriteRender.Draw(
@@ -518,6 +529,25 @@ namespace BugHunter
                     Position,
                     Color.White, 0, 1,
                     IdleAM.CurrentSpriteEffects);
+            }
+
+            // Rechts gehen Animation
+            if (AktState.Equals(PlayerState.WalkingRight))
+            {
+                spriteRender.Draw(
+                    RunRightAM.CurrentSprite,
+                    Position,
+                    Color.White, 0, 1,
+                    RunRightAM.CurrentSpriteEffects);
+            }
+            // Links gehen Animation
+            if (AktState.Equals(PlayerState.WalkingLeft))
+            {
+                spriteRender.Draw(
+                    RunLeftAM.CurrentSprite,
+                    Position,
+                    Color.White, 0, 1,
+                    RunLeftAM.CurrentSpriteEffects);
             }
 
 
