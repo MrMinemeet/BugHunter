@@ -180,7 +180,9 @@ namespace BugHunter
             spriteSheetLoader = new SpriteSheetLoader(Content, GraphicsDevice);
 
             updateThread = new Thread(() => Database.UpdateDatabaseThread(this));
+            updateThread.Name = "updateThread";
             RankingListUpdateThread = new Thread(() => Database.GetRankingListThread(this));
+            RankingListUpdateThread.Name = "RankingListUpdateThread";
 
             
             weapon = new Weapon();
@@ -596,6 +598,8 @@ namespace BugHunter
 
                 LastKeyStrokeInput = gameTime.TotalGameTime.TotalMilliseconds;
             }
+
+            logger.WriteLog();
 
             base.Update(gameTime);
         }

@@ -1,4 +1,6 @@
-﻿using System;
+﻿using BugHunter;
+using System;
+using System.Collections.Generic;
 using System.IO;
 
 namespace ProjectWhitespace
@@ -6,18 +8,27 @@ namespace ProjectWhitespace
     public class Logger
     {
         private string LogPath = null;
-        
+        public static List<String> LogQueue = new List<string>();
+
         public Logger(string LogPath)
         {
             this.LogPath = LogPath;
         }
 
         /// <summary>
-        /// Loggt den übergeben String in das File das dem Constructor übergeben wurde
+        /// Fügt Parameter zur Log-Warteschlange hinzu
         /// </summary>
-        /// <param name="message">Nachricht, welche geloggt werden sollte</param>
-        /// <param name="tag">Optional: Tag für Nachricht. Standartmäßig "Info"</param>
-        public void Log(string message, string tag = "Info")
+        /// <param name="message">Lognachricht</param>
+        /// <param name="tag">Tag für Kategorisierung der Log-Nachricht</param>
+        public void Log(string message, string source = "", string tag = "Info")
+        {
+            LogQueue.Add(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + " - " + "\tTag: " + tag + "\t Source: " + source +  "\tMessage:\t" + message);
+        }
+
+        /// <summary>
+        /// Schreibt die Lognachrichten in der Log-Warteschleife gesammelt raus
+        /// </summary>
+        public void WriteLog()
         {
             StreamWriter swNew = null;
             StreamWriter swAppend = null;
@@ -28,18 +39,34 @@ namespace ProjectWhitespace
                 {
                     // Falls Logdatei nicht existiert wird eine neue erstellt
                     swNew = File.CreateText(this.LogPath);
-                    swNew.WriteLine(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + " - " + tag + ":\t" + message);
+                    
+                    // Schreibt alle Logs in der LogQueue in das File
+                    foreach(string Log in LogQueue)
+                    {
+                        swNew.WriteLineAsync(Log);
+                    }
+                    LogQueue.Clear();   // Löscht alle Einträge in der LogQueue da diese Eingetragen wurden
                 }
                 else
                 {
                     // Wenn Logdatei bereits vorhanden ist wird der aktuellle Log angehangen
                     swAppend = new StreamWriter(this.LogPath, true);
-                    swAppend.WriteLine(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + " - " + tag + ":\t" + message);
+
+                    // Schreibt alle Logs in der LogQueue in das File
+                    foreach (string Log in LogQueue)
+                    {
+                        swAppend.WriteLineAsync(Log);
+                    }
+                    LogQueue.Clear();   // Löscht alle Einträge in der LogQueue da diese Eingetragen wurden
                 }
             }
             catch(Exception e)
             {
-                Console.WriteLine(e.Message);
+                string tag = "Error";
+                string source = "WriteLog";
+                string message = e.Message;
+
+                LogQueue.Add(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + " - " + "\tTag: " + tag + "\t Source: " + source + "\tMessage:\t" + message);
             }
             finally
             {

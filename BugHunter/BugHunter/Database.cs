@@ -28,7 +28,7 @@ namespace ProjectWhitespace
                     if(connection.State != System.Data.ConnectionState.Open)
                     {
                         // Verbindung muss erst aufgebaut werden
-                        game.logger.Log("Datenbankverbindung wird aufgebaut","Debug");
+                        game.logger.Log("Datenbankverbindung wird aufgebaut", Thread.CurrentThread.Name, "Debug");
                         connection.Open();
 
                     }
@@ -36,7 +36,7 @@ namespace ProjectWhitespace
                     if(connection.State == System.Data.ConnectionState.Open)
                     {
                         // Datenbankverbindung steht
-                        game.logger.Log("Datenbankverbindung steht","Debug");
+                        game.logger.Log("Datenbankverbindung steht", Thread.CurrentThread.Name, "Debug");
 
                         string query = "select `GlobalHighscore`.`userid`,`GlobalHighscore`.`score` from `GlobalHighscore`";
                         command = new MySqlCommand(query);
@@ -61,7 +61,7 @@ namespace ProjectWhitespace
 
                         if (GuidExists)
                         {
-                            game.logger.Log("GUID war vorhanden. Eintrag wird upgedated", "Debug");
+                            game.logger.Log("GUID war vorhanden. Eintrag wird upgedated", Thread.CurrentThread.Name, "Debug");
                             // Datenbankeintrag wird upgedated
                             command.CommandText =
                                 "UPDATE `GlobalHighscore` SET `Name` = '" + game.settings.UserName +
@@ -74,7 +74,7 @@ namespace ProjectWhitespace
                         }
                         else
                         {
-                            game.logger.Log("GUID nicht gefunden. Neuer Eintrag wird erstellt", "Debug");
+                            game.logger.Log("GUID nicht gefunden. Neuer Eintrag wird erstellt", Thread.CurrentThread.Name, "Debug");
                             // Kein Eintrag gefunden, wodurch ein neuer erstellt wird
                             command = new MySqlCommand("INSERT INTO `GlobalHighscore` (`UserID`, `Name`, `Score`, `DateTime`, `IPAddress`) VALUES('" +
                                 game.settings.GUID + "', '" +
@@ -98,7 +98,7 @@ namespace ProjectWhitespace
                 finally
                 {
                     connection.Close();
-                    game.logger.Log("Datenbankverbindung geschlossen");
+                    game.logger.Log("Datenbankverbindung geschlossen", Thread.CurrentThread.Name, "Debug");
                 }
 
                 // Datenbank wird alle 15 Sekunden upgedated
@@ -108,7 +108,7 @@ namespace ProjectWhitespace
                 } catch(ThreadInterruptedException e)
                 {
                     Console.WriteLine(e.Message);
-                    game.logger.Log("Database Update Thread beendet");
+                    game.logger.Log("Database Update Thread beendet", Thread.CurrentThread.Name, "Debug");
                     break;
                 }
             }
@@ -130,7 +130,7 @@ namespace ProjectWhitespace
                     if (connection.State != System.Data.ConnectionState.Open)
                     {
                         // Verbindung muss erst aufgebaut werden
-                        game.logger.Log("Datenbankverbindung wird aufgebaut", "Debug");
+                        game.logger.Log("Datenbankverbindung wird aufgebaut", Thread.CurrentThread.Name,"Debug");
                         connection.Open();
 
                     }
@@ -138,7 +138,7 @@ namespace ProjectWhitespace
                     if (connection.State == System.Data.ConnectionState.Open)
                     {
                         // Datenbankverbindung steht
-                        game.logger.Log("Datenbankverbindung steht", "Debug");
+                        game.logger.Log("Datenbankverbindung steht", Thread.CurrentThread.Name, "Debug");
 
                         string query = "SELECT* FROM `GlobalHighscore` ORDER BY `Score` DESC";
                         command = new MySqlCommand(query);
@@ -171,7 +171,7 @@ namespace ProjectWhitespace
                 finally
                 {
                     connection?.Close();
-                    game.logger.Log("Datenbankverbindung geschlossen");
+                    game.logger.Log("Datenbankverbindung geschlossen", Thread.CurrentThread.Name,"Debug");
                 }
 
                 try
@@ -181,7 +181,7 @@ namespace ProjectWhitespace
                 catch (ThreadInterruptedException e)
                 {
                     Console.WriteLine(e.Message);
-                    game.logger.Log("Rankinglist Update Thread beendet");
+                    game.logger.Log("Rankinglist Update Thread beendet", Thread.CurrentThread.Name,"Debug");
                     break;
                 }
             }
