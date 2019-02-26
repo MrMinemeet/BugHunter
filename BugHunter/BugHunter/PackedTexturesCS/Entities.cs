@@ -4,7 +4,7 @@
  * Contains references to each image within the sprite sheet.
  *
  * https://www.codeandweb.com/texturepacker
- * $TexturePacker:SmartUpdate:367deb605432e2139b77c7b9ea7b5714:2414eb980e990b6ec96cf028ef17dfd9:7de42156f25b693bd0d7ccd72987ff69$
+ * $TexturePacker:SmartUpdate:ec362d47006951aee6f31e13fffbe345:6ffc56ca9a7f42b00698974602077442:7de42156f25b693bd0d7ccd72987ff69$
  *
  */
 namespace TexturePackerMonoGameDefinitions
@@ -43,14 +43,14 @@ namespace TexturePackerMonoGameDefinitions
 		public const string Powerup_kaffee = "powerup_kaffee";
 		public const string Powerup_Monitor = "powerup_Monitor";
 		public const string Powerup_usb = "powerup_usb";
-		public const string RunRight_000 = "runRight_000";
-		public const string RunRight_001 = "runRight_001";
-		public const string RunRight_002 = "runRight_002";
-		public const string RunRight_003 = "runRight_003";
-		public const string RunRight_004 = "runRight_004";
-		public const string RunRight_005 = "runRight_005";
-		public const string RunRight_006 = "runRight_006";
-		public const string RunRight_007 = "runRight_007";
+		public const string Run_000 = "run_000";
+		public const string Run_001 = "run_001";
+		public const string Run_002 = "run_002";
+		public const string Run_003 = "run_003";
+		public const string Run_004 = "run_004";
+		public const string Run_005 = "run_005";
+		public const string Run_006 = "run_006";
+		public const string Run_007 = "run_007";
 		public const string Windows1 = "windows1";
 		public const string Windows2 = "windows2";
 		public const string Windows3 = "windows3";

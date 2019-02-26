@@ -10,7 +10,6 @@ namespace BugHunter
         public Vector2 HeartPosition;
         public Vector2 HeartStatusTextPosition;
         public Texture2D CustomCurserTexture;
-        public Texture2D PausedBackground;
 
         // Textures
         public SpriteSheet spriteSheet;

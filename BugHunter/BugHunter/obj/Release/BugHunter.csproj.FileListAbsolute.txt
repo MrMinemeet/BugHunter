@@ -224,3 +224,5 @@ C:\Users\Alexa\Google Drive\Project Whitespace\BugHunter\BugHunter\BugHunter\obj
 C:\Users\Alexa\Google Drive\Project Whitespace\BugHunter\BugHunter\BugHunter\obj\Release\BugHunter.exe
 C:\Users\Alexa\Google Drive\Project Whitespace\BugHunter\BugHunter\BugHunter\obj\Release\BugHunter.pdb
 C:\Users\Alexa\Google Drive\Project Whitespace\BugHunter\BugHunter\BugHunter\obj\Release\BugHunter.csprojAssemblyReference.cache
+C:\Users\Alexa\Google Drive\Project Whitespace\BugHunter\BugHunter\BugHunter\bin\DesktopGL\AnyCPU\Release\Content\sprites\entities\player\idle.xnb
+C:\Users\Alexa\Google Drive\Project Whitespace\BugHunter\BugHunter\BugHunter\bin\DesktopGL\AnyCPU\Release\Content\Credits.txt

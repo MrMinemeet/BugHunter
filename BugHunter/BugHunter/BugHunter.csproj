@@ -104,6 +104,7 @@
     <Compile Include="Database.cs" />
     <Compile Include="DiscordRpc.cs" />
     <Compile Include="Logger.cs" />
+    <Compile Include="Menu\ScoreMenu.cs" />
     <Compile Include="PackedTexturesCS\Entities.cs" />
     <Compile Include="Converter.cs" />
     <Compile Include="FpsCounter.cs" />

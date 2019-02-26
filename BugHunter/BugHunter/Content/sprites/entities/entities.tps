@@ -258,7 +258,7 @@
                 <key>scale9FromFile</key>
                 <false/>
             </struct>
-            <key type="filename">player/run/runRight_000.png</key>
+            <key type="filename">player/run/run_000.png</key>
             <struct type="IndividualSpriteSettings">
                 <key>pivotPoint</key>
                 <point_f>0.5,0.5</point_f>
@@ -271,8 +271,8 @@
                 <key>scale9FromFile</key>
                 <false/>
             </struct>
-            <key type="filename">player/run/runRight_001.png</key>
-            <key type="filename">player/run/runRight_006.png</key>
+            <key type="filename">player/run/run_001.png</key>
+            <key type="filename">player/run/run_006.png</key>
             <struct type="IndividualSpriteSettings">
                 <key>pivotPoint</key>
                 <point_f>0.5,0.5</point_f>
@@ -285,8 +285,8 @@
                 <key>scale9FromFile</key>
                 <false/>
             </struct>
-            <key type="filename">player/run/runRight_002.png</key>
-            <key type="filename">player/run/runRight_003.png</key>
+            <key type="filename">player/run/run_002.png</key>
+            <key type="filename">player/run/run_003.png</key>
             <struct type="IndividualSpriteSettings">
                 <key>pivotPoint</key>
                 <point_f>0.5,0.5</point_f>
@@ -299,7 +299,7 @@
                 <key>scale9FromFile</key>
                 <false/>
             </struct>
-            <key type="filename">player/run/runRight_004.png</key>
+            <key type="filename">player/run/run_004.png</key>
             <struct type="IndividualSpriteSettings">
                 <key>pivotPoint</key>
                 <point_f>0.5,0.5</point_f>
@@ -312,7 +312,7 @@
                 <key>scale9FromFile</key>
                 <false/>
             </struct>
-            <key type="filename">player/run/runRight_005.png</key>
+            <key type="filename">player/run/run_005.png</key>
             <struct type="IndividualSpriteSettings">
                 <key>pivotPoint</key>
                 <point_f>0.5,0.5</point_f>
@@ -325,7 +325,7 @@
                 <key>scale9FromFile</key>
                 <false/>
             </struct>
-            <key type="filename">player/run/runRight_007.png</key>
+            <key type="filename">player/run/run_007.png</key>
             <struct type="IndividualSpriteSettings">
                 <key>pivotPoint</key>
                 <point_f>0.5,0.5</point_f>

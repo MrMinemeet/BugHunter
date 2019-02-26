@@ -11,10 +11,16 @@ namespace ProjectWhitespace
         public string HighScore = "0";
         public List<string> Top10Names = new List<string>();
         public List<int> Top10Score = new List<int>();
-        public int KilledEnemies = 0;
-        public int CollectedPowerups = 0;
-        public int AnzahlSchuesse = 0;
-        public int AnzahlTreffer = 0;
-        public int AnzahlTode = 0;
+        public uint KilledEnemies = 0;
+        public uint CollectedPowerups = 0;
+        public uint AnzahlSchuesse = 0;
+        public uint AnzahlTreffer = 0;
+        public uint AnzahlTode = 0;
+
+        public uint KilledEnemiesOld = 0;
+        public uint CollectedPowerupsOld = 0;
+        public uint AnzahlSchuesseOld = 0;
+        public uint AnzahlTrefferOld = 0;
+        public uint AnzahlTodeOld = 0;
     }
 }

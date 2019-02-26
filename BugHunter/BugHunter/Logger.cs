@@ -21,7 +21,6 @@ namespace ProjectWhitespace
         {
             StreamWriter swNew = null;
             StreamWriter swAppend = null;
-            long FileSize = -1;
 
             try
             {
@@ -31,11 +30,8 @@ namespace ProjectWhitespace
                     swNew = File.CreateText(this.LogPath);
                     swNew.WriteLine(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + " - " + tag + ":\t" + message);
                 }
-
                 else
                 {
-                    FileSize = new System.IO.FileInfo(LogPath).Length;
-                    Console.WriteLine(FileSize);
                     // Wenn Logdatei bereits vorhanden ist wird der aktuellle Log angehangen
                     swAppend = new StreamWriter(this.LogPath, true);
                     swAppend.WriteLine(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + " - " + tag + ":\t" + message);

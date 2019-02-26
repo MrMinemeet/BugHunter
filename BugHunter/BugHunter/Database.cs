@@ -38,7 +38,7 @@ namespace ProjectWhitespace
                         // Datenbankverbindung steht
                         game.logger.Log("Datenbankverbindung steht","Debug");
 
-                        string query = "select `globalscore`.`userid`,`globalscore`.`score` from `globalscore`";
+                        string query = "select `GlobalHighscore`.`userid`,`GlobalHighscore`.`score` from `GlobalHighscore`";
                         command = new MySqlCommand(query);
                         command.Connection = connection;
 
@@ -64,11 +64,11 @@ namespace ProjectWhitespace
                             game.logger.Log("GUID war vorhanden. Eintrag wird upgedated", "Debug");
                             // Datenbankeintrag wird upgedated
                             command.CommandText =
-                                "UPDATE `globalscore` SET `Name` = '" + game.settings.UserName +
+                                "UPDATE `GlobalHighscore` SET `Name` = '" + game.settings.UserName +
                                 "', `Score` = '" + game.gameStats.HighScore +
                                 "', `DateTime` = '" +
                                 DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") +
-                                "' WHERE `globalscore`.`UserID` = '" +
+                                "' WHERE `GlobalHighscore`.`UserID` = '" +
                                 game.settings.GUID + "'";
                             command.ExecuteNonQuery();
                         }
@@ -76,7 +76,7 @@ namespace ProjectWhitespace
                         {
                             game.logger.Log("GUID nicht gefunden. Neuer Eintrag wird erstellt", "Debug");
                             // Kein Eintrag gefunden, wodurch ein neuer erstellt wird
-                            command = new MySqlCommand("INSERT INTO `globalscore` (`UserID`, `Name`, `Score`, `DateTime`, `IPAddress`) VALUES('" +
+                            command = new MySqlCommand("INSERT INTO `GlobalHighscore` (`UserID`, `Name`, `Score`, `DateTime`, `IPAddress`) VALUES('" +
                                 game.settings.GUID + "', '" +
                                 game.settings.UserName + "', '" +
                                 game.gameStats.HighScore + "', '" +
@@ -102,7 +102,15 @@ namespace ProjectWhitespace
                 }
 
                 // Datenbank wird alle 15 Sekunden upgedated
-                Thread.Sleep(30000);
+                try
+                {
+                    Thread.Sleep(30000);
+                } catch(ThreadInterruptedException e)
+                {
+                    Console.WriteLine(e.Message);
+                    game.logger.Log("Database Update Thread beendet");
+                    break;
+                }
             }
         }
 
@@ -132,7 +140,7 @@ namespace ProjectWhitespace
                         // Datenbankverbindung steht
                         game.logger.Log("Datenbankverbindung steht", "Debug");
 
-                        string query = "SELECT* FROM `globalscore` ORDER BY `Score` DESC";
+                        string query = "SELECT* FROM `GlobalHighscore` ORDER BY `Score` DESC";
                         command = new MySqlCommand(query);
                         command.Connection = connection;
 
@@ -166,7 +174,16 @@ namespace ProjectWhitespace
                     game.logger.Log("Datenbankverbindung geschlossen");
                 }
 
-                Thread.Sleep(60000);
+                try
+                {
+                    Thread.Sleep(60000);
+                }
+                catch (ThreadInterruptedException e)
+                {
+                    Console.WriteLine(e.Message);
+                    game.logger.Log("Rankinglist Update Thread beendet");
+                    break;
+                }
             }
         }
     }

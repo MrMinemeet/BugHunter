@@ -51,51 +51,19 @@ using TexturePackerLoader;
 using DiscordRPC.Message;
 using DiscordRPC;
 using System.Diagnostics;
-using MySql.Data.MySqlClient;
 using System.Threading;
+using ProjectWhitespace.Menu;
+using MySql.Data.MySqlClient;
 
 namespace BugHunter
 {
     // This is the main type for your game.
     public class Game1 : Game
     {
-        // Discord RPC
-        /// <summary>
-        /// ID of the client
-        /// </summary>
-        private static string ClientID = "534449793288765450";
-
-        /// <summary>
-        /// The level of logging to use.
-        /// </summary>
-        private static DiscordRPC.Logging.LogLevel DiscordLogLevel = DiscordRPC.Logging.LogLevel.Warning;
-
-        /// <summary>
-        /// The current presence to send to discord.
-        /// </summary>
-        private static RichPresence presence = new RichPresence()
-        {
-            Details = "Example Project",
-            State = "csharp example",
-            Assets = new Assets()
-            {
-                LargeImageKey = "image_large",
-                LargeImageText = "Lachee's Discord IPC Library",
-                SmallImageKey = "image_small"
-            }
-        };
-
-        /// <summary>
-        /// The discord client
-        /// </summary>
-        private static DiscordRpcClient client;
-
-        public bool IsDiscordRunning = false;
-
         private int StatsBoostGiven = 1;
 
         public Logger logger = null;
-        Texture2D pauseScreen;
+        public Texture2D pauseScreen;
 
         private readonly TimeSpan timePerFrame = TimeSpan.FromSeconds(3f / 30f);
 
@@ -108,8 +76,6 @@ namespace BugHunter
         List<Windows> WindowsList = new List<Windows>();
         int WindowsHealth = 30;
         int WindowsDamage = 1;
-
-
 
         public List<Powerup> Powerups = new List<Powerup>();
 
@@ -131,7 +97,7 @@ namespace BugHunter
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
         SpriteRender spriteRender;
-        SpriteFont font;
+        public SpriteFont font;
         public SpriteFont MenuFont;
         public Weapon weapon;
         public Player player;
@@ -168,7 +134,8 @@ namespace BugHunter
 
         // Texturen
         public SpriteSheet spriteSheet;
-        
+        public Texture2D rect;
+
         // HAUPTMENÜ
         enum Menubuttons : Byte { Spielen, Einstellungen, Stats, Beenden };
         Menubuttons aktuellerMenupunkt = Menubuttons.Spielen;
@@ -215,44 +182,8 @@ namespace BugHunter
             updateThread = new Thread(() => Database.UpdateDatabaseThread(this));
             RankingListUpdateThread = new Thread(() => Database.GetRankingListThread(this));
 
-
-            if (IsDiscordRunning){
-
-                //Create a new client
-                client = new DiscordRpcClient(ClientID)
-                {
-                    //Create the logger
-                    Logger = new DiscordRPC.Logging.ConsoleLogger() { Level = DiscordLogLevel, Coloured = true }
-                };
-
-                //Create some events so we know things are happening
-                client.OnReady += (sender, msg) => { Console.WriteLine("Connected to discord with user {0}", msg.User.Username); };
-                client.OnPresenceUpdate += (sender, msg) => { Console.WriteLine("Presence has been updated!"); };
-                
-
-                //Register to the events we care about. We are registering to everyone just to show off the events
-                client.OnReady += OnReady;
-                client.OnClose += OnClose;
-                client.OnError += OnError;
-
-                presence.Timestamps = new Timestamps()
-                {
-                    Start = DateTime.UtcNow
-                };
             
-                client.SetPresence(presence);
-                
-                //Connect
-                client.Initialize();
-            }
-
             weapon = new Weapon();
-
-            // Generiergt Pause Screen
-            pauseScreen = new Texture2D(graphics.GraphicsDevice, settings.resolutionWidth, settings.resolutionHeight);
-            Color[] data = new Color[settings.resolutionWidth * settings.resolutionHeight];
-            for (int i = 0; i < data.Length; ++i) data[i] = Color.Chocolate;
-            pauseScreen.SetData(data);
 
             base.Initialize();
         }
@@ -322,13 +253,20 @@ namespace BugHunter
             // Threads Starten
             updateThread.Start();
             RankingListUpdateThread.Start();
+
+            pauseScreen = new Texture2D(graphics.GraphicsDevice, settings.resolutionWidth, settings.resolutionHeight);
+            Color[] data = new Color[settings.resolutionHeight * settings.resolutionWidth];
+            for (int i = 0; i < data.Length; ++i) data[i] = new Color(0,0,0,128);
+            pauseScreen.SetData(data);
         }
 
         // UnloadContent will be called once per game and is the place to unload game-specific content.
         protected override void UnloadContent()
         {
-            updateThread.Abort();
-            RankingListUpdateThread.Abort();
+            updateThread.Interrupt();
+            RankingListUpdateThread.Interrupt();
+
+            UpdateGlobalScore(this);
 
             // Speichern von Einstellungen
             settings.SaveSettings();
@@ -339,8 +277,8 @@ namespace BugHunter
             // Gamepadvibrationen ausschalten
             GamePad.SetVibration(PlayerIndex.One, 0f, 0f);
 
-            // Discord Client freigeben
-            client?.Dispose();
+            updateThread.Join();
+            RankingListUpdateThread.Join();
 
             // Spiel beenden
             logger.Log("Spiel beenden");
@@ -350,12 +288,6 @@ namespace BugHunter
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Update(GameTime gameTime)
         {
-            if (IsDiscordRunning)
-            {
-                presence.Details = "Score: " + this.Score;
-                presence.Assets.LargeImageKey = "icon";
-            }
-
             if (Keyboard.GetState().IsKeyDown(Keys.F1))
             {
                 CurrentGameState = GameState.Paused;
@@ -381,8 +313,6 @@ namespace BugHunter
             // Hauptmenü
             if(CurrentGameState == GameState.Hauptmenu)
             {
-                if (IsDiscordRunning)
-                    presence.State = "Im Hauptmenü";
                 if ((Keyboard.GetState().IsKeyDown(Keys.S) || Keyboard.GetState().IsKeyDown(Keys.Down) || GamePad.GetState(PlayerIndex.One).IsButtonDown(Buttons.DPadUp)) && gameTime.TotalGameTime.TotalMilliseconds - lastMenuButtonSwitch >= 150)
                 {
                     switch (aktuellerMenupunkt)
@@ -463,9 +393,6 @@ namespace BugHunter
                     player.Damageboost += 10;
                     this.StatsBoostGiven += 5000;
                 }
-
-                if (IsDiscordRunning)
-                    presence.State = "Am Debuggen";
 
                 if (Keyboard.GetState().IsKeyDown(Keys.F3) && gameTime.TotalGameTime.TotalMilliseconds - LastKeyStrokeInput >= 500)
                 {
@@ -577,7 +504,8 @@ namespace BugHunter
                     }
                 }
 
-                if (Keyboard.GetState().IsKeyDown(Keys.F4) && Keyboard.GetState().IsKeyDown(Keys.LeftControl))
+                // Debug Feature
+                if (Keyboard.GetState().IsKeyDown(Keys.F4) && Keyboard.GetState().IsKeyDown(Keys.LeftControl) && settings.IsDebugEnabled)
                 {
                     player.Health = 5;
                 }
@@ -644,12 +572,6 @@ namespace BugHunter
                 this.CurrentGameState = GameState.Hauptmenu;
             }
 
-            if(CurrentGameState == GameState.Paused)
-            {
-                if (IsDiscordRunning)
-                    presence.State = "Im Pausemenü";
-            }
-
             // PAUSE
             if((Keyboard.GetState().IsKeyDown(Keys.Escape) || GamePad.GetState(PlayerIndex.One).IsButtonDown(Buttons.Start)) && gameTime.TotalGameTime.TotalMilliseconds - LastKeyStrokeInput >= 500)
             {
@@ -675,10 +597,6 @@ namespace BugHunter
                 LastKeyStrokeInput = gameTime.TotalGameTime.TotalMilliseconds;
             }
 
-            if (IsDiscordRunning)
-                if (!client.Disposed)
-                    client.SetPresence(presence);
-
             base.Update(gameTime);
         }
 
@@ -694,21 +612,7 @@ namespace BugHunter
             if (CurrentGameState == GameState.Stats)
             {
                 spriteBatch.Begin();
-                spriteBatch.DrawString(font, Texttable.Stats_Getötete_Gegner + gameStats.KilledEnemies, new Vector2(player.camera.Origin.X - 900, player.camera.Origin.Y - 500), Color.White);
-                spriteBatch.DrawString(font, Texttable.Stats_Gesammelte_Powerups + gameStats.CollectedPowerups, new Vector2(player.camera.Origin.X - 900, player.camera.Origin.Y - 450), Color.White);
-                spriteBatch.DrawString(font, Texttable.Stats_Anzahl_Geschossen + gameStats.AnzahlSchuesse, new Vector2(player.camera.Origin.X - 900, player.camera.Origin.Y - 400), Color.White);
-                spriteBatch.DrawString(font, Texttable.Stats_Anzahl_Treffer + gameStats.AnzahlTreffer, new Vector2(player.camera.Origin.X - 900, player.camera.Origin.Y - 350), Color.White);
-                spriteBatch.DrawString(font, Texttable.Stats_Trefferrate + ((float)gameStats.AnzahlTreffer / (float)gameStats.AnzahlSchuesse).ToString("P"), new Vector2(player.camera.Origin.X - 900, player.camera.Origin.Y - 300), Color.White);
-                spriteBatch.DrawString(font, Texttable.Stats_Tode + gameStats.AnzahlTode, new Vector2(player.camera.Origin.X - 900, player.camera.Origin.Y - 250), Color.White);
-
-
-                // Global Ranking Liste
-                spriteBatch.DrawString(MenuFont, "Top 10 Spieler", new Vector2(player.camera.Origin.X - 100, player.camera.Origin.Y - 500), Color.White);
-
-                for (int i = 0; i < gameStats.Top10Names.Count; i++)
-                {
-                    spriteBatch.DrawString(font, gameStats.Top10Names[i] + ":  " + gameStats.Top10Score[i], new Vector2(player.camera.Origin.X - 100, player.camera.Origin.Y + (50 * i) - 400), Color.White);
-                }
+                ScoreMenu.ShowScoreMenu(spriteBatch, this);
                 spriteBatch.End();
             }
 
@@ -765,7 +669,7 @@ namespace BugHunter
 
                     if (CurrentGameState == GameState.Paused)
                     {
-                        spriteBatch.Draw(pauseScreen, new Vector2(player.camera.Position.X, player.camera.Position.Y), new Color(0, 0, 0, 128));
+                        spriteBatch.Draw(pauseScreen, new Vector2(player.camera.Position.X, player.camera.Position.Y));
 
 
                         spriteBatch.DrawString(MenuFont, "PAUSE", new Vector2(player.Position.X - 100, player.Position.Y - 64), Color.White);
@@ -775,7 +679,7 @@ namespace BugHunter
 
                     if (CurrentGameState == GameState.DeathScreen)
                     {
-                        spriteBatch.Draw(gui.PausedBackground, new Vector2(player.Position.X - 960, player.Position.Y - 540), Color.White);
+                        spriteBatch.Draw(pauseScreen, new Vector2(player.camera.Position.X, player.camera.Position.Y));
                         spriteBatch.DrawString(MenuFont, Texttable.Text_Died, new Vector2(player.Position.X - 300, player.Position.Y - 64), Color.White);
                     }
                 }
@@ -863,14 +767,14 @@ namespace BugHunter
             // Player Run Right
             var runRight = new[]
             {
-                TexturePackerMonoGameDefinitions.entities.RunRight_000,
-                TexturePackerMonoGameDefinitions.entities.RunRight_001,
-                TexturePackerMonoGameDefinitions.entities.RunRight_002,
-                TexturePackerMonoGameDefinitions.entities.RunRight_003,
-                TexturePackerMonoGameDefinitions.entities.RunRight_004,
-                TexturePackerMonoGameDefinitions.entities.RunRight_005,
-                TexturePackerMonoGameDefinitions.entities.RunRight_006,
-                TexturePackerMonoGameDefinitions.entities.RunRight_007
+                TexturePackerMonoGameDefinitions.entities.Run_000,
+                TexturePackerMonoGameDefinitions.entities.Run_001,
+                TexturePackerMonoGameDefinitions.entities.Run_002,
+                TexturePackerMonoGameDefinitions.entities.Run_003,
+                TexturePackerMonoGameDefinitions.entities.Run_004,
+                TexturePackerMonoGameDefinitions.entities.Run_005,
+                TexturePackerMonoGameDefinitions.entities.Run_006,
+                TexturePackerMonoGameDefinitions.entities.Run_007
             };
 
             var runRightAnimation = new Animation(new Vector2(0, 0), timePerFrame, SpriteEffects.None, runRight);
@@ -925,7 +829,6 @@ namespace BugHunter
                     return true;
                 }
             }
-
             return false;
         }
 
@@ -950,5 +853,64 @@ namespace BugHunter
 			// Discord will give us one of these events and its upto us to handle it
 			Console.WriteLine("Error occured within discord. ({1}) {0}", args.Message, args.Code);
 		}
+
+        private void UpdateGlobalScore(Game1 game)
+        {
+            String connString = "Server=" + Settings.host + ";Database=" + Settings.database
+                 + ";port=" + Settings.port + ";User Id=" + Settings.username + ";password=" + Settings.password;
+
+            MySqlConnection connection = new MySqlConnection(connString);
+            MySqlCommand command;
+            MySqlDataReader reader;
+            try
+            {
+                if (connection.State != System.Data.ConnectionState.Open)
+                {
+                    // Verbindung muss erst aufgebaut werden
+                    game.logger.Log("Datenbankverbindung wird aufgebaut", "Debug");
+                    connection.Open();
+
+                }
+
+                if (connection.State == System.Data.ConnectionState.Open)
+                {
+                    // Datenbankverbindung steht
+                    game.logger.Log("Datenbankverbindung steht", "Debug");
+
+                    // select rückgabe auslesen
+
+                    command = new MySqlCommand();
+                    command.CommandText = "SELECT * FROM `GlobalScore`";
+                    command.Connection = connection;
+
+                    reader = command.ExecuteReader();
+                    reader.Read();
+
+                    uint GlobalKilledEnemies = reader.GetUInt32(1);
+                    uint GlobalCollectedPowerups = reader.GetUInt32(2);
+                    UInt64 GlobalAnzahlSchuesse = reader.GetUInt64(3);
+                    UInt64 GlobalAnzahlHits = reader.GetUInt64(4);
+                    uint GlobalDeathCount = reader.GetUInt32(5);
+
+
+                    reader.Close();
+
+                    // Datenbankeintrag wird upgedated
+                    command.CommandText = "UPDATE `GlobalScore` SET `KilledEnemies` = '" + (GlobalKilledEnemies + this.gameStats.KilledEnemies - this.gameStats.KilledEnemiesOld) + "', `CollectedPowerups` = '" + (GlobalCollectedPowerups + this.gameStats.CollectedPowerups - this.gameStats.CollectedPowerupsOld)+ "', `Shots` = '" + (GlobalAnzahlSchuesse + this.gameStats.AnzahlSchuesse - this.gameStats.AnzahlSchuesseOld) + "', `Hits` = '" + (GlobalAnzahlHits + this.gameStats.AnzahlTreffer - this.gameStats.AnzahlTrefferOld) + "', `Deaths` = '" + (GlobalDeathCount + this.gameStats.AnzahlTode - this.gameStats.AnzahlTodeOld) + "' WHERE `GlobalScore`.`ID` = 1;";
+
+                    command.ExecuteNonQuery();
+                }
+            }
+            catch (MySqlException e)
+            {
+                Console.WriteLine(e.Message);
+                game.logger.Log(e.Message, "Error");
+            }
+            finally
+            {
+                connection.Close();
+                game.logger.Log("Datenbankverbindung geschlossen");
+            }
+        }
     }
 }

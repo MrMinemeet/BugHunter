@@ -16,6 +16,7 @@ namespace BugHunter
         public bool IsFullscreen = false;
         public bool IsMouseVisible = true;
         public bool AreDebugInformationsVisible = false;
+        public bool IsDebugEnabled = false;
 
         public string GUID= "";
         public string UserName = "";
@@ -39,7 +40,7 @@ namespace BugHunter
         public readonly string LoggingPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), @"My games\Bug Hunter\log.txt");
 
         // DATABASE LOGIN
-        public const string host = "projectwhitespace.net";      // Domain von NoIP.com                 (projectwhitespace.net)
+        public const string host = "projectwhitespace.net";      // Domain                              (projectwhitespace.net)
         public const int port = 60457;                           // MySQL Port von Portweiterleitung    (60457)
         public const string database = "BugHunter";              // Datenbankname                       (BugHunter)
         public const string username = "user";                   // Username                            (user)
@@ -78,6 +79,13 @@ namespace BugHunter
                 StringBuilder sb;
                 while ((line = sr.ReadLine()) != null)
                 {
+                    if (line.Contains("Username="))
+                    {
+                        sb = new StringBuilder(line);
+                        sb = sb.Remove(0, 9);
+                        this.UserName = sb.ToString();
+                        DidLoad = true;
+                    }
                     if (line.Contains("GUID="))
                     {
                         sb = new StringBuilder(line);
@@ -85,11 +93,14 @@ namespace BugHunter
                         this.GUID = sb.ToString();
                         DidLoad = true;
                     }
-                    if (line.Contains("Username="))
+                    if (line.Contains("Debug-Mode="))
                     {
                         sb = new StringBuilder(line);
-                        sb = sb.Remove(0, 9);
-                        this.UserName = sb.ToString();
+                        sb = sb.Remove(0, 11);
+                        if (sb.ToString().Equals("True") || sb.ToString().Equals("true"))
+                            IsDebugEnabled = true;
+                        else
+                            IsDebugEnabled = false;
                         DidLoad = true;
                     }
                 }
@@ -131,9 +142,12 @@ namespace BugHunter
 
                 sw.WriteLine("Username=" + this.UserName);
                 sw.WriteLine();
-                sw.WriteLine(" -- Please do not edit anything below this line! Might harm/break your gaming experience. --");
+                sw.WriteLine(" -- Please do not edit anything below this line! Maybe, most likely, definitly harm/break your gaming experience or game files. --");
                 sw.WriteLine();
-                sw.WriteLine("GUID=" + this.GUID); 
+                sw.WriteLine("GUID=" + this.GUID);
+                sw.WriteLine("Debug-Mode=" + this.IsDebugEnabled);
+
+                sw.Flush();
             }
             catch (Exception ex)
             {
@@ -173,11 +187,18 @@ namespace BugHunter
                 game.gameStats.HighScore = Encrypt.DecryptString(input, this.GUID);
 
                 // Killed Enemies einlesen
-                game.gameStats.KilledEnemies = br.ReadInt32();
-                game.gameStats.CollectedPowerups = br.ReadInt32();
-                game.gameStats.AnzahlSchuesse = br.ReadInt32();
-                game.gameStats.AnzahlTreffer = br.ReadInt32();
-                game.gameStats.AnzahlTode = br.ReadInt32();
+                game.gameStats.KilledEnemies = br.ReadUInt32();
+                game.gameStats.CollectedPowerups = br.ReadUInt32();
+                game.gameStats.AnzahlSchuesse = br.ReadUInt32();
+                game.gameStats.AnzahlTreffer = br.ReadUInt32();
+                game.gameStats.AnzahlTode = br.ReadUInt32();
+
+
+                game.gameStats.KilledEnemiesOld = game.gameStats.KilledEnemies;
+                game.gameStats.CollectedPowerupsOld = game.gameStats.CollectedPowerups;
+                game.gameStats.AnzahlSchuesseOld = game.gameStats.AnzahlSchuesse;
+                game.gameStats.AnzahlTrefferOld = game.gameStats.AnzahlTreffer;
+                game.gameStats.AnzahlTodeOld = game.gameStats.AnzahlTode;
             }
             catch (Exception ex)
             {

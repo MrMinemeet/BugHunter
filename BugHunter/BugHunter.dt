@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-16"?>
-<DevTrackerData xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" SolutionTotalEditTime="PT4H18M53.9038167S" SolutionTotalViewTime="PT23H59M59.6687424S" SolutionTotalDebugTime="PT1H13M10.0181395S">
+<DevTrackerData xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" SolutionTotalEditTime="PT5H5M53.0557242S" SolutionTotalViewTime="P1DT2H58M31.1963055S" SolutionTotalDebugTime="PT1H24M33.5607365S">
   <FileVersion>
     <Major>1</Major>
     <Minor>0</Minor>
@@ -7,14 +7,57 @@
   <SolutionFolder>C:\Users\Alexa\Google Drive\Project Whitespace\BugHunter\BugHunter</SolutionFolder>
   <SessionTimeList />
   <LastSessionTimeList>
-    <DevTrackerDataItem ViewActiveTime="PT12.6461926S" EditActiveTime="PT0S">
+    <DevTrackerDataItem ViewActiveTime="PT17.5470829S" EditActiveTime="PT54.2918913S">
+      <ModifiedDate>2019-02-26T13:39:50.228754+01:00</ModifiedDate>
+      <ModifiedBy>Alexa</ModifiedBy>
+      <EditedCount>1</EditedCount>
+      <ViewedCount>1</ViewedCount>
+      <Item>C:\Users\Alexa\Google Drive\Project Whitespace\BugHunter\BugHunter\BugHunter\Database.cs</Item>
+      <ItemType>ProjectItem</ItemType>
+      <ProjectName>C:\Users\Alexa\Google Drive\Project Whitespace\BugHunter\BugHunter\BugHunter\BugHunter.csproj</ProjectName>
+      <CreatedDate>2019-02-26T13:22:39.0151473+01:00</CreatedDate>
+      <ViewedBy>Alexa</ViewedBy>
+    </DevTrackerDataItem>
+    <DevTrackerDataItem ViewActiveTime="PT4M34.9408317S" EditActiveTime="PT0S">
       <ModifiedDate>0001-01-01T00:00:00</ModifiedDate>
       <EditedCount>0</EditedCount>
       <ViewedCount>1</ViewedCount>
-      <Item>C:\Users\Alexa\Google Drive\Project Whitespace\BugHunter\BugHunter\BugHunter\Player.cs</Item>
+      <Item>Debug Mode</Item>
+      <ItemType>DebugModeItem</ItemType>
+      <ProjectName />
+      <CreatedDate>2019-02-26T13:05:26.7295923+01:00</CreatedDate>
+      <ViewedBy>Alexa</ViewedBy>
+    </DevTrackerDataItem>
+    <DevTrackerDataItem ViewActiveTime="PT7M40.1464731S" EditActiveTime="PT10M35.9589199S">
+      <ModifiedDate>2019-02-26T13:41:07.3629756+01:00</ModifiedDate>
+      <ModifiedBy>Alexa</ModifiedBy>
+      <EditedCount>1</EditedCount>
+      <ViewedCount>1</ViewedCount>
+      <Item>C:\Users\Alexa\Google Drive\Project Whitespace\BugHunter\BugHunter\BugHunter\Game1.cs</Item>
       <ItemType>ProjectItem</ItemType>
       <ProjectName>C:\Users\Alexa\Google Drive\Project Whitespace\BugHunter\BugHunter\BugHunter\BugHunter.csproj</ProjectName>
-      <CreatedDate>2019-02-22T17:09:41.9127509+01:00</CreatedDate>
+      <CreatedDate>2019-02-26T13:05:08.7137856+01:00</CreatedDate>
+      <ViewedBy>Alexa</ViewedBy>
+    </DevTrackerDataItem>
+    <DevTrackerDataItem ViewActiveTime="PT2M8.9635285S" EditActiveTime="PT5.7820055S">
+      <ModifiedDate>2019-02-26T13:07:47.8236864+01:00</ModifiedDate>
+      <ModifiedBy>Alexa</ModifiedBy>
+      <EditedCount>1</EditedCount>
+      <ViewedCount>1</ViewedCount>
+      <Item>C:\Users\Alexa\Google Drive\Project Whitespace\BugHunter\BugHunter\BugHunter\GUI.cs</Item>
+      <ItemType>ProjectItem</ItemType>
+      <ProjectName>C:\Users\Alexa\Google Drive\Project Whitespace\BugHunter\BugHunter\BugHunter\BugHunter.csproj</ProjectName>
+      <CreatedDate>2019-02-26T13:05:44.7587374+01:00</CreatedDate>
+      <ViewedBy>Alexa</ViewedBy>
+    </DevTrackerDataItem>
+    <DevTrackerDataItem ViewActiveTime="PT1.3951196S" EditActiveTime="PT0S">
+      <ModifiedDate>0001-01-01T00:00:00</ModifiedDate>
+      <EditedCount>0</EditedCount>
+      <ViewedCount>1</ViewedCount>
+      <Item>C:\Users\Alexa\Google Drive\Project Whitespace\BugHunter\BugHunter\BugHunter\Menu\ScoreMenu.cs</Item>
+      <ItemType>ProjectItem</ItemType>
+      <ProjectName>C:\Users\Alexa\Google Drive\Project Whitespace\BugHunter\BugHunter\BugHunter\BugHunter.csproj</ProjectName>
+      <CreatedDate>2019-02-26T13:40:15.7314486+01:00</CreatedDate>
       <ViewedBy>Alexa</ViewedBy>
     </DevTrackerDataItem>
   </LastSessionTimeList>
@@ -30,11 +73,11 @@
       <CreatedDate>2019-01-23T07:45:21.7192443+01:00</CreatedDate>
       <ViewedBy>Alexa</ViewedBy>
     </DevTrackerDataItem>
-    <DevTrackerDataItem ViewActiveTime="PT3M5.2921079S" EditActiveTime="PT1M0.248134S">
+    <DevTrackerDataItem ViewActiveTime="PT4M23.4950138S" EditActiveTime="PT1M0.248134S">
       <ModifiedDate>2019-02-12T13:11:23.1097259+01:00</ModifiedDate>
       <ModifiedBy>Alexa</ModifiedBy>
       <EditedCount>6</EditedCount>
-      <ViewedCount>12</ViewedCount>
+      <ViewedCount>13</ViewedCount>
       <Item>C:\Users\Alexa\Google Drive\Project Whitespace\BugHunter\BugHunter\BugHunter\Gegner\Android.cs</Item>
       <ItemType>ProjectItem</ItemType>
       <ProjectName>C:\Users\Alexa\Google Drive\Project Whitespace\BugHunter\BugHunter\BugHunter\BugHunter.csproj</ProjectName>
@@ -123,11 +166,22 @@
       <CreatedDate>2019-02-05T20:21:54.7979728+01:00</CreatedDate>
       <ViewedBy>Alexa</ViewedBy>
     </DevTrackerDataItem>
-    <DevTrackerDataItem ViewActiveTime="PT8H10M36.6612611S" EditActiveTime="PT26M6.2220812S">
-      <ModifiedDate>2019-02-14T06:54:21.2485858+01:00</ModifiedDate>
+    <DevTrackerDataItem ViewActiveTime="PT16M49.8982784S" EditActiveTime="PT52.0788752S">
+      <ModifiedDate>2019-02-22T17:42:20.0615936+01:00</ModifiedDate>
       <ModifiedBy>Alexa</ModifiedBy>
-      <EditedCount>11</EditedCount>
-      <ViewedCount>23</ViewedCount>
+      <EditedCount>1</EditedCount>
+      <ViewedCount>3</ViewedCount>
+      <Item>C:\Users\Alexa\Google Drive\Project Whitespace\BugHunter\BugHunter\BugHunter\Credits.txt</Item>
+      <ItemType>ProjectItem</ItemType>
+      <ProjectName>C:\Users\Alexa\Google Drive\Project Whitespace\BugHunter\BugHunter\BugHunter\BugHunter.csproj</ProjectName>
+      <CreatedDate>2019-02-22T17:38:05.9810642+01:00</CreatedDate>
+      <ViewedBy>Alexa</ViewedBy>
+    </DevTrackerDataItem>
+    <DevTrackerDataItem ViewActiveTime="PT8H13M31.2347039S" EditActiveTime="PT28M53.5464863S">
+      <ModifiedDate>2019-02-26T13:39:50.228754+01:00</ModifiedDate>
+      <ModifiedBy>Alexa</ModifiedBy>
+      <EditedCount>14</EditedCount>
+      <ViewedCount>26</ViewedCount>
       <Item>C:\Users\Alexa\Google Drive\Project Whitespace\BugHunter\BugHunter\BugHunter\Database.cs</Item>
       <ItemType>ProjectItem</ItemType>
       <ProjectName>C:\Users\Alexa\Google Drive\Project Whitespace\BugHunter\BugHunter\BugHunter\BugHunter.csproj</ProjectName>
@@ -145,10 +199,10 @@
       <CreatedDate>2019-02-05T20:21:53.6332322+01:00</CreatedDate>
       <ViewedBy>Alexa</ViewedBy>
     </DevTrackerDataItem>
-    <DevTrackerDataItem ViewActiveTime="PT1H13M10.0181395S" EditActiveTime="PT1H16M35.4993261S">
+    <DevTrackerDataItem ViewActiveTime="PT1H24M33.5607376S" EditActiveTime="PT1H18M27.9004838S">
       <ModifiedDate>0001-01-01T00:00:00</ModifiedDate>
-      <EditedCount>16</EditedCount>
-      <ViewedCount>39</ViewedCount>
+      <EditedCount>17</EditedCount>
+      <ViewedCount>46</ViewedCount>
       <Item>Debug Mode</Item>
       <ItemType>DebugModeItem</ItemType>
       <ProjectName />
@@ -257,11 +311,11 @@
       <CreatedDate>2019-02-12T06:49:24.5865156+01:00</CreatedDate>
       <ViewedBy>Alexa</ViewedBy>
     </DevTrackerDataItem>
-    <DevTrackerDataItem ViewActiveTime="PT8H18M40.1946781S" EditActiveTime="PT2H16M5.4076004S">
-      <ModifiedDate>2019-02-21T11:51:09.1693361+01:00</ModifiedDate>
+    <DevTrackerDataItem ViewActiveTime="PT10H19M38.3674343S" EditActiveTime="PT2H44M4.7410474S">
+      <ModifiedDate>2019-02-26T13:41:07.3629756+01:00</ModifiedDate>
       <ModifiedBy>Alexa</ModifiedBy>
-      <EditedCount>39</EditedCount>
-      <ViewedCount>53</ViewedCount>
+      <EditedCount>44</EditedCount>
+      <ViewedCount>60</ViewedCount>
       <Item>C:\Users\Alexa\Google Drive\Project Whitespace\BugHunter\BugHunter\BugHunter\Game1.cs</Item>
       <ItemType>ProjectItem</ItemType>
       <ProjectName>C:\Users\Alexa\Google Drive\Project Whitespace\BugHunter\BugHunter\BugHunter\BugHunter.csproj</ProjectName>
@@ -279,10 +333,11 @@
       <CreatedDate>2019-02-05T20:21:53.9000802+01:00</CreatedDate>
       <ViewedBy>Alexa</ViewedBy>
     </DevTrackerDataItem>
-    <DevTrackerDataItem ViewActiveTime="PT33.303866S" EditActiveTime="PT0S">
-      <ModifiedDate>0001-01-01T00:00:00</ModifiedDate>
-      <EditedCount>0</EditedCount>
-      <ViewedCount>7</ViewedCount>
+    <DevTrackerDataItem ViewActiveTime="PT2M52.0661149S" EditActiveTime="PT23.2262556S">
+      <ModifiedDate>2019-02-26T13:07:47.8236864+01:00</ModifiedDate>
+      <ModifiedBy>Alexa</ModifiedBy>
+      <EditedCount>2</EditedCount>
+      <ViewedCount>9</ViewedCount>
       <Item>C:\Users\Alexa\Google Drive\Project Whitespace\BugHunter\BugHunter\BugHunter\GUI.cs</Item>
       <ItemType>ProjectItem</ItemType>
       <ProjectName>C:\Users\Alexa\Google Drive\Project Whitespace\BugHunter\BugHunter\BugHunter\BugHunter.csproj</ProjectName>
@@ -309,11 +364,11 @@
       <CreatedDate>2019-01-31T09:40:51.950273+01:00</CreatedDate>
       <ViewedBy>Alexa</ViewedBy>
     </DevTrackerDataItem>
-    <DevTrackerDataItem ViewActiveTime="PT34M52.4481613S" EditActiveTime="PT14M55.9010562S">
-      <ModifiedDate>2019-02-20T14:43:57.060403+01:00</ModifiedDate>
+    <DevTrackerDataItem ViewActiveTime="PT35M47.4797707S" EditActiveTime="PT15M0.8398026S">
+      <ModifiedDate>2019-02-24T19:26:55.644201+01:00</ModifiedDate>
       <ModifiedBy>Alexa</ModifiedBy>
-      <EditedCount>6</EditedCount>
-      <ViewedCount>18</ViewedCount>
+      <EditedCount>7</EditedCount>
+      <ViewedCount>21</ViewedCount>
       <Item>C:\Users\Alexa\Google Drive\Project Whitespace\BugHunter\BugHunter\BugHunter\Logger.cs</Item>
       <ItemType>ProjectItem</ItemType>
       <ProjectName>C:\Users\Alexa\Google Drive\Project Whitespace\BugHunter\BugHunter\BugHunter\BugHunter.csproj</ProjectName>
@@ -361,11 +416,11 @@
       <CreatedDate>2019-01-27T10:42:11.4982379+01:00</CreatedDate>
       <ViewedBy>Alexa</ViewedBy>
     </DevTrackerDataItem>
-    <DevTrackerDataItem ViewActiveTime="PT11M7.9928976S" EditActiveTime="PT3M13.544275S">
-      <ModifiedDate>2019-02-14T09:00:08.9547084+01:00</ModifiedDate>
+    <DevTrackerDataItem ViewActiveTime="PT27M20.3865668S" EditActiveTime="PT4M21.7421548S">
+      <ModifiedDate>2019-02-22T17:15:18.8155903+01:00</ModifiedDate>
       <ModifiedBy>Alexa</ModifiedBy>
-      <EditedCount>10</EditedCount>
-      <ViewedCount>24</ViewedCount>
+      <EditedCount>11</EditedCount>
+      <ViewedCount>25</ViewedCount>
       <Item>C:\Users\Alexa\Google Drive\Project Whitespace\BugHunter\BugHunter\BugHunter\Player.cs</Item>
       <ItemType>ProjectItem</ItemType>
       <ProjectName>C:\Users\Alexa\Google Drive\Project Whitespace\BugHunter\BugHunter\BugHunter\BugHunter.csproj</ProjectName>
@@ -404,10 +459,11 @@
       <CreatedDate>2019-02-05T20:21:50.2691072+01:00</CreatedDate>
       <ViewedBy>Alexa</ViewedBy>
     </DevTrackerDataItem>
-    <DevTrackerDataItem ViewActiveTime="PT1M41.9840813S" EditActiveTime="PT0S">
-      <ModifiedDate>0001-01-01T00:00:00</ModifiedDate>
-      <EditedCount>0</EditedCount>
-      <ViewedCount>14</ViewedCount>
+    <DevTrackerDataItem ViewActiveTime="PT2M8.0678126S" EditActiveTime="PT1.8589253S">
+      <ModifiedDate>2019-02-24T19:19:31.7869466+01:00</ModifiedDate>
+      <ModifiedBy>Alexa</ModifiedBy>
+      <EditedCount>1</EditedCount>
+      <ViewedCount>17</ViewedCount>
       <Item>C:\Users\Alexa\Google Drive\Project Whitespace\BugHunter\BugHunter\BugHunter\Program.cs</Item>
       <ItemType>ProjectItem</ItemType>
       <ProjectName>C:\Users\Alexa\Google Drive\Project Whitespace\BugHunter\BugHunter\BugHunter\BugHunter.csproj</ProjectName>
@@ -455,11 +511,22 @@
       <CreatedDate>2019-01-31T16:32:16.0967199+01:00</CreatedDate>
       <ViewedBy>Alexa</ViewedBy>
     </DevTrackerDataItem>
-    <DevTrackerDataItem ViewActiveTime="PT1H44M37.7103954S" EditActiveTime="PT33M52.546513S">
-      <ModifiedDate>2019-02-14T09:50:55.9461818+01:00</ModifiedDate>
+    <DevTrackerDataItem ViewActiveTime="PT7M50.0574633S" EditActiveTime="PT9M49.1598101S">
+      <ModifiedDate>2019-02-24T19:21:36.4367075+01:00</ModifiedDate>
       <ModifiedBy>Alexa</ModifiedBy>
-      <EditedCount>15</EditedCount>
-      <ViewedCount>30</ViewedCount>
+      <EditedCount>1</EditedCount>
+      <ViewedCount>4</ViewedCount>
+      <Item>C:\Users\Alexa\Google Drive\Project Whitespace\BugHunter\BugHunter\BugHunter\Menu\ScoreMenu.cs</Item>
+      <ItemType>ProjectItem</ItemType>
+      <ProjectName>C:\Users\Alexa\Google Drive\Project Whitespace\BugHunter\BugHunter\BugHunter\BugHunter.csproj</ProjectName>
+      <CreatedDate>2019-02-24T18:41:13.0777132+01:00</CreatedDate>
+      <ViewedBy>Alexa</ViewedBy>
+    </DevTrackerDataItem>
+    <DevTrackerDataItem ViewActiveTime="PT1H52M27.5803827S" EditActiveTime="PT35M49.5459509S">
+      <ModifiedDate>2019-02-26T07:08:10.4761958+01:00</ModifiedDate>
+      <ModifiedBy>Alexa</ModifiedBy>
+      <EditedCount>18</EditedCount>
+      <ViewedCount>33</ViewedCount>
       <Item>C:\Users\Alexa\Google Drive\Project Whitespace\BugHunter\BugHunter\BugHunter\Settings.cs</Item>
       <ItemType>ProjectItem</ItemType>
       <ProjectName>C:\Users\Alexa\Google Drive\Project Whitespace\BugHunter\BugHunter\BugHunter\BugHunter.csproj</ProjectName>
@@ -537,22 +604,22 @@
       <CreatedDate>2019-01-31T09:41:08.0009605+01:00</CreatedDate>
       <ViewedBy>Alexa</ViewedBy>
     </DevTrackerDataItem>
-    <DevTrackerDataItem ViewActiveTime="PT2M47.4606698S" EditActiveTime="PT5M0.6799349S">
-      <ModifiedDate>2019-02-14T09:49:29.2124523+01:00</ModifiedDate>
+    <DevTrackerDataItem ViewActiveTime="PT3M24.8931309S" EditActiveTime="PT5M58.5979767S">
+      <ModifiedDate>2019-02-26T07:03:32.7327062+01:00</ModifiedDate>
       <ModifiedBy>Alexa</ModifiedBy>
-      <EditedCount>4</EditedCount>
-      <ViewedCount>6</ViewedCount>
+      <EditedCount>6</EditedCount>
+      <ViewedCount>8</ViewedCount>
       <Item>C:\Users\Alexa\Google Drive\Project Whitespace\BugHunter\BugHunter\BugHunter\Stats.cs</Item>
       <ItemType>ProjectItem</ItemType>
       <ProjectName>C:\Users\Alexa\Google Drive\Project Whitespace\BugHunter\BugHunter\BugHunter\BugHunter.csproj</ProjectName>
       <CreatedDate>2019-02-12T09:19:30.3877296+01:00</CreatedDate>
       <ViewedBy>Alexa</ViewedBy>
     </DevTrackerDataItem>
-    <DevTrackerDataItem ViewActiveTime="PT1M51.190512S" EditActiveTime="PT2M3.6572396S">
-      <ModifiedDate>2019-02-14T09:52:21.2713088+01:00</ModifiedDate>
+    <DevTrackerDataItem ViewActiveTime="PT2M12.222357S" EditActiveTime="PT3M1.7874948S">
+      <ModifiedDate>2019-02-25T07:00:14.2590444+01:00</ModifiedDate>
       <ModifiedBy>Alexa</ModifiedBy>
-      <EditedCount>3</EditedCount>
-      <ViewedCount>12</ViewedCount>
+      <EditedCount>4</EditedCount>
+      <ViewedCount>13</ViewedCount>
       <Item>C:\Users\Alexa\Google Drive\Project Whitespace\BugHunter\BugHunter\BugHunter\Texttable.cs</Item>
       <ItemType>ProjectItem</ItemType>
       <ProjectName>C:\Users\Alexa\Google Drive\Project Whitespace\BugHunter\BugHunter\BugHunter\BugHunter.csproj</ProjectName>
@@ -613,6 +680,427 @@
     </DevTrackerDataItem>
   </TotalTimeList>
   <HistoryTimeList>
+    <DevTrackerDataItem ViewActiveTime="PT1.3951196S" EditActiveTime="PT0S">
+      <ModifiedDate>0001-01-01T00:00:00</ModifiedDate>
+      <EditedCount>0</EditedCount>
+      <ViewedCount>1</ViewedCount>
+      <Item>C:\Users\Alexa\Google Drive\Project Whitespace\BugHunter\BugHunter\BugHunter\Menu\ScoreMenu.cs</Item>
+      <ItemType>ProjectItem</ItemType>
+      <ProjectName>C:\Users\Alexa\Google Drive\Project Whitespace\BugHunter\BugHunter\BugHunter\BugHunter.csproj</ProjectName>
+      <CreatedDate>2019-02-26T13:40:15.7314486+01:00</CreatedDate>
+      <ViewedBy>Alexa</ViewedBy>
+    </DevTrackerDataItem>
+    <DevTrackerDataItem ViewActiveTime="PT17.5470829S" EditActiveTime="PT54.2918913S">
+      <ModifiedDate>2019-02-26T13:39:50.228754+01:00</ModifiedDate>
+      <ModifiedBy>Alexa</ModifiedBy>
+      <EditedCount>1</EditedCount>
+      <ViewedCount>1</ViewedCount>
+      <Item>C:\Users\Alexa\Google Drive\Project Whitespace\BugHunter\BugHunter\BugHunter\Database.cs</Item>
+      <ItemType>ProjectItem</ItemType>
+      <ProjectName>C:\Users\Alexa\Google Drive\Project Whitespace\BugHunter\BugHunter\BugHunter\BugHunter.csproj</ProjectName>
+      <CreatedDate>2019-02-26T13:22:39.0151473+01:00</CreatedDate>
+      <ViewedBy>Alexa</ViewedBy>
+    </DevTrackerDataItem>
+    <DevTrackerDataItem ViewActiveTime="PT2M8.9635285S" EditActiveTime="PT5.7820055S">
+      <ModifiedDate>2019-02-26T13:07:47.8236864+01:00</ModifiedDate>
+      <ModifiedBy>Alexa</ModifiedBy>
+      <EditedCount>1</EditedCount>
+      <ViewedCount>1</ViewedCount>
+      <Item>C:\Users\Alexa\Google Drive\Project Whitespace\BugHunter\BugHunter\BugHunter\GUI.cs</Item>
+      <ItemType>ProjectItem</ItemType>
+      <ProjectName>C:\Users\Alexa\Google Drive\Project Whitespace\BugHunter\BugHunter\BugHunter\BugHunter.csproj</ProjectName>
+      <CreatedDate>2019-02-26T13:05:44.7587374+01:00</CreatedDate>
+      <ViewedBy>Alexa</ViewedBy>
+    </DevTrackerDataItem>
+    <DevTrackerDataItem ViewActiveTime="PT4M34.9358453S" EditActiveTime="PT0S">
+      <ModifiedDate>0001-01-01T00:00:00</ModifiedDate>
+      <EditedCount>0</EditedCount>
+      <ViewedCount>1</ViewedCount>
+      <Item>Debug Mode</Item>
+      <ItemType>DebugModeItem</ItemType>
+      <ProjectName />
+      <CreatedDate>2019-02-26T13:05:26.7295923+01:00</CreatedDate>
+      <ViewedBy>Alexa</ViewedBy>
+    </DevTrackerDataItem>
+    <DevTrackerDataItem ViewActiveTime="PT7M40.1464731S" EditActiveTime="PT10M35.9589199S">
+      <ModifiedDate>2019-02-26T13:41:07.3629756+01:00</ModifiedDate>
+      <ModifiedBy>Alexa</ModifiedBy>
+      <EditedCount>1</EditedCount>
+      <ViewedCount>1</ViewedCount>
+      <Item>C:\Users\Alexa\Google Drive\Project Whitespace\BugHunter\BugHunter\BugHunter\Game1.cs</Item>
+      <ItemType>ProjectItem</ItemType>
+      <ProjectName>C:\Users\Alexa\Google Drive\Project Whitespace\BugHunter\BugHunter\BugHunter\BugHunter.csproj</ProjectName>
+      <CreatedDate>2019-02-26T13:05:08.7137856+01:00</CreatedDate>
+      <ViewedBy>Alexa</ViewedBy>
+    </DevTrackerDataItem>
+    <DevTrackerDataItem ViewActiveTime="PT9.7987204S" EditActiveTime="PT17.4442501S">
+      <ModifiedDate>2019-02-26T07:12:09.0228315+01:00</ModifiedDate>
+      <ModifiedBy>Alexa</ModifiedBy>
+      <EditedCount>1</EditedCount>
+      <ViewedCount>1</ViewedCount>
+      <Item>C:\Users\Alexa\Google Drive\Project Whitespace\BugHunter\BugHunter\BugHunter\GUI.cs</Item>
+      <ItemType>ProjectItem</ItemType>
+      <ProjectName>C:\Users\Alexa\Google Drive\Project Whitespace\BugHunter\BugHunter\BugHunter\BugHunter.csproj</ProjectName>
+      <CreatedDate>2019-02-26T07:11:25.9101182+01:00</CreatedDate>
+      <ViewedBy>Alexa</ViewedBy>
+    </DevTrackerDataItem>
+    <DevTrackerDataItem ViewActiveTime="PT22.0136097S" EditActiveTime="PT22.5519564S">
+      <ModifiedDate>2019-02-26T07:08:10.4761958+01:00</ModifiedDate>
+      <ModifiedBy>Alexa</ModifiedBy>
+      <EditedCount>1</EditedCount>
+      <ViewedCount>1</ViewedCount>
+      <Item>C:\Users\Alexa\Google Drive\Project Whitespace\BugHunter\BugHunter\BugHunter\Settings.cs</Item>
+      <ItemType>ProjectItem</ItemType>
+      <ProjectName>C:\Users\Alexa\Google Drive\Project Whitespace\BugHunter\BugHunter\BugHunter\BugHunter.csproj</ProjectName>
+      <CreatedDate>2019-02-26T07:07:37.6282304+01:00</CreatedDate>
+      <ViewedBy>Alexa</ViewedBy>
+    </DevTrackerDataItem>
+    <DevTrackerDataItem ViewActiveTime="PT7.5041745S" EditActiveTime="PT23.6579163S">
+      <ModifiedDate>2019-02-26T07:03:32.7327062+01:00</ModifiedDate>
+      <ModifiedBy>Alexa</ModifiedBy>
+      <EditedCount>1</EditedCount>
+      <ViewedCount>1</ViewedCount>
+      <Item>C:\Users\Alexa\Google Drive\Project Whitespace\BugHunter\BugHunter\BugHunter\Stats.cs</Item>
+      <ItemType>ProjectItem</ItemType>
+      <ProjectName>C:\Users\Alexa\Google Drive\Project Whitespace\BugHunter\BugHunter\BugHunter\BugHunter.csproj</ProjectName>
+      <CreatedDate>2019-02-26T07:03:06.195149+01:00</CreatedDate>
+      <ViewedBy>Alexa</ViewedBy>
+    </DevTrackerDataItem>
+    <DevTrackerDataItem ViewActiveTime="PT4.7191836S" EditActiveTime="PT0S">
+      <ModifiedDate>0001-01-01T00:00:00</ModifiedDate>
+      <EditedCount>0</EditedCount>
+      <ViewedCount>1</ViewedCount>
+      <Item>C:\Users\Alexa\Google Drive\Project Whitespace\BugHunter\BugHunter\BugHunter\Menu\ScoreMenu.cs</Item>
+      <ItemType>ProjectItem</ItemType>
+      <ProjectName>C:\Users\Alexa\Google Drive\Project Whitespace\BugHunter\BugHunter\BugHunter\BugHunter.csproj</ProjectName>
+      <CreatedDate>2019-02-26T07:00:07.4111416+01:00</CreatedDate>
+      <ViewedBy>Alexa</ViewedBy>
+    </DevTrackerDataItem>
+    <DevTrackerDataItem ViewActiveTime="PT36.0719099S" EditActiveTime="PT1M15.8307219S">
+      <ModifiedDate>2019-02-26T07:44:00.4815115+01:00</ModifiedDate>
+      <ModifiedBy>Alexa</ModifiedBy>
+      <EditedCount>1</EditedCount>
+      <ViewedCount>1</ViewedCount>
+      <Item>C:\Users\Alexa\Google Drive\Project Whitespace\BugHunter\BugHunter\BugHunter\Database.cs</Item>
+      <ItemType>ProjectItem</ItemType>
+      <ProjectName>C:\Users\Alexa\Google Drive\Project Whitespace\BugHunter\BugHunter\BugHunter\BugHunter.csproj</ProjectName>
+      <CreatedDate>2019-02-26T06:58:45.3079738+01:00</CreatedDate>
+      <ViewedBy>Alexa</ViewedBy>
+    </DevTrackerDataItem>
+    <DevTrackerDataItem ViewActiveTime="PT21.3360775S" EditActiveTime="PT0S">
+      <ModifiedDate>0001-01-01T00:00:00</ModifiedDate>
+      <EditedCount>0</EditedCount>
+      <ViewedCount>1</ViewedCount>
+      <Item>C:\Users\Alexa\Google Drive\Project Whitespace\BugHunter\BugHunter\BugHunter\Logger.cs</Item>
+      <ItemType>ProjectItem</ItemType>
+      <ProjectName>C:\Users\Alexa\Google Drive\Project Whitespace\BugHunter\BugHunter\BugHunter\BugHunter.csproj</ProjectName>
+      <CreatedDate>2019-02-26T06:50:27.940691+01:00</CreatedDate>
+      <ViewedBy>Alexa</ViewedBy>
+    </DevTrackerDataItem>
+    <DevTrackerDataItem ViewActiveTime="PT15.9544827S" EditActiveTime="PT0S">
+      <ModifiedDate>0001-01-01T00:00:00</ModifiedDate>
+      <EditedCount>0</EditedCount>
+      <ViewedCount>1</ViewedCount>
+      <Item>C:\Users\Alexa\Google Drive\Project Whitespace\BugHunter\BugHunter\BugHunter\Program.cs</Item>
+      <ItemType>ProjectItem</ItemType>
+      <ProjectName>C:\Users\Alexa\Google Drive\Project Whitespace\BugHunter\BugHunter\BugHunter\BugHunter.csproj</ProjectName>
+      <CreatedDate>2019-02-26T06:49:08.1651805+01:00</CreatedDate>
+      <ViewedBy>Alexa</ViewedBy>
+    </DevTrackerDataItem>
+    <DevTrackerDataItem ViewActiveTime="PT1M48.3047741S" EditActiveTime="PT1M52.4011577S">
+      <ModifiedDate>0001-01-01T00:00:00</ModifiedDate>
+      <EditedCount>1</EditedCount>
+      <ViewedCount>1</ViewedCount>
+      <Item>Debug Mode</Item>
+      <ItemType>DebugModeItem</ItemType>
+      <ProjectName />
+      <CreatedDate>2019-02-26T06:48:54.2264836+01:00</CreatedDate>
+      <ViewedBy>Alexa</ViewedBy>
+    </DevTrackerDataItem>
+    <DevTrackerDataItem ViewActiveTime="PT7M29.738838S" EditActiveTime="PT7M36.7111067S">
+      <ModifiedDate>2019-02-26T07:44:00.5293566+01:00</ModifiedDate>
+      <ModifiedBy>Alexa</ModifiedBy>
+      <EditedCount>1</EditedCount>
+      <ViewedCount>1</ViewedCount>
+      <Item>C:\Users\Alexa\Google Drive\Project Whitespace\BugHunter\BugHunter\BugHunter\Game1.cs</Item>
+      <ItemType>ProjectItem</ItemType>
+      <ProjectName>C:\Users\Alexa\Google Drive\Project Whitespace\BugHunter\BugHunter\BugHunter\BugHunter.csproj</ProjectName>
+      <CreatedDate>2019-02-26T06:43:40.7862306+01:00</CreatedDate>
+      <ViewedBy>Alexa</ViewedBy>
+    </DevTrackerDataItem>
+    <DevTrackerDataItem ViewActiveTime="PT24.6221105S" EditActiveTime="PT0S">
+      <ModifiedDate>0001-01-01T00:00:00</ModifiedDate>
+      <EditedCount>0</EditedCount>
+      <ViewedCount>1</ViewedCount>
+      <Item>Debug Mode</Item>
+      <ItemType>DebugModeItem</ItemType>
+      <ProjectName />
+      <CreatedDate>2019-02-25T07:10:13.7567266+01:00</CreatedDate>
+      <ViewedBy>Alexa</ViewedBy>
+    </DevTrackerDataItem>
+    <DevTrackerDataItem ViewActiveTime="PT29.9282866S" EditActiveTime="PT34.2601255S">
+      <ModifiedDate>2019-02-25T07:04:53.7647238+01:00</ModifiedDate>
+      <ModifiedBy>Alexa</ModifiedBy>
+      <EditedCount>1</EditedCount>
+      <ViewedCount>1</ViewedCount>
+      <Item>C:\Users\Alexa\Google Drive\Project Whitespace\BugHunter\BugHunter\BugHunter\Stats.cs</Item>
+      <ItemType>ProjectItem</ItemType>
+      <ProjectName>C:\Users\Alexa\Google Drive\Project Whitespace\BugHunter\BugHunter\BugHunter\BugHunter.csproj</ProjectName>
+      <CreatedDate>2019-02-25T07:02:18.3025425+01:00</CreatedDate>
+      <ViewedBy>Alexa</ViewedBy>
+    </DevTrackerDataItem>
+    <DevTrackerDataItem ViewActiveTime="PT9.2276901S" EditActiveTime="PT0S">
+      <ModifiedDate>0001-01-01T00:00:00</ModifiedDate>
+      <EditedCount>0</EditedCount>
+      <ViewedCount>1</ViewedCount>
+      <Item>C:\Users\Alexa\Google Drive\Project Whitespace\BugHunter\BugHunter\BugHunter\Program.cs</Item>
+      <ItemType>ProjectItem</ItemType>
+      <ProjectName>C:\Users\Alexa\Google Drive\Project Whitespace\BugHunter\BugHunter\BugHunter\BugHunter.csproj</ProjectName>
+      <CreatedDate>2019-02-25T07:00:16.5313204+01:00</CreatedDate>
+      <ViewedBy>Alexa</ViewedBy>
+    </DevTrackerDataItem>
+    <DevTrackerDataItem ViewActiveTime="PT21.031845S" EditActiveTime="PT58.1302552S">
+      <ModifiedDate>2019-02-25T07:00:14.2590444+01:00</ModifiedDate>
+      <ModifiedBy>Alexa</ModifiedBy>
+      <EditedCount>1</EditedCount>
+      <ViewedCount>1</ViewedCount>
+      <Item>C:\Users\Alexa\Google Drive\Project Whitespace\BugHunter\BugHunter\BugHunter\Texttable.cs</Item>
+      <ItemType>ProjectItem</ItemType>
+      <ProjectName>C:\Users\Alexa\Google Drive\Project Whitespace\BugHunter\BugHunter\BugHunter\BugHunter.csproj</ProjectName>
+      <CreatedDate>2019-02-25T06:53:43.6389111+01:00</CreatedDate>
+      <ViewedBy>Alexa</ViewedBy>
+    </DevTrackerDataItem>
+    <DevTrackerDataItem ViewActiveTime="PT3M50.0081888S" EditActiveTime="PT5M34.4850646S">
+      <ModifiedDate>2019-02-25T07:16:06.0023307+01:00</ModifiedDate>
+      <ModifiedBy>Alexa</ModifiedBy>
+      <EditedCount>1</EditedCount>
+      <ViewedCount>1</ViewedCount>
+      <Item>C:\Users\Alexa\Google Drive\Project Whitespace\BugHunter\BugHunter\BugHunter\Game1.cs</Item>
+      <ItemType>ProjectItem</ItemType>
+      <ProjectName>C:\Users\Alexa\Google Drive\Project Whitespace\BugHunter\BugHunter\BugHunter\BugHunter.csproj</ProjectName>
+      <CreatedDate>2019-02-25T06:46:25.3471185+01:00</CreatedDate>
+      <ViewedBy>Alexa</ViewedBy>
+    </DevTrackerDataItem>
+    <DevTrackerDataItem ViewActiveTime="PT4.8897007S" EditActiveTime="PT0S">
+      <ModifiedDate>0001-01-01T00:00:00</ModifiedDate>
+      <EditedCount>0</EditedCount>
+      <ViewedCount>1</ViewedCount>
+      <Item>C:\Users\Alexa\Google Drive\Project Whitespace\BugHunter\BugHunter\BugHunter\Menu\ScoreMenu.cs</Item>
+      <ItemType>ProjectItem</ItemType>
+      <ProjectName>C:\Users\Alexa\Google Drive\Project Whitespace\BugHunter\BugHunter\BugHunter\BugHunter.csproj</ProjectName>
+      <CreatedDate>2019-02-25T06:46:24.4573265+01:00</CreatedDate>
+      <ViewedBy>Alexa</ViewedBy>
+    </DevTrackerDataItem>
+    <DevTrackerDataItem ViewActiveTime="PT40.2028994S" EditActiveTime="PT1M26.7268302S">
+      <ModifiedDate>2019-02-25T07:06:39.394343+01:00</ModifiedDate>
+      <ModifiedBy>Alexa</ModifiedBy>
+      <EditedCount>1</EditedCount>
+      <ViewedCount>1</ViewedCount>
+      <Item>C:\Users\Alexa\Google Drive\Project Whitespace\BugHunter\BugHunter\BugHunter\Settings.cs</Item>
+      <ItemType>ProjectItem</ItemType>
+      <ProjectName>C:\Users\Alexa\Google Drive\Project Whitespace\BugHunter\BugHunter\BugHunter\BugHunter.csproj</ProjectName>
+      <CreatedDate>2019-02-25T06:46:18.0710875+01:00</CreatedDate>
+      <ViewedBy>Alexa</ViewedBy>
+    </DevTrackerDataItem>
+    <DevTrackerDataItem ViewActiveTime="PT2M0.95445S" EditActiveTime="PT37.2017919S">
+      <ModifiedDate>2019-02-25T06:53:16.7621777+01:00</ModifiedDate>
+      <ModifiedBy>Alexa</ModifiedBy>
+      <EditedCount>1</EditedCount>
+      <ViewedCount>1</ViewedCount>
+      <Item>C:\Users\Alexa\Google Drive\Project Whitespace\BugHunter\BugHunter\BugHunter\Database.cs</Item>
+      <ItemType>ProjectItem</ItemType>
+      <ProjectName>C:\Users\Alexa\Google Drive\Project Whitespace\BugHunter\BugHunter\BugHunter\BugHunter.csproj</ProjectName>
+      <CreatedDate>2019-02-25T06:46:11.6611106+01:00</CreatedDate>
+      <ViewedBy>Alexa</ViewedBy>
+    </DevTrackerDataItem>
+    <DevTrackerDataItem ViewActiveTime="PT12.8969578S" EditActiveTime="PT0S">
+      <ModifiedDate>0001-01-01T00:00:00</ModifiedDate>
+      <EditedCount>0</EditedCount>
+      <ViewedCount>1</ViewedCount>
+      <Item>C:\Users\Alexa\Google Drive\Project Whitespace\BugHunter\BugHunter\BugHunter\Logger.cs</Item>
+      <ItemType>ProjectItem</ItemType>
+      <ProjectName>C:\Users\Alexa\Google Drive\Project Whitespace\BugHunter\BugHunter\BugHunter\BugHunter.csproj</ProjectName>
+      <CreatedDate>2019-02-25T06:45:58.7611631+01:00</CreatedDate>
+      <ViewedBy>Alexa</ViewedBy>
+    </DevTrackerDataItem>
+    <DevTrackerDataItem ViewActiveTime="PT20.8015659S" EditActiveTime="PT4.9387464S">
+      <ModifiedDate>2019-02-24T19:26:55.644201+01:00</ModifiedDate>
+      <ModifiedBy>Alexa</ModifiedBy>
+      <EditedCount>1</EditedCount>
+      <ViewedCount>1</ViewedCount>
+      <Item>C:\Users\Alexa\Google Drive\Project Whitespace\BugHunter\BugHunter\BugHunter\Logger.cs</Item>
+      <ItemType>ProjectItem</ItemType>
+      <ProjectName>C:\Users\Alexa\Google Drive\Project Whitespace\BugHunter\BugHunter\BugHunter\BugHunter.csproj</ProjectName>
+      <CreatedDate>2019-02-24T19:26:36.1139649+01:00</CreatedDate>
+      <ViewedBy>Alexa</ViewedBy>
+    </DevTrackerDataItem>
+    <DevTrackerDataItem ViewActiveTime="PT0.9015585S" EditActiveTime="PT1.8589253S">
+      <ModifiedDate>2019-02-24T19:19:31.7869466+01:00</ModifiedDate>
+      <ModifiedBy>Alexa</ModifiedBy>
+      <EditedCount>1</EditedCount>
+      <ViewedCount>1</ViewedCount>
+      <Item>C:\Users\Alexa\Google Drive\Project Whitespace\BugHunter\BugHunter\BugHunter\Program.cs</Item>
+      <ItemType>ProjectItem</ItemType>
+      <ProjectName>C:\Users\Alexa\Google Drive\Project Whitespace\BugHunter\BugHunter\BugHunter\BugHunter.csproj</ProjectName>
+      <CreatedDate>2019-02-24T19:17:27.6186316+01:00</CreatedDate>
+      <ViewedBy>Alexa</ViewedBy>
+    </DevTrackerDataItem>
+    <DevTrackerDataItem ViewActiveTime="PT7M39.0534594S" EditActiveTime="PT9M49.1598101S">
+      <ModifiedDate>2019-02-24T19:21:36.4367075+01:00</ModifiedDate>
+      <ModifiedBy>Alexa</ModifiedBy>
+      <EditedCount>1</EditedCount>
+      <ViewedCount>1</ViewedCount>
+      <Item>C:\Users\Alexa\Google Drive\Project Whitespace\BugHunter\BugHunter\BugHunter\Menu\ScoreMenu.cs</Item>
+      <ItemType>ProjectItem</ItemType>
+      <ProjectName>C:\Users\Alexa\Google Drive\Project Whitespace\BugHunter\BugHunter\BugHunter\BugHunter.csproj</ProjectName>
+      <CreatedDate>2019-02-24T18:41:13.0777132+01:00</CreatedDate>
+      <ViewedBy>Alexa</ViewedBy>
+    </DevTrackerDataItem>
+    <DevTrackerDataItem ViewActiveTime="PT1M18.2029059S" EditActiveTime="PT0S">
+      <ModifiedDate>0001-01-01T00:00:00</ModifiedDate>
+      <EditedCount>0</EditedCount>
+      <ViewedCount>1</ViewedCount>
+      <Item>C:\Users\Alexa\Google Drive\Project Whitespace\BugHunter\BugHunter\BugHunter\Gegner\Android.cs</Item>
+      <ItemType>ProjectItem</ItemType>
+      <ProjectName>C:\Users\Alexa\Google Drive\Project Whitespace\BugHunter\BugHunter\BugHunter\BugHunter.csproj</ProjectName>
+      <CreatedDate>2019-02-24T18:39:54.8720619+01:00</CreatedDate>
+      <ViewedBy>Alexa</ViewedBy>
+    </DevTrackerDataItem>
+    <DevTrackerDataItem ViewActiveTime="PT56.0177837S" EditActiveTime="PT0S">
+      <ModifiedDate>0001-01-01T00:00:00</ModifiedDate>
+      <EditedCount>0</EditedCount>
+      <ViewedCount>1</ViewedCount>
+      <Item>Debug Mode</Item>
+      <ItemType>DebugModeItem</ItemType>
+      <ProjectName />
+      <CreatedDate>2019-02-24T18:02:23.1240769+01:00</CreatedDate>
+      <ViewedBy>Alexa</ViewedBy>
+    </DevTrackerDataItem>
+    <DevTrackerDataItem ViewActiveTime="PT6M47.6534782S" EditActiveTime="PT7.7206513S">
+      <ModifiedDate>2019-02-24T18:03:28.7212966+01:00</ModifiedDate>
+      <ModifiedBy>Alexa</ModifiedBy>
+      <EditedCount>1</EditedCount>
+      <ViewedCount>1</ViewedCount>
+      <Item>C:\Users\Alexa\Google Drive\Project Whitespace\BugHunter\BugHunter\BugHunter\Settings.cs</Item>
+      <ItemType>ProjectItem</ItemType>
+      <ProjectName>C:\Users\Alexa\Google Drive\Project Whitespace\BugHunter\BugHunter\BugHunter\BugHunter.csproj</ProjectName>
+      <CreatedDate>2019-02-24T18:00:36.4978446+01:00</CreatedDate>
+      <ViewedBy>Alexa</ViewedBy>
+    </DevTrackerDataItem>
+    <DevTrackerDataItem ViewActiveTime="PT6M40.2500017S" EditActiveTime="PT3M42.759865S">
+      <ModifiedDate>2019-02-24T18:56:47.656898+01:00</ModifiedDate>
+      <ModifiedBy>Alexa</ModifiedBy>
+      <EditedCount>1</EditedCount>
+      <ViewedCount>1</ViewedCount>
+      <Item>C:\Users\Alexa\Google Drive\Project Whitespace\BugHunter\BugHunter\BugHunter\Game1.cs</Item>
+      <ItemType>ProjectItem</ItemType>
+      <ProjectName>C:\Users\Alexa\Google Drive\Project Whitespace\BugHunter\BugHunter\BugHunter\BugHunter.csproj</ProjectName>
+      <CreatedDate>2019-02-24T17:52:50.8281446+01:00</CreatedDate>
+      <ViewedBy>Alexa</ViewedBy>
+    </DevTrackerDataItem>
+    <DevTrackerDataItem ViewActiveTime="PT1H35M1.2450588S" EditActiveTime="PT0S">
+      <ModifiedDate>0001-01-01T00:00:00</ModifiedDate>
+      <EditedCount>0</EditedCount>
+      <ViewedCount>1</ViewedCount>
+      <Item>C:\Users\Alexa\Google Drive\Project Whitespace\BugHunter\BugHunter\BugHunter\Game1.cs</Item>
+      <ItemType>ProjectItem</ItemType>
+      <ProjectName>C:\Users\Alexa\Google Drive\Project Whitespace\BugHunter\BugHunter\BugHunter\BugHunter.csproj</ProjectName>
+      <CreatedDate>2019-02-23T08:23:48.453264+01:00</CreatedDate>
+      <ViewedBy>Alexa</ViewedBy>
+    </DevTrackerDataItem>
+    <DevTrackerDataItem ViewActiveTime="PT3.4744514S" EditActiveTime="PT0S">
+      <ModifiedDate>0001-01-01T00:00:00</ModifiedDate>
+      <EditedCount>0</EditedCount>
+      <ViewedCount>1</ViewedCount>
+      <Item>Debug Mode</Item>
+      <ItemType>DebugModeItem</ItemType>
+      <ProjectName />
+      <CreatedDate>2019-02-22T19:26:59.8744905+01:00</CreatedDate>
+      <ViewedBy>Alexa</ViewedBy>
+    </DevTrackerDataItem>
+    <DevTrackerDataItem ViewActiveTime="PT15.4195476S" EditActiveTime="PT29.4184908S">
+      <ModifiedDate>2019-02-22T19:26:55.7939404+01:00</ModifiedDate>
+      <ModifiedBy>Alexa</ModifiedBy>
+      <EditedCount>1</EditedCount>
+      <ViewedCount>1</ViewedCount>
+      <Item>C:\Users\Alexa\Google Drive\Project Whitespace\BugHunter\BugHunter\BugHunter\Game1.cs</Item>
+      <ItemType>ProjectItem</ItemType>
+      <ProjectName>C:\Users\Alexa\Google Drive\Project Whitespace\BugHunter\BugHunter\BugHunter\BugHunter.csproj</ProjectName>
+      <CreatedDate>2019-02-22T19:26:23.4449833+01:00</CreatedDate>
+      <ViewedBy>Alexa</ViewedBy>
+    </DevTrackerDataItem>
+    <DevTrackerDataItem ViewActiveTime="PT59.5346617S" EditActiveTime="PT0S">
+      <ModifiedDate>0001-01-01T00:00:00</ModifiedDate>
+      <EditedCount>0</EditedCount>
+      <ViewedCount>1</ViewedCount>
+      <Item>C:\Users\Alexa\Google Drive\Project Whitespace\BugHunter\BugHunter\BugHunter\Credits.txt</Item>
+      <ItemType>ProjectItem</ItemType>
+      <ProjectName>C:\Users\Alexa\Google Drive\Project Whitespace\BugHunter\BugHunter\BugHunter\BugHunter.csproj</ProjectName>
+      <CreatedDate>2019-02-22T19:25:23.9083279+01:00</CreatedDate>
+      <ViewedBy>Alexa</ViewedBy>
+    </DevTrackerDataItem>
+    <DevTrackerDataItem ViewActiveTime="PT9.6395432S" EditActiveTime="PT0S">
+      <ModifiedDate>0001-01-01T00:00:00</ModifiedDate>
+      <EditedCount>0</EditedCount>
+      <ViewedCount>1</ViewedCount>
+      <Item>Debug Mode</Item>
+      <ItemType>DebugModeItem</ItemType>
+      <ProjectName />
+      <CreatedDate>2019-02-22T18:48:58.8399807+01:00</CreatedDate>
+      <ViewedBy>Alexa</ViewedBy>
+    </DevTrackerDataItem>
+    <DevTrackerDataItem ViewActiveTime="PT15M7.0029312S" EditActiveTime="PT0S">
+      <ModifiedDate>0001-01-01T00:00:00</ModifiedDate>
+      <EditedCount>0</EditedCount>
+      <ViewedCount>1</ViewedCount>
+      <Item>C:\Users\Alexa\Google Drive\Project Whitespace\BugHunter\BugHunter\BugHunter\Credits.txt</Item>
+      <ItemType>ProjectItem</ItemType>
+      <ProjectName>C:\Users\Alexa\Google Drive\Project Whitespace\BugHunter\BugHunter\BugHunter\BugHunter.csproj</ProjectName>
+      <CreatedDate>2019-02-22T18:48:43.2828723+01:00</CreatedDate>
+      <ViewedBy>Alexa</ViewedBy>
+    </DevTrackerDataItem>
+    <DevTrackerDataItem ViewActiveTime="PT43.3686998S" EditActiveTime="PT52.0788752S">
+      <ModifiedDate>2019-02-22T17:42:20.0615936+01:00</ModifiedDate>
+      <ModifiedBy>Alexa</ModifiedBy>
+      <EditedCount>1</EditedCount>
+      <ViewedCount>1</ViewedCount>
+      <Item>C:\Users\Alexa\Google Drive\Project Whitespace\BugHunter\BugHunter\BugHunter\Credits.txt</Item>
+      <ItemType>ProjectItem</ItemType>
+      <ProjectName>C:\Users\Alexa\Google Drive\Project Whitespace\BugHunter\BugHunter\BugHunter\BugHunter.csproj</ProjectName>
+      <CreatedDate>2019-02-22T17:38:05.9810642+01:00</CreatedDate>
+      <ViewedBy>Alexa</ViewedBy>
+    </DevTrackerDataItem>
+    <DevTrackerDataItem ViewActiveTime="PT1.384664S" EditActiveTime="PT0S">
+      <ModifiedDate>0001-01-01T00:00:00</ModifiedDate>
+      <EditedCount>0</EditedCount>
+      <ViewedCount>1</ViewedCount>
+      <Item>C:\Users\Alexa\Google Drive\Project Whitespace\BugHunter\BugHunter\BugHunter\Game1.cs</Item>
+      <ItemType>ProjectItem</ItemType>
+      <ProjectName>C:\Users\Alexa\Google Drive\Project Whitespace\BugHunter\BugHunter\BugHunter\BugHunter.csproj</ProjectName>
+      <CreatedDate>2019-02-22T17:14:31.1075936+01:00</CreatedDate>
+      <ViewedBy>Alexa</ViewedBy>
+    </DevTrackerDataItem>
+    <DevTrackerDataItem ViewActiveTime="PT3M26.5500853S" EditActiveTime="PT0S">
+      <ModifiedDate>0001-01-01T00:00:00</ModifiedDate>
+      <EditedCount>0</EditedCount>
+      <ViewedCount>1</ViewedCount>
+      <Item>Debug Mode</Item>
+      <ItemType>DebugModeItem</ItemType>
+      <ProjectName />
+      <CreatedDate>2019-02-22T17:11:33.7652761+01:00</CreatedDate>
+      <ViewedBy>Alexa</ViewedBy>
+    </DevTrackerDataItem>
+    <DevTrackerDataItem ViewActiveTime="PT16M12.3936692S" EditActiveTime="PT1M8.1978798S">
+      <ModifiedDate>2019-02-22T17:15:18.8155903+01:00</ModifiedDate>
+      <ModifiedBy>Alexa</ModifiedBy>
+      <EditedCount>1</EditedCount>
+      <ViewedCount>1</ViewedCount>
+      <Item>C:\Users\Alexa\Google Drive\Project Whitespace\BugHunter\BugHunter\BugHunter\Player.cs</Item>
+      <ItemType>ProjectItem</ItemType>
+      <ProjectName>C:\Users\Alexa\Google Drive\Project Whitespace\BugHunter\BugHunter\BugHunter\BugHunter.csproj</ProjectName>
+      <CreatedDate>2019-02-22T17:09:50.617482+01:00</CreatedDate>
+      <ViewedBy>Alexa</ViewedBy>
+    </DevTrackerDataItem>
     <DevTrackerDataItem ViewActiveTime="PT12.624261S" EditActiveTime="PT0S">
       <ModifiedDate>0001-01-01T00:00:00</ModifiedDate>
       <EditedCount>0</EditedCount>
