@@ -284,6 +284,7 @@ namespace BugHunter
 
             // Spiel beenden
             logger.Log("Spiel beenden");
+            logger.WriteLog();
         }
 
         // Allows the game to run logic such as updating the world, checking for collisions, gathering input, and playing audio.
@@ -509,7 +510,7 @@ namespace BugHunter
                 // Debug Feature
                 if (Keyboard.GetState().IsKeyDown(Keys.F4) && Keyboard.GetState().IsKeyDown(Keys.LeftControl) && settings.IsDebugEnabled)
                 {
-                    player.Health = 5;
+                    player.Health = 0;
                 }
 
                 player.Update(gameTime, MapArray, map[AktuelleMap].GetTiledMap());
