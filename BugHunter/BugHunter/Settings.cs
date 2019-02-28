@@ -17,6 +17,7 @@ namespace BugHunter
         public bool IsMouseVisible = true;
         public bool AreDebugInformationsVisible = false;
         public bool IsDebugEnabled = false;
+        public bool IsSendStatisticsAllowed = true;
 
         public string GUID= "";
         public string UserName = "";
@@ -86,6 +87,18 @@ namespace BugHunter
                         this.UserName = sb.ToString();
                         DidLoad = true;
                     }
+                    if (line.Contains("Send-Stats="))
+                    {
+                        sb = new StringBuilder(line);
+                        sb = sb.Remove(0, 11);
+                        if (sb.ToString().Equals("True") || sb.ToString().Equals("true"))
+                            IsDebugEnabled = true;
+                        else
+                            IsDebugEnabled = false;
+                        DidLoad = true;
+                    }
+
+
                     if (line.Contains("GUID="))
                     {
                         sb = new StringBuilder(line);
@@ -140,7 +153,10 @@ namespace BugHunter
                 path = path + @"\Configuration.config";
                 sw = new StreamWriter(path);
 
+                sw.WriteLine("// Nutzername für Statistiken");
                 sw.WriteLine("Username=" + this.UserName);
+                sw.WriteLine("// Sendet Statistiken an Globale Rankingliste und Globale Statistiken");
+                sw.WriteLine("Send-Stats=" + this.IsSendStatisticsAllowed);
                 sw.WriteLine();
                 sw.WriteLine(" -- Please do not edit anything below this line! Maybe, most likely, definitly harm/break your gaming experience or game files. --");
                 sw.WriteLine();

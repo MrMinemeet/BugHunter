@@ -20,12 +20,12 @@ namespace ProjectWhitespace
             MySqlConnection connection = new MySqlConnection(connString);
             MySqlCommand command;
             MySqlDataReader reader;
-           
+
             while (true)
             {
                 try
                 {
-                    if(connection.State != System.Data.ConnectionState.Open)
+                    if (connection.State != System.Data.ConnectionState.Open)
                     {
                         // Verbindung muss erst aufgebaut werden
                         game.logger.Log("Datenbankverbindung wird aufgebaut", Thread.CurrentThread.Name, "Debug");
@@ -33,7 +33,7 @@ namespace ProjectWhitespace
 
                     }
 
-                    if(connection.State == System.Data.ConnectionState.Open)
+                    if (connection.State == System.Data.ConnectionState.Open)
                     {
                         // Datenbankverbindung steht
                         game.logger.Log("Datenbankverbindung steht", Thread.CurrentThread.Name, "Debug");
@@ -90,7 +90,7 @@ namespace ProjectWhitespace
 
                     }
                 }
-                catch(MySqlException e)
+                catch (MySqlException e)
                 {
                     Console.WriteLine(e.Message);
                     game.logger.Log(e.Message, "Error");
@@ -105,7 +105,8 @@ namespace ProjectWhitespace
                 try
                 {
                     Thread.Sleep(30000);
-                } catch(ThreadInterruptedException e)
+                }
+                catch (ThreadInterruptedException e)
                 {
                     Console.WriteLine(e.Message);
                     game.logger.Log("Database Update Thread beendet", Thread.CurrentThread.Name, "Debug");
@@ -116,8 +117,7 @@ namespace ProjectWhitespace
 
         public static void GetRankingListThread(Game1 game)
         {
-            String connString = "Server=" + Settings.host + ";Database=" + Settings.database
-                    + ";port=" + Settings.port + ";User Id=" + Settings.username + ";password=" + Settings.password;
+            String connString = "Server=" + Settings.host + ";Database=" + Settings.database + ";port=" + Settings.port + ";User Id=" + Settings.username + ";password=" + Settings.password;
 
             MySqlConnection connection = new MySqlConnection(connString);
             MySqlCommand command;
@@ -130,7 +130,7 @@ namespace ProjectWhitespace
                     if (connection.State != System.Data.ConnectionState.Open)
                     {
                         // Verbindung muss erst aufgebaut werden
-                        game.logger.Log("Datenbankverbindung wird aufgebaut", Thread.CurrentThread.Name,"Debug");
+                        game.logger.Log("Datenbankverbindung wird aufgebaut", Thread.CurrentThread.Name, "Debug");
                         connection.Open();
 
                     }
@@ -150,7 +150,7 @@ namespace ProjectWhitespace
                         game.gameStats.Top10Names.RemoveRange(0, game.gameStats.Top10Names.Count);
                         game.gameStats.Top10Score.RemoveRange(0, game.gameStats.Top10Score.Count);
 
-                        for (int i = 0; i < 10 && reader.Read(); i++)
+                        for (int i = 0; i <= 10 && reader.Read(); i++)
                         {
                             // guid in datenbank gefunden
                             if (!string.IsNullOrEmpty(reader.GetString(0)))
@@ -171,7 +171,7 @@ namespace ProjectWhitespace
                 finally
                 {
                     connection?.Close();
-                    game.logger.Log("Datenbankverbindung geschlossen", Thread.CurrentThread.Name,"Debug");
+                    game.logger.Log("Datenbankverbindung geschlossen", Thread.CurrentThread.Name, "Debug");
                 }
 
                 try
@@ -181,9 +181,91 @@ namespace ProjectWhitespace
                 catch (ThreadInterruptedException e)
                 {
                     Console.WriteLine(e.Message);
-                    game.logger.Log("Rankinglist Update Thread beendet", Thread.CurrentThread.Name,"Debug");
+                    game.logger.Log("Rankinglist Update Thread beendet", Thread.CurrentThread.Name, "Debug");
                     break;
                 }
+            }
+        }
+
+        public static void GetGlobalScoreList(Game1 game)
+        {
+            String connString = "Server=" + Settings.host + ";Database=" + Settings.database + ";port=" + Settings.port + ";User Id=" + Settings.username + ";password=" + Settings.password;
+
+            MySqlConnection connection = new MySqlConnection(connString);
+            MySqlCommand command;
+            MySqlDataReader reader;
+
+            while (true)
+            {
+                try
+                {
+                    if (connection.State != System.Data.ConnectionState.Open)
+                    {
+                        // Verbindung muss erst aufgebaut werden
+                        game.logger.Log("Datenbankverbindung wird aufgebaut", Thread.CurrentThread.Name, "Debug");
+                        connection.Open();
+
+                    }
+
+                    if (connection.State == System.Data.ConnectionState.Open)
+                    {
+                        // Datenbankverbindung steht
+                        game.logger.Log("Datenbankverbindung steht", Thread.CurrentThread.Name, "Debug");
+
+                        string query = "SELECT * FROM `GlobalScore`";
+                        command = new MySqlCommand(query);
+                        command.Connection = connection;
+
+                        // select rückgabe auslesen
+                        reader = command.ExecuteReader();
+
+                        reader.Read();
+
+                        game.gameStats.GlobalKilledEnemies = reader.GetUInt32(1);
+                        game.gameStats.GlobalCollectedPowerups = reader.GetUInt32(2);
+                        game.gameStats.GlobalAnzahlSchuesse = reader.GetUInt64(3);
+                        game.gameStats.GlobalAnzahlTreffer = reader.GetUInt64(4);
+                        game.gameStats.GlobalAnzahlTode = reader.GetUInt32(5);
+
+                        reader.Close();
+
+                        // Globale Anzahl an Spielern aus Datenbank lesen
+                        query = "SELECT COUNT(*) FROM GlobalHighscore;";
+                        command = new MySqlCommand(query);
+                        command.Connection = connection;
+
+                        // select rückgabe auslesen
+                        reader = command.ExecuteReader();
+
+                        reader.Read();
+
+                        game.gameStats.GlobalPlayerAmount = reader.GetUInt32(0);
+
+                        reader.Close();
+                    }
+                }
+                catch (MySqlException e)
+                {
+                    Console.WriteLine(e.Message);
+                    game.logger.Log(e.Message, "Error");
+                }
+                finally
+                {
+                    connection?.Close();
+                    game.logger.Log("Datenbankverbindung geschlossen", Thread.CurrentThread.Name, "Debug");
+                }
+
+                try
+                {
+                    Thread.Sleep(60000);
+                }
+                catch (ThreadInterruptedException e)
+                {
+                    Console.WriteLine(e.Message);
+                    game.logger.Log("Rankinglist Update Thread beendet", Thread.CurrentThread.Name, "Debug");
+                    break;
+                }
+
             }
         }
     }

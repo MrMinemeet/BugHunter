@@ -107,6 +107,7 @@ namespace BugHunter
         // Threads
         Thread updateThread;
         Thread RankingListUpdateThread;
+        Thread GlobalScoreListUpdateThread;
 
 
         // DEBUG Featurese
@@ -156,6 +157,8 @@ namespace BugHunter
             graphics.SynchronizeWithVerticalRetrace = true;
             // IsFixedTimeStep = false;
             Content.RootDirectory = "Content";
+
+            Thread.CurrentThread.Name = "MainThread";
         }
 
         // Allows the game to perform any initialization it needs to before starting to run.
@@ -179,12 +182,6 @@ namespace BugHunter
 
             spriteSheetLoader = new SpriteSheetLoader(Content, GraphicsDevice);
 
-            updateThread = new Thread(() => Database.UpdateDatabaseThread(this));
-            updateThread.Name = "updateThread";
-            RankingListUpdateThread = new Thread(() => Database.GetRankingListThread(this));
-            RankingListUpdateThread.Name = "RankingListUpdateThread";
-
-            
             weapon = new Weapon();
 
             base.Initialize();
@@ -252,9 +249,24 @@ namespace BugHunter
             this.PoofSpriteSheet = spriteSheetLoader.Load("effects_packed.png");
             InitialiseAnimationManager();
 
-            // Threads Starten
-            updateThread.Start();
-            RankingListUpdateThread.Start();
+            // Threads werden nur erstellt, wenn Datenbankstatistiken erlaubt sind um Ressourcen zu sparen
+            if (settings.IsSendStatisticsAllowed)
+            {
+                // Threads zuweisen/erstellen
+                updateThread = new Thread(() => Database.UpdateDatabaseThread(this));
+                updateThread.Name = "updateThread";
+
+                RankingListUpdateThread = new Thread(() => Database.GetRankingListThread(this));
+                RankingListUpdateThread.Name = "RankingListUpdateThread";
+
+                GlobalScoreListUpdateThread = new Thread(() => Database.GetGlobalScoreList(this));
+                GlobalScoreListUpdateThread.Name = "GlobalScoreListUpdateThread";
+
+                // Threads Starten
+                updateThread.Start();
+                RankingListUpdateThread.Start();
+                GlobalScoreListUpdateThread.Start();
+            }
 
             pauseScreen = new Texture2D(graphics.GraphicsDevice, settings.resolutionWidth, settings.resolutionHeight);
             Color[] data = new Color[settings.resolutionHeight * settings.resolutionWidth];
@@ -267,8 +279,9 @@ namespace BugHunter
         {
             updateThread.Interrupt();
             RankingListUpdateThread.Interrupt();
+            GlobalScoreListUpdateThread.Interrupt();
 
-            UpdateGlobalScore(this);
+            UpdateGlobalScore();
 
             // Speichern von Einstellungen
             settings.SaveSettings();
@@ -281,9 +294,10 @@ namespace BugHunter
 
             updateThread.Join();
             RankingListUpdateThread.Join();
+            GlobalScoreListUpdateThread.Join();
 
             // Spiel beenden
-            logger.Log("Spiel beenden");
+            logger.Log("Spiel beenden", Thread.CurrentThread.Name);
             logger.WriteLog();
         }
 
@@ -572,6 +586,7 @@ namespace BugHunter
             if((Keyboard.GetState().IsKeyDown(Keys.R) || GamePad.GetState(PlayerIndex.One).IsButtonDown(Buttons.A)) && CurrentGameState == GameState.DeathScreen)
             {
                 player.Health = player.MaxHealth;
+                UpdateGlobalScore();
                 this.CurrentGameState = GameState.Hauptmenu;
             }
 
@@ -645,8 +660,6 @@ namespace BugHunter
                     // MapRenderer zum Zeichnen der aktuell sichtbaren Map
                     map[AktuelleMap].mapRenderer.Draw(player.camera.GetViewMatrix());
 
-                    // Sprite ausgeben
-                    player.Draw(spriteBatch, font);
 
                     foreach (Android android in AndroidsList)
                     {
@@ -660,6 +673,9 @@ namespace BugHunter
 
                     foreach (Powerup powerup in Powerups)
                         powerup.Draw(spriteBatch);
+
+                    // Sprite ausgeben
+                    player.Draw(spriteBatch, font);
 
                     if (PoofIsActive)
                     {
@@ -688,6 +704,7 @@ namespace BugHunter
                         spriteBatch.DrawString(MenuFont, Texttable.Text_Died, new Vector2(player.Position.X - 300, player.Position.Y - 64), Color.White);
                     }
                 }
+
                 spriteBatch.End();
             }
             // Hauptmenü
@@ -859,8 +876,12 @@ namespace BugHunter
 			Console.WriteLine("Error occured within discord. ({1}) {0}", args.Message, args.Code);
 		}
 
-        private void UpdateGlobalScore(Game1 game)
+        private void UpdateGlobalScore()
         {
+            if (!settings.IsSendStatisticsAllowed)
+                return;
+
+
             String connString = "Server=" + Settings.host + ";Database=" + Settings.database
                  + ";port=" + Settings.port + ";User Id=" + Settings.username + ";password=" + Settings.password;
 
@@ -872,7 +893,7 @@ namespace BugHunter
                 if (connection.State != System.Data.ConnectionState.Open)
                 {
                     // Verbindung muss erst aufgebaut werden
-                    game.logger.Log("Datenbankverbindung wird aufgebaut", "Debug");
+                    this.logger.Log("Datenbankverbindung wird aufgebaut", "Debug");
                     connection.Open();
 
                 }
@@ -880,7 +901,7 @@ namespace BugHunter
                 if (connection.State == System.Data.ConnectionState.Open)
                 {
                     // Datenbankverbindung steht
-                    game.logger.Log("Datenbankverbindung steht", "Debug");
+                    this.logger.Log("Datenbankverbindung steht", "Debug");
 
                     // select rückgabe auslesen
 
@@ -897,6 +918,12 @@ namespace BugHunter
                     UInt64 GlobalAnzahlHits = reader.GetUInt64(4);
                     uint GlobalDeathCount = reader.GetUInt32(5);
 
+                    this.gameStats.KilledEnemiesOld = this.gameStats.KilledEnemies;
+                    this.gameStats.CollectedPowerupsOld = this.gameStats.CollectedPowerups;
+                    this.gameStats.AnzahlSchuesseOld = this.gameStats.AnzahlSchuesse;
+                    this.gameStats.AnzahlTrefferOld = this.gameStats.AnzahlTreffer;
+                    this.gameStats.AnzahlTodeOld = this.gameStats.AnzahlTode;
+
 
                     reader.Close();
 
@@ -909,12 +936,12 @@ namespace BugHunter
             catch (MySqlException e)
             {
                 Console.WriteLine(e.Message);
-                game.logger.Log(e.Message, "Error");
+                this.logger.Log(e.Message, "Error");
             }
             finally
             {
                 connection.Close();
-                game.logger.Log("Datenbankverbindung geschlossen");
+                this.logger.Log("Datenbankverbindung geschlossen",Thread.CurrentThread.Name);
             }
         }
     }

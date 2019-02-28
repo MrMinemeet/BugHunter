@@ -22,7 +22,7 @@ namespace ProjectWhitespace
         /// <param name="tag">Tag für Kategorisierung der Log-Nachricht</param>
         public void Log(string message, string source = "", string tag = "Info")
         {
-            LogQueue.Add(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + " - " + "\tTag: " + tag + "\t Source: " + source +  "\tMessage:\t" + message);
+            LogQueue.Add(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + " - " + "\tTag: " + tag + "\t Source: " + source +  "\t Message:\t" + message);
         }
 
         /// <summary>
