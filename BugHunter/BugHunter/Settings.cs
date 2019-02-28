@@ -1,9 +1,11 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using MySql.Data.MySqlClient;
 using ProjectWhitespace;
 using System;
 using System.IO;
 using System.Text;
+using System.Threading;
 
 namespace BugHunter
 {
@@ -18,6 +20,7 @@ namespace BugHunter
         public bool AreDebugInformationsVisible = false;
         public bool IsDebugEnabled = false;
         public bool IsSendStatisticsAllowed = true;
+        public bool HasInternetConnection = false;
 
         public string GUID= "";
         public string UserName = "";
@@ -265,6 +268,57 @@ namespace BugHunter
             {
                 if (bw != null)
                     bw.Close();
+            }
+        }
+
+        public static void CheckInternetConnectionThread(Game1 game)
+        {
+
+            string connString = "Server=" + Settings.host + ";Database=" + Settings.database
+                 + ";port=" + Settings.port + ";User Id=" + Settings.username + ";password=" + Settings.password;
+
+            int WaitTime = 15;  // Wartezeit des Threads in Sekunden
+
+            MySqlConnection connection = new MySqlConnection(connString);
+
+            while (true)
+            {
+                try
+                {
+                    connection.Open();
+                    game.settings.HasInternetConnection = true;
+                    WaitTime = 15;
+                }
+                catch (MySqlException)
+                {
+                    game.settings.HasInternetConnection = false;
+
+                    WaitTime *= 2;
+                }
+                finally
+                {
+                    if (connection.State.Equals(System.Data.ConnectionState.Open))
+                        connection.Close();
+                }
+                
+
+                if (WaitTime >= 3600)
+                {
+                    game.logger.Log("Seit " + (WaitTime / 2) + " keine Datenbankverbindung möglich. Versuche werden beendet", Thread.CurrentThread.Name);
+                    Thread.CurrentThread.Abort();
+                }
+
+                game.logger.Log("Nächster Test in " + WaitTime + " Sekunden", Thread.CurrentThread.Name);
+                try
+                {
+                    Thread.Sleep(WaitTime * 1000);
+                }
+                catch (ThreadInterruptedException e)
+                {
+                    Console.WriteLine(e.Message);
+                    game.logger.Log("Thread beendet", Thread.CurrentThread.Name, "Debug");
+                    break;
+                }
             }
         }
     }

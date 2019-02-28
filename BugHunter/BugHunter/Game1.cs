@@ -108,6 +108,7 @@ namespace BugHunter
         Thread updateThread;
         Thread RankingListUpdateThread;
         Thread GlobalScoreListUpdateThread;
+        Thread CheckDatabaseConnectionThread;
 
 
         // DEBUG Featurese
@@ -262,10 +263,14 @@ namespace BugHunter
                 GlobalScoreListUpdateThread = new Thread(() => Database.GetGlobalScoreList(this));
                 GlobalScoreListUpdateThread.Name = "GlobalScoreListUpdateThread";
 
+                CheckDatabaseConnectionThread = new Thread(() => Settings.CheckInternetConnectionThread(this));
+                CheckDatabaseConnectionThread.Name = "CheckDatabaseConnectionThread";
+
                 // Threads Starten
                 updateThread.Start();
                 RankingListUpdateThread.Start();
                 GlobalScoreListUpdateThread.Start();
+                CheckDatabaseConnectionThread.Start();
             }
 
             pauseScreen = new Texture2D(graphics.GraphicsDevice, settings.resolutionWidth, settings.resolutionHeight);
@@ -280,6 +285,7 @@ namespace BugHunter
             updateThread.Interrupt();
             RankingListUpdateThread.Interrupt();
             GlobalScoreListUpdateThread.Interrupt();
+            CheckDatabaseConnectionThread.Interrupt();
 
             UpdateGlobalScore();
 
@@ -295,6 +301,7 @@ namespace BugHunter
             updateThread.Join();
             RankingListUpdateThread.Join();
             GlobalScoreListUpdateThread.Join();
+            CheckDatabaseConnectionThread.Join();
 
             // Spiel beenden
             logger.Log("Spiel beenden", Thread.CurrentThread.Name);

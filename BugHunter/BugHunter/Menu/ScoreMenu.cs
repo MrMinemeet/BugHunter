@@ -46,8 +46,6 @@ namespace ProjectWhitespace.Menu
                 spriteBatch.DrawString(game.font, game.gameStats.Top10Names[i] + ":  " + game.gameStats.Top10Score[i], new Vector2(game.player.camera.Origin.X - 300, game.player.camera.Origin.Y + (50 * i) - 400), Color.White);
             }
 
-
-
             // Global Score
             spriteBatch.DrawString(game.MenuFont, Texttable.Stats_Global_Stats, new Vector2(game.player.camera.Origin.X + 350, game.player.camera.Origin.Y - 500), Color.White);
 
