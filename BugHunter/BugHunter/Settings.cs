@@ -305,6 +305,9 @@ namespace BugHunter
                 if (WaitTime >= 3600)
                 {
                     game.logger.Log("Seit " + (WaitTime / 2) + " keine Datenbankverbindung möglich. Versuche werden beendet", Thread.CurrentThread.Name);
+                    game.updateThread.Interrupt();
+                    game.RankingListUpdateThread.Interrupt();
+                    game.GlobalScoreListUpdateThread.Interrupt();
                     Thread.CurrentThread.Abort();
                 }
 

@@ -102,9 +102,9 @@ namespace BugHunter
         public Random random = new Random();
 
         // Threads
-        Thread updateThread;
-        Thread RankingListUpdateThread;
-        Thread GlobalScoreListUpdateThread;
+        public Thread updateThread;
+        public Thread RankingListUpdateThread;
+        public Thread GlobalScoreListUpdateThread;
         Thread CheckDatabaseConnectionThread;
 
 
