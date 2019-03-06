@@ -48,11 +48,8 @@ using ProjectWhitespace;
 using System;
 using System.Collections.Generic;
 using TexturePackerLoader;
-using DiscordRPC.Message;
-using DiscordRPC;
 using System.Diagnostics;
 using System.Threading;
-using ProjectWhitespace.Menu;
 using MySql.Data.MySqlClient;
 
 namespace BugHunter
@@ -115,8 +112,8 @@ namespace BugHunter
         FpsCounter fps = new FpsCounter();
         public SpriteFont DebugFont;
 
-        enum GameState : Byte { Ingame, Paused, DeathScreen, Hauptmenu, Stats };
-        GameState CurrentGameState = GameState.Hauptmenu;
+        public enum GameState : Byte { Ingame, Paused, DeathScreen, Hauptmenu, Stats, Settings };
+        public GameState CurrentGameState = GameState.Hauptmenu;
 
         private SpriteSheetLoader spriteSheetLoader;
         public GraphicsDevice graphicsDevice;
@@ -138,10 +135,11 @@ namespace BugHunter
         public SpriteSheet spriteSheet;
         public Texture2D rect;
 
-        // HAUPTMENÜ
+        // Menü
         enum Menubuttons : Byte { Spielen, Einstellungen, Stats, Beenden };
         Menubuttons aktuellerMenupunkt = Menubuttons.Spielen;
         double lastMenuButtonSwitch = 0;
+        SettingsMenu settingsMenu;
 
         public Game1()
         {
@@ -184,6 +182,8 @@ namespace BugHunter
             spriteSheetLoader = new SpriteSheetLoader(Content, GraphicsDevice);
 
             weapon = new Weapon();
+
+            settingsMenu = new SettingsMenu(this);
 
             base.Initialize();
         }
@@ -391,7 +391,7 @@ namespace BugHunter
                             this.CurrentGameState = GameState.Stats;
                             break;
                         case Menubuttons.Einstellungen:
-                            // TODO: Einstellungen
+                            this.CurrentGameState = GameState.Settings;
                             break;
                         case Menubuttons.Beenden:
                             Exit();
@@ -407,10 +407,15 @@ namespace BugHunter
                     this.CurrentGameState = GameState.Hauptmenu;
             }
 
+            // Einstellungen
+            if(CurrentGameState == GameState.Settings){
+                settingsMenu.Update(gameTime);
+            }
+
             // Ingame
             if(CurrentGameState == GameState.Ingame)
             {
-                if(this.Score % (5000 + StatsBoostGiven) == 0 && Score != 0)
+                if(this.Score >= (5000 + StatsBoostGiven) && Score != 0)
                 {
                     player.MaxHealth += 25;
                     player.Health += 25;
@@ -643,6 +648,13 @@ namespace BugHunter
                 spriteBatch.End();
             }
 
+            if(CurrentGameState == GameState.Settings)
+            {
+                spriteBatch.Begin();
+                settingsMenu.Draw(spriteBatch);
+                spriteBatch.End();
+            }
+
             if (CurrentGameState == GameState.Ingame || CurrentGameState == GameState.Paused || CurrentGameState == GameState.DeathScreen)
             {
 
@@ -861,28 +873,6 @@ namespace BugHunter
             return false;
         }
 
-        private static void OnReady(object sender, ReadyMessage args)
-		{
-			//This is called when we are all ready to start receiving and sending discord events. 
-			// It will give us some basic information about discord to use in the future.
-			
-			//It can be a good idea to send a inital presence update on this event too, just to setup the inital game state.
-			Console.WriteLine("On Ready. RPC Version: {0}", args.Version);
-
-		}
-		private static void OnClose(object sender, CloseMessage args)
-		{
-			//This is called when our client has closed. The client can no longer send or receive events after this message.
-			// Connection will automatically try to re-establish and another OnReady will be called (unless it was disposed).
-			Console.WriteLine("Lost Connection with client because of '{0}'", args.Reason);
-		}
-		private static void OnError(object sender, ErrorMessage args)
-		{
-			//Some error has occured from one of our messages. Could be a malformed presence for example.
-			// Discord will give us one of these events and its upto us to handle it
-			Console.WriteLine("Error occured within discord. ({1}) {0}", args.Message, args.Code);
-		}
-
         private void UpdateGlobalScore()
         {
             if (!settings.IsSendStatisticsAllowed)
@@ -925,12 +915,6 @@ namespace BugHunter
                     UInt64 GlobalAnzahlHits = reader.GetUInt64(4);
                     uint GlobalDeathCount = reader.GetUInt32(5);
 
-                    this.gameStats.KilledEnemiesOld = this.gameStats.KilledEnemies;
-                    this.gameStats.CollectedPowerupsOld = this.gameStats.CollectedPowerups;
-                    this.gameStats.AnzahlSchuesseOld = this.gameStats.AnzahlSchuesse;
-                    this.gameStats.AnzahlTrefferOld = this.gameStats.AnzahlTreffer;
-                    this.gameStats.AnzahlTodeOld = this.gameStats.AnzahlTode;
-
 
                     reader.Close();
 
@@ -938,6 +922,12 @@ namespace BugHunter
                     command.CommandText = "UPDATE `GlobalScore` SET `KilledEnemies` = '" + (GlobalKilledEnemies + this.gameStats.KilledEnemies - this.gameStats.KilledEnemiesOld) + "', `CollectedPowerups` = '" + (GlobalCollectedPowerups + this.gameStats.CollectedPowerups - this.gameStats.CollectedPowerupsOld)+ "', `Shots` = '" + (GlobalAnzahlSchuesse + this.gameStats.AnzahlSchuesse - this.gameStats.AnzahlSchuesseOld) + "', `Hits` = '" + (GlobalAnzahlHits + this.gameStats.AnzahlTreffer - this.gameStats.AnzahlTrefferOld) + "', `Deaths` = '" + (GlobalDeathCount + this.gameStats.AnzahlTode - this.gameStats.AnzahlTodeOld) + "' WHERE `GlobalScore`.`ID` = 1;";
 
                     command.ExecuteNonQuery();
+
+                    this.gameStats.KilledEnemiesOld = this.gameStats.KilledEnemies;
+                    this.gameStats.CollectedPowerupsOld = this.gameStats.CollectedPowerups;
+                    this.gameStats.AnzahlSchuesseOld = this.gameStats.AnzahlSchuesse;
+                    this.gameStats.AnzahlTrefferOld = this.gameStats.AnzahlTreffer;
+                    this.gameStats.AnzahlTodeOld = this.gameStats.AnzahlTode;
                 }
             }
             catch (MySqlException e)

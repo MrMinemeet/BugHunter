@@ -93,9 +93,8 @@
     <Win32Resource>
     </Win32Resource>
   </PropertyGroup>
-  <PropertyGroup>
-    <ApplicationManifest>app.manifest</ApplicationManifest>
-  </PropertyGroup>
+  <PropertyGroup />
+  <PropertyGroup />
   <ItemGroup>
     <Compile Include="Encrypt.cs" />
     <Compile Include="Gegner\Android.cs" />
@@ -105,6 +104,7 @@
     <Compile Include="DiscordRpc.cs" />
     <Compile Include="Logger.cs" />
     <Compile Include="Menu\ScoreMenu.cs" />
+    <Compile Include="Menu\SettingsMenu.cs" />
     <Compile Include="PackedTexturesCS\Entities.cs" />
     <Compile Include="Converter.cs" />
     <Compile Include="FpsCounter.cs" />
@@ -119,6 +119,11 @@
     <Compile Include="Program.cs" />
     <Compile Include="Projectile.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
     <Compile Include="Properties\Settings.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
@@ -166,8 +171,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Icon.ico" />
-    <EmbeddedResource Include="Icon.bmp" />
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <MonoGameContentReference Include="Content\Content.mgcb" />
@@ -226,6 +233,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Credits.txt" />
+    <Content Include="Icon.ico" />
+    <Content Include="Icon.png" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.7.1">

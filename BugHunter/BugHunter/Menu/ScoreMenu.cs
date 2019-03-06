@@ -3,7 +3,7 @@ using BugHunter;
 using Microsoft.Xna.Framework;
 using System.Collections.Generic;
 
-namespace ProjectWhitespace.Menu
+namespace BugHunter
 {
     class ScoreMenu
     {
