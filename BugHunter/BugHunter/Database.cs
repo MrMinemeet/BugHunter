@@ -181,7 +181,7 @@ namespace ProjectWhitespace
                 }
                 try
                 {
-                    Thread.Sleep(60000);
+                    Thread.Sleep(30000);
                 }
                 catch (ThreadInterruptedException e)
                 {
@@ -265,7 +265,7 @@ namespace ProjectWhitespace
 
                 try
                 {
-                    Thread.Sleep(60000);
+                    Thread.Sleep(30000);
                 }
                 catch (ThreadInterruptedException e)
                 {

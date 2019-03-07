@@ -267,10 +267,10 @@ namespace BugHunter
                 CheckDatabaseConnectionThread.Name = "CheckDatabaseConnectionThread";
 
                 // Threads Starten
+                CheckDatabaseConnectionThread.Start();
                 updateThread.Start();
                 RankingListUpdateThread.Start();
                 GlobalScoreListUpdateThread.Start();
-                CheckDatabaseConnectionThread.Start();
             }
 
             pauseScreen = new Texture2D(graphics.GraphicsDevice, settings.resolutionWidth, settings.resolutionHeight);
