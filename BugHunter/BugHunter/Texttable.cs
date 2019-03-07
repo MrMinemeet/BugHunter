@@ -22,6 +22,7 @@
         public static string Stats_Global_Player_Amount = "Spieleranzahl: ";
         public static string General_No_Internet_Connection = "Keine Verbindung";
         public static string Stats_Stats_Deaktivated = "Statistiken deaktiviert";
+        public static string Stats_Spielzeit = "Spielzeit: ";
         public static string Settings_Musik = "Musiklautstärke: ";
         public static string Settings_Sounds = "Soundslautstärke: ";
         public static string Settings_Statistiken = "Stats senden: ";

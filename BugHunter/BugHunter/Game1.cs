@@ -59,6 +59,10 @@ namespace BugHunter
     {
         private int StatsBoostGiven = 1;
 
+        // Zeit für aktuellen Lauf
+        public Stopwatch stopwatch = new Stopwatch();
+        public long CurrentRunTime = 0;
+
         public Logger logger = null;
         public Texture2D pauseScreen;
 
@@ -384,6 +388,7 @@ namespace BugHunter
                     switch (aktuellerMenupunkt)
                     {
                         case Menubuttons.Spielen:
+                            stopwatch.Start();
                             ResetGame();
                             this.CurrentGameState = GameState.Ingame;
                             break;
@@ -415,6 +420,7 @@ namespace BugHunter
             // Ingame
             if(CurrentGameState == GameState.Ingame)
             {
+                this.CurrentRunTime = stopwatch.ElapsedMilliseconds;
                 if(this.Score >= (5000 + StatsBoostGiven) && Score != 0)
                 {
                     player.MaxHealth += 25;
@@ -590,6 +596,8 @@ namespace BugHunter
             // Deathscreen
             if (player.Health <= 0 && CurrentGameState == GameState.Ingame)
             {
+                stopwatch.Stop();
+                gameStats.PlayTime += stopwatch.ElapsedMilliseconds;
                 gameStats.AnzahlTode++;
                 CurrentGameState = GameState.DeathScreen;
             }
@@ -610,6 +618,7 @@ namespace BugHunter
                     // Hintergrundmusik pausieren
                     if (sound.HintergrundMusikEffect.State == SoundState.Playing)
                     {
+                        stopwatch.Stop();
                         sound.HintergrundMusikEffect.Pause();
                     }
                     CurrentGameState = GameState.Paused;
@@ -621,6 +630,7 @@ namespace BugHunter
                     {
                         sound.HintergrundMusikEffect.Resume();
                     }
+                    stopwatch.Start();
                     CurrentGameState = GameState.Ingame;
                 }
 
@@ -722,6 +732,8 @@ namespace BugHunter
                         spriteBatch.Draw(pauseScreen, new Vector2(player.camera.Position.X, player.camera.Position.Y));
                         spriteBatch.DrawString(MenuFont, Texttable.Text_Died, new Vector2(player.Position.X - 300, player.Position.Y - 64), Color.White);
                     }
+                    TimeSpan time = stopwatch.Elapsed;
+                    spriteBatch.DrawString(font, time.ToString("mm\\:ss\\.ff"), new Vector2(player.Position.X + 700, player.Position.Y - 500), Color.White);
                 }
 
                 spriteBatch.End();

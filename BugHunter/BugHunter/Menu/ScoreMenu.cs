@@ -2,6 +2,7 @@
 using BugHunter;
 using Microsoft.Xna.Framework;
 using System.Collections.Generic;
+using System;
 
 namespace BugHunter
 {
@@ -12,7 +13,10 @@ namespace BugHunter
             List<string> StatsText = new List<string>();
             List<string> GlobalStatsText = new List<string>();
 
+            TimeSpan timeSpan = TimeSpan.FromMilliseconds(game.gameStats.PlayTime);
+
             // Textliste für Stats generieren
+            StatsText.Add(Texttable.Stats_Spielzeit + timeSpan.ToString("dd\\.hh\\:mm"));
             StatsText.Add(Texttable.Stats_Highscore + game.gameStats.HighScore);
             StatsText.Add(Texttable.Stats_Getötete_Gegner + game.gameStats.KilledEnemies);
             StatsText.Add(Texttable.Stats_Gesammelte_Powerups + game.gameStats.CollectedPowerups);

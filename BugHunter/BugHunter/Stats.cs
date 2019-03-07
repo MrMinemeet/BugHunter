@@ -9,6 +9,7 @@ namespace ProjectWhitespace
     public class Stats
     {
         public string HighScore = "0";
+        public long PlayTime = 0;
 
 
         public List<string> Top10Names = new List<string>();

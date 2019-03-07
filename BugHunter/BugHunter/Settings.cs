@@ -224,6 +224,7 @@ namespace BugHunter
                 game.gameStats.AnzahlSchuesse = br.ReadUInt32();
                 game.gameStats.AnzahlTreffer = br.ReadUInt32();
                 game.gameStats.AnzahlTode = br.ReadUInt32();
+                game.gameStats.PlayTime = (long)br.ReadInt64(); // Long ist 64-Bit daher geht es auch mit Int64
 
 
                 game.gameStats.KilledEnemiesOld = game.gameStats.KilledEnemies;
@@ -231,6 +232,7 @@ namespace BugHunter
                 game.gameStats.AnzahlSchuesseOld = game.gameStats.AnzahlSchuesse;
                 game.gameStats.AnzahlTrefferOld = game.gameStats.AnzahlTreffer;
                 game.gameStats.AnzahlTodeOld = game.gameStats.AnzahlTode;
+
             }
             catch (Exception ex)
             {
@@ -272,6 +274,7 @@ namespace BugHunter
                 bw.Write(game.gameStats.AnzahlSchuesse);
                 bw.Write(game.gameStats.AnzahlTreffer);
                 bw.Write(game.gameStats.AnzahlTode);
+                bw.Write(game.gameStats.PlayTime);
             }
             catch (Exception ex)
             {
