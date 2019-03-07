@@ -73,8 +73,9 @@ namespace ProjectWhitespace
 
                                 OperatingSystem os_info = System.Environment.OSVersion;
 
+                                TimeSpan timeSpan = TimeSpan.FromMilliseconds(game.gameStats.PlayTime);
 
-                                Statistiken = "OS-Version:" + " " + os_info.VersionString;
+                                Statistiken = "OS-Version:" + " " + os_info.VersionString +", Spielzeit:" + timeSpan.ToString("dd\\.hh\\:mm");                                
                             }
 
                             if (GuidExists)
