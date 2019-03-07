@@ -24,6 +24,8 @@
         public static string Stats_Stats_Deaktivated = "Statistiken deaktiviert";
         public static string Settings_Musik = "Musiklautstärke: ";
         public static string Settings_Sounds = "Soundslautstärke: ";
-        public static string Settings_Statistiken = "Statisktiken senden: ";
+        public static string Settings_Statistiken = "Stats senden: ";
+        public static string Settings_Anonyme_Statistiken = "Anonyme Statistiken: ";
+
     }
 }

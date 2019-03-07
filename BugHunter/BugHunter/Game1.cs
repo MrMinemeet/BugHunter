@@ -251,7 +251,7 @@ namespace BugHunter
             InitialiseAnimationManager();
 
             // Threads werden nur erstellt, wenn Datenbankstatistiken erlaubt sind um Ressourcen zu sparen
-            if (settings.IsSendStatisticsAllowed)
+            if (settings.IsSendStatsAllowed)
             {
                 // Threads zuweisen/erstellen
                 updateThread = new Thread(() => Database.UpdateDatabaseThread(this));
@@ -875,7 +875,7 @@ namespace BugHunter
 
         private void UpdateGlobalScore()
         {
-            if (!settings.IsSendStatisticsAllowed)
+            if (!settings.IsSendStatsAllowed)
                 return;
 
 

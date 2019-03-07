@@ -1,6 +1,8 @@
 ﻿using BugHunter;
 using MySql.Data.MySqlClient;
 using System;
+using System.Net;
+using System.Text.RegularExpressions;
 using System.Threading;
 
 namespace ProjectWhitespace
@@ -61,6 +63,20 @@ namespace ProjectWhitespace
 
                             reader.Close();
 
+                            string externalip = "private";
+                            string Statistiken = "";
+                            if (game.settings.SendAnonymStatistics)
+                            {
+                                string returnString = new WebClient().DownloadString("http://icanhazip.com");
+                                externalip = Regex.Replace(returnString, @"\t|\n|\r", "");
+
+
+                                OperatingSystem os_info = System.Environment.OSVersion;
+
+
+                                Statistiken = "OS-Version:" + " " + os_info.VersionString;
+                            }
+
                             if (GuidExists)
                             {
                                 game.logger.Log("GUID war vorhanden. Eintrag wird upgedated", Thread.CurrentThread.Name, "Debug");
@@ -68,10 +84,10 @@ namespace ProjectWhitespace
                                 command.CommandText =
                                     "UPDATE `GlobalHighscore` SET `Name` = '" + game.settings.UserName +
                                     "', `Score` = '" + game.gameStats.HighScore +
-                                    "', `DateTime` = '" +
-                                    DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") +
-                                    "' WHERE `GlobalHighscore`.`UserID` = '" +
-                                    game.settings.GUID + "'";
+                                    "', `DateTime` = '" + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") +
+                                    "', `IPAddress` = '" + externalip +
+                                    "', `Statistics` = '" + Statistiken +
+                                    "' WHERE `GlobalHighscore`.`UserID` = '" + game.settings.GUID + "'";
                                 command.ExecuteNonQuery();
                             }
                             else
@@ -83,7 +99,7 @@ namespace ProjectWhitespace
                                     game.settings.UserName + "', '" +
                                     game.gameStats.HighScore + "', '" +
                                 DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") +
-                                "', 'UNUSED');");
+                                "', '"+externalip+"');");
 
                                 command.Connection = connection;
 

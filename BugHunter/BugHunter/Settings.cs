@@ -19,8 +19,10 @@ namespace BugHunter
         public bool IsMouseVisible = true;
         public bool AreDebugInformationsVisible = false;
         public bool IsDebugEnabled = false;
-        public bool IsSendStatisticsAllowed = true;
+        public bool IsSendStatsAllowed = true;
         public bool HasInternetConnection = false;
+        public bool SendAnonymStatistics = true;
+
 
         public string GUID= "";
         public string UserName = "";
@@ -100,7 +102,16 @@ namespace BugHunter
                             IsDebugEnabled = false;
                         DidLoad = true;
                     }
-
+                    if (line.Contains("Send-Anonym-Statistics="))
+                    {
+                        sb = new StringBuilder(line);
+                        sb = sb.Remove(0, 23);
+                        if (sb.ToString().Equals("True") || sb.ToString().Equals("true"))
+                            IsSendStatsAllowed = true;
+                        else
+                            IsSendStatsAllowed = false;
+                        DidLoad = true;
+                    }
 
                     if (line.Contains("GUID="))
                     {
@@ -159,7 +170,9 @@ namespace BugHunter
                 sw.WriteLine("// Nutzername für Statistiken");
                 sw.WriteLine("Username=" + this.UserName);
                 sw.WriteLine("// Sendet Statistiken an Globale Rankingliste und Globale Statistiken");
-                sw.WriteLine("Send-Stats=" + this.IsSendStatisticsAllowed);
+                sw.WriteLine("Send-Stats=" + this.IsSendStatsAllowed);
+                sw.WriteLine("// Senden von anonyme Statistiken");
+                sw.WriteLine("Send-Anonym-Statistics=" + this.SendAnonymStatistics);
                 sw.WriteLine();
                 sw.WriteLine(" -- Please do not edit anything below this line! Maybe, most likely, definitly harm/break your gaming experience or game files. --");
                 sw.WriteLine();
