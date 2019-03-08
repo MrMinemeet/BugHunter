@@ -87,8 +87,8 @@ namespace BugHunter
 
             // Mit sp.Size erhält man einen Vektor mit der größe einer einzelnen Textur. Ist einfach und zudem noch effizienter
             if (
-                ((PotNewEnemyPosition.X + sp.Size.X / 2 >= player.Position.X - player.Texture.Width / 2 && PotNewEnemyPosition.X - sp.Size.X / 2 <= player.Position.X + player.Texture.Width / 2)
-                && (PotNewEnemyPosition.Y + sp.Size.Y / 2 >= player.Position.Y - player.Texture.Height / 2 && PotNewEnemyPosition.Y - sp.Size.Y / 2 <= player.Position.Y + player.Texture.Height / 2))
+                ((PotNewEnemyPosition.X + sp.Size.X / 2 >= player.Position.X - player.Frame.Size.X / 2 && PotNewEnemyPosition.X - sp.Size.X / 2 <= player.Position.X + player.Frame.Size.X / 2)
+                && (PotNewEnemyPosition.Y + sp.Size.Y / 2 >= player.Position.Y - player.Frame.Size.Y / 2 && PotNewEnemyPosition.Y - sp.Size.Y / 2 <= player.Position.Y + player.Frame.Size.Y / 2))
                 )
             {
                 if (gameTime.TotalGameTime.TotalMilliseconds - LastCollisionCheck >= 500)

@@ -122,7 +122,7 @@ namespace ProjectWhitespace
             }
 
             // Rechtecke über Spieler und Powerup ziehen
-            PlayerCollision = new Rectangle((int)(player.Position.X - player.Texture.Width / 2), (int)(player.Position.Y - player.Texture.Height / 2), player.Texture.Width, player.Texture.Height);
+            PlayerCollision = new Rectangle((int)(player.Position.X - player.Frame.Size.X / 2), (int)(player.Position.Y - player.Frame.Size.Y / 2), (int)player.Frame.Size.X, (int)player.Frame.Size.Y);
 
             PowerupCollision = new Rectangle((int)(this.position.X - sp.Size.X / 2), (int)(this.position.Y - sp.Size.Y / 2), (int)sp.Size.X, (int)sp.Size.Y);
 

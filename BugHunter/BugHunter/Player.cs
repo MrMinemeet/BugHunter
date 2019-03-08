@@ -11,7 +11,6 @@ namespace BugHunter
 {
     public class Player
     {
-        public Texture2D Texture { get; set; }
         public Vector2 Position;
         public float Speed { get; set; }
         public Texture2D OriginTexture { get; set; }
@@ -68,6 +67,11 @@ namespace BugHunter
         public Animation[] RunLeftAnimations;
         public AnimationManager RunLeftAM;
 
+        // Hitboxen
+        Rectangle MapCollisionRectangle;
+        Rectangle PotNewPlayerCollision;
+        public SpriteFrame Frame;
+
         /// <summary>
         /// Konstruktorfür Klasse Android
         /// </summary>
@@ -75,6 +79,9 @@ namespace BugHunter
         /// <param name="MaxHealth">Maximales Leben (= Startleben)</param>
         public Player(Game1 game, float Speed, int MaxHealth)
         {
+
+            Frame = game.spriteSheet.Sprite(TexturePackerMonoGameDefinitions.entities.Idle_001);
+
             this.game = game;
             this.Speed = Speed;
             this.MaxHealth = MaxHealth;
@@ -140,7 +147,7 @@ namespace BugHunter
                     
                     // Rechtecke über Spieler und aktuelles Tile ziehen
                     MapTriggerRectangle = new Rectangle((x * Settings.TilePixelSize), (y * Settings.TilePixelSize), Settings.TilePixelSize, Settings.TilePixelSize);
-                    PotNewPlayerCollision = new Rectangle((int)(PotNewPlayerPosition.X - Texture.Width / 2), (int)(PotNewPlayerPosition.Y - Texture.Height / 2), Texture.Width, Texture.Height);
+                    PotNewPlayerCollision = new Rectangle((int)(PotNewPlayerPosition.X - Frame.Size.X / 2), (int)(PotNewPlayerPosition.Y - Frame.Size.Y / 2), (int)Frame.Size.X, (int)Frame.Size.Y);
                     // Überprüfen ob sich die beiden Rechtecke überschneiden
                     if (PotNewPlayerCollision.Intersects(MapTriggerRectangle))
                     {
@@ -233,7 +240,7 @@ namespace BugHunter
                         projectiles.Add(new Projectile(game));
 
                         game.gameStats.AnzahlSchuesse++;
-                        sound.Schuesse[random.Next(sound.Schuesse.Length - 1)].Play();
+                        sound.Schuesse[random.Next(sound.Schuesse.Length - 1)].Play((float)settings.Soundlautstaerke / 100,0,0);
                         AmmunitionAmmountList[aktWeapon]--;
 
                         projectiles[projectiles.Count - 1].ProjectilePosition = this.Position;
@@ -252,7 +259,7 @@ namespace BugHunter
                         projectiles.Add(new Projectile(game));
 
                         game.gameStats.AnzahlSchuesse++;
-                        sound.Schuesse[random.Next(sound.Schuesse.Length - 1)].Play();
+                        sound.Schuesse[random.Next(sound.Schuesse.Length - 1)].Play((float)settings.Soundlautstaerke / 100,0,0);
                         AmmunitionAmmountList[aktWeapon]--;
                         
                         projectiles[projectiles.Count - 1].ProjectilePosition = this.Position;
@@ -271,7 +278,7 @@ namespace BugHunter
                         projectiles.Add(new Projectile(game));
 
                         game.gameStats.AnzahlSchuesse++;
-                        sound.Schuesse[random.Next(sound.Schuesse.Length - 1)].Play();
+                        sound.Schuesse[random.Next(sound.Schuesse.Length - 1)].Play((float)settings.Soundlautstaerke / 100,0,0);
                         AmmunitionAmmountList[aktWeapon]--;
                         
                         projectiles[projectiles.Count - 1].ProjectilePosition = this.Position;
@@ -290,7 +297,7 @@ namespace BugHunter
                         projectiles.Add(new Projectile(game));
 
                         game.gameStats.AnzahlSchuesse++;
-                        sound.Schuesse[random.Next(sound.Schuesse.Length - 1)].Play();
+                        sound.Schuesse[random.Next(sound.Schuesse.Length - 1)].Play((float)settings.Soundlautstaerke / 100,0,0);
                         AmmunitionAmmountList[aktWeapon]--;
                         
                         projectiles[projectiles.Count - 1].ProjectilePosition = this.Position;
@@ -471,8 +478,6 @@ namespace BugHunter
         /// <returns></returns>
         private bool DidHitCollision(int[][] CollisionMapArray, TiledMap map)
         {
-            Rectangle MapCollisionRectangle;
-            Rectangle PotNewPlayerCollision;
             
             // Integer Map Array durchlaufen
             for (int y = 0; y * Settings.TilePixelSize < map.HeightInPixels; y++)
@@ -484,7 +489,7 @@ namespace BugHunter
                     {
                         // Rechtecke über Spieler und aktuelles Tile ziehen
                         MapCollisionRectangle = new Rectangle((x * Settings.TilePixelSize), (y * Settings.TilePixelSize), Settings.TilePixelSize, Settings.TilePixelSize);
-                        PotNewPlayerCollision = new Rectangle((int)(PotNewPlayerPosition.X - Texture.Width / 2), (int)(PotNewPlayerPosition.Y - Texture.Height / 2), Texture.Width, Texture.Height);
+                          PotNewPlayerCollision = new Rectangle((int)(PotNewPlayerPosition.X - Frame.Size.X / 2), (int)(PotNewPlayerPosition.Y - Frame.Size.Y / 2), (int)Frame.Size.X, (int)Frame.Size.Y);
 
                         // Überprüfen ob sich die beiden Rechtecke überschneiden
                         if (PotNewPlayerCollision.Intersects(MapCollisionRectangle))
@@ -540,6 +545,7 @@ namespace BugHunter
                     Color.White, 0, 1,
                     RunRightAM.CurrentSpriteEffects);
             }
+
             // Links gehen Animation
             if (AktState.Equals(PlayerState.WalkingLeft))
             {
@@ -550,6 +556,9 @@ namespace BugHunter
                     RunLeftAM.CurrentSpriteEffects);
             }
 
+            // Zeigt Hitbox des Spielers an
+            if(settings.AreDebugInformationsVisible)
+                spriteBatch.DrawRectangle(PotNewPlayerCollision, Color.Red, 3);
 
             if (ShowPlayerOrigin)
             {
@@ -559,7 +568,7 @@ namespace BugHunter
                     null,
                     Color.White,
                 0f,
-                new Vector2(Texture.Width / 2, Texture.Height / 2),
+                new Vector2(Frame.Size.X / 2, Frame.Size.Y / 2),
                 Vector2.One,
                 SpriteEffects.None,
                 0f

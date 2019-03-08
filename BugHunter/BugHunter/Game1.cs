@@ -238,7 +238,6 @@ namespace BugHunter
             // Spieler Init
             player = new Player(this,200f,100);
             player.camera = new OrthographicCamera(GraphicsDevice);
-            player.Texture = Content.Load<Texture2D>("sprites/entities/player/idle");
             player.OriginTexture = Content.Load<Texture2D>("sprites/originSpot");
             player.Init(this.settings, this, this.sound);
 
@@ -438,7 +437,7 @@ namespace BugHunter
                 if (this.Score > int.Parse(gameStats.HighScore))
                 {
                     gameStats.HighScore = Score.ToString();
-                    sound.ScoreSound.Play(0.5f, 0, 0);
+                    sound.ScoreSound.Play((settings.Soundlautstaerke / 100), 0, 0);
                 }
                 
                 MaxEnemies = (int)(this.Score / 1000) + 1;
@@ -559,6 +558,7 @@ namespace BugHunter
 
                 if(sound.HintergrundMusikEffect.State == SoundState.Stopped)
                 {
+                    sound.HintergrundMusikEffect.Volume = (float)settings.Musiklautstaerke / 100;
                     sound.HintergrundMusikEffect.Play();
                 }
 
@@ -596,6 +596,7 @@ namespace BugHunter
             // Deathscreen
             if (player.Health <= 0 && CurrentGameState == GameState.Ingame)
             {
+                sound.HintergrundMusikEffect.Stop();
                 stopwatch.Stop();
                 gameStats.PlayTime += stopwatch.ElapsedMilliseconds;
                 gameStats.AnzahlTode++;
