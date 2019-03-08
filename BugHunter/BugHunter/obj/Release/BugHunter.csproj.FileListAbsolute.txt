@@ -225,6 +225,6 @@ C:\Users\Alexa\Google Drive\Project Whitespace\BugHunter\BugHunter\BugHunter\obj
 C:\Users\Alexa\Google Drive\Project Whitespace\BugHunter\BugHunter\BugHunter\obj\Release\BugHunter.csproj.CopyComplete
 C:\Users\Alexa\Google Drive\Project Whitespace\BugHunter\BugHunter\BugHunter\obj\Release\BugHunter.exe
 C:\Users\Alexa\Google Drive\Project Whitespace\BugHunter\BugHunter\BugHunter\obj\Release\BugHunter.pdb
-C:\Users\Alexa\Google Drive\Project Whitespace\BugHunter\BugHunter\BugHunter\obj\Release\BugHunter.csprojAssemblyReference.cache
 C:\Users\Alexa\Google Drive\Project Whitespace\BugHunter\BugHunter\BugHunter\obj\Release\ProjectWhitespace.Properties.Resources.resources
 C:\Users\Alexa\Google Drive\Project Whitespace\BugHunter\BugHunter\BugHunter\obj\Release\BugHunter.csproj.GenerateResource.cache
+C:\Users\Alexa\Google Drive\Project Whitespace\BugHunter\BugHunter\BugHunter\obj\Release\BugHunter.csprojAssemblyReference.cache

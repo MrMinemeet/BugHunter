@@ -389,8 +389,6 @@ C:\Users\Alexa\Google Drive\Project Whitespace\BugHunter\BugHunter\BugHunter\bin
 C:\Users\Alexa\Google Drive\Project Whitespace\BugHunter\BugHunter\BugHunter\bin\DesktopGL\AnyCPU\Debug\System.Security.SecureString.dll
 C:\Users\Alexa\Google Drive\Project Whitespace\BugHunter\BugHunter\BugHunter\bin\DesktopGL\AnyCPU\Debug\System.Threading.Overlapped.dll
 C:\Users\Alexa\Google Drive\Project Whitespace\BugHunter\BugHunter\BugHunter\bin\DesktopGL\AnyCPU\Debug\System.Xml.XPath.XDocument.dll
-C:\Users\Alexa\Google Drive\Project Whitespace\BugHunter\BugHunter\BugHunter\bin\DesktopGL\AnyCPU\Debug\DiscordRPC.dll
-C:\Users\Alexa\Google Drive\Project Whitespace\BugHunter\BugHunter\BugHunter\bin\DesktopGL\AnyCPU\Debug\log4net.dll
 C:\Users\Alexa\Google Drive\Project Whitespace\BugHunter\BugHunter\BugHunter\bin\DesktopGL\AnyCPU\Debug\MonoGame.Extended.Content.Pipeline.dll
 C:\Users\Alexa\Google Drive\Project Whitespace\BugHunter\BugHunter\BugHunter\bin\DesktopGL\AnyCPU\Debug\MonoGame.Extended.dll
 C:\Users\Alexa\Google Drive\Project Whitespace\BugHunter\BugHunter\BugHunter\bin\DesktopGL\AnyCPU\Debug\MonoGame.Extended.Graphics.dll
@@ -398,14 +396,10 @@ C:\Users\Alexa\Google Drive\Project Whitespace\BugHunter\BugHunter\BugHunter\bin
 C:\Users\Alexa\Google Drive\Project Whitespace\BugHunter\BugHunter\BugHunter\bin\DesktopGL\AnyCPU\Debug\MonoGame.Framework.dll
 C:\Users\Alexa\Google Drive\Project Whitespace\BugHunter\BugHunter\BugHunter\bin\DesktopGL\AnyCPU\Debug\MySql.Data.dll
 C:\Users\Alexa\Google Drive\Project Whitespace\BugHunter\BugHunter\BugHunter\bin\DesktopGL\AnyCPU\Debug\Newtonsoft.Json.dll
-C:\Users\Alexa\Google Drive\Project Whitespace\BugHunter\BugHunter\BugHunter\bin\DesktopGL\AnyCPU\Debug\DiscordRPC.pdb
-C:\Users\Alexa\Google Drive\Project Whitespace\BugHunter\BugHunter\BugHunter\bin\DesktopGL\AnyCPU\Debug\DiscordRPC.xml
-C:\Users\Alexa\Google Drive\Project Whitespace\BugHunter\BugHunter\BugHunter\bin\DesktopGL\AnyCPU\Debug\log4net.xml
 C:\Users\Alexa\Google Drive\Project Whitespace\BugHunter\BugHunter\BugHunter\bin\DesktopGL\AnyCPU\Debug\MonoGame.Extended.pdb
 C:\Users\Alexa\Google Drive\Project Whitespace\BugHunter\BugHunter\BugHunter\bin\DesktopGL\AnyCPU\Debug\MonoGame.Extended.Content.Pipeline.pdb
 C:\Users\Alexa\Google Drive\Project Whitespace\BugHunter\BugHunter\BugHunter\bin\DesktopGL\AnyCPU\Debug\MonoGame.Extended.Graphics.pdb
 C:\Users\Alexa\Google Drive\Project Whitespace\BugHunter\BugHunter\BugHunter\bin\DesktopGL\AnyCPU\Debug\MonoGame.Extended.Tiled.pdb
-C:\Users\Alexa\Google Drive\Project Whitespace\BugHunter\BugHunter\BugHunter\bin\DesktopGL\AnyCPU\Debug\Newtonsoft.Json.xml
 C:\Users\Alexa\Google Drive\Project Whitespace\BugHunter\BugHunter\BugHunter\obj\Debug\BugHunter.csprojAssemblyReference.cache
 C:\Users\Alexa\Google Drive\Project Whitespace\BugHunter\BugHunter\BugHunter\obj\Debug\BugHunter.exe.config
 C:\Users\Alexa\Google Drive\Project Whitespace\BugHunter\BugHunter\BugHunter\obj\Debug\ProjectWhitespace.Properties.Resources.resources

@@ -22,6 +22,8 @@ namespace BugHunter
         public bool IsSendStatsAllowed = true;
         public bool HasInternetConnection = false;
         public bool SendAnonymStatistics = true;
+        public Byte Musiklautstaerke = 50;
+        public Byte Soundlautstaerke = 50;
 
 
         public string GUID= "";
@@ -92,6 +94,22 @@ namespace BugHunter
                         this.UserName = sb.ToString();
                         DidLoad = true;
                     }
+
+                    if (line.Contains("Musiklautstärke="))
+                    {
+                        sb = new StringBuilder(line);
+                        sb = sb.Remove(0, 16);
+                        this.Musiklautstaerke = Byte.Parse(sb.ToString());
+                        DidLoad = true;
+                    }
+                    if (line.Contains("Soundlautstärke="))
+                    {
+                        sb = new StringBuilder(line);
+                        sb = sb.Remove(0, 16);
+                        this.Soundlautstaerke = Byte.Parse(sb.ToString());
+                        DidLoad = true;
+                    }
+
                     if (line.Contains("Send-Stats="))
                     {
                         sb = new StringBuilder(line);
@@ -169,8 +187,17 @@ namespace BugHunter
 
                 sw.WriteLine("// Nutzername für Statistiken");
                 sw.WriteLine("Username=" + this.UserName);
+                sw.WriteLine();
+
+                sw.WriteLine("// Lautstärken");
+                sw.WriteLine("Musiklautstärke=" + this.Musiklautstaerke);
+                sw.WriteLine("Soundlautstärke=" + this.Soundlautstaerke);
+                sw.WriteLine();
+
                 sw.WriteLine("// Sendet Statistiken an Globale Rankingliste und Globale Statistiken");
                 sw.WriteLine("Send-Stats=" + this.IsSendStatsAllowed);
+                sw.WriteLine();
+
                 sw.WriteLine("// Senden von anonyme Statistiken");
                 sw.WriteLine("Send-Anonym-Statistics=" + this.SendAnonymStatistics);
                 sw.WriteLine();

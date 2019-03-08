@@ -27,6 +27,8 @@
         public static string Settings_Sounds = "Soundslautstärke: ";
         public static string Settings_Statistiken = "Stats senden: ";
         public static string Settings_Anonyme_Statistiken = "Anonyme Statistiken: ";
+        public static string General_On = "EIN";
+        public static string General_Off = "AUS";
 
     }
 }

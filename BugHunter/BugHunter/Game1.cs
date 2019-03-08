@@ -286,10 +286,10 @@ namespace BugHunter
         // UnloadContent will be called once per game and is the place to unload game-specific content.
         protected override void UnloadContent()
         {
-            updateThread.Interrupt();
-            RankingListUpdateThread.Interrupt();
-            GlobalScoreListUpdateThread.Interrupt();
-            CheckDatabaseConnectionThread.Interrupt();
+            updateThread?.Interrupt();
+            RankingListUpdateThread?.Interrupt();
+            GlobalScoreListUpdateThread?.Interrupt();
+            CheckDatabaseConnectionThread?.Interrupt();
 
             UpdateGlobalScore();
 
@@ -302,10 +302,10 @@ namespace BugHunter
             // Gamepadvibrationen ausschalten
             GamePad.SetVibration(PlayerIndex.One, 0f, 0f);
 
-            updateThread.Join();
-            RankingListUpdateThread.Join();
-            GlobalScoreListUpdateThread.Join();
-            CheckDatabaseConnectionThread.Join();
+            updateThread?.Join();
+            RankingListUpdateThread?.Join();
+            GlobalScoreListUpdateThread?.Join();
+            CheckDatabaseConnectionThread?.Join();
 
             // Spiel beenden
             logger.Log("Spiel beenden", Thread.CurrentThread.Name);
@@ -341,7 +341,7 @@ namespace BugHunter
             // Hauptmenü
             if(CurrentGameState == GameState.Hauptmenu)
             {
-                if ((Keyboard.GetState().IsKeyDown(Keys.S) || Keyboard.GetState().IsKeyDown(Keys.Down) || GamePad.GetState(PlayerIndex.One).IsButtonDown(Buttons.DPadUp)) && gameTime.TotalGameTime.TotalMilliseconds - lastMenuButtonSwitch >= 150)
+                if ((Keyboard.GetState().IsKeyDown(Keys.S) || Keyboard.GetState().IsKeyDown(Keys.Down) || GamePad.GetState(PlayerIndex.One).IsButtonDown(Buttons.DPadUp)) && gameTime.TotalGameTime.TotalMilliseconds - lastMenuButtonSwitch >= 250)
                 {
                     switch (aktuellerMenupunkt)
                     {
@@ -362,7 +362,7 @@ namespace BugHunter
                     lastMenuButtonSwitch = gameTime.TotalGameTime.TotalMilliseconds;
                 }
 
-                if ((Keyboard.GetState().IsKeyDown(Keys.W) || Keyboard.GetState().IsKeyDown(Keys.Up) || GamePad.GetState(PlayerIndex.One).IsButtonDown(Buttons.DPadUp)) && gameTime.TotalGameTime.TotalMilliseconds - lastMenuButtonSwitch >= 150)
+                if ((Keyboard.GetState().IsKeyDown(Keys.W) || Keyboard.GetState().IsKeyDown(Keys.Up) || GamePad.GetState(PlayerIndex.One).IsButtonDown(Buttons.DPadUp)) && gameTime.TotalGameTime.TotalMilliseconds - lastMenuButtonSwitch >= 250)
                 {
                     switch (aktuellerMenupunkt)
                     {
@@ -648,9 +648,7 @@ namespace BugHunter
         { 
             // Schwarzer Hintergrund
             GraphicsDevice.Clear(Color.TransparentBlack);
-
-
-
+            
             if (CurrentGameState == GameState.Stats)
             {
                 spriteBatch.Begin();

@@ -140,12 +140,6 @@
     <Compile Include="Weapon.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="DiscordRPC">
-      <HintPath>..\packages\Discord RPC\bin\Debug\DiscordRPC.dll</HintPath>
-    </Reference>
-    <Reference Include="log4net, Version=2.0.8.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
-      <HintPath>..\packages\log4net.2.0.8\lib\net45-full\log4net.dll</HintPath>
-    </Reference>
     <Reference Include="MonoGame.Extended">
       <HintPath>..\packages\MonoGame.Extended\Source\MonoGame.Extended\bin\Release\netstandard2.0\MonoGame.Extended.dll</HintPath>
     </Reference>
