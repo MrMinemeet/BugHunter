@@ -39,6 +39,7 @@ namespace ProjectWhitespace
 
                         if (connection.State == System.Data.ConnectionState.Open)
                         {
+                            /*
                             // Datenbankverbindung steht
                             game.logger.Log("Datenbankverbindung steht", Thread.CurrentThread.Name, "Debug");
 
@@ -60,6 +61,26 @@ namespace ProjectWhitespace
                                     break;
                                 }
                             }
+
+                            reader.Close();
+
+                            */
+
+
+                            bool GuidExists = false;
+
+                            string query = "SELECT GlobalHighscore.UserID FROM GlobalHighscore WHERE GlobalHighscore.UserID = '" + game.settings.GUID + "'";
+
+                            command = new MySqlCommand(query);
+                            command.Connection = connection;
+                            reader = command.ExecuteReader();
+
+                            reader.Read();
+
+                            // Wenn eine Zeile zurück gekommen ist dann ist die GUID vorhanden
+                            if(reader.HasRows)
+                                if (reader.GetString(0).Equals(game.settings.GUID))
+                                    GuidExists = true;
 
                             reader.Close();
 
