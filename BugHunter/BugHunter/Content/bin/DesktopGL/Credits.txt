@@ -1,2 +1,5 @@
 ﻿SOUND:
 	Score.wav - http://devassets.com/
+
+Texture:
+	Player: https://jesse-m.itch.io/jungle-pack - Modifiziert von Alexander Voglsperger

@@ -39,34 +39,6 @@ namespace ProjectWhitespace
 
                         if (connection.State == System.Data.ConnectionState.Open)
                         {
-                            /*
-                            // Datenbankverbindung steht
-                            game.logger.Log("Datenbankverbindung steht", Thread.CurrentThread.Name, "Debug");
-
-                            string query = "select `GlobalHighscore`.`userid`,`GlobalHighscore`.`score` from `GlobalHighscore`";
-                            command = new MySqlCommand(query);
-                            command.Connection = connection;
-
-                            // select rückgabe auslesen
-                            reader = command.ExecuteReader();
-
-                            bool GuidExists = false;
-
-                            while (reader.Read())
-                            {
-                                // guid in datenbank gefunden
-                                if (reader.GetString(0).Equals(game.settings.GUID))
-                                {
-                                    GuidExists = true;
-                                    break;
-                                }
-                            }
-
-                            reader.Close();
-
-                            */
-
-
                             bool GuidExists = false;
 
                             string query = "SELECT GlobalHighscore.UserID FROM GlobalHighscore WHERE GlobalHighscore.UserID = '" + game.settings.GUID + "'";

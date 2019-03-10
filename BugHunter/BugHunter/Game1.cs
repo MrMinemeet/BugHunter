@@ -723,7 +723,7 @@ namespace BugHunter
 
                         spriteBatch.DrawString(MenuFont, "PAUSE", new Vector2(player.Position.X - 100, player.Position.Y - 64), Color.White);
                         spriteBatch.DrawString(MenuFont, "Highscore: " + gameStats.HighScore,
-                            new Vector2(player.camera.Position.X + 750, player.camera.Position.Y), Color.White);
+                            new Vector2(player.camera.Position.X + 600, player.camera.Position.Y), Color.White);
                     }
 
                     if (CurrentGameState == GameState.DeathScreen)
