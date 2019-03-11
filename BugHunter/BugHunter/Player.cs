@@ -138,7 +138,7 @@ namespace BugHunter
             UpdatePlayerShooting(gameTime);
 
             // RELOAD ÜBERPRÜFUNG
-
+            /*
             // Array durchlaufen
             for (int y = 0; y * Settings.TilePixelSize < map.HeightInPixels; y++)
             {
@@ -182,6 +182,52 @@ namespace BugHunter
                     }
                 }
             }
+            */
+
+
+            // Integer Map Array durchlaufen
+            for (int y = 0; y * Settings.TilePixelSize < map.HeightInPixels; y++)
+            {
+                for (int x = 0; x < CollisionMapArray[y].Length; x++)
+                {
+                    // Schauen ob aktuelles Tile ein Hitbox Tile ist
+                    if (CollisionMapArray[y][x].Equals(Settings.ReloadTileId))
+                    {
+                        // Rechtecke über Spieler und aktuelles Tile ziehen
+                        MapCollisionRectangle = new Rectangle((x * Settings.TilePixelSize), (y * Settings.TilePixelSize), Settings.TilePixelSize, Settings.TilePixelSize);
+                        PotNewPlayerCollision = new Rectangle((int)(PotNewPlayerPosition.X - Frame.Size.X / 2), (int)(PotNewPlayerPosition.Y - Frame.Size.Y / 2), (int)Frame.Size.X, (int)Frame.Size.Y);
+
+                        // Überprüfen ob sich die beiden Rechtecke überschneiden
+                        if (PotNewPlayerCollision.Intersects(MapCollisionRectangle))
+                        {
+                            // Collision wurde ausgelöst
+                            this.IsReloading = true;
+                            if (gameTime.TotalGameTime.TotalSeconds - ReloadTime > 0.5)
+                            {
+                                ReloadTime = gameTime.TotalGameTime.TotalSeconds;
+                                if (AmmunitionAmmountList[Weapon.WeaponTypes.c] < game.weapon.CAmmoAmount)
+                                    AmmunitionAmmountList[Weapon.WeaponTypes.c] += 1;
+
+                                if (AmmunitionAmmountList[Weapon.WeaponTypes.cpp] < game.weapon.CppAmmoAmount)
+                                    AmmunitionAmmountList[Weapon.WeaponTypes.cpp] += 1;
+
+                                if (AmmunitionAmmountList[Weapon.WeaponTypes.csharp] < game.weapon.CsharpAmmoAmount)
+                                    AmmunitionAmmountList[Weapon.WeaponTypes.csharp] += 1;
+
+                                if (AmmunitionAmmountList[Weapon.WeaponTypes.java] < game.weapon.JavaAmmoAmount)
+                                    AmmunitionAmmountList[Weapon.WeaponTypes.java] += 1;
+
+                                if (AmmunitionAmmountList[Weapon.WeaponTypes.maschinensprache] < game.weapon.MaschinenspracheAmmoAmount)
+                                    AmmunitionAmmountList[Weapon.WeaponTypes.maschinensprache] += 1;
+
+                            }
+                        }
+                        else
+                            this.IsReloading = false;
+                    }
+                }
+            }
+
             // Waffenart updaten
             WeaponUpdate(gameTime);
             
@@ -478,7 +524,6 @@ namespace BugHunter
         /// <returns></returns>
         private bool DidHitCollision(int[][] CollisionMapArray, TiledMap map)
         {
-            
             // Integer Map Array durchlaufen
             for (int y = 0; y * Settings.TilePixelSize < map.HeightInPixels; y++)
             {
@@ -489,7 +534,7 @@ namespace BugHunter
                     {
                         // Rechtecke über Spieler und aktuelles Tile ziehen
                         MapCollisionRectangle = new Rectangle((x * Settings.TilePixelSize), (y * Settings.TilePixelSize), Settings.TilePixelSize, Settings.TilePixelSize);
-                          PotNewPlayerCollision = new Rectangle((int)(PotNewPlayerPosition.X - Frame.Size.X / 2), (int)(PotNewPlayerPosition.Y - Frame.Size.Y / 2), (int)Frame.Size.X, (int)Frame.Size.Y);
+                        PotNewPlayerCollision = new Rectangle((int)(PotNewPlayerPosition.X - Frame.Size.X / 2), (int)(PotNewPlayerPosition.Y - Frame.Size.Y / 2), (int)Frame.Size.X, (int)Frame.Size.Y);
 
                         // Überprüfen ob sich die beiden Rechtecke überschneiden
                         if (PotNewPlayerCollision.Intersects(MapCollisionRectangle))

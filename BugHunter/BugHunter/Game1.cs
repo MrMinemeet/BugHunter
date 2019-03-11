@@ -271,9 +271,6 @@ namespace BugHunter
 
                 // Threads Starten
                 CheckDatabaseConnectionThread.Start();
-                updateThread.Start();
-                RankingListUpdateThread.Start();
-                GlobalScoreListUpdateThread.Start();
             }
 
             pauseScreen = new Texture2D(graphics.GraphicsDevice, settings.resolutionWidth, settings.resolutionHeight);
@@ -315,6 +312,13 @@ namespace BugHunter
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Update(GameTime gameTime)
         {
+            if(settings.IsSendStatsAllowed && updateThread.ThreadState.Equals(System.Threading.ThreadState.Unstarted) && RankingListUpdateThread.ThreadState.Equals(System.Threading.ThreadState.Unstarted) && GlobalScoreListUpdateThread.ThreadState.Equals(System.Threading.ThreadState.Unstarted))
+            {
+                updateThread.Start();
+                RankingListUpdateThread.Start();
+                GlobalScoreListUpdateThread.Start();
+            }
+
             if (Keyboard.GetState().IsKeyDown(Keys.F1))
             {
                 CurrentGameState = GameState.Paused;
