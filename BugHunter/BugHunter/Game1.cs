@@ -93,7 +93,7 @@ namespace BugHunter
         public int[][] MapArray;
         public int[][] EnemySpawnPointsArray;
 
-        private double LastKeyStrokeInput = 0;
+        public double LastKeyStrokeInput = 0;
 
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
@@ -400,6 +400,7 @@ namespace BugHunter
                             break;
                         case Menubuttons.Einstellungen:
                             this.CurrentGameState = GameState.Settings;
+                            LastKeyStrokeInput = gameTime.TotalGameTime.TotalMilliseconds;
                             break;
                         case Menubuttons.Beenden:
                             Exit();

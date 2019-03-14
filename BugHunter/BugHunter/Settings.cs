@@ -45,7 +45,7 @@ namespace BugHunter
         public const byte ReloadTileId = 24;
         public const byte PowerupTileId = 20;
         public const byte generalMaxPowerUps = 6;
-        public readonly string LoggingPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), @"My games\Bug Hunter\log.txt");
+        public readonly string LoggingPath;
 
         // DATABASE LOGIN
         public const string host = "projectwhitespace.net";      // Domain                              (projectwhitespace.net)
@@ -59,6 +59,23 @@ namespace BugHunter
         public Settings(Game1 game)
         {
             this.game = game;
+            if (IsLinux)
+            {
+                 LoggingPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), @"My games/Bug Hunter/log.txt");
+            }
+            else
+            {
+                 LoggingPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), @"My games\Bug Hunter\log.txt");
+            }
+        }
+
+        public static bool IsLinux
+        {
+            get
+            {
+                int p = (int)Environment.OSVersion.Platform;
+                return (p == 4) || (p == 6) || (p == 128);
+            }
         }
 
         public Texture2D EmptyTexture { get; set; }
@@ -69,18 +86,28 @@ namespace BugHunter
         /// <returns>Liefet False wenn nichts geladen wurde</returns>
         public bool LoadSettings()
         {
-            String path = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), @"My games\Bug Hunter");
+            string path;
+
+            if (IsLinux)
+            {
+                path = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), @"My games/Bug Hunter");
+                // Ordner Verzeichniss erstellen
+                Directory.CreateDirectory(path);
+                path = path + @"/Configuration.config";
+            }
+            else
+            {
+                path = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), @"My games\Bug Hunter");
+                // Ordner Verzeichniss erstellen
+                Directory.CreateDirectory(path);
+                path = path + @"\Configuration.config";
+            }
 
             StreamReader sr = null;
             bool DidLoad = false;
 
             try
             {
-                // Ordner Verzeichniss erstellen
-                Directory.CreateDirectory(path);
-
-
-                path = path + @"\Configuration.config";
                 sr = new StreamReader(path);
 
                 string line;
@@ -91,6 +118,8 @@ namespace BugHunter
                     {
                         sb = new StringBuilder(line);
                         sb = sb.Remove(0, 9);
+                        if (sb.Length > 15)
+                            sb.Length = 15;
                         this.UserName = sb.ToString();
                         DidLoad = true;
                     }
@@ -112,22 +141,18 @@ namespace BugHunter
 
                     if (line.Contains("Send-Stats="))
                     {
-                        sb = new StringBuilder(line);
-                        sb = sb.Remove(0, 11);
-                        if (sb.ToString().Equals("True") || sb.ToString().Equals("true"))
-                            IsDebugEnabled = true;
+                        if (line.ToLower().Contains("true"))
+                            SendAnonymStatistics = true;
                         else
-                            IsDebugEnabled = false;
+                            SendAnonymStatistics = false;
                         DidLoad = true;
                     }
                     if (line.Contains("Send-Anonym-Statistics="))
                     {
-                        sb = new StringBuilder(line);
-                        sb = sb.Remove(0, 23);
-                        if (sb.ToString().Equals("True") || sb.ToString().Equals("true"))
-                            IsSendStatsAllowed = true;
+                        if(line.ToLower().Contains("true"))
+                            SendAnonymStatistics = true;
                         else
-                            IsSendStatsAllowed = false;
+                            SendAnonymStatistics = false;
                         DidLoad = true;
                     }
 
@@ -138,14 +163,13 @@ namespace BugHunter
                         this.GUID = sb.ToString();
                         DidLoad = true;
                     }
+
                     if (line.Contains("Debug-Mode="))
                     {
-                        sb = new StringBuilder(line);
-                        sb = sb.Remove(0, 11);
-                        if (sb.ToString().Equals("True") || sb.ToString().Equals("true"))
-                            IsDebugEnabled = true;
+                        if (line.ToLower().Contains("true"))
+                            SendAnonymStatistics = true;
                         else
-                            IsDebugEnabled = false;
+                            SendAnonymStatistics = false;
                         DidLoad = true;
                     }
                 }
@@ -173,19 +197,30 @@ namespace BugHunter
 
         public void SaveSettings()
         {
-            String path = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), @"My games\Bug Hunter");
+            string path;
+
+            if (IsLinux)
+            {
+                path = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), @"My games/Bug Hunter");
+                // Ordner Verzeichniss erstellen
+                Directory.CreateDirectory(path);
+                path = path + @"/Configuration.config";
+            }
+            else
+            {
+                path = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), @"My games\Bug Hunter");
+                // Ordner Verzeichniss erstellen
+                Directory.CreateDirectory(path);
+                path = path + @"\Configuration.config";
+            }
 
             StreamWriter sw = null;
 
             try
             {
-                // Ordner Verzeichniss erstellen
-                Directory.CreateDirectory(path);
-                
-                path = path + @"\Configuration.config";
                 sw = new StreamWriter(path);
 
-                sw.WriteLine("// Nutzername für Statistiken");
+                sw.WriteLine("// Nutzername (Max. 15 Zeichen)");
                 sw.WriteLine("Username=" + this.UserName);
                 sw.WriteLine();
 
@@ -225,7 +260,22 @@ namespace BugHunter
         /// <returns>Liefet False wenn nichts geladen wurde</returns>
         public bool LoadGamedata()
         {
-            String path = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), @"My games\Bug Hunter");
+            string path;
+
+            if (IsLinux)
+            {
+                path = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), @"My games/Bug Hunter");
+                // Ordner Verzeichniss erstellen
+                Directory.CreateDirectory(path);
+                path = path + @"/Game.data";
+            }
+            else
+            {
+                path = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), @"My games\Bug Hunter");
+                // Ordner Verzeichniss erstellen
+                Directory.CreateDirectory(path);
+                path = path + @"\Game.data";
+            }
 
             BinaryReader br = null;
 
@@ -233,10 +283,6 @@ namespace BugHunter
 
             try
             {
-                // Ordner Verzeichniss erstellen
-                Directory.CreateDirectory(path);
-
-                path = path + @"\Game.data";
                 br = new BinaryReader(new FileStream(path, FileMode.Open));
 
                 string input;
@@ -280,16 +326,27 @@ namespace BugHunter
         /// </summary>
         public void SaveGamedata()
         {
-            String path = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), @"My games\Bug Hunter");
+            string path;
+
+            if (IsLinux)
+            {
+                path = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), @"My games/Bug Hunter");
+                // Ordner Verzeichniss erstellen
+                Directory.CreateDirectory(path);
+                path = path + @"/Game.data";
+            }
+            else
+            {
+                path = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), @"My games\Bug Hunter");
+                // Ordner Verzeichniss erstellen
+                Directory.CreateDirectory(path);
+                path = path + @"\Game.data";
+            }
 
             BinaryWriter bw = null;
 
             try
             {
-                // Ordner Verzeichniss erstellen
-                Directory.CreateDirectory(path);
-
-                path = path + @"\Game.data";
                 bw = new BinaryWriter(new FileStream(path, FileMode.OpenOrCreate));
 
                 // Wert als String einlesen
