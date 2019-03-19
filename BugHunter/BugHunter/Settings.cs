@@ -27,6 +27,7 @@ namespace BugHunter
 
 
         public string GUID= "";
+        public string StatisticsGUID = "";
         public string UserName = "";
 
         public void UpdateSettings(GraphicsDeviceManager gdm)
@@ -165,13 +166,21 @@ namespace BugHunter
                         this.GUID = sb.ToString();
                         DidLoad = true;
                     }
+                    
+                    if (line.Contains("Statistics-ID="))
+                    {
+                        sb = new StringBuilder(line);
+                        sb = sb.Remove(0, 14);
+                        this.StatisticsGUID = sb.ToString();
+                        DidLoad = true;
+                    }
 
                     if (line.Contains("Debug-Mode="))
                     {
                         if (line.ToLower().Contains("true"))
-                            SendAnonymStatistics = true;
+                            IsDebugEnabled = true;
                         else
-                            SendAnonymStatistics = false;
+                            IsDebugEnabled = false;
                         DidLoad = true;
                     }
                 }
@@ -189,6 +198,11 @@ namespace BugHunter
             if(this.GUID.Length == 0)
             {
                 this.GUID = Guid.NewGuid().ToString();
+            }
+            if(this.StatisticsGUID.Length == 0)
+            {
+
+                this.StatisticsGUID = Guid.NewGuid().ToString();
             }
             if(this.UserName.Length == 0)
             {
@@ -241,6 +255,7 @@ namespace BugHunter
                 sw.WriteLine(" -- Please do not edit anything below this line! Maybe, most likely, definitly harm/break your gaming experience or game files. --");
                 sw.WriteLine();
                 sw.WriteLine("GUID=" + this.GUID);
+                sw.WriteLine("Statistics-ID=" + this.StatisticsGUID);
                 sw.WriteLine("Debug-Mode=" + this.IsDebugEnabled);
 
                 sw.Flush();

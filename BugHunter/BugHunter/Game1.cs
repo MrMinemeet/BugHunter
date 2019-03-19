@@ -110,7 +110,7 @@ namespace BugHunter
         public Thread RankingListUpdateThread;
         public Thread GlobalScoreListUpdateThread;
         Thread CheckDatabaseConnectionThread;
-
+        public Thread SendStatisticsThread;
 
         // DEBUG Featurese
         FpsCounter fps = new FpsCounter();
@@ -269,6 +269,9 @@ namespace BugHunter
                 CheckDatabaseConnectionThread = new Thread(() => Settings.CheckInternetConnectionThread(this));
                 CheckDatabaseConnectionThread.Name = "CheckDatabaseConnectionThread";
 
+                SendStatisticsThread = new Thread(() => Database.SendAnonymStatistics(this));
+                SendStatisticsThread.Name = "SendStatisticsThread";
+
                 // Threads Starten
                 CheckDatabaseConnectionThread.Start();
             }
@@ -286,6 +289,7 @@ namespace BugHunter
             RankingListUpdateThread?.Interrupt();
             GlobalScoreListUpdateThread?.Interrupt();
             CheckDatabaseConnectionThread?.Interrupt();
+            SendStatisticsThread?.Interrupt();
 
             UpdateGlobalScore();
 
@@ -302,6 +306,7 @@ namespace BugHunter
             RankingListUpdateThread?.Join(20000);
             GlobalScoreListUpdateThread?.Join(20000);
             CheckDatabaseConnectionThread?.Join(20000);
+            SendStatisticsThread?.Join(20000);
 
             // Spiel beenden
             logger.Log("Spiel beenden", Thread.CurrentThread.Name);
@@ -312,11 +317,16 @@ namespace BugHunter
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Update(GameTime gameTime)
         {
-            if(settings.IsSendStatsAllowed && updateThread.ThreadState.Equals(System.Threading.ThreadState.Unstarted) && RankingListUpdateThread.ThreadState.Equals(System.Threading.ThreadState.Unstarted) && GlobalScoreListUpdateThread.ThreadState.Equals(System.Threading.ThreadState.Unstarted))
+            if(settings.IsSendStatsAllowed && updateThread.ThreadState.Equals(System.Threading.ThreadState.Unstarted) && RankingListUpdateThread.ThreadState.Equals(System.Threading.ThreadState.Unstarted) && GlobalScoreListUpdateThread.ThreadState.Equals(System.Threading.ThreadState.Unstarted) && SendStatisticsThread.ThreadState.Equals(System.Threading.ThreadState.Unstarted))
             {
                 updateThread.Start();
                 RankingListUpdateThread.Start();
                 GlobalScoreListUpdateThread.Start();
+
+                if (settings.SendAnonymStatistics)
+                {
+                    SendStatisticsThread.Start();
+                }
             }
 
             if (Keyboard.GetState().IsKeyDown(Keys.F1))

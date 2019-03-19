@@ -39,6 +39,7 @@ namespace ProjectWhitespace
                 {
                     // Falls Logdatei nicht existiert wird eine neue erstellt
                     swNew = File.CreateText(this.LogPath);
+                    swNew.AutoFlush = true;
                     
                     // Schreibt alle Logs in der LogQueue in das File
                     foreach(string Log in LogQueue)
@@ -52,10 +53,12 @@ namespace ProjectWhitespace
                     // Wenn Logdatei bereits vorhanden ist wird der aktuellle Log angehangen
                     swAppend = new StreamWriter(this.LogPath, true);
 
+                    swAppend.AutoFlush = true;
+
                     // Schreibt alle Logs in der LogQueue in das File
                     foreach (string Log in LogQueue)
                     {
-                        swAppend.WriteLineAsync(Log);
+                        swAppend.WriteLine(Log);
                     }
                     LogQueue.Clear();   // Löscht alle Einträge in der LogQueue da diese Eingetragen wurden
                 }

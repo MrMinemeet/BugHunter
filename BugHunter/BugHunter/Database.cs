@@ -15,6 +15,8 @@ namespace ProjectWhitespace
         /// <param name="game">Game Objekt um auf Einstellungen und Highscore zugreifen zu können</param>
         public static void UpdateDatabaseThread(Game1 game)
         {
+            bool IsInterrupted = false;
+
             string connString = "Server=" + Settings.host + ";Database=" + Settings.database
                  + ";port=" + Settings.port + ";User Id=" + Settings.username + ";password=" + Settings.password;
 
@@ -55,22 +57,7 @@ namespace ProjectWhitespace
                                     GuidExists = true;
 
                             reader.Close();
-
-                            string externalip = "private";
-                            string Statistiken = "";
-                            if (game.settings.SendAnonymStatistics)
-                            {
-                                string returnString = new WebClient().DownloadString("http://icanhazip.com");
-                                externalip = Regex.Replace(returnString, @"\t|\n|\r", "");
-
-
-                                OperatingSystem os_info = System.Environment.OSVersion;
-
-                                TimeSpan timeSpan = TimeSpan.FromMilliseconds(game.gameStats.PlayTime);
-
-                                Statistiken = "OS-Version:" + " " + os_info.VersionString +", Spielzeit:" + timeSpan.ToString("dd\\.hh\\:mm");                                
-                            }
-
+                            
                             if (GuidExists)
                             {
                                 game.logger.Log("GUID war vorhanden. Eintrag wird upgedated", Thread.CurrentThread.Name, "Debug");
@@ -79,8 +66,6 @@ namespace ProjectWhitespace
                                     "UPDATE `GlobalHighscore` SET `Name` = '" + game.settings.UserName +
                                     "', `Score` = '" + game.gameStats.HighScore +
                                     "', `DateTime` = '" + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") +
-                                    "', `IPAddress` = '" + externalip +
-                                    "', `Statistics` = '" + Statistiken +
                                     "' WHERE `GlobalHighscore`.`UserID` = '" + game.settings.GUID + "'";
                                 command.ExecuteNonQuery();
                             }
@@ -88,12 +73,12 @@ namespace ProjectWhitespace
                             {
                                 game.logger.Log("GUID nicht gefunden. Neuer Eintrag wird erstellt", Thread.CurrentThread.Name, "Debug");
                                 // Kein Eintrag gefunden, wodurch ein neuer erstellt wird
-                                command = new MySqlCommand("INSERT INTO `GlobalHighscore` (`UserID`, `Name`, `Score`, `DateTime`, `IPAddress`) VALUES('" +
+                                command = new MySqlCommand("INSERT INTO `GlobalHighscore` (`UserID`, `Name`, `Score`, `DateTime`) VALUES('" +
                                     game.settings.GUID + "', '" +
                                     game.settings.UserName + "', '" +
                                     game.gameStats.HighScore + "', '" +
                                 DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") +
-                                "', '"+externalip+"');");
+                                "');");
 
                                 command.Connection = connection;
 
@@ -114,6 +99,13 @@ namespace ProjectWhitespace
                     }
                 }
 
+                // Wenn der Thread Interrupted wird läuft er noch einmal durch bis er sich beendet
+                if (IsInterrupted)
+                {
+                    game.logger.Log("Thread beendet", Thread.CurrentThread.Name, "Debug");
+                    break;
+                }
+
                 // Datenbank wird alle 15 Sekunden upgedated
                 try
                 {
@@ -122,8 +114,7 @@ namespace ProjectWhitespace
                 catch (ThreadInterruptedException e)
                 {
                     Console.WriteLine(e.Message);
-                    game.logger.Log("Thread beendet", Thread.CurrentThread.Name, "Debug");
-                    break;
+                    IsInterrupted = true;
                 }
             }
         }
@@ -284,6 +275,114 @@ namespace ProjectWhitespace
                     break;
                 }
 
+            }
+        }
+
+        /// <summary>
+        /// Thread zum senden anonymer Statistiken
+        /// </summary>
+        /// <param name="game"></param>
+        public static void SendAnonymStatistics(Game1 game)
+        {
+            bool IsInterrupted = false;
+
+            string connString = "Server=" + Settings.host + ";Database=" + Settings.database
+                 + ";port=" + Settings.port + ";User Id=" + Settings.username + ";password=" + Settings.password;
+
+            MySqlConnection connection = new MySqlConnection(connString);
+            MySqlCommand command;
+            MySqlDataReader reader;
+
+            while (true)
+            {
+                if (game.settings.HasInternetConnection)
+                {
+
+                    try
+                    {
+                        if (connection.State != System.Data.ConnectionState.Open)
+                        {
+                            // Verbindung muss erst aufgebaut werden
+                            game.logger.Log("Datenbankverbindung wird aufgebaut", Thread.CurrentThread.Name, "Debug");
+                            connection.Open();
+
+                        }
+
+                        if (connection.State == System.Data.ConnectionState.Open)
+                        {
+                            bool GuidExists = false;
+
+                            string query = "SELECT Statistiken.StatisticsID FROM Statistiken WHERE Statistiken.StatisticsID = '" + game.settings.StatisticsGUID + "'";
+
+                            command = new MySqlCommand(query);
+                            command.Connection = connection;
+                            reader = command.ExecuteReader();
+
+                            reader.Read();
+
+                            // Wenn eine Zeile zurück gekommen ist dann ist die GUID vorhanden
+                            if (reader.HasRows)
+                                if (reader.GetString(0).Equals(game.settings.StatisticsGUID))
+                                    GuidExists = true;
+
+                            reader.Close();
+
+                            string externalip = "non";
+
+                            string returnString = new WebClient().DownloadString("http://icanhazip.com");
+                            externalip = Regex.Replace(returnString, @"\t|\n|\r", "");
+
+                            TimeSpan timeSpan = TimeSpan.FromMilliseconds(game.gameStats.PlayTime);
+
+                            if (GuidExists)
+                            {
+                                game.logger.Log("Statistics GUID war vorhanden. Eintrag wird upgedated", Thread.CurrentThread.Name, "Debug");
+                                // Datenbankeintrag wird upgedated
+                                command.CommandText = "UPDATE `BugHunter`.`Statistiken` SET `IP Address` = '" + externalip + "', `OS` = '" + System.Environment.OSVersion.VersionString + "', `Playtime` = '" + timeSpan.ToString("dd\\.hh\\:mm") + "' WHERE `StatisticsID` = '" + game.settings.StatisticsGUID + "'";
+                                command.ExecuteNonQuery();
+                            }
+                            else
+                            {
+                                game.logger.Log("Statistics GUID nicht gefunden. Neuer Eintrag wird erstellt", Thread.CurrentThread.Name, "Debug");
+                                // Kein Eintrag gefunden, wodurch ein neuer erstellt wird
+                                command = new MySqlCommand("INSERT INTO `BugHunter`.`Statistiken`(`StatisticsID`, `IP Address`, `OS`, `Playtime`) VALUES ('" +game.settings.StatisticsGUID + "', '" + externalip + "', '"+ System.Environment.OSVersion.VersionString +"', '" + timeSpan.ToString("dd\\.hh\\:mm") + "')");
+
+                                command.Connection = connection;
+
+                                command.ExecuteNonQuery();
+                            }
+
+                        }
+                    }
+                    catch (MySqlException e)
+                    {
+                        Console.WriteLine(e.Message);
+                        game.logger.Log(e.Message, Thread.CurrentThread.Name, "Error");
+                    }
+                    finally
+                    {
+                        connection.Close();
+                        game.logger.Log("Datenbankverbindung geschlossen", Thread.CurrentThread.Name, "Debug");
+                    }
+                }
+
+                // Wenn der Thread Interrupted wird läuft er noch einmal durch bis er sich beendet
+                if (IsInterrupted)
+                {
+                    game.logger.Log("Thread beendet", Thread.CurrentThread.Name, "Debug");
+                    break;
+                }
+
+                // Datenbank wird alle 15 Sekunden upgedated
+                try
+                {
+                    Thread.Sleep(Settings.DatabaseUpdateCycleTime);
+                }
+                catch (ThreadInterruptedException e)
+                {
+                    Console.WriteLine(e.Message);
+                    IsInterrupted = true;
+                }
             }
         }
     }
