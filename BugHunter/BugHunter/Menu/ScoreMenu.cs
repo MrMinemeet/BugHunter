@@ -40,21 +40,51 @@ namespace BugHunter
             {
                 spriteBatch.DrawString(game.font, StatsText[i], new Vector2(game.player.camera.Origin.X - 900, game.player.camera.Origin.Y - 400 + (i * 50)), Color.White);
             }
+
+
             
             // Global Ranking Liste
             spriteBatch.DrawString(game.MenuFont, "Top 10 Spieler", new Vector2(game.player.camera.Origin.X - 300, game.player.camera.Origin.Y - 500), Color.White);
 
-            for (int i = 0; i < game.gameStats.Top10Names.Count; i++)
+            if (game.settings.HasInternetConnection)
             {
-                spriteBatch.DrawString(game.font, game.gameStats.Top10Names[i] + ":  " + game.gameStats.Top10Score[i], new Vector2(game.player.camera.Origin.X - 300, game.player.camera.Origin.Y + (50 * i) - 400), Color.White);
+                if (game.gameStats.Top10Names.Count == 0)
+                {
+                    spriteBatch.DrawString(game.font, Texttable.General_Not_Avilable, new Vector2(game.player.camera.Origin.X - 300, game.player.camera.Origin.Y - 400), Color.MonoGameOrange);
+                }
+                for (int i = 0; i < game.gameStats.Top10Names.Count; i++)
+                {
+                    spriteBatch.DrawString(game.font, game.gameStats.Top10Names[i] + ":  " + game.gameStats.Top10Score[i], new Vector2(game.player.camera.Origin.X - 300, game.player.camera.Origin.Y + (50 * i) - 400), Color.White);
+                }
             }
+            else
+            {
+                spriteBatch.DrawString(game.font, Texttable.General_No_Internet_Connection, new Vector2(game.player.camera.Origin.X - 200, game.player.camera.Origin.Y - 400), Color.OrangeRed);
+            }
+
+
 
             // Global Score
             spriteBatch.DrawString(game.MenuFont, Texttable.Stats_Global_Stats, new Vector2(game.player.camera.Origin.X + 350, game.player.camera.Origin.Y - 500), Color.White);
 
-            for (int i = 0; i < GlobalStatsText.Count; i++)
+
+            if (game.settings.HasInternetConnection)
             {
-                spriteBatch.DrawString(game.font, GlobalStatsText[i], new Vector2(game.player.camera.Origin.X + 350, game.player.camera.Origin.Y - 400 + (i * 50)), Color.White);
+                if (game.gameStats.GlobalPlayerAmount == 0)
+                {
+                    spriteBatch.DrawString(game.font, Texttable.General_Not_Avilable, new Vector2(game.player.camera.Origin.X + 350, game.player.camera.Origin.Y - 400), Color.MonoGameOrange);
+                }
+                else {
+                    for (int i = 0; i < GlobalStatsText.Count; i++)
+                    {
+                        spriteBatch.DrawString(game.font, GlobalStatsText[i], new Vector2(game.player.camera.Origin.X + 350, game.player.camera.Origin.Y - 400 + (i * 50)), Color.White);
+                    }
+                }
+            }
+            else
+            {
+                spriteBatch.DrawString(game.font, Texttable.General_No_Internet_Connection, new Vector2(game.player.camera.Origin.X + 400, game.player.camera.Origin.Y - 400), Color.OrangeRed);
+
             }
         }
     }

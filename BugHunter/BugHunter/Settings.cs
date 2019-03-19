@@ -36,6 +36,8 @@ namespace BugHunter
         }
 
         // Programm Interne Einstellungen / Constanten
+        public static int DatabaseUpdateCycleTime = 15000;  // Wartezeit für Datenbank Updates.
+
         public int MapSizeHeight { get; set; }
         public int MapSizeWidth { get; set; }
         public const int TilePixelSize = 64;

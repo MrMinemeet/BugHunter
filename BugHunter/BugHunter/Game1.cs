@@ -298,10 +298,10 @@ namespace BugHunter
             // Gamepadvibrationen ausschalten
             GamePad.SetVibration(PlayerIndex.One, 0f, 0f);
 
-            updateThread?.Join();
-            RankingListUpdateThread?.Join();
-            GlobalScoreListUpdateThread?.Join();
-            CheckDatabaseConnectionThread?.Join();
+            updateThread?.Join(20000);
+            RankingListUpdateThread?.Join(20000);
+            GlobalScoreListUpdateThread?.Join(20000);
+            CheckDatabaseConnectionThread?.Join(20000);
 
             // Spiel beenden
             logger.Log("Spiel beenden", Thread.CurrentThread.Name);

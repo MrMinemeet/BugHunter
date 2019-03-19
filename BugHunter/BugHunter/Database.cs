@@ -117,7 +117,7 @@ namespace ProjectWhitespace
                 // Datenbank wird alle 15 Sekunden upgedated
                 try
                 {
-                    Thread.Sleep(30000);
+                    Thread.Sleep(Settings.DatabaseUpdateCycleTime);
                 }
                 catch (ThreadInterruptedException e)
                 {
@@ -191,7 +191,7 @@ namespace ProjectWhitespace
                 }
                 try
                 {
-                    Thread.Sleep(30000);
+                    Thread.Sleep(Settings.DatabaseUpdateCycleTime);
                 }
                 catch (ThreadInterruptedException e)
                 {
@@ -275,7 +275,7 @@ namespace ProjectWhitespace
 
                 try
                 {
-                    Thread.Sleep(30000);
+                    Thread.Sleep(Settings.DatabaseUpdateCycleTime);
                 }
                 catch (ThreadInterruptedException e)
                 {

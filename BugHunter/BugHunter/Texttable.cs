@@ -21,6 +21,7 @@
         public static string Stats_Highscore = "Highscore: ";
         public static string Stats_Global_Player_Amount = "Spieleranzahl: ";
         public static string General_No_Internet_Connection = "Keine Verbindung";
+        public static string General_Not_Avilable = "Noch keine Daten vorhanden";
         public static string Stats_Stats_Deaktivated = "Statistiken deaktiviert";
         public static string Stats_Spielzeit = "Spielzeit: ";
         public static string Settings_Musik = "Musiklautstärke: ";
