@@ -219,6 +219,9 @@
     </None>
     <None Include="app.manifest" />
     <None Include="Content\map1.tmx" />
+    <None Include="LINUX-START.sh">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -226,9 +229,14 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Credits.txt" />
+    <Content Include="Credits.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Icon.ico" />
     <Content Include="Icon.png" />
+    <Content Include="README.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.7.1">

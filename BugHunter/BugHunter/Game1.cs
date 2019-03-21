@@ -622,7 +622,6 @@ namespace BugHunter
             if((Keyboard.GetState().IsKeyDown(Keys.R) || GamePad.GetState(PlayerIndex.One).IsButtonDown(Buttons.A)) && CurrentGameState == GameState.DeathScreen)
             {
                 player.Health = player.MaxHealth;
-                UpdateGlobalScore();
                 this.CurrentGameState = GameState.Hauptmenu;
             }
 
@@ -681,7 +680,6 @@ namespace BugHunter
 
             if (CurrentGameState == GameState.Ingame || CurrentGameState == GameState.Paused || CurrentGameState == GameState.DeathScreen)
             {
-
                 var transformMatrix = player.camera.GetViewMatrix();
                 spriteBatch.Begin(transformMatrix: transformMatrix, samplerState: SamplerState.PointClamp);
 
