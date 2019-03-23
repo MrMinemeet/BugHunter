@@ -176,6 +176,9 @@ namespace BugHunter
                         spriteBatch.DrawString(game.MenuFont, Texttable.General_On, new Vector2(1200, 500), Color.YellowGreen);
                     break;
             }
+
+            // Info für Namensänderung
+            spriteBatch.DrawString(game.font, Texttable.Settings_Change_Name, new Vector2(100, 700), Color.GreenYellow);
         }
     }
 }
