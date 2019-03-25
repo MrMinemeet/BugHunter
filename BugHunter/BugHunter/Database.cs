@@ -2,6 +2,7 @@
 using MySql.Data.MySqlClient;
 using System;
 using System.Net;
+using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading;
 
@@ -15,6 +16,8 @@ namespace ProjectWhitespace
         /// <param name="game">Game Objekt um auf Einstellungen und Highscore zugreifen zu können</param>
         public static void UpdateDatabaseThread(Game1 game)
         {
+
+            StringBuilder sb = new StringBuilder();
             bool IsInterrupted = false;
 
             string connString = "Server=" + Settings.host + ";Database=" + Settings.database
@@ -65,23 +68,37 @@ namespace ProjectWhitespace
                             {
                                 game.logger.Log("GUID war vorhanden. Eintrag wird upgedated", Thread.CurrentThread.Name, "Debug");
                                 // Datenbankeintrag wird upgedated
-                                command.CommandText =
-                                    "UPDATE `GlobalHighscore` SET `Name` = '" + game.settings.UserName +
-                                    "', `Score` = '" + game.gameStats.HighScore +
-                                    "', `DateTime` = '" + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") +
-                                    "' WHERE `GlobalHighscore`.`UserID` = '" + game.settings.GUID + "'";
+                                sb.Clear();
+                                sb.Append("UPDATE `GlobalHighscore` SET `Name` = '");
+                                sb.Append(game.settings.UserName);
+                                sb.Append("', `Score` = '");
+                                sb.Append(game.gameStats.HighScore);
+                                sb.Append("', `DateTime` = '");
+                                sb.Append(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"));
+                                sb.Append("' WHERE `GlobalHighscore`.`UserID` = '");
+                                sb.Append(game.settings.GUID);
+                                sb.Append("'");
+
+                                command.CommandText = sb.ToString();
                                 command.ExecuteNonQuery();
                             }
                             else
                             {
                                 game.logger.Log("GUID nicht gefunden. Neuer Eintrag wird erstellt", Thread.CurrentThread.Name, "Debug");
                                 // Kein Eintrag gefunden, wodurch ein neuer erstellt wird
-                                command = new MySqlCommand("INSERT INTO `GlobalHighscore` (`UserID`, `Name`, `Score`, `DateTime`) VALUES('" +
-                                    game.settings.GUID + "', '" +
-                                    game.settings.UserName + "', '" +
-                                    game.gameStats.HighScore + "', '" +
-                                DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") +
-                                "');");
+                                sb.Clear();
+                                sb.Append("INSERT INTO `GlobalHighscore` (`UserID`, `Name`, `Score`, `DateTime`) VALUES('");
+                                sb.Append(game.settings.GUID);
+                                sb.Append("', '");
+                                sb.Append(game.settings.UserName);
+                                sb.Append("', '");
+                                sb.Append(game.gameStats.HighScore);
+                                sb.Append("', '");
+                                sb.Append(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"));
+                                sb.Append("');");
+
+
+                                command = new MySqlCommand(sb.ToString());
 
                                 command.Connection = connection;
 
@@ -107,7 +124,22 @@ namespace ProjectWhitespace
                             reader.Close();
 
                             // Datenbankeintrag wird upgedated
-                            command.CommandText = "UPDATE `GlobalScore` SET `KilledEnemies` = '" + (GlobalKilledEnemies + game.gameStats.KilledEnemies - game.gameStats.KilledEnemiesOld) + "', `CollectedPowerups` = '" + (GlobalCollectedPowerups + game.gameStats.CollectedPowerups - game.gameStats.CollectedPowerupsOld) + "', `Shots` = '" + (GlobalAnzahlSchuesse + game.gameStats.AnzahlSchuesse - game.gameStats.AnzahlSchuesseOld) + "', `Hits` = '" + (GlobalAnzahlHits + game.gameStats.AnzahlTreffer - game.gameStats.AnzahlTrefferOld) + "', `Deaths` = '" + (GlobalDeathCount + game.gameStats.AnzahlTode - game.gameStats.AnzahlTodeOld) + "' WHERE `GlobalScore`.`ID` = 1;";
+                            sb.Clear(); 
+                            sb = new StringBuilder();
+                            sb.Append("UPDATE `GlobalScore` SET `KilledEnemies` = '");
+                            sb.Append(GlobalKilledEnemies + game.gameStats.KilledEnemies - game.gameStats.KilledEnemiesOld);
+                            sb.Append("', `CollectedPowerups` = '");
+                            sb.Append(GlobalCollectedPowerups + game.gameStats.CollectedPowerups - game.gameStats.CollectedPowerupsOld);
+                            sb.Append("', `Shots` = '");
+                            sb.Append(GlobalAnzahlSchuesse + game.gameStats.AnzahlSchuesse - game.gameStats.AnzahlSchuesseOld);
+                            sb.Append("', `Hits` = '");
+                            sb.Append(GlobalAnzahlHits + game.gameStats.AnzahlTreffer - game.gameStats.AnzahlTrefferOld);
+                            sb.Append("', `Deaths` = '");
+                            sb.Append(GlobalDeathCount + game.gameStats.AnzahlTode - game.gameStats.AnzahlTodeOld);
+                            sb.Append("' WHERE `GlobalScore`.`ID` = 1;");
+
+
+                            command.CommandText = sb.ToString();
 
                             command.ExecuteNonQuery();
 
@@ -316,6 +348,7 @@ namespace ProjectWhitespace
         /// <param name="game"></param>
         public static void SendAnonymStatistics(Game1 game)
         {
+            StringBuilder sb = new StringBuilder();
             bool IsInterrupted = false;
 
             string connString = "Server=" + Settings.host + ";Database=" + Settings.database
@@ -370,14 +403,35 @@ namespace ProjectWhitespace
                             {
                                 game.logger.Log("Statistics GUID war vorhanden. Eintrag wird upgedated", Thread.CurrentThread.Name, "Debug");
                                 // Datenbankeintrag wird upgedated
-                                command.CommandText = "UPDATE `BugHunter`.`Statistiken` SET `IP Address` = '" + externalip + "', `OS` = '" + System.Environment.OSVersion.VersionString + "', `Playtime` = '" + timeSpan.ToString("dd\\.hh\\:mm") + "' WHERE `StatisticsID` = '" + game.settings.StatisticsGUID + "'";
+                                sb.Clear();
+                                sb.Append("UPDATE `BugHunter`.`Statistiken` SET `IP Address` = '");
+                                sb.Append(externalip);
+                                sb.Append("', `OS` = '");
+                                sb.Append(System.Environment.OSVersion.VersionString);
+                                sb.Append("', `Playtime` = '");
+                                sb.Append(timeSpan.ToString("dd\\.hh\\:mm"));
+                                sb.Append("' WHERE `StatisticsID` = '");
+                                sb.Append(game.settings.StatisticsGUID);
+                                sb.Append("'");
+
+                                command.CommandText = sb.ToString();
                                 command.ExecuteNonQuery();
                             }
                             else
                             {
                                 game.logger.Log("Statistics GUID nicht gefunden. Neuer Eintrag wird erstellt", Thread.CurrentThread.Name, "Debug");
                                 // Kein Eintrag gefunden, wodurch ein neuer erstellt wird
-                                command = new MySqlCommand("INSERT INTO `BugHunter`.`Statistiken`(`StatisticsID`, `IP Address`, `OS`, `Playtime`) VALUES ('" +game.settings.StatisticsGUID + "', '" + externalip + "', '"+ System.Environment.OSVersion.VersionString +"', '" + timeSpan.ToString("dd\\.hh\\:mm") + "')");
+                                sb.Clear();
+                                sb.Append("INSERT INTO `BugHunter`.`Statistiken`(`StatisticsID`, `IP Address`, `OS`, `Playtime`) VALUES ('");
+                                sb.Append(game.settings.StatisticsGUID);
+                                sb.Append("', '");
+                                sb.Append(externalip);
+                                sb.Append("', '");
+                                sb.Append(System.Environment.OSVersion.VersionString);
+                                sb.Append("', '");
+                                sb.Append(timeSpan.ToString("dd\\.hh\\:mm"));
+                                sb.Append("')");
+                                command = new MySqlCommand(sb.ToString());
 
                                 command.Connection = connection;
 
