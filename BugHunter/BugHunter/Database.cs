@@ -43,6 +43,9 @@ namespace ProjectWhitespace
                         {
                             bool GuidExists = false;
 
+
+
+                            //  <=== HIGHSCORE ===>
                             string query = "SELECT GlobalHighscore.UserID FROM GlobalHighscore WHERE GlobalHighscore.UserID = '" + game.settings.GUID + "'";
 
                             command = new MySqlCommand(query);
@@ -84,6 +87,35 @@ namespace ProjectWhitespace
 
                                 command.ExecuteNonQuery();
                             }
+
+                            //   <=== GLOBAL SCORE ===>
+
+                            command = new MySqlCommand();
+                            command.CommandText = "SELECT * FROM `GlobalScore`";
+                            command.Connection = connection;
+
+                            reader = command.ExecuteReader();
+                            reader.Read();
+
+                            // Aktuellen Wert speichern
+                            uint GlobalKilledEnemies = reader.GetUInt32(1);
+                            uint GlobalCollectedPowerups = reader.GetUInt32(2);
+                            UInt64 GlobalAnzahlSchuesse = reader.GetUInt64(3);
+                            UInt64 GlobalAnzahlHits = reader.GetUInt64(4);
+                            uint GlobalDeathCount = reader.GetUInt32(5);
+
+                            reader.Close();
+
+                            // Datenbankeintrag wird upgedated
+                            command.CommandText = "UPDATE `GlobalScore` SET `KilledEnemies` = '" + (GlobalKilledEnemies + game.gameStats.KilledEnemies - game.gameStats.KilledEnemiesOld) + "', `CollectedPowerups` = '" + (GlobalCollectedPowerups + game.gameStats.CollectedPowerups - game.gameStats.CollectedPowerupsOld) + "', `Shots` = '" + (GlobalAnzahlSchuesse + game.gameStats.AnzahlSchuesse - game.gameStats.AnzahlSchuesseOld) + "', `Hits` = '" + (GlobalAnzahlHits + game.gameStats.AnzahlTreffer - game.gameStats.AnzahlTrefferOld) + "', `Deaths` = '" + (GlobalDeathCount + game.gameStats.AnzahlTode - game.gameStats.AnzahlTodeOld) + "' WHERE `GlobalScore`.`ID` = 1;";
+
+                            command.ExecuteNonQuery();
+
+                            game.gameStats.KilledEnemiesOld = game.gameStats.KilledEnemies;
+                            game.gameStats.CollectedPowerupsOld = game.gameStats.CollectedPowerups;
+                            game.gameStats.AnzahlSchuesseOld = game.gameStats.AnzahlSchuesse;
+                            game.gameStats.AnzahlTrefferOld = game.gameStats.AnzahlTreffer;
+                            game.gameStats.AnzahlTodeOld = game.gameStats.AnzahlTode;
 
                         }
                     }

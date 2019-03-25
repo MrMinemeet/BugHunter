@@ -1,11 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace BugHunter
 {
@@ -178,7 +173,7 @@ namespace BugHunter
             }
 
             // Info für Namensänderung
-            spriteBatch.DrawString(game.font, Texttable.Settings_Change_Name, new Vector2(100, 700), Color.GreenYellow);
+            spriteBatch.DrawString(game.font, Texttable.Settings_Change_Name, new Vector2(100, 900), Color.GreenYellow);
         }
     }
 }

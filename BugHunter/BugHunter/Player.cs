@@ -119,7 +119,6 @@ namespace BugHunter
         /// <param name="map"></param>
         public void Update(GameTime gameTime, int[][] CollisionMapArray, TiledMap map)
         {
-            Rectangle MapTriggerRectangle;
             Rectangle PotNewPlayerCollision;
 
             this.CollisionMapArray = CollisionMapArray;

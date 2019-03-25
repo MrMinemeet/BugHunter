@@ -291,8 +291,6 @@ namespace BugHunter
             CheckDatabaseConnectionThread?.Interrupt();
             SendStatisticsThread?.Interrupt();
 
-            UpdateGlobalScore();
-
             // Speichern von Einstellungen
             settings.SaveSettings();
 
@@ -895,75 +893,6 @@ namespace BugHunter
                 }
             }
             return false;
-        }
-
-        private void UpdateGlobalScore()
-        {
-            if (!settings.IsSendStatsAllowed)
-                return;
-
-
-            String connString = "Server=" + Settings.host + ";Database=" + Settings.database
-                 + ";port=" + Settings.port + ";User Id=" + Settings.username + ";password=" + Settings.password;
-
-            MySqlConnection connection = new MySqlConnection(connString);
-            MySqlCommand command;
-            MySqlDataReader reader;
-            try
-            {
-                if (connection.State != System.Data.ConnectionState.Open)
-                {
-                    // Verbindung muss erst aufgebaut werden
-                    this.logger.Log("Datenbankverbindung wird aufgebaut", "Debug");
-                    connection.Open();
-
-                }
-
-                if (connection.State == System.Data.ConnectionState.Open)
-                {
-                    // Datenbankverbindung steht
-                    this.logger.Log("Datenbankverbindung steht", "Debug");
-
-                    // select rückgabe auslesen
-
-                    command = new MySqlCommand();
-                    command.CommandText = "SELECT * FROM `GlobalScore`";
-                    command.Connection = connection;
-
-                    reader = command.ExecuteReader();
-                    reader.Read();
-
-                    uint GlobalKilledEnemies = reader.GetUInt32(1);
-                    uint GlobalCollectedPowerups = reader.GetUInt32(2);
-                    UInt64 GlobalAnzahlSchuesse = reader.GetUInt64(3);
-                    UInt64 GlobalAnzahlHits = reader.GetUInt64(4);
-                    uint GlobalDeathCount = reader.GetUInt32(5);
-
-
-                    reader.Close();
-
-                    // Datenbankeintrag wird upgedated
-                    command.CommandText = "UPDATE `GlobalScore` SET `KilledEnemies` = '" + (GlobalKilledEnemies + this.gameStats.KilledEnemies - this.gameStats.KilledEnemiesOld) + "', `CollectedPowerups` = '" + (GlobalCollectedPowerups + this.gameStats.CollectedPowerups - this.gameStats.CollectedPowerupsOld)+ "', `Shots` = '" + (GlobalAnzahlSchuesse + this.gameStats.AnzahlSchuesse - this.gameStats.AnzahlSchuesseOld) + "', `Hits` = '" + (GlobalAnzahlHits + this.gameStats.AnzahlTreffer - this.gameStats.AnzahlTrefferOld) + "', `Deaths` = '" + (GlobalDeathCount + this.gameStats.AnzahlTode - this.gameStats.AnzahlTodeOld) + "' WHERE `GlobalScore`.`ID` = 1;";
-
-                    command.ExecuteNonQuery();
-
-                    this.gameStats.KilledEnemiesOld = this.gameStats.KilledEnemies;
-                    this.gameStats.CollectedPowerupsOld = this.gameStats.CollectedPowerups;
-                    this.gameStats.AnzahlSchuesseOld = this.gameStats.AnzahlSchuesse;
-                    this.gameStats.AnzahlTrefferOld = this.gameStats.AnzahlTreffer;
-                    this.gameStats.AnzahlTodeOld = this.gameStats.AnzahlTode;
-                }
-            }
-            catch (MySqlException e)
-            {
-                Console.WriteLine(e.Message);
-                this.logger.Log(e.Message, "Error");
-            }
-            finally
-            {
-                connection.Close();
-                this.logger.Log("Datenbankverbindung geschlossen",Thread.CurrentThread.Name);
-            }
         }
     }
 }
