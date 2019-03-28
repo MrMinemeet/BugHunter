@@ -190,10 +190,7 @@ namespace BugHunter
 
             settingsMenu = new SettingsMenu(this);
 
-
-            Assembly assembly = Assembly.GetExecutingAssembly();
-            FileVersionInfo fileVersionInfo = FileVersionInfo.GetVersionInfo(assembly.Location);
-            settings.Version = fileVersionInfo.ProductVersion;
+            settings.Version = System.Reflection.Assembly.GetEntryAssembly().GetName().Version.ToString();
 
             base.Initialize();
         }
