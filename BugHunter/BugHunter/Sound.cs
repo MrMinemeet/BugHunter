@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework.Audio;
+using System.Collections.Generic;
 
 // This File contains all SoundEffects
 
@@ -12,5 +13,8 @@ namespace BugHunter
         public SoundEffect HintergrundMusik;
 
         public SoundEffect[] Schuesse = new SoundEffect[6];
+
+
+        public List<SoundEffect> MaleDeathSound = new List<SoundEffect>();
     }
 }

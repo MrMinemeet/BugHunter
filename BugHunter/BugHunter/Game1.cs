@@ -233,6 +233,17 @@ namespace BugHunter
             sound.Schuesse[4] = Content.Load<SoundEffect>("audio/Schuss/schuss_005");
             sound.Schuesse[5] = Content.Load<SoundEffect>("audio/Schuss/schuss_006");
 
+            sound.MaleDeathSound.Add(Content.Load<SoundEffect>("audio/Male/Death/death_1"));
+            sound.MaleDeathSound.Add(Content.Load<SoundEffect>("audio/Male/Death/death_2"));
+            sound.MaleDeathSound.Add(Content.Load<SoundEffect>("audio/Male/Death/death_3"));
+            sound.MaleDeathSound.Add(Content.Load<SoundEffect>("audio/Male/Death/death_4"));
+            sound.MaleDeathSound.Add(Content.Load<SoundEffect>("audio/Male/Death/death_5"));
+            sound.MaleDeathSound.Add(Content.Load<SoundEffect>("audio/Male/Death/death_6"));
+            sound.MaleDeathSound.Add(Content.Load<SoundEffect>("audio/Male/Death/death_7"));
+            sound.MaleDeathSound.Add(Content.Load<SoundEffect>("audio/Male/Death/death_8"));
+            sound.MaleDeathSound.Add(Content.Load<SoundEffect>("audio/Male/Death/death_9"));
+            sound.MaleDeathSound.Add(Content.Load<SoundEffect>("audio/Male/Death/death_10"));
+
             // Schriften
             font = Content.Load<SpriteFont>("Font");
             DebugFont = Content.Load<SpriteFont>("Debug");
@@ -452,6 +463,8 @@ namespace BugHunter
                 
                 if (this.Score > int.Parse(gameStats.HighScore))
                 {
+                    // Flag für neuen Highscore setzen
+                    settings.GotNewHighscore = true;
                     gameStats.HighScore = Score.ToString();
                     sound.ScoreSound.Play((settings.Soundlautstaerke / 100), 0, 0);
                 }
@@ -558,6 +571,9 @@ namespace BugHunter
                 if (Keyboard.GetState().IsKeyDown(Keys.F4) && Keyboard.GetState().IsKeyDown(Keys.LeftControl) && settings.IsDebugEnabled)
                 {
                     player.Health = 0;
+                    // zufälligen Death sound abspielen
+                    int randomValue = random.Next(0, sound.MaleDeathSound.Count);
+                    sound.MaleDeathSound[randomValue].Play((settings.Soundlautstaerke / 100f),0,0);
                 }
 
                 player.Update(gameTime, MapArray, map[AktuelleMap].GetTiledMap());
@@ -622,6 +638,7 @@ namespace BugHunter
             // Respawn wenn in Deathscreen
             if((Keyboard.GetState().IsKeyDown(Keys.R) || GamePad.GetState(PlayerIndex.One).IsButtonDown(Buttons.A)) && CurrentGameState == GameState.DeathScreen)
             {
+                settings.GotNewHighscore = false;
                 player.Health = player.MaxHealth;
                 this.CurrentGameState = GameState.Hauptmenu;
             }
@@ -736,13 +753,27 @@ namespace BugHunter
 
 
                         spriteBatch.DrawString(MenuFont, "PAUSE", new Vector2(player.Position.X - 100, player.Position.Y - 64), Color.White);
-                        spriteBatch.DrawString(MenuFont, "Highscore: " + gameStats.HighScore,
-                            new Vector2(player.camera.Position.X + 600, player.camera.Position.Y), Color.White);
+                        spriteBatch.DrawString(MenuFont, Texttable.Stats_Highscore + gameStats.HighScore, new Vector2(player.camera.Position.X + 725, player.camera.Position.Y), Color.White);
                     }
 
                     if (CurrentGameState == GameState.DeathScreen)
                     {
+                        // Schwarzer Blend Effekt
                         spriteBatch.Draw(pauseScreen, new Vector2(player.camera.Position.X, player.camera.Position.Y));
+
+                        // Scores
+                        if(settings.GotNewHighscore)
+                        {
+                            spriteBatch.DrawString(MenuFont, Texttable.Stats_Neuer_Highscore + gameStats.HighScore, new Vector2(player.camera.Position.X + 700, player.camera.Position.Y), Color.GreenYellow);
+                        }
+                        else
+                        {
+                            spriteBatch.DrawString(MenuFont, Texttable.Stats_Highscore + gameStats.HighScore, new Vector2(player.camera.Position.X + 725, player.camera.Position.Y), Color.White);
+                        }
+
+                        spriteBatch.DrawString(font, Texttable.Stats_Score + Score, new Vector2(player.camera.Position.X + 950, player.camera.Position.Y + 100), Color.White);
+
+
                         spriteBatch.DrawString(MenuFont, Texttable.Text_Died, new Vector2(player.Position.X - 300, player.Position.Y - 64), Color.White);
                     }
                     TimeSpan time = stopwatch.Elapsed;

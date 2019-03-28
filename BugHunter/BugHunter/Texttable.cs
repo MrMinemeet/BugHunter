@@ -18,7 +18,10 @@
         public static string Stats_Trefferrate = "Trefferrate: ";
         public static string Stats_Tode = "Tode: ";
         public static string Stats_Global_Stats = "Globale Stats";
+        public static string Stats_Aktueller_Score = "Aktueller Score: ";
+        public static string Stats_Score = "Score: ";
         public static string Stats_Highscore = "Highscore: ";
+        public static string Stats_Neuer_Highscore = "Neuer Highscore: ";
         public static string Stats_Global_Player_Amount = "Spieleranzahl: ";
         public static string General_No_Internet_Connection = "Keine Verbindung";
         public static string General_Not_Avilable = "Noch keine Daten vorhanden";

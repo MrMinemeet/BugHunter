@@ -155,7 +155,8 @@ namespace BugHunter
                     Color.White);
             }
 
-            spriteBatch.DrawString(font, game.Score.ToString(), new Vector2(player.Position.X, player.camera.Position.Y), Color.White);
+            if (game.CurrentGameState.Equals(Game1.GameState.Ingame))
+                spriteBatch.DrawString(font, game.Score.ToString(), new Vector2(player.Position.X, player.camera.Position.Y), Color.White);
 
             spriteBatch.DrawString(font, player.Health.ToString() + " / " + player.MaxHealth.ToString(),HeartStatusTextPosition, Color.White);
 

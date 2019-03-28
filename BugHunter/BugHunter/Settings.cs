@@ -25,6 +25,10 @@ namespace BugHunter
         public bool SendAnonymStatistics = true;
         public Byte Musiklautstaerke = 50;
         public Byte Soundlautstaerke = 50;
+        public readonly string LoggingPath;
+        public string NetVersion;
+        public string Version;
+        public bool GotNewHighscore = false;
 
 
         public string GUID= "";
@@ -49,9 +53,6 @@ namespace BugHunter
         public const byte ReloadTileId = 24;
         public const byte PowerupTileId = 20;
         public const byte generalMaxPowerUps = 6;
-        public readonly string LoggingPath;
-        public string NetVersion;
-        public string Version;
 
 
         // DATABASE LOGIN

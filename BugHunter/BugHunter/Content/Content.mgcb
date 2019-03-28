@@ -17,6 +17,66 @@
 #begin ../Credits.txt
 /copy:../Credits.txt;Credits.txt
 
+#begin audio/Male/Death/death_1.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:audio/Male/Death/death_1.wav
+
+#begin audio/Male/Death/death_10.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:audio/Male/Death/death_10.wav
+
+#begin audio/Male/Death/death_2.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:audio/Male/Death/death_2.wav
+
+#begin audio/Male/Death/death_3.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:audio/Male/Death/death_3.wav
+
+#begin audio/Male/Death/death_4.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:audio/Male/Death/death_4.wav
+
+#begin audio/Male/Death/death_5.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:audio/Male/Death/death_5.wav
+
+#begin audio/Male/Death/death_6.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:audio/Male/Death/death_6.wav
+
+#begin audio/Male/Death/death_7.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:audio/Male/Death/death_7.wav
+
+#begin audio/Male/Death/death_8.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:audio/Male/Death/death_8.wav
+
+#begin audio/Male/Death/death_9.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:audio/Male/Death/death_9.wav
+
 #begin audio/Musik.mp3
 /importer:Mp3Importer
 /processor:SoundEffectProcessor
