@@ -1,5 +1,12 @@
 ﻿SOUND:
 	Score.wav - http://devassets.com/
 
+	Deathsounds:
+		Producer -  Dillon Becker, dillonbecker.com
+		Male - Alex Brodie -> brodievoices@gmail.com
+				
+
+			
+
 Texture:
 	Player: https://jesse-m.itch.io/jungle-pack - Modifiziert von Alexander Voglsperger
