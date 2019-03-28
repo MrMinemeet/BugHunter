@@ -25,6 +25,8 @@ namespace BugHunter
         {
             this.game = game;
             this.player = game.player;
+            this.ProjectileSpeed += player.ProjectileSpeed * 0.25f;
+
         }
 
         public void UpdateShot(GameTime gameTime, Player player)

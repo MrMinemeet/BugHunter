@@ -13,6 +13,7 @@ namespace BugHunter
     {
         public Vector2 Position;
         public float Speed { get; set; }
+        public float ProjectileSpeed{get;set;}
         public Texture2D OriginTexture { get; set; }
         public Texture2D DamageTexture { get; set; }
         public int Health { get; set; }
@@ -374,6 +375,8 @@ namespace BugHunter
             {
                 Speed = this.Speed;
             }
+
+            this.ProjectileSpeed = Speed;
 
             
             if (kstate.IsKeyDown(Keys.W) || gamepadState.ThumbSticks.Left.Y > 0)

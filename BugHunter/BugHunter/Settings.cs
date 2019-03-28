@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using Microsoft.Win32;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using MySql.Data.MySqlClient;
 using ProjectWhitespace;
@@ -49,13 +50,14 @@ namespace BugHunter
         public const byte PowerupTileId = 20;
         public const byte generalMaxPowerUps = 6;
         public readonly string LoggingPath;
+        public string NetVersion;
 
         // DATABASE LOGIN
-        public const string host = "projectwhitespace.net";      // Domain                              (projectwhitespace.net)
-        public const int port = 60457;                           // MySQL Port von Portweiterleitung    (60457)
-        public const string database = "BugHunter";              // Datenbankname                       (BugHunter)
-        public const string username = "user";                   // Username                            (user)
-        public const string password = "Z0pLFsZcviP1eXyK";       // Passwort                            (Z0pLFsZcviP1eXyK)
+        public const string host = "projectwhitespace.net";         // Domain                              (projectwhitespace.net)
+        public const int port = 60457;                              // MySQL Port von Portweiterleitung    (60457)
+        public const string database = "BugHunter";                 // Datenbankname                       (BugHunter)
+        public const string username = "GameClient";                // Username                            (user)
+        public const string password = "VEYZQpx75ndBkBVqaHNQ";      // Passwort                            (Z0pLFsZcviP1eXyK)
 
         private Game1 game = null;
 
@@ -439,6 +441,55 @@ namespace BugHunter
                     game.logger.Log("Thread beendet", Thread.CurrentThread.Name, "Debug");
                     break;
                 }
+            }
+        }
+        public static string Get45PlusFromRegistry()
+        {
+            if (!IsLinux)
+            {
+                const string subkey = @"SOFTWARE\Microsoft\NET Framework Setup\NDP\v4\Full\";
+
+                using (var ndpKey = RegistryKey.OpenBaseKey(RegistryHive.LocalMachine, RegistryView.Registry32).OpenSubKey(subkey))
+                {
+                    if (ndpKey != null && ndpKey.GetValue("Release") != null)
+                    {
+                        return CheckFor45PlusVersion((int)ndpKey.GetValue("Release"));
+                    }
+                    else
+                    {
+                        return "Below 4.5";
+                    }
+                }
+
+                // Checking the version using >= enables forward compatibility.
+                string CheckFor45PlusVersion(int releaseKey)
+                {
+                    if (releaseKey >= 461808)
+                        return "4.7.2 or later";
+                    if (releaseKey >= 461308)
+                        return "4.7.1";
+                    if (releaseKey >= 460798)
+                        return "4.7";
+                    if (releaseKey >= 394802)
+                        return "4.6.2";
+                    if (releaseKey >= 394254)
+                        return "4.6.1";
+                    if (releaseKey >= 393295)
+                        return "4.6";
+                    if (releaseKey >= 379893)
+                        return "4.5.2";
+                    if (releaseKey >= 378675)
+                        return "4.5.1";
+                    if (releaseKey >= 378389)
+                        return "4.5";
+                    // This code should never execute. A non-null release key should mean
+                    // that 4.5 or later is installed.
+                    return "No 4.5 or later version detected";
+                }
+            }
+            else
+            {
+                return "Failed to optain .NET version";
             }
         }
     }

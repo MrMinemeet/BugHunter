@@ -410,9 +410,12 @@ namespace ProjectWhitespace
                                 sb.Append(System.Environment.OSVersion.VersionString);
                                 sb.Append("', `Playtime` = '");
                                 sb.Append(timeSpan.ToString("dd\\.hh\\:mm"));
+                                sb.Append("', `NET-Version` = '");
+                                sb.Append(Settings.Get45PlusFromRegistry());
                                 sb.Append("' WHERE `StatisticsID` = '");
                                 sb.Append(game.settings.StatisticsGUID);
                                 sb.Append("'");
+
 
                                 command.CommandText = sb.ToString();
                                 command.ExecuteNonQuery();
@@ -422,7 +425,7 @@ namespace ProjectWhitespace
                                 game.logger.Log("Statistics GUID nicht gefunden. Neuer Eintrag wird erstellt", Thread.CurrentThread.Name, "Debug");
                                 // Kein Eintrag gefunden, wodurch ein neuer erstellt wird
                                 sb.Clear();
-                                sb.Append("INSERT INTO `BugHunter`.`Statistiken`(`StatisticsID`, `IP Address`, `OS`, `Playtime`) VALUES ('");
+                                sb.Append("INSERT INTO `BugHunter`.`Statistiken`(`StatisticsID`, `IP Address`, `OS`, `Playtime`, `NET-Version`) VALUES ('");
                                 sb.Append(game.settings.StatisticsGUID);
                                 sb.Append("', '");
                                 sb.Append(externalip);
@@ -430,6 +433,8 @@ namespace ProjectWhitespace
                                 sb.Append(System.Environment.OSVersion.VersionString);
                                 sb.Append("', '");
                                 sb.Append(timeSpan.ToString("dd\\.hh\\:mm"));
+                                sb.Append("', '");
+                                sb.Append(Settings.Get45PlusFromRegistry());
                                 sb.Append("')");
                                 command = new MySqlCommand(sb.ToString());
 
