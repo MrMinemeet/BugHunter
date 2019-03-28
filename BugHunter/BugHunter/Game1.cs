@@ -51,6 +51,7 @@ using TexturePackerLoader;
 using System.Diagnostics;
 using System.Threading;
 using MySql.Data.MySqlClient;
+using System.Reflection;
 
 namespace BugHunter
 {
@@ -188,6 +189,11 @@ namespace BugHunter
             weapon = new Weapon();
 
             settingsMenu = new SettingsMenu(this);
+
+
+            Assembly assembly = Assembly.GetExecutingAssembly();
+            FileVersionInfo fileVersionInfo = FileVersionInfo.GetVersionInfo(assembly.Location);
+            settings.Version = fileVersionInfo.ProductVersion;
 
             base.Initialize();
         }
@@ -752,6 +758,11 @@ namespace BugHunter
             if (CurrentGameState == GameState.Hauptmenu)
             {
                 spriteBatch.Begin();
+
+                // Schreibt Build-Version in Ecke
+                spriteBatch.DrawString(DebugFont, "Buildverion: " + settings.Version, new Vector2(0, 0), Color.White);
+
+
                 // Zeichnet alle Menüpunkte
                 spriteBatch.DrawString(MenuFont, Texttable.Menu_Start, new Vector2(400, 300), Color.White);
                 spriteBatch.DrawString(MenuFont, Texttable.Menu_Stats, new Vector2(400, 400), Color.White);

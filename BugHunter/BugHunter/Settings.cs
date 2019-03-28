@@ -51,6 +51,8 @@ namespace BugHunter
         public const byte generalMaxPowerUps = 6;
         public readonly string LoggingPath;
         public string NetVersion;
+        public string Version;
+
 
         // DATABASE LOGIN
         public const string host = "projectwhitespace.net";         // Domain                              (projectwhitespace.net)
