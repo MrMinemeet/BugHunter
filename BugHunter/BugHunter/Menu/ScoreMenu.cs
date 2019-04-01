@@ -15,23 +15,23 @@ namespace BugHunter
             TimeSpan timeSpan = TimeSpan.FromMilliseconds(game.gameStats.PlayTime);
 
             // Textliste für Stats generieren
-            StatsText.Add(Texttable.Stats_Spielzeit + timeSpan.ToString("dd\\.hh\\:mm"));
-            StatsText.Add(Texttable.Stats_Highscore + game.gameStats.HighScore);
-            StatsText.Add(Texttable.Stats_Getötete_Gegner + game.gameStats.KilledEnemies);
-            StatsText.Add(Texttable.Stats_Gesammelte_Powerups + game.gameStats.CollectedPowerups);
-            StatsText.Add(Texttable.Stats_Anzahl_Geschossen + game.gameStats.AnzahlSchuesse);
-            StatsText.Add(Texttable.Stats_Anzahl_Treffer + game.gameStats.AnzahlTreffer);
-            StatsText.Add(Texttable.Stats_Trefferrate + ((float)game.gameStats.AnzahlTreffer / (float)game.gameStats.AnzahlSchuesse).ToString("P"));
-            StatsText.Add(Texttable.Stats_Tode + game.gameStats.AnzahlTode);
+            StatsText.Add(Texttable_DE.Stats_Spielzeit + timeSpan.ToString("dd\\.hh\\:mm"));
+            StatsText.Add(Texttable_DE.Stats_Highscore + game.gameStats.HighScore);
+            StatsText.Add(Texttable_DE.Stats_Getötete_Gegner + game.gameStats.KilledEnemies);
+            StatsText.Add(Texttable_DE.Stats_Gesammelte_Powerups + game.gameStats.CollectedPowerups);
+            StatsText.Add(Texttable_DE.Stats_Anzahl_Geschossen + game.gameStats.AnzahlSchuesse);
+            StatsText.Add(Texttable_DE.Stats_Anzahl_Treffer + game.gameStats.AnzahlTreffer);
+            StatsText.Add(Texttable_DE.Stats_Trefferrate + ((float)game.gameStats.AnzahlTreffer / (float)game.gameStats.AnzahlSchuesse).ToString("P"));
+            StatsText.Add(Texttable_DE.Stats_Tode + game.gameStats.AnzahlTode);
 
             // Textliste für GlobalStats generieren
-            GlobalStatsText.Add(Texttable.Stats_Global_Player_Amount + game.gameStats.GlobalPlayerAmount);
-            GlobalStatsText.Add(Texttable.Stats_Getötete_Gegner + game.gameStats.GlobalKilledEnemies);
-            GlobalStatsText.Add(Texttable.Stats_Gesammelte_Powerups + game.gameStats.GlobalCollectedPowerups);
-            GlobalStatsText.Add(Texttable.Stats_Anzahl_Geschossen + game.gameStats.GlobalAnzahlSchuesse);
-            GlobalStatsText.Add(Texttable.Stats_Anzahl_Treffer + game.gameStats.GlobalAnzahlTreffer);
-            GlobalStatsText.Add(Texttable.Stats_Trefferrate + ((float)game.gameStats.GlobalAnzahlTreffer / (float)game.gameStats.GlobalAnzahlSchuesse).ToString("P"));
-            GlobalStatsText.Add(Texttable.Stats_Tode + game.gameStats.GlobalAnzahlTode);
+            GlobalStatsText.Add(Texttable_DE.Stats_Global_Player_Amount + game.gameStats.GlobalPlayerAmount);
+            GlobalStatsText.Add(Texttable_DE.Stats_Getötete_Gegner + game.gameStats.GlobalKilledEnemies);
+            GlobalStatsText.Add(Texttable_DE.Stats_Gesammelte_Powerups + game.gameStats.GlobalCollectedPowerups);
+            GlobalStatsText.Add(Texttable_DE.Stats_Anzahl_Geschossen + game.gameStats.GlobalAnzahlSchuesse);
+            GlobalStatsText.Add(Texttable_DE.Stats_Anzahl_Treffer + game.gameStats.GlobalAnzahlTreffer);
+            GlobalStatsText.Add(Texttable_DE.Stats_Trefferrate + ((float)game.gameStats.GlobalAnzahlTreffer / (float)game.gameStats.GlobalAnzahlSchuesse).ToString("P"));
+            GlobalStatsText.Add(Texttable_DE.Stats_Tode + game.gameStats.GlobalAnzahlTode);
 
             // Playerstats
             spriteBatch.DrawString(game.MenuFont, game.settings.UserName, new Vector2(game.player.camera.Origin.X - 900, game.player.camera.Origin.Y - 500), Color.White);
@@ -50,7 +50,7 @@ namespace BugHunter
             {
                 if (game.gameStats.Top10Names.Count == 0)
                 {
-                    spriteBatch.DrawString(game.font, Texttable.General_Not_Avilable, new Vector2(game.player.camera.Origin.X - 300, game.player.camera.Origin.Y - 400), Color.MonoGameOrange);
+                    spriteBatch.DrawString(game.font, Texttable_DE.General_Not_Avilable, new Vector2(game.player.camera.Origin.X - 300, game.player.camera.Origin.Y - 400), Color.MonoGameOrange);
                 }
                 for (int i = 0; i < game.gameStats.Top10Names.Count; i++)
                 {
@@ -59,20 +59,20 @@ namespace BugHunter
             }
             else
             {
-                spriteBatch.DrawString(game.font, Texttable.General_No_Internet_Connection, new Vector2(game.player.camera.Origin.X - 200, game.player.camera.Origin.Y - 400), Color.OrangeRed);
+                spriteBatch.DrawString(game.font, Texttable_DE.General_No_Internet_Connection, new Vector2(game.player.camera.Origin.X - 200, game.player.camera.Origin.Y - 400), Color.OrangeRed);
             }
 
 
 
             // Global Score
-            spriteBatch.DrawString(game.MenuFont, Texttable.Stats_Global_Stats, new Vector2(game.player.camera.Origin.X + 350, game.player.camera.Origin.Y - 500), Color.White);
+            spriteBatch.DrawString(game.MenuFont, Texttable_DE.Stats_Global_Stats, new Vector2(game.player.camera.Origin.X + 350, game.player.camera.Origin.Y - 500), Color.White);
 
 
             if (game.settings.HasInternetConnection)
             {
                 if (game.gameStats.GlobalPlayerAmount == 0)
                 {
-                    spriteBatch.DrawString(game.font, Texttable.General_Not_Avilable, new Vector2(game.player.camera.Origin.X + 350, game.player.camera.Origin.Y - 400), Color.MonoGameOrange);
+                    spriteBatch.DrawString(game.font, Texttable_DE.General_Not_Avilable, new Vector2(game.player.camera.Origin.X + 350, game.player.camera.Origin.Y - 400), Color.MonoGameOrange);
                 }
                 else {
                     for (int i = 0; i < GlobalStatsText.Count; i++)
@@ -83,7 +83,7 @@ namespace BugHunter
             }
             else
             {
-                spriteBatch.DrawString(game.font, Texttable.General_No_Internet_Connection, new Vector2(game.player.camera.Origin.X + 400, game.player.camera.Origin.Y - 400), Color.OrangeRed);
+                spriteBatch.DrawString(game.font, Texttable_DE.General_No_Internet_Connection, new Vector2(game.player.camera.Origin.X + 400, game.player.camera.Origin.Y - 400), Color.OrangeRed);
 
             }
         }

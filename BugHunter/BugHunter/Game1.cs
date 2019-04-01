@@ -753,7 +753,7 @@ namespace BugHunter
 
 
                         spriteBatch.DrawString(MenuFont, "PAUSE", new Vector2(player.Position.X - 100, player.Position.Y - 64), Color.White);
-                        spriteBatch.DrawString(MenuFont, Texttable.Stats_Highscore + gameStats.HighScore, new Vector2(player.camera.Position.X + 725, player.camera.Position.Y), Color.White);
+                        spriteBatch.DrawString(MenuFont, Texttable_DE.Stats_Highscore + gameStats.HighScore, new Vector2(player.camera.Position.X + 725, player.camera.Position.Y), Color.White);
                     }
 
                     if (CurrentGameState == GameState.DeathScreen)
@@ -764,17 +764,17 @@ namespace BugHunter
                         // Scores
                         if(settings.GotNewHighscore)
                         {
-                            spriteBatch.DrawString(MenuFont, Texttable.Stats_Neuer_Highscore + gameStats.HighScore, new Vector2(player.camera.Position.X + 700, player.camera.Position.Y), Color.GreenYellow);
+                            spriteBatch.DrawString(MenuFont, Texttable_DE.Stats_Neuer_Highscore + gameStats.HighScore, new Vector2(player.camera.Position.X + 700, player.camera.Position.Y), Color.GreenYellow);
                         }
                         else
                         {
-                            spriteBatch.DrawString(MenuFont, Texttable.Stats_Highscore + gameStats.HighScore, new Vector2(player.camera.Position.X + 725, player.camera.Position.Y), Color.White);
+                            spriteBatch.DrawString(MenuFont, Texttable_DE.Stats_Highscore + gameStats.HighScore, new Vector2(player.camera.Position.X + 725, player.camera.Position.Y), Color.White);
                         }
 
-                        spriteBatch.DrawString(font, Texttable.Stats_Score + Score, new Vector2(player.camera.Position.X + 950, player.camera.Position.Y + 100), Color.White);
+                        spriteBatch.DrawString(font, Texttable_DE.Stats_Score + Score, new Vector2(player.camera.Position.X + 950, player.camera.Position.Y + 100), Color.White);
 
 
-                        spriteBatch.DrawString(MenuFont, Texttable.Text_Died, new Vector2(player.Position.X - 300, player.Position.Y - 64), Color.White);
+                        spriteBatch.DrawString(MenuFont, Texttable_DE.Text_Died, new Vector2(player.Position.X - 300, player.Position.Y - 64), Color.White);
                     }
                     TimeSpan time = stopwatch.Elapsed;
                     spriteBatch.DrawString(font, time.ToString("mm\\:ss\\.ff"), new Vector2(player.Position.X + 700, player.Position.Y - 500), Color.White);
@@ -792,25 +792,25 @@ namespace BugHunter
 
 
                 // Zeichnet alle Menüpunkte
-                spriteBatch.DrawString(MenuFont, Texttable.Menu_Start, new Vector2(400, 300), Color.White);
-                spriteBatch.DrawString(MenuFont, Texttable.Menu_Stats, new Vector2(400, 400), Color.White);
-                spriteBatch.DrawString(MenuFont, Texttable.Menu_Einstellungen, new Vector2(400, 500), Color.White);
-                spriteBatch.DrawString(MenuFont, Texttable.Menu_Ende, new Vector2(400, 600), Color.White);
+                spriteBatch.DrawString(MenuFont, Texttable_DE.Menu_Start, new Vector2(400, 300), Color.White);
+                spriteBatch.DrawString(MenuFont, Texttable_DE.Menu_Stats, new Vector2(400, 400), Color.White);
+                spriteBatch.DrawString(MenuFont, Texttable_DE.Menu_Einstellungen, new Vector2(400, 500), Color.White);
+                spriteBatch.DrawString(MenuFont, Texttable_DE.Menu_Ende, new Vector2(400, 600), Color.White);
 
                 // Überzeichnet den Menüpunkt der ausgewählt ist.
                 switch (aktuellerMenupunkt)
                 {
                     case Menubuttons.Spielen:
-                        spriteBatch.DrawString(MenuFont, Texttable.Menu_Start, new Vector2(400,300), Color.YellowGreen);
+                        spriteBatch.DrawString(MenuFont, Texttable_DE.Menu_Start, new Vector2(400,300), Color.YellowGreen);
                         break;
                     case Menubuttons.Stats:
-                        spriteBatch.DrawString(MenuFont, Texttable.Menu_Stats, new Vector2(400,400), Color.YellowGreen);
+                        spriteBatch.DrawString(MenuFont, Texttable_DE.Menu_Stats, new Vector2(400,400), Color.YellowGreen);
                         break;
                     case Menubuttons.Einstellungen:
-                        spriteBatch.DrawString(MenuFont, Texttable.Menu_Einstellungen, new Vector2(400,500), Color.YellowGreen);
+                        spriteBatch.DrawString(MenuFont, Texttable_DE.Menu_Einstellungen, new Vector2(400,500), Color.YellowGreen);
                         break;
                     case Menubuttons.Beenden:
-                        spriteBatch.DrawString(MenuFont, Texttable.Menu_Ende, new Vector2(400,600), Color.YellowGreen);
+                        spriteBatch.DrawString(MenuFont, Texttable_DE.Menu_Ende, new Vector2(400,600), Color.YellowGreen);
                         break;
                 }
                 spriteBatch.End();

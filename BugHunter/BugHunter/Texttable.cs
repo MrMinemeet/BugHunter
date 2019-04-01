@@ -1,6 +1,6 @@
 ﻿namespace BugHunter
 {
-    class Texttable
+    class Texttable_DE
     {
         public static string Text_Died =
             " Du bist gestorben!\n" +

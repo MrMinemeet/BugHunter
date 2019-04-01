@@ -107,36 +107,23 @@ namespace ProjectWhitespace
 
                             //   <=== GLOBAL SCORE ===>
 
-                            command = new MySqlCommand();
-                            command.CommandText = "SELECT * FROM `GlobalScore`";
-                            command.Connection = connection;
+                            // Datenbankeintrag wird hinzufügen
+                            sb.Clear();
 
-                            reader = command.ExecuteReader();
-                            reader.Read();
-
-                            // Aktuellen Wert speichern
-                            uint GlobalKilledEnemies = reader.GetUInt32(1);
-                            uint GlobalCollectedPowerups = reader.GetUInt32(2);
-                            UInt64 GlobalAnzahlSchuesse = reader.GetUInt64(3);
-                            UInt64 GlobalAnzahlHits = reader.GetUInt64(4);
-                            uint GlobalDeathCount = reader.GetUInt32(5);
-
-                            reader.Close();
-
-                            // Datenbankeintrag wird upgedated
-                            sb.Clear(); 
-                            sb = new StringBuilder();
-                            sb.Append("UPDATE `GlobalScore` SET `KilledEnemies` = '");
-                            sb.Append(GlobalKilledEnemies + game.gameStats.KilledEnemies - game.gameStats.KilledEnemiesOld);
-                            sb.Append("', `CollectedPowerups` = '");
-                            sb.Append(GlobalCollectedPowerups + game.gameStats.CollectedPowerups - game.gameStats.CollectedPowerupsOld);
-                            sb.Append("', `Shots` = '");
-                            sb.Append(GlobalAnzahlSchuesse + game.gameStats.AnzahlSchuesse - game.gameStats.AnzahlSchuesseOld);
-                            sb.Append("', `Hits` = '");
-                            sb.Append(GlobalAnzahlHits + game.gameStats.AnzahlTreffer - game.gameStats.AnzahlTrefferOld);
-                            sb.Append("', `Deaths` = '");
-                            sb.Append(GlobalDeathCount + game.gameStats.AnzahlTode - game.gameStats.AnzahlTodeOld);
-                            sb.Append("' WHERE `GlobalScore`.`ID` = 1;");
+                            //TODO: Update eventuell noch einfügen
+                            sb.Append("INSERT INTO `BugHunter`.`GlobalScore`(`ID`, `KilledEnemies`, `CollectedPowerups`, `Shots`, `Hits`, `Deaths`) VALUES(')");
+                            sb.Append(Guid.NewGuid());  // ID für einzelen eintrag, wird nur verwendet damit ein einmaliger Key vorhanden ist
+                            sb.Append("', ");
+                            sb.Append(game.gameStats.KilledEnemies - game.gameStats.KilledEnemiesOld);
+                            sb.Append(", ");
+                            sb.Append(game.gameStats.CollectedPowerups - game.gameStats.CollectedPowerupsOld);
+                            sb.Append(", ");
+                            sb.Append(game.gameStats.AnzahlSchuesse - game.gameStats.AnzahlSchuesseOld);
+                            sb.Append(", ");
+                            sb.Append(game.gameStats.AnzahlTreffer - game.gameStats.AnzahlTrefferOld);
+                            sb.Append(", ");
+                            sb.Append(game.gameStats.AnzahlTode - game.gameStats.AnzahlTodeOld);
+                            sb.Append(")");
 
 
                             command.CommandText = sb.ToString();
