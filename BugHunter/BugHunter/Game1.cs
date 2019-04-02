@@ -50,8 +50,6 @@ using System.Collections.Generic;
 using TexturePackerLoader;
 using System.Diagnostics;
 using System.Threading;
-using MySql.Data.MySqlClient;
-using System.Reflection;
 
 namespace BugHunter
 {
@@ -233,6 +231,7 @@ namespace BugHunter
             sound.Schuesse[4] = Content.Load<SoundEffect>("audio/Schuss/schuss_005");
             sound.Schuesse[5] = Content.Load<SoundEffect>("audio/Schuss/schuss_006");
 
+            // Deathsounds laden
             sound.MaleDeathSound.Add(Content.Load<SoundEffect>("audio/Male/Death/death_1"));
             sound.MaleDeathSound.Add(Content.Load<SoundEffect>("audio/Male/Death/death_2"));
             sound.MaleDeathSound.Add(Content.Load<SoundEffect>("audio/Male/Death/death_3"));
@@ -243,6 +242,19 @@ namespace BugHunter
             sound.MaleDeathSound.Add(Content.Load<SoundEffect>("audio/Male/Death/death_8"));
             sound.MaleDeathSound.Add(Content.Load<SoundEffect>("audio/Male/Death/death_9"));
             sound.MaleDeathSound.Add(Content.Load<SoundEffect>("audio/Male/Death/death_10"));
+
+
+            // Damagesounds laden
+            sound.MaleDamageSound.Add(Content.Load<SoundEffect>("audio/Male/Damage/damage_1"));
+            sound.MaleDamageSound.Add(Content.Load<SoundEffect>("audio/Male/Damage/damage_2"));
+            sound.MaleDamageSound.Add(Content.Load<SoundEffect>("audio/Male/Damage/damage_3"));
+            sound.MaleDamageSound.Add(Content.Load<SoundEffect>("audio/Male/Damage/damage_4"));
+            sound.MaleDamageSound.Add(Content.Load<SoundEffect>("audio/Male/Damage/damage_5"));
+            sound.MaleDamageSound.Add(Content.Load<SoundEffect>("audio/Male/Damage/damage_6"));
+            sound.MaleDamageSound.Add(Content.Load<SoundEffect>("audio/Male/Damage/damage_7"));
+            sound.MaleDamageSound.Add(Content.Load<SoundEffect>("audio/Male/Damage/damage_8"));
+            sound.MaleDamageSound.Add(Content.Load<SoundEffect>("audio/Male/Damage/damage_9"));
+            sound.MaleDamageSound.Add(Content.Load<SoundEffect>("audio/Male/Damage/damage_10"));
 
             // Schriften
             font = Content.Load<SpriteFont>("Font");

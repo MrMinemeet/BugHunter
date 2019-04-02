@@ -17,6 +17,66 @@
 #begin ../Credits.txt
 /copy:../Credits.txt;Credits.txt
 
+#begin audio/Male/Damage/damage_1.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:audio/Male/Damage/damage_1.wav
+
+#begin audio/Male/Damage/damage_10.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:audio/Male/Damage/damage_10.wav
+
+#begin audio/Male/Damage/damage_2.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:audio/Male/Damage/damage_2.wav
+
+#begin audio/Male/Damage/damage_3.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:audio/Male/Damage/damage_3.wav
+
+#begin audio/Male/Damage/damage_4.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:audio/Male/Damage/damage_4.wav
+
+#begin audio/Male/Damage/damage_5.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:audio/Male/Damage/damage_5.wav
+
+#begin audio/Male/Damage/damage_6.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:audio/Male/Damage/damage_6.wav
+
+#begin audio/Male/Damage/damage_7.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:audio/Male/Damage/damage_7.wav
+
+#begin audio/Male/Damage/damage_8.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:audio/Male/Damage/damage_8.wav
+
+#begin audio/Male/Damage/damage_9.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:audio/Male/Damage/damage_9.wav
+
 #begin audio/Male/Death/death_1.wav
 /importer:WavImporter
 /processor:SoundEffectProcessor

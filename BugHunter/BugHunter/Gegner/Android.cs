@@ -89,6 +89,9 @@ namespace BugHunter
                     player.Health = (int)(player.Health - attackDamage);
                     LastCollisionCheck = gameTime.TotalGameTime.TotalMilliseconds;
                     player.GotHit(gameTime);
+                    
+                    // Zufälligen Damagesound abspielen
+                    player.PlayPlayerDamage(gameTime);
                 }
             }
             else

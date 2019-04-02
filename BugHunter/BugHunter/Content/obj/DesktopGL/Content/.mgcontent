@@ -4,34 +4,54 @@
   <Platform>DesktopGL</Platform>
   <Config />
   <SourceFiles>
-    <File>C:/Users/Alexa/Google Drive/Project Whitespace/BugHunter/BugHunter/BugHunter/Content/audio/Male/Death/death_1.wav</File>
-    <File>C:/Users/Alexa/Google Drive/Project Whitespace/BugHunter/BugHunter/BugHunter/Content/audio/Male/Death/death_10.wav</File>
-    <File>C:/Users/Alexa/Google Drive/Project Whitespace/BugHunter/BugHunter/BugHunter/Content/audio/Male/Death/death_2.wav</File>
-    <File>C:/Users/Alexa/Google Drive/Project Whitespace/BugHunter/BugHunter/BugHunter/Content/audio/Male/Death/death_3.wav</File>
-    <File>C:/Users/Alexa/Google Drive/Project Whitespace/BugHunter/BugHunter/BugHunter/Content/audio/Male/Death/death_4.wav</File>
-    <File>C:/Users/Alexa/Google Drive/Project Whitespace/BugHunter/BugHunter/BugHunter/Content/audio/Male/Death/death_5.wav</File>
-    <File>C:/Users/Alexa/Google Drive/Project Whitespace/BugHunter/BugHunter/BugHunter/Content/audio/Male/Death/death_6.wav</File>
-    <File>C:/Users/Alexa/Google Drive/Project Whitespace/BugHunter/BugHunter/BugHunter/Content/audio/Male/Death/death_7.wav</File>
-    <File>C:/Users/Alexa/Google Drive/Project Whitespace/BugHunter/BugHunter/BugHunter/Content/audio/Male/Death/death_8.wav</File>
-    <File>C:/Users/Alexa/Google Drive/Project Whitespace/BugHunter/BugHunter/BugHunter/Content/audio/Male/Death/death_9.wav</File>
-    <File>C:/Users/Alexa/Google Drive/Project Whitespace/BugHunter/BugHunter/BugHunter/Content/audio/Musik.mp3</File>
-    <File>C:/Users/Alexa/Google Drive/Project Whitespace/BugHunter/BugHunter/BugHunter/Content/audio/Schuss/schuss_001.wav</File>
-    <File>C:/Users/Alexa/Google Drive/Project Whitespace/BugHunter/BugHunter/BugHunter/Content/audio/Schuss/schuss_002.wav</File>
-    <File>C:/Users/Alexa/Google Drive/Project Whitespace/BugHunter/BugHunter/BugHunter/Content/audio/Schuss/schuss_003.wav</File>
-    <File>C:/Users/Alexa/Google Drive/Project Whitespace/BugHunter/BugHunter/BugHunter/Content/audio/Schuss/schuss_004.wav</File>
-    <File>C:/Users/Alexa/Google Drive/Project Whitespace/BugHunter/BugHunter/BugHunter/Content/audio/Schuss/schuss_005.wav</File>
-    <File>C:/Users/Alexa/Google Drive/Project Whitespace/BugHunter/BugHunter/BugHunter/Content/audio/Schuss/schuss_006.wav</File>
-    <File>C:/Users/Alexa/Google Drive/Project Whitespace/BugHunter/BugHunter/BugHunter/Content/audio/Score.wav</File>
-    <File>C:/Users/Alexa/Google Drive/Project Whitespace/BugHunter/BugHunter/BugHunter/Content/Debug.spritefont</File>
-    <File>C:/Users/Alexa/Google Drive/Project Whitespace/BugHunter/BugHunter/BugHunter/Content/Font.spritefont</File>
-    <File>C:/Users/Alexa/Google Drive/Project Whitespace/BugHunter/BugHunter/BugHunter/Content/map1.tmx</File>
-    <File>C:/Users/Alexa/Google Drive/Project Whitespace/BugHunter/BugHunter/BugHunter/Content/MenuFont.spritefont</File>
-    <File>C:/Users/Alexa/Google Drive/Project Whitespace/BugHunter/BugHunter/BugHunter/Content/sprites/gui/textures/heart_full.png</File>
-    <File>C:/Users/Alexa/Google Drive/Project Whitespace/BugHunter/BugHunter/BugHunter/Content/sprites/gui/textures/heart_half.png</File>
-    <File>C:/Users/Alexa/Google Drive/Project Whitespace/BugHunter/BugHunter/BugHunter/Content/sprites/mauszeiger.png</File>
-    <File>C:/Users/Alexa/Google Drive/Project Whitespace/BugHunter/BugHunter/BugHunter/Content/sprites/originSpot.png</File>
+    <File>C:/Users/Alex/Documents/GitHub/BugHunter/BugHunter/BugHunter/Content/audio/Male/Damage/damage_1.wav</File>
+    <File>C:/Users/Alex/Documents/GitHub/BugHunter/BugHunter/BugHunter/Content/audio/Male/Damage/damage_10.wav</File>
+    <File>C:/Users/Alex/Documents/GitHub/BugHunter/BugHunter/BugHunter/Content/audio/Male/Damage/damage_2.wav</File>
+    <File>C:/Users/Alex/Documents/GitHub/BugHunter/BugHunter/BugHunter/Content/audio/Male/Damage/damage_3.wav</File>
+    <File>C:/Users/Alex/Documents/GitHub/BugHunter/BugHunter/BugHunter/Content/audio/Male/Damage/damage_4.wav</File>
+    <File>C:/Users/Alex/Documents/GitHub/BugHunter/BugHunter/BugHunter/Content/audio/Male/Damage/damage_5.wav</File>
+    <File>C:/Users/Alex/Documents/GitHub/BugHunter/BugHunter/BugHunter/Content/audio/Male/Damage/damage_6.wav</File>
+    <File>C:/Users/Alex/Documents/GitHub/BugHunter/BugHunter/BugHunter/Content/audio/Male/Damage/damage_7.wav</File>
+    <File>C:/Users/Alex/Documents/GitHub/BugHunter/BugHunter/BugHunter/Content/audio/Male/Damage/damage_8.wav</File>
+    <File>C:/Users/Alex/Documents/GitHub/BugHunter/BugHunter/BugHunter/Content/audio/Male/Damage/damage_9.wav</File>
+    <File>C:/Users/Alex/Documents/GitHub/BugHunter/BugHunter/BugHunter/Content/audio/Male/Death/death_1.wav</File>
+    <File>C:/Users/Alex/Documents/GitHub/BugHunter/BugHunter/BugHunter/Content/audio/Male/Death/death_10.wav</File>
+    <File>C:/Users/Alex/Documents/GitHub/BugHunter/BugHunter/BugHunter/Content/audio/Male/Death/death_2.wav</File>
+    <File>C:/Users/Alex/Documents/GitHub/BugHunter/BugHunter/BugHunter/Content/audio/Male/Death/death_3.wav</File>
+    <File>C:/Users/Alex/Documents/GitHub/BugHunter/BugHunter/BugHunter/Content/audio/Male/Death/death_4.wav</File>
+    <File>C:/Users/Alex/Documents/GitHub/BugHunter/BugHunter/BugHunter/Content/audio/Male/Death/death_5.wav</File>
+    <File>C:/Users/Alex/Documents/GitHub/BugHunter/BugHunter/BugHunter/Content/audio/Male/Death/death_6.wav</File>
+    <File>C:/Users/Alex/Documents/GitHub/BugHunter/BugHunter/BugHunter/Content/audio/Male/Death/death_7.wav</File>
+    <File>C:/Users/Alex/Documents/GitHub/BugHunter/BugHunter/BugHunter/Content/audio/Male/Death/death_8.wav</File>
+    <File>C:/Users/Alex/Documents/GitHub/BugHunter/BugHunter/BugHunter/Content/audio/Male/Death/death_9.wav</File>
+    <File>C:/Users/Alex/Documents/GitHub/BugHunter/BugHunter/BugHunter/Content/audio/Musik.mp3</File>
+    <File>C:/Users/Alex/Documents/GitHub/BugHunter/BugHunter/BugHunter/Content/audio/Schuss/schuss_001.wav</File>
+    <File>C:/Users/Alex/Documents/GitHub/BugHunter/BugHunter/BugHunter/Content/audio/Schuss/schuss_002.wav</File>
+    <File>C:/Users/Alex/Documents/GitHub/BugHunter/BugHunter/BugHunter/Content/audio/Schuss/schuss_003.wav</File>
+    <File>C:/Users/Alex/Documents/GitHub/BugHunter/BugHunter/BugHunter/Content/audio/Schuss/schuss_004.wav</File>
+    <File>C:/Users/Alex/Documents/GitHub/BugHunter/BugHunter/BugHunter/Content/audio/Schuss/schuss_005.wav</File>
+    <File>C:/Users/Alex/Documents/GitHub/BugHunter/BugHunter/BugHunter/Content/audio/Schuss/schuss_006.wav</File>
+    <File>C:/Users/Alex/Documents/GitHub/BugHunter/BugHunter/BugHunter/Content/audio/Score.wav</File>
+    <File>C:/Users/Alex/Documents/GitHub/BugHunter/BugHunter/BugHunter/Content/Debug.spritefont</File>
+    <File>C:/Users/Alex/Documents/GitHub/BugHunter/BugHunter/BugHunter/Content/Font.spritefont</File>
+    <File>C:/Users/Alex/Documents/GitHub/BugHunter/BugHunter/BugHunter/Content/map1.tmx</File>
+    <File>C:/Users/Alex/Documents/GitHub/BugHunter/BugHunter/BugHunter/Content/MenuFont.spritefont</File>
+    <File>C:/Users/Alex/Documents/GitHub/BugHunter/BugHunter/BugHunter/Content/sprites/gui/textures/heart_full.png</File>
+    <File>C:/Users/Alex/Documents/GitHub/BugHunter/BugHunter/BugHunter/Content/sprites/gui/textures/heart_half.png</File>
+    <File>C:/Users/Alex/Documents/GitHub/BugHunter/BugHunter/BugHunter/Content/sprites/mauszeiger.png</File>
+    <File>C:/Users/Alex/Documents/GitHub/BugHunter/BugHunter/BugHunter/Content/sprites/originSpot.png</File>
   </SourceFiles>
   <DestFiles>
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />

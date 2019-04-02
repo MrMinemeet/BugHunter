@@ -23,6 +23,8 @@ namespace BugHunter
 
         public double ReloadTime = 0;
 
+        public double LastTimeDamageSoundPlayed = 0;
+
         // Munitionsanzahl
         public IDictionary<Weapon.WeaponTypes, int> AmmunitionAmmountList = new Dictionary<Weapon.WeaponTypes, int>();
 
@@ -138,52 +140,6 @@ namespace BugHunter
             UpdatePlayerShooting(gameTime);
 
             // RELOAD ÜBERPRÜFUNG
-            /*
-            // Array durchlaufen
-            for (int y = 0; y * Settings.TilePixelSize < map.HeightInPixels; y++)
-            {
-                for (int x = 0; x < CollisionMapArray[y].Length; x++)
-                {
-                    
-                    // Rechtecke über Spieler und aktuelles Tile ziehen
-                    MapTriggerRectangle = new Rectangle((x * Settings.TilePixelSize), (y * Settings.TilePixelSize), Settings.TilePixelSize, Settings.TilePixelSize);
-                    PotNewPlayerCollision = new Rectangle((int)(PotNewPlayerPosition.X - Frame.Size.X / 2), (int)(PotNewPlayerPosition.Y - Frame.Size.Y / 2), (int)Frame.Size.X, (int)Frame.Size.Y);
-                    // Überprüfen ob sich die beiden Rechtecke überschneiden
-                    if (PotNewPlayerCollision.Intersects(MapTriggerRectangle))
-                    {
-                        // Schauen ob aktuelles Tile ein Trigger Tile ist
-                        if (CollisionMapArray[y][x].Equals(Settings.ReloadTileId))
-                        {
-                            this.IsReloading = true;
-                            if (gameTime.TotalGameTime.TotalSeconds - ReloadTime > 0.5)
-                            {
-                                ReloadTime = gameTime.TotalGameTime.TotalSeconds;
-                                if (AmmunitionAmmountList[Weapon.WeaponTypes.c] < game.weapon.CAmmoAmount)
-                                    AmmunitionAmmountList[Weapon.WeaponTypes.c] += 1;
-
-                                if (AmmunitionAmmountList[Weapon.WeaponTypes.cpp] < game.weapon.CppAmmoAmount)
-                                    AmmunitionAmmountList[Weapon.WeaponTypes.cpp] += 1;
-
-                                if (AmmunitionAmmountList[Weapon.WeaponTypes.csharp] < game.weapon.CsharpAmmoAmount)
-                                    AmmunitionAmmountList[Weapon.WeaponTypes.csharp] += 1;
-
-                                if (AmmunitionAmmountList[Weapon.WeaponTypes.java] < game.weapon.JavaAmmoAmount)
-                                    AmmunitionAmmountList[Weapon.WeaponTypes.java] += 1;
-
-                                if (AmmunitionAmmountList[Weapon.WeaponTypes.maschinensprache] < game.weapon.MaschinenspracheAmmoAmount)
-                                    AmmunitionAmmountList[Weapon.WeaponTypes.maschinensprache] += 1;
-                            }
-                        }
-                        else
-                        {
-                            this.IsReloading = false;
-                            ReloadTime = gameTime.TotalGameTime.TotalSeconds;
-                        }
-                    }
-                }
-            }
-            */
-
 
             // Integer Map Array durchlaufen
             for (int y = 0; y * Settings.TilePixelSize < map.HeightInPixels; y++)
@@ -648,6 +604,21 @@ namespace BugHunter
                         return;
                     }
                 }
+            }
+        }
+
+
+        public void PlayPlayerDamage(GameTime gameTime)
+        {
+            if (gameTime.TotalGameTime.TotalMilliseconds - LastTimeDamageSoundPlayed >= 1000)
+            {
+                Random random = new Random();
+
+                int randomValue = random.Next(game.sound.MaleDamageSound.Count);
+
+                game.sound.MaleDamageSound[randomValue].Play((game.settings.Soundlautstaerke / 100f), 0, 0);
+
+                LastTimeDamageSoundPlayed = gameTime.TotalGameTime.TotalMilliseconds;
             }
         }
     }

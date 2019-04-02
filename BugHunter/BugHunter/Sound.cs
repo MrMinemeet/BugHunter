@@ -16,5 +16,6 @@ namespace BugHunter
 
 
         public List<SoundEffect> MaleDeathSound = new List<SoundEffect>();
+        public List<SoundEffect> MaleDamageSound = new List<SoundEffect>();
     }
 }
