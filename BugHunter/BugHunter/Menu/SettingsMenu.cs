@@ -396,10 +396,13 @@ namespace BugHunter
                         game.LastKeyStrokeInput = gameTime.TotalGameTime.TotalMilliseconds;
                     }
 
-                    // Zahlen
+                    // Zahlen + Ein paar Sonderzeichen
                     if (Keyboard.GetState().IsKeyDown(Keys.D1))
                     {
-                        sb.Append('l');
+                        if (!ShiftIsPressed)
+                            sb.Append('l');
+                        else
+                            sb.Append('!');
 
                         game.LastKeyStrokeInput = gameTime.TotalGameTime.TotalMilliseconds;
                     }
@@ -435,25 +438,77 @@ namespace BugHunter
                     }
                     if (Keyboard.GetState().IsKeyDown(Keys.D7))
                     {
-                        sb.Append('7');
+                        if (!ShiftIsPressed)
+                            sb.Append('7');
+                        else
+                            sb.Append('/');
 
                         game.LastKeyStrokeInput = gameTime.TotalGameTime.TotalMilliseconds;
                     }
                     if (Keyboard.GetState().IsKeyDown(Keys.D8))
                     {
-                        sb.Append('8');
+                        if (!ShiftIsPressed)
+                            sb.Append('8');
+                        else
+                            sb.Append('(');
 
                         game.LastKeyStrokeInput = gameTime.TotalGameTime.TotalMilliseconds;
                     }
                     if (Keyboard.GetState().IsKeyDown(Keys.D9))
                     {
-                        sb.Append('9');
+                        if (!ShiftIsPressed)
+                            sb.Append('9');
+                        else
+                            sb.Append(')');
 
                         game.LastKeyStrokeInput = gameTime.TotalGameTime.TotalMilliseconds;
                     }
                     if (Keyboard.GetState().IsKeyDown(Keys.D0))
                     {
-                        sb.Append('0');
+                        if (!ShiftIsPressed)
+                            sb.Append('0');
+                        else
+                            sb.Append('=');
+
+                        game.LastKeyStrokeInput = gameTime.TotalGameTime.TotalMilliseconds;
+                    }
+
+                    // Zeichen
+                    if(Keyboard.GetState().IsKeyDown(Keys.OemMinus) && !ShiftIsPressed)
+                    {
+                        sb.Append('-');
+
+                        game.LastKeyStrokeInput = gameTime.TotalGameTime.TotalMilliseconds;
+                    }
+                    if (Keyboard.GetState().IsKeyDown(Keys.OemMinus) && ShiftIsPressed)
+                    {
+                        sb.Append('_');
+
+                        game.LastKeyStrokeInput = gameTime.TotalGameTime.TotalMilliseconds;
+                    }
+
+                    if (Keyboard.GetState().IsKeyDown(Keys.OemComma) && !ShiftIsPressed)
+                    {
+                        sb.Append(',');
+
+                        game.LastKeyStrokeInput = gameTime.TotalGameTime.TotalMilliseconds;
+                    }
+                    if (Keyboard.GetState().IsKeyDown(Keys.OemComma) && ShiftIsPressed)
+                    {
+                        sb.Append(';');
+
+                        game.LastKeyStrokeInput = gameTime.TotalGameTime.TotalMilliseconds;
+                    }
+
+                    if (Keyboard.GetState().IsKeyDown(Keys.OemPeriod) && !ShiftIsPressed)
+                    {
+                        sb.Append('.');
+
+                        game.LastKeyStrokeInput = gameTime.TotalGameTime.TotalMilliseconds;
+                    }
+                    if (Keyboard.GetState().IsKeyDown(Keys.OemPeriod) && ShiftIsPressed)
+                    {
+                        sb.Append(':');
 
                         game.LastKeyStrokeInput = gameTime.TotalGameTime.TotalMilliseconds;
                     }
