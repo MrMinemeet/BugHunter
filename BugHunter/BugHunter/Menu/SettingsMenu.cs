@@ -46,7 +46,7 @@ namespace BugHunter
                         break;
 
                     case Einstellungen.AnonymeStatistiken:
-                        aktEinstellung = Einstellungen.Nutzername;
+                        aktEinstellung = Einstellungen.Statistiken;
                         break;
                     case Einstellungen.Nutzername:
                         aktEinstellung = Einstellungen.AnonymeStatistiken;

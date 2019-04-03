@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <SourceFile>C:/Users/Alex/Documents/GitHub/BugHunter/BugHunter/BugHunter/Content/sprites/originSpot.png</SourceFile>
-  <SourceTime>2019-02-22T12:32:41.0191717+01:00</SourceTime>
-  <DestFile>C:/Users/Alex/Documents/GitHub/BugHunter/BugHunter/BugHunter/Content/bin/DesktopGL/Content/sprites/originSpot.xnb</DestFile>
-  <DestTime>2019-04-02T20:27:11.9938195+02:00</DestTime>
+  <SourceFile>C:/Users/Alexa/Google Drive/Project Whitespace/BugHunter/BugHunter/BugHunter/Content/sprites/originSpot.png</SourceFile>
+  <SourceTime>2019-02-10T19:57:44+01:00</SourceTime>
+  <DestFile>C:/Users/Alexa/Google Drive/Project Whitespace/BugHunter/BugHunter/BugHunter/Content/bin/DesktopGL/Content/sprites/originSpot.xnb</DestFile>
+  <DestTime>2019-04-03T13:28:57.3794693+02:00</DestTime>
   <Importer>TextureImporter</Importer>
   <ImporterTime>2018-10-08T15:37:24+02:00</ImporterTime>
   <Processor>TextureProcessor</Processor>

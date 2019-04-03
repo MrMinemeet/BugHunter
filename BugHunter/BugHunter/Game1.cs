@@ -596,8 +596,9 @@ namespace BugHunter
 
                 if(sound.HintergrundMusikEffect.State == SoundState.Stopped)
                 {
-                    sound.HintergrundMusikEffect.Volume = (float)settings.Musiklautstaerke / 100;
-                    sound.HintergrundMusikEffect.Play();
+                    sound.HintergrundMusikEffect.Volume = settings.Musiklautstaerke / 100f;
+                    if (settings.Musiklautstaerke > 0)
+                        sound.HintergrundMusikEffect.Play();
                 }
 
                 // Überprüft ob Powerup gelöscht wurde und löscht es falls ja
@@ -658,16 +659,18 @@ namespace BugHunter
                     if (sound.HintergrundMusikEffect.State == SoundState.Playing)
                     {
                         stopwatch.Stop();
-                        sound.HintergrundMusikEffect.Pause();
+                        sound.HintergrundMusikEffect.Stop();
                     }
                     CurrentGameState = GameState.Paused;
                 }
                 else if (CurrentGameState == GameState.Paused)
                 {
                     // Hintergrundmusik pausieren
-                    if (sound.HintergrundMusikEffect.State == SoundState.Paused)
+                    if (sound.HintergrundMusikEffect.State == SoundState.Paused || sound.HintergrundMusikEffect.State == SoundState.Stopped)
                     {
-                        sound.HintergrundMusikEffect.Resume();
+                        sound.HintergrundMusikEffect.Volume = (float)(settings.Musiklautstaerke) / 100f;
+                        if (settings.Musiklautstaerke > 0)
+                            sound.HintergrundMusikEffect.Play();
                     }
                     stopwatch.Start();
                     CurrentGameState = GameState.Ingame;

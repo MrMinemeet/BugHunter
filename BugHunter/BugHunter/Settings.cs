@@ -204,15 +204,29 @@ namespace BugHunter
             {
                 this.GUID = Guid.NewGuid().ToString();
             }
+
             if(this.StatisticsGUID.Length == 0)
             {
 
                 this.StatisticsGUID = Guid.NewGuid().ToString();
             }
-            if(this.UserName.Length == 0)
+
+            if (this.UserName.Length == 0)
             {
                 this.UserName = Environment.UserName;
             }
+
+            // Überprüfen das Lautstärke zwischen 0% und 100% liegt
+            if (Musiklautstaerke > 100)
+                Musiklautstaerke = 100;
+            else if (Musiklautstaerke < 0)
+                Musiklautstaerke = 0;
+            
+            if (Soundlautstaerke > 100)
+                Soundlautstaerke = 100;
+            else if (Soundlautstaerke < 0)
+                Soundlautstaerke = 0;
+
             return DidLoad;
         }
 

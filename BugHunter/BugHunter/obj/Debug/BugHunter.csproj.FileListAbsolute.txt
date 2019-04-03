@@ -533,3 +533,13 @@ C:\Users\Alex\Documents\GitHub\BugHunter\BugHunter\BugHunter\bin\DesktopGL\AnyCP
 C:\Users\Alex\Documents\GitHub\BugHunter\BugHunter\BugHunter\bin\DesktopGL\AnyCPU\Debug\Content\audio\Male\Damage\damage_7.xnb
 C:\Users\Alex\Documents\GitHub\BugHunter\BugHunter\BugHunter\bin\DesktopGL\AnyCPU\Debug\Content\audio\Male\Damage\damage_8.xnb
 C:\Users\Alex\Documents\GitHub\BugHunter\BugHunter\BugHunter\bin\DesktopGL\AnyCPU\Debug\Content\audio\Male\Damage\damage_9.xnb
+C:\Users\Alexa\Google Drive\Project Whitespace\BugHunter\BugHunter\BugHunter\bin\DesktopGL\AnyCPU\Debug\Content\audio\Male\Damage\damage_1.xnb
+C:\Users\Alexa\Google Drive\Project Whitespace\BugHunter\BugHunter\BugHunter\bin\DesktopGL\AnyCPU\Debug\Content\audio\Male\Damage\damage_10.xnb
+C:\Users\Alexa\Google Drive\Project Whitespace\BugHunter\BugHunter\BugHunter\bin\DesktopGL\AnyCPU\Debug\Content\audio\Male\Damage\damage_2.xnb
+C:\Users\Alexa\Google Drive\Project Whitespace\BugHunter\BugHunter\BugHunter\bin\DesktopGL\AnyCPU\Debug\Content\audio\Male\Damage\damage_3.xnb
+C:\Users\Alexa\Google Drive\Project Whitespace\BugHunter\BugHunter\BugHunter\bin\DesktopGL\AnyCPU\Debug\Content\audio\Male\Damage\damage_4.xnb
+C:\Users\Alexa\Google Drive\Project Whitespace\BugHunter\BugHunter\BugHunter\bin\DesktopGL\AnyCPU\Debug\Content\audio\Male\Damage\damage_5.xnb
+C:\Users\Alexa\Google Drive\Project Whitespace\BugHunter\BugHunter\BugHunter\bin\DesktopGL\AnyCPU\Debug\Content\audio\Male\Damage\damage_6.xnb
+C:\Users\Alexa\Google Drive\Project Whitespace\BugHunter\BugHunter\BugHunter\bin\DesktopGL\AnyCPU\Debug\Content\audio\Male\Damage\damage_7.xnb
+C:\Users\Alexa\Google Drive\Project Whitespace\BugHunter\BugHunter\BugHunter\bin\DesktopGL\AnyCPU\Debug\Content\audio\Male\Damage\damage_8.xnb
+C:\Users\Alexa\Google Drive\Project Whitespace\BugHunter\BugHunter\BugHunter\bin\DesktopGL\AnyCPU\Debug\Content\audio\Male\Damage\damage_9.xnb
