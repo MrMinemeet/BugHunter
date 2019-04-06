@@ -138,6 +138,7 @@
     <Compile Include="TexturePackerLoader\SpriteRender.cs" />
     <Compile Include="TexturePackerLoader\SpriteSheet.cs" />
     <Compile Include="TexturePackerLoader\SpriteSheetLoader.cs" />
+    <Compile Include="UsernameBlacklist.cs" />
     <Compile Include="Weapon.cs" />
   </ItemGroup>
   <ItemGroup>

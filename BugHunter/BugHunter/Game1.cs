@@ -619,7 +619,6 @@ namespace BugHunter
                 foreach(Powerup p in Powerups)
                     p.Update(gameTime, this.player);
                 
-                // Updated poof wenn Aktiv
                 if (PoofIsActive)
                 {
                     poofAM.Update(gameTime);
