@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <SourceFile>C:/Users/Alexa/Google Drive/Project Whitespace/BugHunter/BugHunter/BugHunter/Content/audio/Male/Death/death_1.wav</SourceFile>
-  <SourceTime>2017-04-22T10:27:07+02:00</SourceTime>
-  <DestFile>C:/Users/Alexa/Google Drive/Project Whitespace/BugHunter/BugHunter/BugHunter/Content/bin/DesktopGL/Content/audio/Male/Death/death_1.xnb</DestFile>
-  <DestTime>2019-04-03T13:28:48.99988+02:00</DestTime>
+  <SourceFile>C:/Users/Alex/Documents/GitHub/BugHunter/BugHunter/BugHunter/Content/audio/Male/Death/death_1.wav</SourceFile>
+  <SourceTime>2019-04-02T18:52:39.4788229+02:00</SourceTime>
+  <DestFile>C:/Users/Alex/Documents/GitHub/BugHunter/BugHunter/BugHunter/Content/bin/DesktopGL/Content/audio/Male/Death/death_1.xnb</DestFile>
+  <DestTime>2019-04-06T19:47:21.8384876+02:00</DestTime>
   <Importer>WavImporter</Importer>
   <ImporterTime>2018-10-08T15:37:24+02:00</ImporterTime>
   <Processor>SoundEffectProcessor</Processor>

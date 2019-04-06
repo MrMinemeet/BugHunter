@@ -110,6 +110,7 @@ namespace BugHunter
         public Thread GlobalScoreListUpdateThread;
         Thread CheckDatabaseConnectionThread;
         public Thread SendStatisticsThread;
+        public Thread GetBadusernameListThread;
 
         // DEBUG Featurese
         FpsCounter fps = new FpsCounter();
@@ -335,11 +336,15 @@ namespace BugHunter
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Update(GameTime gameTime)
         {
-            if(settings.IsSendStatsAllowed && updateThread.ThreadState.Equals(System.Threading.ThreadState.Unstarted) && RankingListUpdateThread.ThreadState.Equals(System.Threading.ThreadState.Unstarted) && GlobalScoreListUpdateThread.ThreadState.Equals(System.Threading.ThreadState.Unstarted) && SendStatisticsThread.ThreadState.Equals(System.Threading.ThreadState.Unstarted))
+            if (settings.IsSendStatsAllowed && updateThread.ThreadState.Equals(System.Threading.ThreadState.Unstarted) && RankingListUpdateThread.ThreadState.Equals(System.Threading.ThreadState.Unstarted) && GlobalScoreListUpdateThread.ThreadState.Equals(System.Threading.ThreadState.Unstarted) && SendStatisticsThread.ThreadState.Equals(System.Threading.ThreadState.Unstarted))
             {
                 updateThread.Start();
                 RankingListUpdateThread.Start();
                 GlobalScoreListUpdateThread.Start();
+
+                GetBadusernameListThread = new Thread(() => UsernameBlacklist.GetUsernameBlacklistFromDatabase(this));
+                GetBadusernameListThread.Name = "GetBadUsernameListThread";
+                GetBadusernameListThread.Start();
 
                 if (settings.SendAnonymStatistics)
                 {

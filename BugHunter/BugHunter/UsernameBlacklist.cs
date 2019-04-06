@@ -4,13 +4,14 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace BugHunter
 {
     class UsernameBlacklist
     {
-        public static void GetUsernameBlacklist(Game1 game)
+        public static void GetUsernameBlacklistFromDatabase(Game1 game)
         {
             string path;
             int ValuesInFile = 0;
@@ -30,18 +31,18 @@ namespace BugHunter
                 path = path + @"\usernameBlacklist.bin";
             }
 
-
+            // File öffnen um zu lesen, wieviele Inhalte drinnen sind
             BinaryReader br = null;
 
             try
             {
                 // Versuchen Username Blacklist zu öffnen
                 br = new BinaryReader(new FileStream(path, FileMode.Open));
-
                 ValuesInFile = br.ReadInt32();
             }
             catch (Exception e)
             {
+                // Kein Int als erstes oder kein File gefunden
                 Console.WriteLine(e.Message);
             }
             finally
@@ -49,42 +50,82 @@ namespace BugHunter
                 br?.Close();
             }
 
+            // File zum schreiben öffnen
+            BinaryWriter bw = null;
+
+            try
+            {
+                // Versuchen Username Blacklist zu öffnen
+                bw = new BinaryWriter(new FileStream(path, FileMode.OpenOrCreate));
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
+
             MySqlConnection mySqlConnection = null;
             MySqlCommand mySqlCommand = null;
             MySqlDataReader reader = null;
+            List<string> BadWordList = new List<string>();
 
-            string connString = "Server=" + Settings.host + ";Database=" + Settings.database + ";port=" + Settings.port + ";User Id=" + Settings.username + ";password=" + Settings.password;
+            string connString = "Server=" + Settings.host + ";Database=Blacklists;port=" + Settings.port + ";User Id=" + Settings.username + ";password=" + Settings.password;
 
-            if (game.settings.HasInternetConnection)
+            mySqlConnection = new MySqlConnection(connString);
+
+            try
             {
-                try
+                if (mySqlConnection.State != System.Data.ConnectionState.Open)
                 {
-                    if (mySqlConnection.State != System.Data.ConnectionState.Open)
-                    {
-                        // Verbindung muss erst aufgebaut werden
-                        game.logger.Log("Datenbankverbindung wird aufgebaut", "GetUsernameBlacklist", "Debug");
-                        mySqlConnection.Open();
+                    // Verbindung muss erst aufgebaut werden
+                    game.logger.Log("Datenbankverbindung wird aufgebaut", Thread.CurrentThread.Name, "Debug");
+                    mySqlConnection.Open();
 
-                    }
+                }
 
-                    if (mySqlConnection.State == System.Data.ConnectionState.Open)
+                if (mySqlConnection.State == System.Data.ConnectionState.Open)
+                {
+                    // Größe der Blacklist abfragen
+                    string query = "SELECT COUNT(*) FROM Username";
+
+                    mySqlCommand = new MySqlCommand(query);
+                    mySqlCommand.Connection = mySqlConnection;
+                    reader = mySqlCommand.ExecuteReader();
+
+                    reader.Read();
+
+                    int ValuesInDB = reader.GetInt32(0);
+
+                    reader.Close();
+
+                    if (ValuesInDB > ValuesInFile)
                     {
-                        // Größe der Blacklist abfragen
-                        string query = "SELECT GlobalHighscore.UserID FROM GlobalHighscore WHERE GlobalHighscore.UserID = '" + game.settings.GUID + "'";
+                        // Daten abfragen
+                        query = "SELECT `Username`.`Word` FROM `Username`";
 
                         mySqlCommand = new MySqlCommand(query);
                         mySqlCommand.Connection = mySqlConnection;
                         reader = mySqlCommand.ExecuteReader();
 
-                        reader.Read();
+                        while (reader.Read())
+                        {
+                            BadWordList.Add(reader.GetString(0));
+                        }
 
-                        reader.Close();
+                        bw.Write(BadWordList.Count);
+
+                        foreach (string word in BadWordList)
+                            bw.Write(word);
                     }
                 }
-                catch (MySqlException e)
-                {
-                    Console.WriteLine(e.Message);
-                }
+            }
+            catch (MySqlException e)
+            {
+                Console.WriteLine(e.Message);
+            }
+            finally
+            {
+                bw?.Close();
+                reader?.Close();
             }
         }
     }
