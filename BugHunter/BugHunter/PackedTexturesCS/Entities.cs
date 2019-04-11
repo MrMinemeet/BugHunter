@@ -4,7 +4,7 @@
  * Contains references to each image within the sprite sheet.
  *
  * https://www.codeandweb.com/texturepacker
- * $TexturePacker:SmartUpdate:1b8e206733563423b901f63392fd8dd3:9faf746c8584e9ca0c58f99c9f08c032:7de42156f25b693bd0d7ccd72987ff69$
+ * $TexturePacker:SmartUpdate:ec76ac07748b659f84c72a8f20f1de8f:c14532a4d6d30b711f528900fd1f661f:7de42156f25b693bd0d7ccd72987ff69$
  *
  */
 namespace TexturePackerMonoGameDefinitions
@@ -39,11 +39,16 @@ namespace TexturePackerMonoGameDefinitions
 		public const string Mss101 = "mss101";
 		public const string Mss110 = "mss110";
 		public const string Mss111 = "mss111";
+		public const string Powerup_AndroidStudio = "powerup_AndroidStudio";
 		public const string Powerup_Book = "powerup_Book";
 		public const string Powerup_CPU = "powerup_CPU";
+		public const string Powerup_Eclipse = "powerup_Eclipse";
+		public const string Powerup_IntelliJ = "powerup_IntelliJ";
 		public const string Powerup_kaffee = "powerup_kaffee";
 		public const string Powerup_Monitor = "powerup_Monitor";
+		public const string Powerup_NetBeans = "powerup_NetBeans";
 		public const string Powerup_usb = "powerup_usb";
+		public const string Powerup_VSCode = "powerup_VSCode";
 		public const string Run_000 = "run_000";
 		public const string Run_001 = "run_001";
 		public const string Run_002 = "run_002";

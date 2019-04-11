@@ -338,9 +338,14 @@
                 <key>scale9FromFile</key>
                 <false/>
             </struct>
+            <key type="filename">powerup/sprites/powerup_AndroidStudio.png</key>
             <key type="filename">powerup/sprites/powerup_Book.png</key>
             <key type="filename">powerup/sprites/powerup_CPU.png</key>
+            <key type="filename">powerup/sprites/powerup_Eclipse.png</key>
+            <key type="filename">powerup/sprites/powerup_IntelliJ.png</key>
             <key type="filename">powerup/sprites/powerup_Monitor.png</key>
+            <key type="filename">powerup/sprites/powerup_NetBeans.png</key>
+            <key type="filename">powerup/sprites/powerup_VSCode.png</key>
             <key type="filename">powerup/sprites/powerup_usb.png</key>
             <struct type="IndividualSpriteSettings">
                 <key>pivotPoint</key>

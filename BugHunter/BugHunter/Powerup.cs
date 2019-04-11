@@ -47,10 +47,13 @@ namespace ProjectWhitespace
                         {
                             this.PowerupType = PowerupTypes.Medipack;
                             DidSpawn = true;
+
+                            this.type = game.random.Next(2);
                         }
                         break;
                     case 3:
                         this.PowerupType = PowerupTypes.DamageUp;
+                        this.type = game.random.Next(5);
                         DidSpawn = true;
                         break;
                     case 4:
@@ -58,8 +61,6 @@ namespace ProjectWhitespace
                         DidSpawn = true;
                         break;
                 }
-
-                this.type = game.random.Next(2);
             }
         }
 
@@ -73,12 +74,14 @@ namespace ProjectWhitespace
                         this.position,
                         Color.White);
                     break;
+
                 case PowerupTypes.MoreAmmo:
                     spriteRender.Draw(
                         spriteSheet.Sprite(TexturePackerMonoGameDefinitions.entities.Powerup_usb),
                         this.position,
                         Color.White);
                     break;
+
                 case PowerupTypes.Medipack:
                     switch (type)
                     {
@@ -94,9 +97,46 @@ namespace ProjectWhitespace
                                 this.position,
                                 Color.White);
                             break;
-
                     }
                     break;
+
+                case PowerupTypes.DamageUp:
+                    switch (type)
+                    {
+                        case 0:
+                            spriteRender.Draw(
+                                spriteSheet.Sprite(TexturePackerMonoGameDefinitions.entities.Powerup_Eclipse),
+                                this.position,
+                                Color.White);
+                            break;
+                        case 1:
+                            spriteRender.Draw(
+                                spriteSheet.Sprite(TexturePackerMonoGameDefinitions.entities.Powerup_IntelliJ),
+                                this.position,
+                                Color.White);
+                            break;
+                        case 2:
+                            spriteRender.Draw(
+                                spriteSheet.Sprite(TexturePackerMonoGameDefinitions.entities.Powerup_NetBeans),
+                                this.position,
+                                Color.White);
+                            break;
+                        case 3:
+                            spriteRender.Draw(
+                                spriteSheet.Sprite(TexturePackerMonoGameDefinitions.entities.Powerup_VSCode),
+                                this.position,
+                                Color.White);
+                            break;
+
+                        case 4:
+                            spriteRender.Draw(
+                                spriteSheet.Sprite(TexturePackerMonoGameDefinitions.entities.Powerup_AndroidStudio),
+                                this.position,
+                                Color.White);
+                            break;
+                    }
+                    break;
+
                 case PowerupTypes.AmmoPack:
                     spriteRender.Draw(
                         spriteSheet.Sprite(TexturePackerMonoGameDefinitions.entities.Powerup_Book),
@@ -180,6 +220,9 @@ namespace ProjectWhitespace
                         {
                             player.Health += 25;
                         }
+                        break;
+                    case PowerupTypes.DamageUp:
+                        game.player.Damageboost += 2;
                         break;
                     case PowerupTypes.AmmoPack:
                         if (this.game.weapon.CAmmoAmount - 25 > this.game.player.AmmunitionAmmountList[Weapon.WeaponTypes.c])

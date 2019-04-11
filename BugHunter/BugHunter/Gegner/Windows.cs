@@ -111,7 +111,7 @@ namespace BugHunter
             {
                 if (player.projectiles[i].CheckForHitWindows(this))
                 {
-                    this.Health -= game.weapon.GetDamageAktWeapon(player.aktWeapon) + player.Damageboost;
+                    this.Health -= (game.weapon.GetDamageAktWeapon(player.aktWeapon) + player.Damageboost);
 
                     player.projectiles.Remove(player.projectiles[i]);
                     game.gameStats.AnzahlTreffer++;

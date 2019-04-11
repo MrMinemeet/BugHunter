@@ -104,7 +104,7 @@ namespace BugHunter
             {
                 if (player.projectiles[i].CheckForHitAndroid(this))
                 {
-                    this.Health -= game.weapon.GetDamageAktWeapon(player.aktWeapon) + player.Damageboost;
+                    this.Health -= (game.weapon.GetDamageAktWeapon(player.aktWeapon) + player.Damageboost);
 
                     player.projectiles.Remove(player.projectiles[i]);
                     game.gameStats.AnzahlTreffer++;

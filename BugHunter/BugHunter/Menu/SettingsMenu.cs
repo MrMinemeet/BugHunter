@@ -12,8 +12,6 @@ namespace BugHunter
 
         Game1 game;
 
-        bool WasKeyPressed = false;
-
         public SettingsMenu(Game1 game)
         {
             this.game = game;
