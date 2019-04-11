@@ -1,11 +1,6 @@
 ﻿using BugHunter;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using TexturePackerLoader;
 
 namespace ProjectWhitespace
@@ -19,7 +14,7 @@ namespace ProjectWhitespace
         private Game1 game;
         public bool DidSpawn { get; }
 
-        public enum PowerupTypes { Medipack, MoreAmmo, DamageUp, ShootSpeedUp }
+        public enum PowerupTypes { Medipack, MoreAmmo, DamageUp, ShootSpeedUp, AmmoPack }
 
         PowerupTypes PowerupType;
 
@@ -37,7 +32,7 @@ namespace ProjectWhitespace
 
             while (!DidSpawn)
             {
-                switch (game.random.Next(3))
+                switch (game.random.Next(5))
                 {
                     case 0:
                         this.PowerupType = PowerupTypes.ShootSpeedUp;
@@ -56,6 +51,10 @@ namespace ProjectWhitespace
                         break;
                     case 3:
                         this.PowerupType = PowerupTypes.DamageUp;
+                        DidSpawn = true;
+                        break;
+                    case 4:
+                        this.PowerupType = PowerupTypes.AmmoPack;
                         DidSpawn = true;
                         break;
                 }
@@ -97,6 +96,12 @@ namespace ProjectWhitespace
                             break;
 
                     }
+                    break;
+                case PowerupTypes.AmmoPack:
+                    spriteRender.Draw(
+                        spriteSheet.Sprite(TexturePackerMonoGameDefinitions.entities.Powerup_Book),
+                        this.position,
+                        Color.White);
                     break;
             }
         }

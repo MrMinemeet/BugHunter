@@ -11,6 +11,79 @@ namespace BugHunter
 {
     class UsernameBlacklist
     {
+        public static string CheckUsernameForBadWords(Game1 game, string name)
+        {
+
+            List<string> BadUsernameList = new List<string>();
+            // Bad Words Liste Laden
+            BinaryReader br = null;
+            string path;
+
+            if (Settings.IsLinux)
+            {
+                path = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), @"My games/Bug Hunter");
+                // Ordner Verzeichniss erstellen
+                Directory.CreateDirectory(path);
+                path = path + @"/usernameBlacklist.bin";
+            }
+            else
+            {
+                path = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), @"My games\Bug Hunter");
+                // Ordner Verzeichniss erstellen
+                Directory.CreateDirectory(path);
+                path = path + @"\usernameBlacklist.bin";
+            }
+
+            try
+            {
+                br = new BinaryReader(new FileStream(path, FileMode.Open, FileAccess.Read));
+
+                string input;
+                int AmountInFile = br.ReadInt32();
+
+                for (int i = 1; i <= AmountInFile; i++)
+                {
+                    input = br.ReadString();
+                    if (!input.Equals(""))
+                        BadUsernameList.Add(input);
+                }
+            }
+            catch (Exception e)
+            {
+                game.logger.Log(e.Message, Thread.CurrentThread.Name, "Warning");
+                Console.WriteLine(e.Message);
+            }
+            finally
+            {
+                br?.Close();
+            }
+
+            // Liste mit nicht erlaubten Usernamen durchlaufen
+            foreach (string s in BadUsernameList)
+            {
+                // Name vorbereiten
+                string username = name.ToLower().Replace(" ", "");
+
+                // Falls Name Wort von Blacklist enthält wird der Systemname verwendet
+                if (username.Contains(name.ToLower().Replace(" ", "")))
+                {
+                    username = Environment.UserName;
+                    game.logger.Log("Username ist nicht erlaubt", Thread.CurrentThread.Name, "Warnung");
+
+                    // Überprüfen ob Systemname ein nichterlaubtes Wort enthält
+                    if (username.Contains(name.ToLower().Replace(" ", "")))
+                    {
+                        game.logger.Log("Systemname ist nicht erlaubt", Thread.CurrentThread.Name, "Warnung");
+                        username = "NameNotOK";
+                    }
+                    return username;
+                }
+
+            }
+
+            return name;
+        }
+
         public static void GetUsernameBlacklistFromDatabase(Game1 game)
         {
             string path;

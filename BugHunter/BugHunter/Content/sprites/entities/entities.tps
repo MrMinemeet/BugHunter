@@ -338,6 +338,7 @@
                 <key>scale9FromFile</key>
                 <false/>
             </struct>
+            <key type="filename">powerup/sprites/powerup_Book.png</key>
             <key type="filename">powerup/sprites/powerup_CPU.png</key>
             <key type="filename">powerup/sprites/powerup_Monitor.png</key>
             <key type="filename">powerup/sprites/powerup_usb.png</key>

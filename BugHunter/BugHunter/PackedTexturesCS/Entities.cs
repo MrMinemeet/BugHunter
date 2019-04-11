@@ -4,7 +4,7 @@
  * Contains references to each image within the sprite sheet.
  *
  * https://www.codeandweb.com/texturepacker
- * $TexturePacker:SmartUpdate:ec362d47006951aee6f31e13fffbe345:6ffc56ca9a7f42b00698974602077442:7de42156f25b693bd0d7ccd72987ff69$
+ * $TexturePacker:SmartUpdate:1b8e206733563423b901f63392fd8dd3:9faf746c8584e9ca0c58f99c9f08c032:7de42156f25b693bd0d7ccd72987ff69$
  *
  */
 namespace TexturePackerMonoGameDefinitions
@@ -39,6 +39,7 @@ namespace TexturePackerMonoGameDefinitions
 		public const string Mss101 = "mss101";
 		public const string Mss110 = "mss110";
 		public const string Mss111 = "mss111";
+		public const string Powerup_Book = "powerup_Book";
 		public const string Powerup_CPU = "powerup_CPU";
 		public const string Powerup_kaffee = "powerup_kaffee";
 		public const string Powerup_Monitor = "powerup_Monitor";
