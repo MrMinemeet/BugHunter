@@ -181,6 +181,33 @@ namespace ProjectWhitespace
                             player.Health += 25;
                         }
                         break;
+                    case PowerupTypes.AmmoPack:
+                        if (this.game.weapon.CAmmoAmount - 25 > this.game.player.AmmunitionAmmountList[Weapon.WeaponTypes.c])
+                            this.game.player.AmmunitionAmmountList[Weapon.WeaponTypes.c] += 25;
+                        else
+                            this.game.player.AmmunitionAmmountList[Weapon.WeaponTypes.c] = this.game.weapon.CAmmoAmount;
+
+                        if (this.game.weapon.CppAmmoAmount - 25 > this.game.player.AmmunitionAmmountList[Weapon.WeaponTypes.cpp])
+                            this.game.player.AmmunitionAmmountList[Weapon.WeaponTypes.cpp] += 25;
+                        else
+                            this.game.player.AmmunitionAmmountList[Weapon.WeaponTypes.cpp] = this.game.weapon.CppAmmoAmount;
+
+                        if (this.game.weapon.JavaAmmoAmount - 25 > this.game.player.AmmunitionAmmountList[Weapon.WeaponTypes.java])
+                            this.game.player.AmmunitionAmmountList[Weapon.WeaponTypes.java] += 25;
+                        else
+                            this.game.player.AmmunitionAmmountList[Weapon.WeaponTypes.java] = this.game.weapon.JavaAmmoAmount;
+
+                        if (this.game.weapon.MaschinenspracheAmmoAmount - 25 > this.game.player.AmmunitionAmmountList[Weapon.WeaponTypes.maschinensprache])
+                            this.game.player.AmmunitionAmmountList[Weapon.WeaponTypes.maschinensprache] += 25;
+                        else
+                            this.game.player.AmmunitionAmmountList[Weapon.WeaponTypes.maschinensprache] = this.game.weapon.MaschinenspracheAmmoAmount;
+
+                        if (this.game.weapon.CsharpAmmoAmount - 25 > this.game.player.AmmunitionAmmountList[Weapon.WeaponTypes.csharp])
+                            this.game.player.AmmunitionAmmountList[Weapon.WeaponTypes.csharp] += 25;
+                        else
+                            this.game.player.AmmunitionAmmountList[Weapon.WeaponTypes.csharp] = this.game.weapon.CsharpAmmoAmount;
+
+                        break;
                 }
                 return true;
             }
