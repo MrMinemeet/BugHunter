@@ -31,8 +31,8 @@
         public static string Settings_Sounds = "Soundslautstärke: ";
         public static string Settings_Statistiken = "Stats senden: ";
         public static string Settings_Anonyme_Statistiken = "Anonyme Statistiken: ";
-        public static string Settings_Change_Name = @"Der Name kann unter 'My Games\BugHunter\Configuration.config' bearbeitet werden";
         public static string Settings_Username = "Nutzername: ";
+        public static string Settings_UsernameNichtErlaubt = "Username ist nicht erlaubt";
         public static string General_On = "EIN";
         public static string General_Off = "AUS";
 

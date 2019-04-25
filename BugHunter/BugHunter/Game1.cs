@@ -50,6 +50,7 @@ using System.Collections.Generic;
 using TexturePackerLoader;
 using System.Diagnostics;
 using System.Threading;
+using ThreadState = System.Threading.ThreadState;
 
 namespace BugHunter
 {
@@ -79,7 +80,6 @@ namespace BugHunter
 
         public List<Powerup> Powerups = new List<Powerup>();
 
-
         public List<Map> map = new List<Map>();
         GUI gui;
         public SoundFX sound = new SoundFX();
@@ -105,12 +105,14 @@ namespace BugHunter
         public Random random = new Random();
 
         // Threads
+        bool ThreadsHaveStarted = false;
         public Thread updateThread;
         public Thread RankingListUpdateThread;
         public Thread GlobalScoreListUpdateThread;
         Thread CheckDatabaseConnectionThread;
         public Thread SendStatisticsThread;
         public Thread GetBadusernameListThread;
+        public Thread CheckNameThread;
 
         // DEBUG Featurese
         FpsCounter fps = new FpsCounter();
@@ -299,6 +301,9 @@ namespace BugHunter
                 SendStatisticsThread = new Thread(() => Database.SendAnonymStatistics(this));
                 SendStatisticsThread.Name = "SendStatisticsThread";
 
+                CheckNameThread = new Thread(() => settingsMenu.CheckNameThreadMethod(this));
+                CheckNameThread.Name = "CheckNameThread";
+
                 // Threads Starten
                 CheckDatabaseConnectionThread.Start();
             }
@@ -317,6 +322,7 @@ namespace BugHunter
             GlobalScoreListUpdateThread?.Interrupt();
             CheckDatabaseConnectionThread?.Interrupt();
             SendStatisticsThread?.Interrupt();
+            CheckNameThread?.Interrupt();
 
             // Speichern von Einstellungen
             settings.SaveSettings();
@@ -336,7 +342,7 @@ namespace BugHunter
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Update(GameTime gameTime)
         {
-            if (settings.IsSendStatsAllowed && updateThread.ThreadState.Equals(System.Threading.ThreadState.Unstarted) && RankingListUpdateThread.ThreadState.Equals(System.Threading.ThreadState.Unstarted) && GlobalScoreListUpdateThread.ThreadState.Equals(System.Threading.ThreadState.Unstarted) && SendStatisticsThread.ThreadState.Equals(System.Threading.ThreadState.Unstarted))
+            if (settings.IsSendStatsAllowed && !ThreadsHaveStarted)
             {
                 updateThread.Start();
                 RankingListUpdateThread.Start();
@@ -346,10 +352,14 @@ namespace BugHunter
                 GetBadusernameListThread.Name = "GetBadUsernameListThread";
                 GetBadusernameListThread.Start();
 
+                CheckNameThread.Start();
+
                 if (settings.SendAnonymStatistics)
                 {
                     SendStatisticsThread.Start();
                 }
+
+                ThreadsHaveStarted = true;
             }
 
             if (Keyboard.GetState().IsKeyDown(Keys.F1))
@@ -455,7 +465,7 @@ namespace BugHunter
             }
 
             // Ingame
-            if(CurrentGameState == GameState.Ingame)
+            if (CurrentGameState == GameState.Ingame)
             {
                 this.CurrentRunTime = stopwatch.ElapsedMilliseconds;
                 if(this.Score >= (5000 + StatsBoostGiven) && Score != 0)

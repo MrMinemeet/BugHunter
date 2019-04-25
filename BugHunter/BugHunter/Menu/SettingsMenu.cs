@@ -1,7 +1,9 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using System;
 using System.Text;
+using System.Threading;
 
 namespace BugHunter
 {
@@ -12,14 +14,21 @@ namespace BugHunter
 
         Game1 game;
 
+        // <== Nachrichten ==>
+
+        // Nicht erlaubte Nutzernamen
+        public static bool UserNameNotAllowed = false;
+        double UserNameNotOkTimeshown;
+        bool ShowUsernameNotAllowedMessage = false;
+        
         public SettingsMenu(Game1 game)
         {
+            game.CheckNameThread = new Thread(() => CheckNameThreadMethod(game));
             this.game = game;
         }
 
         public void Update(GameTime gameTime)
         {
-
             //  <== NAVIGATION ==>
             if (Keyboard.GetState().IsKeyDown(Keys.Escape))
                 game.CurrentGameState = Game1.GameState.Hauptmenu;
@@ -515,6 +524,21 @@ namespace BugHunter
 
                 game.settings.UserName = sb.ToString();
             }
+
+            // <== NACHRICHTEN ==>
+
+            // Zeit setzen, wann warnung für nicht erlaubten Usernamen startet
+            if (UserNameNotAllowed)
+            {
+                UserNameNotOkTimeshown = gameTime.TotalGameTime.TotalMilliseconds;
+                UserNameNotAllowed = false;
+                ShowUsernameNotAllowedMessage = true;
+            }
+
+            if(gameTime.TotalGameTime.TotalMilliseconds - UserNameNotOkTimeshown >= 5000 && ShowUsernameNotAllowedMessage)
+            {
+                ShowUsernameNotAllowedMessage = false;
+            }
         }
 
         public void Draw(SpriteBatch spriteBatch)
@@ -578,6 +602,39 @@ namespace BugHunter
                     spriteBatch.DrawString(game.MenuFont, Texttable_DE.Settings_Username, new Vector2(100, 600),Color.YellowGreen);
                     spriteBatch.DrawString(game.MenuFont, game.settings.UserName, new Vector2(1200, 600), Color.YellowGreen);
                     break;
+            }
+
+            // Nachrichten zeichnen
+            if(ShowUsernameNotAllowedMessage)
+                spriteBatch.DrawString(game.DebugFont, Texttable_DE.Settings_UsernameNichtErlaubt, new Vector2(100, 700), Color.OrangeRed);
+        }
+
+
+        // Thread zum überprüfen des Namens
+        public void CheckNameThreadMethod(Game1 game)
+        {
+            // Schleife welche alle 5 Sek den Nutzernamen überprüft
+
+            while (true)
+            {
+                string NameBeforeCheck = game.settings.UserName;
+                game.settings.UserName = UsernameBlacklist.CheckUsernameForBadWords(game, game.settings.UserName);
+
+                if (!NameBeforeCheck.Equals(game.settings.UserName))
+                {
+                    UserNameNotAllowed = true;
+                    game.logger.Log("Name ist nicht erlaubt. Setze zurück.", Thread.CurrentThread.Name);
+                }
+
+                try
+                {
+                    Thread.Sleep(5000);
+                }
+                catch(ThreadInterruptedException e)
+                {
+                    game.logger.Log("Thread wird beendet", Thread.CurrentThread.Name, "Debug");
+                    break;
+                }
             }
         }
     }

@@ -58,27 +58,30 @@ namespace BugHunter
                 br?.Close();
             }
 
-            // Liste mit nicht erlaubten Usernamen durchlaufen
-            foreach (string s in BadUsernameList)
+            if (name.Length > 0)
             {
-                // Name vorbereiten
-                string username = s.ToLower().Replace(" ", "");
 
-                // Falls Name Wort von Blacklist enthält wird der Systemname verwendet
-                if (username.Contains(name.ToLower().Replace(" ", "")))
+                // Liste mit nicht erlaubten Usernamen durchlaufen
+                foreach (string s in BadUsernameList)
                 {
-                    username = Environment.UserName;
-                    game.logger.Log("Username ist nicht erlaubt. '" + username + "'", Thread.CurrentThread.Name, "Warnung");
+                    // Name vorbereiten
+                    string username = s.ToLower().Replace(" ", "");
 
-                    // Überprüfen ob Systemname ein nichterlaubtes Wort enthält
+                    // Falls Name Wort von Blacklist enthält wird der Systemname verwendet
                     if (username.Contains(name.ToLower().Replace(" ", "")))
                     {
-                        game.logger.Log("Systemname ist nicht erlaubt", Thread.CurrentThread.Name, "Warnung");
-                        username = "NameNotOK";
-                    }
-                    return username;
-                }
+                        username = Environment.UserName;
+                        game.logger.Log("Username ist nicht erlaubt. '" + username + "'", Thread.CurrentThread.Name, "Warnung");
 
+                        // Überprüfen ob Systemname ein nichterlaubtes Wort enthält
+                        if (username.Contains(name.ToLower().Replace(" ", "")))
+                        {
+                            game.logger.Log("Systemname ist nicht erlaubt", Thread.CurrentThread.Name, "Warnung");
+                            username = "NameNotOK";
+                        }
+                        return username;
+                    }
+                }
             }
 
             return name;
