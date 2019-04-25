@@ -226,12 +226,12 @@ namespace ProjectWhitespace
                         break;
                     case PowerupTypes.AmmoPack:
                         if (this.game.weapon.CAmmoAmount - 25 > this.game.player.AmmunitionAmmountList[Weapon.WeaponTypes.c])
-                            this.game.player.AmmunitionAmmountList[Weapon.WeaponTypes.c] += 25;
+                            this.game.player.AmmunitionAmmountList[Weapon.WeaponTypes.c] += 15;
                         else
                             this.game.player.AmmunitionAmmountList[Weapon.WeaponTypes.c] = this.game.weapon.CAmmoAmount;
 
                         if (this.game.weapon.CppAmmoAmount - 25 > this.game.player.AmmunitionAmmountList[Weapon.WeaponTypes.cpp])
-                            this.game.player.AmmunitionAmmountList[Weapon.WeaponTypes.cpp] += 25;
+                            this.game.player.AmmunitionAmmountList[Weapon.WeaponTypes.cpp] += 20;
                         else
                             this.game.player.AmmunitionAmmountList[Weapon.WeaponTypes.cpp] = this.game.weapon.CppAmmoAmount;
 
@@ -241,7 +241,7 @@ namespace ProjectWhitespace
                             this.game.player.AmmunitionAmmountList[Weapon.WeaponTypes.java] = this.game.weapon.JavaAmmoAmount;
 
                         if (this.game.weapon.MaschinenspracheAmmoAmount - 25 > this.game.player.AmmunitionAmmountList[Weapon.WeaponTypes.maschinensprache])
-                            this.game.player.AmmunitionAmmountList[Weapon.WeaponTypes.maschinensprache] += 25;
+                            this.game.player.AmmunitionAmmountList[Weapon.WeaponTypes.maschinensprache] += 10;
                         else
                             this.game.player.AmmunitionAmmountList[Weapon.WeaponTypes.maschinensprache] = this.game.weapon.MaschinenspracheAmmoAmount;
 
