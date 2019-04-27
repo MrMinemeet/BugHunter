@@ -50,7 +50,6 @@ using System.Collections.Generic;
 using TexturePackerLoader;
 using System.Diagnostics;
 using System.Threading;
-using ThreadState = System.Threading.ThreadState;
 
 namespace BugHunter
 {
@@ -467,6 +466,11 @@ namespace BugHunter
             // Ingame
             if (CurrentGameState == GameState.Ingame)
             {
+                // Musiklautstärke zuweisen
+                if (sound.HintergrundMusikEffect.Volume != settings.Musiklautstaerke)
+                    sound.HintergrundMusikEffect.Volume = (float)settings.Musiklautstaerke / 100f;
+
+
                 this.CurrentRunTime = stopwatch.ElapsedMilliseconds;
                 if(this.Score >= (5000 + StatsBoostGiven) && Score != 0)
                 {
@@ -607,13 +611,9 @@ namespace BugHunter
                 // Update the fps
                 fps.Update(gameTime);
 
-                sound.HintergrundMusikEffect.Volume = 0.1f;
-
                 if(sound.HintergrundMusikEffect.State == SoundState.Stopped)
                 {
-                    sound.HintergrundMusikEffect.Volume = settings.Musiklautstaerke / 100f;
-                    if (settings.Musiklautstaerke > 0)
-                        sound.HintergrundMusikEffect.Play();
+                    sound.HintergrundMusikEffect.Play();
                 }
 
                 // Überprüft ob Powerup gelöscht wurde und löscht es falls ja
@@ -682,9 +682,7 @@ namespace BugHunter
                     // Hintergrundmusik pausieren
                     if (sound.HintergrundMusikEffect.State == SoundState.Paused || sound.HintergrundMusikEffect.State == SoundState.Stopped)
                     {
-                        sound.HintergrundMusikEffect.Volume = (float)(settings.Musiklautstaerke) / 100f;
-                        if (settings.Musiklautstaerke > 0)
-                            sound.HintergrundMusikEffect.Play();
+                        sound.HintergrundMusikEffect.Play();
                     }
                     stopwatch.Start();
                     CurrentGameState = GameState.Ingame;
