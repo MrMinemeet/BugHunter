@@ -14,8 +14,12 @@ namespace BugHunter
 
         public SoundEffect[] Schuesse = new SoundEffect[6];
 
-
+        // <== Spieler ==>
         public List<SoundEffect> MaleDeathSound = new List<SoundEffect>();
         public List<SoundEffect> MaleDamageSound = new List<SoundEffect>();
+
+
+        // <== GEGNER ==>
+        public List<SoundEffect> EnemieDeathSound = new List<SoundEffect>();
     }
 }

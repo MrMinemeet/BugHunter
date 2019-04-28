@@ -4,6 +4,12 @@
   <Platform>DesktopGL</Platform>
   <Config />
   <SourceFiles>
+    <File>C:/Users/Alex/Documents/GitHub/BugHunter/BugHunter/BugHunter/Content/audio/Enemies/Death/Enemie_Damage_1.ogg</File>
+    <File>C:/Users/Alex/Documents/GitHub/BugHunter/BugHunter/BugHunter/Content/audio/Enemies/Death/Enemie_Damage_2.ogg</File>
+    <File>C:/Users/Alex/Documents/GitHub/BugHunter/BugHunter/BugHunter/Content/audio/Enemies/Death/Enemie_Damage_3.ogg</File>
+    <File>C:/Users/Alex/Documents/GitHub/BugHunter/BugHunter/BugHunter/Content/audio/Enemies/Death/Enemie_Damage_4.ogg</File>
+    <File>C:/Users/Alex/Documents/GitHub/BugHunter/BugHunter/BugHunter/Content/audio/Enemies/Death/Enemie_Damage_5.ogg</File>
+    <File>C:/Users/Alex/Documents/GitHub/BugHunter/BugHunter/BugHunter/Content/audio/Enemies/Death/Enemie_Damage_6.ogg</File>
     <File>C:/Users/Alex/Documents/GitHub/BugHunter/BugHunter/BugHunter/Content/audio/Male/Damage/damage_1.wav</File>
     <File>C:/Users/Alex/Documents/GitHub/BugHunter/BugHunter/BugHunter/Content/audio/Male/Damage/damage_10.wav</File>
     <File>C:/Users/Alex/Documents/GitHub/BugHunter/BugHunter/BugHunter/Content/audio/Male/Damage/damage_2.wav</File>
@@ -42,6 +48,12 @@
     <File>C:/Users/Alex/Documents/GitHub/BugHunter/BugHunter/BugHunter/Content/sprites/originSpot.png</File>
   </SourceFiles>
   <DestFiles>
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />

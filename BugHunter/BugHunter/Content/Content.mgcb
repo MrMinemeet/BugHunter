@@ -17,6 +17,42 @@
 #begin ../Credits.txt
 /copy:../Credits.txt;Credits.txt
 
+#begin audio/Enemies/Death/Enemie_Damage_1.ogg
+/importer:OggImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:audio/Enemies/Death/Enemie_Damage_1.ogg
+
+#begin audio/Enemies/Death/Enemie_Damage_2.ogg
+/importer:OggImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:audio/Enemies/Death/Enemie_Damage_2.ogg
+
+#begin audio/Enemies/Death/Enemie_Damage_3.ogg
+/importer:OggImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:audio/Enemies/Death/Enemie_Damage_3.ogg
+
+#begin audio/Enemies/Death/Enemie_Damage_4.ogg
+/importer:OggImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:audio/Enemies/Death/Enemie_Damage_4.ogg
+
+#begin audio/Enemies/Death/Enemie_Damage_5.ogg
+/importer:OggImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:audio/Enemies/Death/Enemie_Damage_5.ogg
+
+#begin audio/Enemies/Death/Enemie_Damage_6.ogg
+/importer:OggImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:audio/Enemies/Death/Enemie_Damage_6.ogg
+
 #begin audio/Male/Damage/damage_1.wav
 /importer:WavImporter
 /processor:SoundEffectProcessor

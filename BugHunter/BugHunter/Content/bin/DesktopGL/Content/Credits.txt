@@ -1,4 +1,13 @@
-﻿SOUND:
+﻿Logos:
+	Android - Google
+	IntelliJ IDEA - JetBrains
+	Windows - Microsoft
+	Android Studio - Google
+	Visual Studio Code - Microsoft
+	Eclipse - Eclipse Foundation
+	Netbeans - Apache Software Foundation & Oracle Corporation
+
+Sounds:
 	Score.wav - http://devassets.com/
 
 	Deathsounds:
@@ -9,12 +18,10 @@
 		Producer -  Dillon Becker, dillonbecker.com
 		Male - Alex Brodie -> brodievoices@gmail.com
 
-			
 Texture:
 	Player: https://jesse-m.itch.io/jungle-pack - Modifiziert von Alexander Voglsperger
 
 
-
 Alle hier nicht aufgelisteten Dinge sind von Project Whitespace selbst erstellt worden.
-Falls doch etwas von Dritten erstellt worden sein sollte, welches hier nicht aufgelistet ist tut es uns sehr leid und bitten
+Falls doch etwas von Dritten erstellt worden sein sollte, welches hier nicht aufgelistet ist, tut es uns sehr leid und bitten
 dich uns über unsere Homepage www.ProjectWhitespace.net zu Kontaktieren um es schnellstmöglich zu ändern.

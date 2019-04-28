@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <SourceFile>C:/Users/Alex/Documents/GitHub/BugHunter/BugHunter/BugHunter/Content/sprites/gui/textures/heart_half.png</SourceFile>
-  <SourceTime>2019-02-22T12:32:41.0151814+01:00</SourceTime>
+  <SourceTime>2019-04-14T10:40:41.4108009+02:00</SourceTime>
   <DestFile>C:/Users/Alex/Documents/GitHub/BugHunter/BugHunter/BugHunter/Content/bin/DesktopGL/sprites/gui/textures/heart_half.xnb</DestFile>
-  <DestTime>2019-04-02T20:50:15.7249362+02:00</DestTime>
+  <DestTime>2019-04-28T20:08:18.3251663+02:00</DestTime>
   <Importer>TextureImporter</Importer>
   <ImporterTime>2018-10-08T15:37:24+02:00</ImporterTime>
   <Processor>TextureProcessor</Processor>

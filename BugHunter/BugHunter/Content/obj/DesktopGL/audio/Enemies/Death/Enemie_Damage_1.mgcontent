@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PipelineBuildEvent xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <SourceFile>C:/Users/Alex/Documents/GitHub/BugHunter/BugHunter/BugHunter/Content/audio/Enemies/Death/Enemie_Damage_1.ogg</SourceFile>
+  <SourceTime>2016-10-24T17:38:14+02:00</SourceTime>
+  <DestFile>C:/Users/Alex/Documents/GitHub/BugHunter/BugHunter/BugHunter/Content/bin/DesktopGL/audio/Enemies/Death/Enemie_Damage_1.xnb</DestFile>
+  <DestTime>2019-04-28T20:08:13.4718515+02:00</DestTime>
+  <Importer>OggImporter</Importer>
+  <ImporterTime>2018-10-08T15:37:24+02:00</ImporterTime>
+  <Processor>SoundEffectProcessor</Processor>
+  <ProcessorTime>2018-10-08T15:37:24+02:00</ProcessorTime>
+  <Parameters>
+    <Key>Quality</Key>
+    <Value>Best</Value>
+  </Parameters>
+  <Dependencies />
+  <BuildAsset />
+  <BuildOutput />
+</PipelineBuildEvent>

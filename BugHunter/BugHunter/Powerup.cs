@@ -211,6 +211,7 @@ namespace ProjectWhitespace
                             this.game.weapon.CsharpAmmoAmount += 10;
 
                         break;
+
                     case PowerupTypes.Medipack:
                         if(player.Health + 25 > player.MaxHealth)
                         {
@@ -221,9 +222,11 @@ namespace ProjectWhitespace
                             player.Health += 25;
                         }
                         break;
+
                     case PowerupTypes.DamageUp:
-                        game.player.Damageboost += 2;
+                        game.player.Damageboost += 4;
                         break;
+
                     case PowerupTypes.AmmoPack:
                         if (this.game.weapon.CAmmoAmount - 25 > this.game.player.AmmunitionAmmountList[Weapon.WeaponTypes.c])
                             this.game.player.AmmunitionAmmountList[Weapon.WeaponTypes.c] += 15;

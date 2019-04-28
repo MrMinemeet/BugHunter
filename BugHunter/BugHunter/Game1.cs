@@ -222,6 +222,8 @@ namespace BugHunter
             MapArray = Converter.MapToIntArray(map[AktuelleMap].maplevel, settings, @"Collision/Trigger");
             EnemySpawnPointsArray = Converter.MapToIntArray(map[AktuelleMap].maplevel, settings, @"EnemySpawnPos");
 
+
+            // <== PLAYER ==>
             // Audio
             sound.ScoreSound = Content.Load<SoundEffect>("audio/Score");
             sound.HintergrundMusik = Content.Load<SoundEffect>("audio/Musik");
@@ -257,6 +259,14 @@ namespace BugHunter
             sound.MaleDamageSound.Add(Content.Load<SoundEffect>("audio/Male/Damage/damage_8"));
             sound.MaleDamageSound.Add(Content.Load<SoundEffect>("audio/Male/Damage/damage_9"));
             sound.MaleDamageSound.Add(Content.Load<SoundEffect>("audio/Male/Damage/damage_10"));
+
+            // <== GEGNER ==>
+            sound.EnemieDeathSound.Add(Content.Load<SoundEffect>("audio/Enemies/Death/Enemie_Damage_1"));
+            sound.EnemieDeathSound.Add(Content.Load<SoundEffect>("audio/Enemies/Death/Enemie_Damage_2"));
+            sound.EnemieDeathSound.Add(Content.Load<SoundEffect>("audio/Enemies/Death/Enemie_Damage_3"));
+            sound.EnemieDeathSound.Add(Content.Load<SoundEffect>("audio/Enemies/Death/Enemie_Damage_4"));
+            sound.EnemieDeathSound.Add(Content.Load<SoundEffect>("audio/Enemies/Death/Enemie_Damage_5"));
+            sound.EnemieDeathSound.Add(Content.Load<SoundEffect>("audio/Enemies/Death/Enemie_Damage_6"));
 
             // Schriften
             font = Content.Load<SpriteFont>("Font");
@@ -551,11 +561,13 @@ namespace BugHunter
 
                     if (AndroidsList[i].IsDead)
                     {
+                        sound.EnemieDeathSound[random.Next(sound.EnemieDeathSound.Count - 1)].Play((float)settings.Soundlautstaerke / 100f, 0, 0);
+                    
                         gameStats.KilledEnemies++;
                         PoofPosition = AndroidsList[i].Position;
                         PoofIsActive = true;
 
-                        // 10% Chance das sich der Schaden 
+                        // 10% Chance das sich der Schaden erhöht
                         if(random.Next(100) < 10)
                         {
                             AndroidDamage += 1;
@@ -575,10 +587,12 @@ namespace BugHunter
 
                     if (WindowsList[i].IsDead)
                     {
+                        sound.EnemieDeathSound[random.Next(sound.EnemieDeathSound.Count - 1)].Play((float)settings.Soundlautstaerke / 100f, 0, 0);
+
                         gameStats.KilledEnemies++;
                         PoofPosition = WindowsList[i].Position;
                         PoofIsActive = true;
-                        // 10% Chance das sich der Schaden 
+                        // 10% Chance das sich der Schaden erhöht
                         if (random.Next(100) < 10)
                         {
                             WindowsDamage += 1;
