@@ -111,8 +111,16 @@ namespace BugHunter
             // Musiklautstärke erhöhen
             if ((Keyboard.GetState().IsKeyDown(Keys.D) || Keyboard.GetState().IsKeyDown(Keys.Right)) && aktEinstellung.Equals(Einstellungen.MusikLautstaerke) && gameTime.TotalGameTime.TotalMilliseconds - game.LastKeyStrokeInput >= 250)
             {
-                if (game.settings.Musiklautstaerke < 100)
-                    game.settings.Musiklautstaerke++;
+                if (Keyboard.GetState().IsKeyDown(Keys.LeftShift))
+                {
+                    if (game.settings.Musiklautstaerke + 10 < 100)
+                        game.settings.Musiklautstaerke += 10;
+                    else
+                        game.settings.Musiklautstaerke = 100;
+                }
+                else
+                    if (game.settings.Soundlautstaerke < 100)
+                        game.settings.Soundlautstaerke++;
 
                 game.LastKeyStrokeInput = gameTime.TotalGameTime.TotalMilliseconds;
             }
@@ -120,24 +128,48 @@ namespace BugHunter
             // Musiklautstärke reduzieren
             if ((Keyboard.GetState().IsKeyDown(Keys.A) || Keyboard.GetState().IsKeyDown(Keys.Left)) && aktEinstellung.Equals(Einstellungen.MusikLautstaerke) && gameTime.TotalGameTime.TotalMilliseconds - game.LastKeyStrokeInput >= 250)
             {
-                if (game.settings.Musiklautstaerke > 0)
-                    game.settings.Musiklautstaerke--;
+                if(Keyboard.GetState().IsKeyDown(Keys.LeftShift))
+                { 
+                    if (game.settings.Musiklautstaerke - 10 > 0)
+                        game.settings.Musiklautstaerke -= 10;
+                    else
+                        game.settings.Musiklautstaerke = 0;
+                }
+                else
+                    if (game.settings.Soundlautstaerke < 100)
+                        game.settings.Soundlautstaerke--;
 
-                game.LastKeyStrokeInput = gameTime.TotalGameTime.TotalMilliseconds;
+            game.LastKeyStrokeInput = gameTime.TotalGameTime.TotalMilliseconds;
             }
 
             // Soundlautstärke erhöhen
             if ((Keyboard.GetState().IsKeyDown(Keys.D) || Keyboard.GetState().IsKeyDown(Keys.Right)) && aktEinstellung.Equals(Einstellungen.SoundLautstaerke) && gameTime.TotalGameTime.TotalMilliseconds - game.LastKeyStrokeInput >= 250)
             {
-                if (game.settings.Soundlautstaerke < 100)
-                    game.settings.Soundlautstaerke++;
+                if (Keyboard.GetState().IsKeyDown(Keys.LeftShift))
+                {
+                    if (game.settings.Soundlautstaerke + 10 < 100)
+                        game.settings.Soundlautstaerke += 10;
+                    else
+                        game.settings.Soundlautstaerke = 100;
+                }
+                else
+                    if (game.settings.Soundlautstaerke < 100)
+                        game.settings.Soundlautstaerke++;
 
                 game.LastKeyStrokeInput = gameTime.TotalGameTime.TotalMilliseconds;
             }
             // Soundlautstärke reduzieren
             if ((Keyboard.GetState().IsKeyDown(Keys.A) || Keyboard.GetState().IsKeyDown(Keys.Left)) && aktEinstellung.Equals(Einstellungen.SoundLautstaerke) && gameTime.TotalGameTime.TotalMilliseconds - game.LastKeyStrokeInput >= 250)
             {
-                if (game.settings.Soundlautstaerke > 0)
+                if (Keyboard.GetState().IsKeyDown(Keys.LeftShift))
+                {
+                    if (game.settings.Soundlautstaerke - 10 > 0)
+                        game.settings.Soundlautstaerke -= 10;
+                    else
+                        game.settings.Soundlautstaerke = 0;
+                }
+                else
+                    if (game.settings.Soundlautstaerke < 100)
                     game.settings.Soundlautstaerke--;
 
                 game.LastKeyStrokeInput = gameTime.TotalGameTime.TotalMilliseconds;

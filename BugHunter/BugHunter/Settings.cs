@@ -56,7 +56,7 @@ namespace BugHunter
 
 
         // DATABASE LOGIN
-        public const string host = "projectwhitespace.net";         // Domain                              (projectwhitespace.net)
+        public const string host = "ddns.projectwhitespace.net";         // Domain                              (projectwhitespace.net)
         public const int port = 60457;                              // MySQL Port von Portweiterleitung    (60457)
         public const string database = "BugHunter";                 // Datenbankname                       (BugHunter)
         public const string username = "GameClient";                // Username                            (user)

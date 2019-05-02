@@ -377,18 +377,6 @@ C:\Users\Alexa\Google Drive\Project Whitespace\BugHunter\BugHunter\BugHunter\bin
 C:\Users\Alexa\Google Drive\Project Whitespace\BugHunter\BugHunter\BugHunter\bin\DesktopGL\AnyCPU\Debug\BugHunter.application
 C:\Users\Alexa\Google Drive\Project Whitespace\BugHunter\BugHunter\BugHunter\bin\DesktopGL\AnyCPU\Debug\BugHunter.exe
 C:\Users\Alexa\Google Drive\Project Whitespace\BugHunter\BugHunter\BugHunter\bin\DesktopGL\AnyCPU\Debug\BugHunter.pdb
-C:\Users\Alexa\Google Drive\Project Whitespace\BugHunter\BugHunter\BugHunter\bin\DesktopGL\AnyCPU\Debug\System.Data.Common.dll
-C:\Users\Alexa\Google Drive\Project Whitespace\BugHunter\BugHunter\BugHunter\bin\DesktopGL\AnyCPU\Debug\System.Diagnostics.StackTrace.dll
-C:\Users\Alexa\Google Drive\Project Whitespace\BugHunter\BugHunter\BugHunter\bin\DesktopGL\AnyCPU\Debug\System.Diagnostics.Tracing.dll
-C:\Users\Alexa\Google Drive\Project Whitespace\BugHunter\BugHunter\BugHunter\bin\DesktopGL\AnyCPU\Debug\System.Globalization.Extensions.dll
-C:\Users\Alexa\Google Drive\Project Whitespace\BugHunter\BugHunter\BugHunter\bin\DesktopGL\AnyCPU\Debug\System.IO.Compression.dll
-C:\Users\Alexa\Google Drive\Project Whitespace\BugHunter\BugHunter\BugHunter\bin\DesktopGL\AnyCPU\Debug\System.Net.Http.dll
-C:\Users\Alexa\Google Drive\Project Whitespace\BugHunter\BugHunter\BugHunter\bin\DesktopGL\AnyCPU\Debug\System.Net.Sockets.dll
-C:\Users\Alexa\Google Drive\Project Whitespace\BugHunter\BugHunter\BugHunter\bin\DesktopGL\AnyCPU\Debug\System.Runtime.Serialization.Primitives.dll
-C:\Users\Alexa\Google Drive\Project Whitespace\BugHunter\BugHunter\BugHunter\bin\DesktopGL\AnyCPU\Debug\System.Security.Cryptography.Algorithms.dll
-C:\Users\Alexa\Google Drive\Project Whitespace\BugHunter\BugHunter\BugHunter\bin\DesktopGL\AnyCPU\Debug\System.Security.SecureString.dll
-C:\Users\Alexa\Google Drive\Project Whitespace\BugHunter\BugHunter\BugHunter\bin\DesktopGL\AnyCPU\Debug\System.Threading.Overlapped.dll
-C:\Users\Alexa\Google Drive\Project Whitespace\BugHunter\BugHunter\BugHunter\bin\DesktopGL\AnyCPU\Debug\System.Xml.XPath.XDocument.dll
 C:\Users\Alexa\Google Drive\Project Whitespace\BugHunter\BugHunter\BugHunter\bin\DesktopGL\AnyCPU\Debug\MonoGame.Extended.Content.Pipeline.dll
 C:\Users\Alexa\Google Drive\Project Whitespace\BugHunter\BugHunter\BugHunter\bin\DesktopGL\AnyCPU\Debug\MonoGame.Extended.dll
 C:\Users\Alexa\Google Drive\Project Whitespace\BugHunter\BugHunter\BugHunter\bin\DesktopGL\AnyCPU\Debug\MonoGame.Extended.Graphics.dll
@@ -400,7 +388,6 @@ C:\Users\Alexa\Google Drive\Project Whitespace\BugHunter\BugHunter\BugHunter\bin
 C:\Users\Alexa\Google Drive\Project Whitespace\BugHunter\BugHunter\BugHunter\bin\DesktopGL\AnyCPU\Debug\MonoGame.Extended.Content.Pipeline.pdb
 C:\Users\Alexa\Google Drive\Project Whitespace\BugHunter\BugHunter\BugHunter\bin\DesktopGL\AnyCPU\Debug\MonoGame.Extended.Graphics.pdb
 C:\Users\Alexa\Google Drive\Project Whitespace\BugHunter\BugHunter\BugHunter\bin\DesktopGL\AnyCPU\Debug\MonoGame.Extended.Tiled.pdb
-C:\Users\Alexa\Google Drive\Project Whitespace\BugHunter\BugHunter\BugHunter\obj\Debug\BugHunter.exe.config
 C:\Users\Alexa\Google Drive\Project Whitespace\BugHunter\BugHunter\BugHunter\obj\Debug\ProjectWhitespace.Properties.Resources.resources
 C:\Users\Alexa\Google Drive\Project Whitespace\BugHunter\BugHunter\BugHunter\obj\Debug\BugHunter.csproj.GenerateResource.cache
 C:\Users\Alexa\Google Drive\Project Whitespace\BugHunter\BugHunter\BugHunter\obj\Debug\BugHunter.csproj.CoreCompileInputs.cache
@@ -640,3 +627,15 @@ C:\Users\Alex\Documents\GitHub\BugHunter\BugHunter\BugHunter\bin\DesktopGL\AnyCP
 C:\Users\Alex\Documents\GitHub\BugHunter\BugHunter\BugHunter\bin\DesktopGL\AnyCPU\Debug\Content\audio\Enemies\Death\Enemie_Damage_6.ogg
 C:\Users\Alex\Documents\GitHub\BugHunter\BugHunter\BugHunter\bin\DesktopGL\AnyCPU\Debug\Content\audio\Enemies\Death\Enemie_Damage_6.xnb
 C:\Users\Alex\Documents\GitHub\BugHunter\BugHunter\BugHunter\obj\Debug\BugHunter.csprojAssemblyReference.cache
+C:\Users\Alexa\Google Drive\Project Whitespace\BugHunter\BugHunter\BugHunter\bin\DesktopGL\AnyCPU\Debug\Content\audio\Enemies\Death\Enemie_Damage_1.ogg
+C:\Users\Alexa\Google Drive\Project Whitespace\BugHunter\BugHunter\BugHunter\bin\DesktopGL\AnyCPU\Debug\Content\audio\Enemies\Death\Enemie_Damage_1.xnb
+C:\Users\Alexa\Google Drive\Project Whitespace\BugHunter\BugHunter\BugHunter\bin\DesktopGL\AnyCPU\Debug\Content\audio\Enemies\Death\Enemie_Damage_2.ogg
+C:\Users\Alexa\Google Drive\Project Whitespace\BugHunter\BugHunter\BugHunter\bin\DesktopGL\AnyCPU\Debug\Content\audio\Enemies\Death\Enemie_Damage_2.xnb
+C:\Users\Alexa\Google Drive\Project Whitespace\BugHunter\BugHunter\BugHunter\bin\DesktopGL\AnyCPU\Debug\Content\audio\Enemies\Death\Enemie_Damage_3.ogg
+C:\Users\Alexa\Google Drive\Project Whitespace\BugHunter\BugHunter\BugHunter\bin\DesktopGL\AnyCPU\Debug\Content\audio\Enemies\Death\Enemie_Damage_3.xnb
+C:\Users\Alexa\Google Drive\Project Whitespace\BugHunter\BugHunter\BugHunter\bin\DesktopGL\AnyCPU\Debug\Content\audio\Enemies\Death\Enemie_Damage_4.ogg
+C:\Users\Alexa\Google Drive\Project Whitespace\BugHunter\BugHunter\BugHunter\bin\DesktopGL\AnyCPU\Debug\Content\audio\Enemies\Death\Enemie_Damage_4.xnb
+C:\Users\Alexa\Google Drive\Project Whitespace\BugHunter\BugHunter\BugHunter\bin\DesktopGL\AnyCPU\Debug\Content\audio\Enemies\Death\Enemie_Damage_5.ogg
+C:\Users\Alexa\Google Drive\Project Whitespace\BugHunter\BugHunter\BugHunter\bin\DesktopGL\AnyCPU\Debug\Content\audio\Enemies\Death\Enemie_Damage_5.xnb
+C:\Users\Alexa\Google Drive\Project Whitespace\BugHunter\BugHunter\BugHunter\bin\DesktopGL\AnyCPU\Debug\Content\audio\Enemies\Death\Enemie_Damage_6.ogg
+C:\Users\Alexa\Google Drive\Project Whitespace\BugHunter\BugHunter\BugHunter\bin\DesktopGL\AnyCPU\Debug\Content\audio\Enemies\Death\Enemie_Damage_6.xnb

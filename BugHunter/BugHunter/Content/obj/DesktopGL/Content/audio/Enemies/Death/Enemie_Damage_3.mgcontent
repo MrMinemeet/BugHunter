@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <SourceFile>C:/Users/Alex/Documents/GitHub/BugHunter/BugHunter/BugHunter/Content/audio/Enemies/Death/Enemie_Damage_3.ogg</SourceFile>
-  <SourceTime>2016-10-24T17:38:14+02:00</SourceTime>
-  <DestFile>C:/Users/Alex/Documents/GitHub/BugHunter/BugHunter/BugHunter/Content/bin/DesktopGL/Content/audio/Enemies/Death/Enemie_Damage_3.xnb</DestFile>
-  <DestTime>2019-04-28T20:08:25.633794+02:00</DestTime>
+  <SourceFile>C:/Users/Alexa/Google Drive/Project Whitespace/BugHunter/BugHunter/BugHunter/Content/audio/Enemies/Death/Enemie_Damage_3.ogg</SourceFile>
+  <SourceTime>2019-05-02T08:01:57.5645539+02:00</SourceTime>
+  <DestFile>C:/Users/Alexa/Google Drive/Project Whitespace/BugHunter/BugHunter/BugHunter/Content/bin/DesktopGL/Content/audio/Enemies/Death/Enemie_Damage_3.xnb</DestFile>
+  <DestTime>2019-05-02T10:22:07.5486591+02:00</DestTime>
   <Importer>OggImporter</Importer>
   <ImporterTime>2018-10-08T15:37:24+02:00</ImporterTime>
   <Processor>SoundEffectProcessor</Processor>

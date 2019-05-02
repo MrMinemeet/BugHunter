@@ -11,9 +11,8 @@ namespace BugHunter
 {
     class UsernameBlacklist
     {
-        public static string CheckUsernameForBadWords(Game1 game, string name)
+        public static string CheckUsernameForBadWords(Game1 game, string username)
         {
-
             List<string> BadUsernameList = new List<string>();
             // Bad Words Liste Laden
             BinaryReader br = null;
@@ -58,14 +57,14 @@ namespace BugHunter
                 br?.Close();
             }
 
-            if (name.Length > 0)
+            if (username.Length > 0)
             {
 
                 // Liste mit nicht erlaubten Usernamen durchlaufen
                 foreach (string s in BadUsernameList)
                 {
                     // Name vorbereiten
-                    string username = s.ToLower().Replace(" ", "");
+                    string name = s.ToLower().Replace(" ", "");
 
                     // Falls Name Wort von Blacklist enthält wird der Systemname verwendet
                     if (username.Contains(name.ToLower().Replace(" ", "")))
@@ -84,7 +83,7 @@ namespace BugHunter
                 }
             }
 
-            return name;
+            return username;
         }
 
         public static void GetUsernameBlacklistFromDatabase(Game1 game)
