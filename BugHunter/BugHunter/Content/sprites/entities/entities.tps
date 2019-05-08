@@ -202,6 +202,10 @@
                 <key>scale9FromFile</key>
                 <false/>
             </struct>
+            <key type="filename">enemy/iOS/sprites/iOS_10.png</key>
+            <key type="filename">enemy/iOS/sprites/iOS_7.png</key>
+            <key type="filename">enemy/iOS/sprites/iOS_8.png</key>
+            <key type="filename">enemy/iOS/sprites/iOS_9.png</key>
             <key type="filename">enemy/windows/sprites/WindowsVista_1.png</key>
             <key type="filename">enemy/windows/sprites/WindowsVista_2.png</key>
             <key type="filename">enemy/windows/sprites/WindowsVista_3.png</key>
@@ -405,6 +409,7 @@
             <filename>enemy/windows/sprites</filename>
             <filename>player/idle</filename>
             <filename>player/run</filename>
+            <filename>enemy/iOS/sprites</filename>
         </array>
         <key>ignoreFileList</key>
         <array/>

@@ -4,7 +4,7 @@
  * Contains references to each image within the sprite sheet.
  *
  * https://www.codeandweb.com/texturepacker
- * $TexturePacker:SmartUpdate:ec76ac07748b659f84c72a8f20f1de8f:c14532a4d6d30b711f528900fd1f661f:7de42156f25b693bd0d7ccd72987ff69$
+ * $TexturePacker:SmartUpdate:5d6cc5110cb24eb6539096c657b87096:2f73d6bff2c054d09f708a7935049220:7de42156f25b693bd0d7ccd72987ff69$
  *
  */
 namespace TexturePackerMonoGameDefinitions
@@ -30,6 +30,10 @@ namespace TexturePackerMonoGameDefinitions
 		public const string Idle_009 = "idle_009";
 		public const string Idle_010 = "idle_010";
 		public const string Idle_011 = "idle_011";
+		public const string IOS_7 = "iOS_7";
+		public const string IOS_8 = "iOS_8";
+		public const string IOS_9 = "iOS_9";
+		public const string IOS_10 = "iOS_10";
 		public const string Java = "java";
 		public const string Mss000 = "mss000";
 		public const string Mss001 = "mss001";

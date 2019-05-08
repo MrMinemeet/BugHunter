@@ -26,14 +26,11 @@
  * phpMyAdmin
  * 
  * APIs:
- * Discord RPC
  * MySQL Connect
  * 
  * CopyRight:
  * Alle Rechte der Bilder, Spiellogik und Spielidee gehören den rechtmäßigen Eigentümern.
  * Das unerlaubte Kopieren, Veröffentlichen, Verleihen und öffentliches Vorführen ist verboten!
- * 
- * 3809 Zeilen an Code
  */
 
 
@@ -73,9 +70,15 @@ namespace BugHunter
         List<Android> AndroidsList = new List<Android>();
         int AndroidHealth = 30;
         int AndroidDamage = 1;
+
         List<Windows> WindowsList = new List<Windows>();
         int WindowsHealth = 30;
         int WindowsDamage = 1;
+
+        List<iOS> iOSList = new List<iOS>();
+        int iOSHealth = 30;
+        int iOSDamage = 1;
+
 
         public List<Powerup> Powerups = new List<Powerup>();
 
@@ -170,10 +173,6 @@ namespace BugHunter
         // related content.  Calling base.Initialize will enumerate through any components and initialize them as well.
         protected override void Initialize()
         {
-            // IsDiscordRunning = IsProcessRunning("Discord");
-            // if(!IsDiscordRunning)
-                // IsDiscordRunning = IsProcessRunning("discord");
-
             this.graphicsDevice = GraphicsDevice;
 
             logger = new Logger(this.settings.LoggingPath);
@@ -507,14 +506,14 @@ namespace BugHunter
                 MaxEnemies = (int)(this.Score / 1000) + 1;
 
                 // Falls weniger Gegner Aktiv sind als Maximal zugelassen sind, dann werden neue gespawnt
-                if(WindowsList.Count + AndroidsList.Count < MaxEnemies)
+                if(WindowsList.Count + AndroidsList.Count + iOSList.Count < MaxEnemies)
                 {
                     Rectangle enemyHitbox;
                     Rectangle playersBox = new Rectangle((int)(player.Position.X - Settings.TilePixelSize * 2), (int)(player.Position.Y - Settings.TilePixelSize * 2),Settings.TilePixelSize * 4, Settings.TilePixelSize * 4);
 
                     SpriteFrame sp = null;
 
-                    switch (random.Next(2))
+                    switch (random.Next(3))
                     {
                         // Spawn Android
                         case 0:
@@ -551,10 +550,55 @@ namespace BugHunter
                                 enemyHitbox = new Rectangle((int)(WindowsList[WindowsList.Count - 1].Position.X - sp.Size.X / 2), (int)(WindowsList[WindowsList.Count - 1].Position.Y - sp.Size.Y / 2), (int)sp.Size.X, (int)sp.Size.Y);
                             }
                             break;
+
+                        // Spawn Windows
+                        case 2:
+                            this.iOSHealth += 5;
+                            iOSList.Add(new iOS(50f, iOSHealth, iOSDamage, this, this.settings, this.player));
+                            iOSList[iOSList.Count - 1].SetSpawnFromMap(EnemySpawnPointsArray);
+
+                            sp = spriteSheet.Sprite(TexturePackerMonoGameDefinitions.entities.IOS_10);
+
+                            enemyHitbox = new Rectangle((int)(iOSList[iOSList.Count - 1].Position.X - sp.Size.X / 2), (int)(iOSList[iOSList.Count - 1].Position.Y - sp.Size.Y / 2), (int)sp.Size.X, (int)sp.Size.Y);
+
+                            while (enemyHitbox.Intersects(playersBox))
+                            {
+                                iOSList[iOSList.Count - 1].SetSpawnFromMap(EnemySpawnPointsArray);
+
+                                enemyHitbox = new Rectangle((int)(iOSList[iOSList.Count - 1].Position.X - sp.Size.X / 2), (int)(iOSList[iOSList.Count - 1].Position.Y - sp.Size.Y / 2), (int)sp.Size.X, (int)sp.Size.Y);
+                            }
+                            break;
                     }
                 }
 
+
                 // Updaten
+                for (int i = 0; i < iOSList.Count; i++)
+                {
+                    iOSList[i].Update(gameTime, EnemySpawnPointsArray, map[AktuelleMap].maplevel);
+
+                    if (iOSList[i].IsDead)
+                    {
+                        sound.EnemieDeathSound[random.Next(sound.EnemieDeathSound.Count - 1)].Play((float)settings.Soundlautstaerke / 100f, 0, 0);
+
+                        gameStats.KilledEnemies++;
+                        PoofPosition = iOSList[i].Position;
+                        PoofIsActive = true;
+
+                        // 10% Chance das sich der Schaden erhöht
+                        if (random.Next(100) < 10)
+                        {
+                            iOSDamage += 1;
+                        }
+                        // 25% Chance dass ein Powerup spawnt
+                        if (random.Next(100) < 25)
+                        {
+                            Powerups.Add(new Powerup(this, spriteSheetLoader.Load("sprites/entities/entities.png"), new SpriteRender(spriteBatch), settings, AndroidsList[i].Position));
+                        }
+                        iOSList.Remove(iOSList[i]);
+                    }
+                }
+
                 for (int i = 0; i < AndroidsList.Count; i++)
                 {
                     AndroidsList[i].Update(gameTime, EnemySpawnPointsArray, map[AktuelleMap].maplevel);
@@ -763,6 +807,11 @@ namespace BugHunter
                     foreach (Windows windows in WindowsList)
                     {
                         windows.Draw(spriteBatch, font);
+                    }
+
+                    foreach (iOS ios in iOSList)
+                    {
+                        ios.Draw(spriteBatch, font);
                     }
 
                     foreach (Powerup powerup in Powerups)

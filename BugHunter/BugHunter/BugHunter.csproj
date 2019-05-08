@@ -103,6 +103,7 @@
     <Compile Include="Animation.cs" />
     <Compile Include="AnimationManager.cs" />
     <Compile Include="Database.cs" />
+    <Compile Include="Gegner\iOS.cs" />
     <Compile Include="Logger.cs" />
     <Compile Include="Menu\ScoreMenu.cs" />
     <Compile Include="Menu\SettingsMenu.cs" />
