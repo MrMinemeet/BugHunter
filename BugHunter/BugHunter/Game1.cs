@@ -593,7 +593,7 @@ namespace BugHunter
                         // 25% Chance dass ein Powerup spawnt
                         if (random.Next(100) < 25)
                         {
-                            Powerups.Add(new Powerup(this, spriteSheetLoader.Load("sprites/entities/entities.png"), new SpriteRender(spriteBatch), settings, AndroidsList[i].Position));
+                            Powerups.Add(new Powerup(this, spriteSheetLoader.Load("sprites/entities/entities.png"), new SpriteRender(spriteBatch), settings, iOSList[i].Position));
                         }
                         iOSList.Remove(iOSList[i]);
                     }

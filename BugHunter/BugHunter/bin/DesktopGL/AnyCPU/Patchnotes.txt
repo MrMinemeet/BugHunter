@@ -1,0 +1,12 @@
+Patchnotes für InDev_19w18A(0.0.4.0)
+- Readme hinzugefügt
+- Linux Startscript hinzugefügt (Muss executeable gemacht werden)
+- Im Einstellungsmenü wird nun der Pfad zum Ändern des Names angezeigt
+- Globale Stats werden nun in Seperatem Thread upgedated.
+- SQL Querys werden Effizienter erstellt
+- Projektile erhalten +25% der Laufgeschwindigkeit beim Bewegen
+- .NET Version als Annonyme Statistik hinzugefügt
+- Buildversion wird im Hauptmenü angezeigt
+- 10 Sterbesounds hinzugefügt
+- Deathscreen bearbeitet
+- Credits upgedated

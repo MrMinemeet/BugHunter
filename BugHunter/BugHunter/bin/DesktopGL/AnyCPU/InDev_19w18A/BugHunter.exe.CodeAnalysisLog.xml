@@ -1,0 +1,151 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="c:\program files (x86)\microsoft visual studio\2017\professional\team tools\static analysis tools\fxcop\Xml\CodeAnalysisReport.xsl"?>
+<FxCopReport Version="15.0">
+ <Targets>
+  <Target Name="C:\Users\Alexa\Google Drive\Project Whitespace\BugHunter\BugHunter\BugHunter\bin\DesktopGL\AnyCPU\Release\BugHunter.exe">
+   <Modules>
+    <Module Name="bughunter.exe">
+     <Namespaces>
+      <Namespace Name="BugHunter">
+       <Types>
+        <Type Name="Settings" Kind="Class" Accessibility="Public" ExternallyVisible="True">
+         <Members>
+          <Member Name="#CheckInternetConnectionThread(BugHunter.Game1)" Kind="Method" Static="True" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message TypeName="Objekte nicht mehrmals verwerfen" Category="Microsoft.Usage" CheckId="CA2202" Status="Active" Created="2019-05-08 11:30:24Z" FixCategory="DependsOnFix">
+             <Issue Certainty="75" Level="Warning" Path="C:\Users\Alexa\Google Drive\Project Whitespace\BugHunter\BugHunter\BugHunter" File="Settings.cs" Line="437">Das Objekt "'connection'" kann mehrere Male in der 'Settings.CheckInternetConnectionThread(Game1)'-Methode verworfen werden. Um zu verhindern, dass eine System.ObjectDisposedException generiert wird, sollten Sie die Dispose-Methode nur einmal für ein Objekt aufrufen.: Lines: 437</Issue>
+            </Message>
+           </Messages>
+          </Member>
+         </Members>
+        </Type>
+        <Type Name="UsernameBlacklist" Kind="Class" Accessibility="Assembly" ExternallyVisible="False">
+         <Members>
+          <Member Name="#GetUsernameBlacklistFromDatabase(BugHunter.Game1)" Kind="Method" Static="True" Accessibility="Public" ExternallyVisible="False">
+           <Messages>
+            <Message TypeName="Objekte nicht mehrmals verwerfen" Category="Microsoft.Usage" CheckId="CA2202" Status="Active" Created="2019-05-08 11:30:24Z" FixCategory="DependsOnFix">
+             <Issue Certainty="75" Level="Warning" Path="C:\Users\Alexa\Google Drive\Project Whitespace\BugHunter\BugHunter\BugHunter" File="UsernameBlacklist.cs" Line="203">Das Objekt "'reader'" kann mehrere Male in der 'UsernameBlacklist.GetUsernameBlacklistFromDatabase(Game1)'-Methode verworfen werden. Um zu verhindern, dass eine System.ObjectDisposedException generiert wird, sollten Sie die Dispose-Methode nur einmal für ein Objekt aufrufen.: Lines: 203</Issue>
+            </Message>
+           </Messages>
+          </Member>
+         </Members>
+        </Type>
+       </Types>
+      </Namespace>
+      <Namespace Name="ProjectWhitespace">
+       <Types>
+        <Type Name="Database" Kind="Class" Accessibility="Public" ExternallyVisible="True">
+         <Members>
+          <Member Name="#GetGlobalScoreList(BugHunter.Game1)" Kind="Method" Static="True" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message TypeName="Objekte nicht mehrmals verwerfen" Category="Microsoft.Usage" CheckId="CA2202" Status="Active" Created="2019-05-08 11:30:24Z" FixCategory="DependsOnFix">
+             <Issue Certainty="75" Level="Warning" Path="C:\Users\Alexa\Google Drive\Project Whitespace\BugHunter\BugHunter\BugHunter" File="Database.cs" Line="317">Das Objekt "'connection'" kann mehrere Male in der 'Database.GetGlobalScoreList(Game1)'-Methode verworfen werden. Um zu verhindern, dass eine System.ObjectDisposedException generiert wird, sollten Sie die Dispose-Methode nur einmal für ein Objekt aufrufen.: Lines: 317</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#GetRankingListThread(BugHunter.Game1)" Kind="Method" Static="True" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message TypeName="Objekte nicht mehrmals verwerfen" Category="Microsoft.Usage" CheckId="CA2202" Status="Active" Created="2019-05-08 11:30:24Z" FixCategory="DependsOnFix">
+             <Issue Certainty="75" Level="Warning" Path="C:\Users\Alexa\Google Drive\Project Whitespace\BugHunter\BugHunter\BugHunter" File="Database.cs" Line="234">Das Objekt "'connection'" kann mehrere Male in der 'Database.GetRankingListThread(Game1)'-Methode verworfen werden. Um zu verhindern, dass eine System.ObjectDisposedException generiert wird, sollten Sie die Dispose-Methode nur einmal für ein Objekt aufrufen.: Lines: 234</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#SendAnonymStatistics(BugHunter.Game1)" Kind="Method" Static="True" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message TypeName="Objekte nicht mehrmals verwerfen" Category="Microsoft.Usage" CheckId="CA2202" Status="Active" Created="2019-05-08 11:30:24Z" FixCategory="DependsOnFix">
+             <Issue Certainty="75" Level="Warning" Path="C:\Users\Alexa\Google Drive\Project Whitespace\BugHunter\BugHunter\BugHunter" File="Database.cs" Line="446">Das Objekt "'connection'" kann mehrere Male in der 'Database.SendAnonymStatistics(Game1)'-Methode verworfen werden. Um zu verhindern, dass eine System.ObjectDisposedException generiert wird, sollten Sie die Dispose-Methode nur einmal für ein Objekt aufrufen.: Lines: 446</Issue>
+            </Message>
+            <Message TypeName="SQL-Abfragen auf Sicherheitsrisiken überprüfen" Category="Microsoft.Security" CheckId="CA2100" Status="Active" Created="2019-05-08 11:30:24Z" FixCategory="DependsOnFix">
+             <Issue Name="WithNonLiterals" Certainty="75" Level="Warning" Path="C:\Users\Alexa\Google Drive\Project Whitespace\BugHunter\BugHunter\BugHunter" File="Database.cs" Line="411">Die in 'Database.SendAnonymStatistics(Game1)' an 'MySqlCommand.CommandText.set(string)' übergebene Abfragezeichenfolge könnte die folgenden 'sb'-Variablen enthalten. Wenn eine dieser Variablen aus Benutzereingaben stammt, sollten Sie eine gespeicherte Prozedur oder eine parametrisierte SQL-Abfrage verwenden, anstatt die Abfrage mit Zeichenfolgenverkettungen zu erstellen.</Issue>
+             <Issue Name="WithNonLiterals" Certainty="75" Level="Warning" Path="C:\Users\Alexa\Google Drive\Project Whitespace\BugHunter\BugHunter\BugHunter" File="Database.cs" Line="373">Die in 'Database.SendAnonymStatistics(Game1)' an 'MySqlCommand.MySqlCommand(string)' übergebene Abfragezeichenfolge könnte die folgenden 'game.settings.StatisticsGUID'-Variablen enthalten. Wenn eine dieser Variablen aus Benutzereingaben stammt, sollten Sie eine gespeicherte Prozedur oder eine parametrisierte SQL-Abfrage verwenden, anstatt die Abfrage mit Zeichenfolgenverkettungen zu erstellen.</Issue>
+             <Issue Name="WithNonLiterals" Certainty="75" Level="Warning" Path="C:\Users\Alexa\Google Drive\Project Whitespace\BugHunter\BugHunter\BugHunter" File="Database.cs" Line="430">Die in 'Database.SendAnonymStatistics(Game1)' an 'MySqlCommand.MySqlCommand(string)' übergebene Abfragezeichenfolge könnte die folgenden 'sb'-Variablen enthalten. Wenn eine dieser Variablen aus Benutzereingaben stammt, sollten Sie eine gespeicherte Prozedur oder eine parametrisierte SQL-Abfrage verwenden, anstatt die Abfrage mit Zeichenfolgenverkettungen zu erstellen.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#UpdateDatabaseThread(BugHunter.Game1)" Kind="Method" Static="True" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message TypeName="Objekte nicht mehrmals verwerfen" Category="Microsoft.Usage" CheckId="CA2202" Status="Active" Created="2019-05-08 11:30:24Z" FixCategory="DependsOnFix">
+             <Issue Certainty="75" Level="Warning" Path="C:\Users\Alexa\Google Drive\Project Whitespace\BugHunter\BugHunter\BugHunter" File="Database.cs" Line="152">Das Objekt "'connection'" kann mehrere Male in der 'Database.UpdateDatabaseThread(Game1)'-Methode verworfen werden. Um zu verhindern, dass eine System.ObjectDisposedException generiert wird, sollten Sie die Dispose-Methode nur einmal für ein Objekt aufrufen.: Lines: 152</Issue>
+            </Message>
+            <Message TypeName="SQL-Abfragen auf Sicherheitsrisiken überprüfen" Category="Microsoft.Security" CheckId="CA2100" Status="Active" Created="2019-05-08 11:30:24Z" FixCategory="DependsOnFix">
+             <Issue Name="WithNonLiterals" Certainty="75" Level="Warning" Path="C:\Users\Alexa\Google Drive\Project Whitespace\BugHunter\BugHunter\BugHunter" File="Database.cs" Line="86">Die in 'Database.UpdateDatabaseThread(Game1)' an 'MySqlCommand.CommandText.set(string)' übergebene Abfragezeichenfolge könnte die folgenden 'sb'-Variablen enthalten. Wenn eine dieser Variablen aus Benutzereingaben stammt, sollten Sie eine gespeicherte Prozedur oder eine parametrisierte SQL-Abfrage verwenden, anstatt die Abfrage mit Zeichenfolgenverkettungen zu erstellen.</Issue>
+             <Issue Name="WithNonLiterals" Certainty="75" Level="Warning" Path="C:\Users\Alexa\Google Drive\Project Whitespace\BugHunter\BugHunter\BugHunter" File="Database.cs" Line="133">Die in 'Database.UpdateDatabaseThread(Game1)' an 'MySqlCommand.CommandText.set(string)' übergebene Abfragezeichenfolge könnte die folgenden 'sb'-Variablen enthalten. Wenn eine dieser Variablen aus Benutzereingaben stammt, sollten Sie eine gespeicherte Prozedur oder eine parametrisierte SQL-Abfrage verwenden, anstatt die Abfrage mit Zeichenfolgenverkettungen zu erstellen.</Issue>
+             <Issue Name="WithNonLiterals" Certainty="75" Level="Warning" Path="C:\Users\Alexa\Google Drive\Project Whitespace\BugHunter\BugHunter\BugHunter" File="Database.cs" Line="58">Die in 'Database.UpdateDatabaseThread(Game1)' an 'MySqlCommand.MySqlCommand(string)' übergebene Abfragezeichenfolge könnte die folgenden 'game.settings.GUID'-Variablen enthalten. Wenn eine dieser Variablen aus Benutzereingaben stammt, sollten Sie eine gespeicherte Prozedur oder eine parametrisierte SQL-Abfrage verwenden, anstatt die Abfrage mit Zeichenfolgenverkettungen zu erstellen.</Issue>
+             <Issue Name="WithNonLiterals" Certainty="75" Level="Warning" Path="C:\Users\Alexa\Google Drive\Project Whitespace\BugHunter\BugHunter\BugHunter" File="Database.cs" Line="105">Die in 'Database.UpdateDatabaseThread(Game1)' an 'MySqlCommand.MySqlCommand(string)' übergebene Abfragezeichenfolge könnte die folgenden 'sb'-Variablen enthalten. Wenn eine dieser Variablen aus Benutzereingaben stammt, sollten Sie eine gespeicherte Prozedur oder eine parametrisierte SQL-Abfrage verwenden, anstatt die Abfrage mit Zeichenfolgenverkettungen zu erstellen.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+         </Members>
+        </Type>
+        <Type Name="Encrypt" Kind="Class" Accessibility="Public" ExternallyVisible="True">
+         <Members>
+          <Member Name="#DecryptString(System.String,System.String)" Kind="Method" Static="True" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message TypeName="Objekte nicht mehrmals verwerfen" Category="Microsoft.Usage" CheckId="CA2202" Status="Active" Created="2019-05-08 11:30:24Z" FixCategory="DependsOnFix">
+             <Issue Certainty="75" Level="Warning" Path="C:\Users\Alexa\Google Drive\Project Whitespace\BugHunter\BugHunter\BugHunter" File="Encrypt.cs" Line="64">Das Objekt "'memoryStream'" kann mehrere Male in der 'Encrypt.DecryptString(string, string)'-Methode verworfen werden. Um zu verhindern, dass eine System.ObjectDisposedException generiert wird, sollten Sie die Dispose-Methode nur einmal für ein Objekt aufrufen.: Lines: 64</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#EncryptString(System.String,System.String)" Kind="Method" Static="True" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message TypeName="Objekte nicht mehrmals verwerfen" Category="Microsoft.Usage" CheckId="CA2202" Status="Active" Created="2019-05-08 11:30:24Z" FixCategory="DependsOnFix">
+             <Issue Certainty="75" Level="Warning" Path="C:\Users\Alexa\Google Drive\Project Whitespace\BugHunter\BugHunter\BugHunter" File="Encrypt.cs" Line="39">Das Objekt "'memoryStream'" kann mehrere Male in der 'Encrypt.EncryptString(string, string)'-Methode verworfen werden. Um zu verhindern, dass eine System.ObjectDisposedException generiert wird, sollten Sie die Dispose-Methode nur einmal für ein Objekt aufrufen.: Lines: 39</Issue>
+            </Message>
+           </Messages>
+          </Member>
+         </Members>
+        </Type>
+       </Types>
+      </Namespace>
+     </Namespaces>
+    </Module>
+   </Modules>
+  </Target>
+ </Targets>
+ <Rules>
+  <Rule TypeName="Objekte nicht mehrmals verwerfen" Category="Microsoft.Usage" CheckId="CA2202">
+   <Name>Objekte nicht mehrmals verwerfen</Name>
+   <Description>Eine ordnungsgemäß implementierte Dispose-Methode kann mehrere Male aufgerufen werden, ohne dass eine Ausnahme ausgelöst wird. Dies ist jedoch nicht garantiert. Um zu verhindern, dass eine System.ObjectDisposedException generiert wird, sollten Sie die Dispose-Methode nur einmal für ein Objekt aufrufen.</Description>
+   <Resolution Name="Default">Das Objekt "{0}" kann mehrere Male in der {1}-Methode verworfen werden. Um zu verhindern, dass eine System.ObjectDisposedException generiert wird, sollten Sie die Dispose-Methode nur einmal für ein Objekt aufrufen.: Lines: 39</Resolution>
+   <Owner>RuleOwner</Owner>
+   <Url>http://msdn.microsoft.com/library/ms182334.aspx</Url>
+   <Email />
+   <MessageLevel Certainty="75">Warning</MessageLevel>
+   <File Name="dataflowrules.dll" Version="15.0.0.0" />
+  </Rule>
+  <Rule TypeName="SQL-Abfragen auf Sicherheitsrisiken überprüfen" Category="Microsoft.Security" CheckId="CA2100">
+   <Name>SQL-Abfragen auf Sicherheitsrisiken überprüfen</Name>
+   <Description>Eine SQL-Befehlszeichenfolge, die aus Benutzereingaben erstellt wird, ist anfällig für Angriffe durch Einschleusung von SQL-Befehlen. Microsoft SQL Server und andere Datenbankserver unterstützen gespeicherte Prozeduren und parametrisierte SQL-Abfragen, durch die das Risiko von Angriffen durch Einschleusung von Befehlen reduziert wird.</Description>
+   <Resolution Name="WithNonLiterals">Die in {1} an {0} übergebene Abfragezeichenfolge könnte die folgenden {2}-Variablen enthalten. Wenn eine dieser Variablen aus Benutzereingaben stammt, sollten Sie eine gespeicherte Prozedur oder eine parametrisierte SQL-Abfrage verwenden, anstatt die Abfrage mit Zeichenfolgenverkettungen zu erstellen.</Resolution>
+   <Owner>RuleOwner</Owner>
+   <Url>http://msdn.microsoft.com/library/ms182310.aspx</Url>
+   <Email />
+   <MessageLevel Certainty="75">Warning</MessageLevel>
+   <File Name="dataflowrules.dll" Version="15.0.0.0" />
+  </Rule>
+ </Rules>
+ <Localized>
+  <String Key="Category">Kategorie</String>
+  <String Key="Certainty">Sicherheit</String>
+  <String Key="CollapseAll">Alle zuklappen</String>
+  <String Key="CheckId">Prüf-ID</String>
+  <String Key="Error">Fehler</String>
+  <String Key="Errors">Fehler</String>
+  <String Key="ExpandAll">Alle aufklappen</String>
+  <String Key="Help">Hilfe</String>
+  <String Key="Line">Zeile</String>
+  <String Key="Messages">Meldung(en)</String>
+  <String Key="LocationNotStoredInPdb">[Nicht in PDB gespeicherter Speicherort]</String>
+  <String Key="Project">Projekt</String>
+  <String Key="Resolution">Auflösung</String>
+  <String Key="Rule">Regel</String>
+  <String Key="RuleFile">Regeldatei</String>
+  <String Key="RuleDescription">Regelbeschreibung</String>
+  <String Key="Source">Quelle</String>
+  <String Key="Status">Status</String>
+  <String Key="Target">Ziel</String>
+  <String Key="Warning">Warnung</String>
+  <String Key="Warnings">Warnung(en)</String>
+  <String Key="ReportTitle">Codeanalysebericht</String>
+ </Localized>
+</FxCopReport>
