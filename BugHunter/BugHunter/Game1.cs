@@ -47,6 +47,7 @@ using System.Collections.Generic;
 using TexturePackerLoader;
 using System.Diagnostics;
 using System.Threading;
+using Microsoft.Xna.Framework.Content;
 
 namespace BugHunter
 {
@@ -223,54 +224,89 @@ namespace BugHunter
 
 
             // <== PLAYER ==>
-            // Audio
-            sound.ScoreSound = Content.Load<SoundEffect>("audio/Score");
-            sound.HintergrundMusik = Content.Load<SoundEffect>("audio/Musik");
-            sound.HintergrundMusikEffect = sound.HintergrundMusik.CreateInstance();
-            sound.Schuesse[0] = Content.Load<SoundEffect>("audio/Schuss/schuss_001");
-            sound.Schuesse[1] = Content.Load<SoundEffect>("audio/Schuss/schuss_002");
-            sound.Schuesse[2] = Content.Load<SoundEffect>("audio/Schuss/schuss_003");
-            sound.Schuesse[3] = Content.Load<SoundEffect>("audio/Schuss/schuss_004");
-            sound.Schuesse[4] = Content.Load<SoundEffect>("audio/Schuss/schuss_005");
-            sound.Schuesse[5] = Content.Load<SoundEffect>("audio/Schuss/schuss_006");
+            try
+            {
+                // Audio
+                sound.ScoreSound = Content.Load<SoundEffect>("audio/Score");
+                sound.HintergrundMusik = Content.Load<SoundEffect>("audio/Musik");
+                sound.HintergrundMusikEffect = sound.HintergrundMusik.CreateInstance();
+                sound.Schuesse[0] = Content.Load<SoundEffect>("audio/Schuss/schuss_001");
+                sound.Schuesse[1] = Content.Load<SoundEffect>("audio/Schuss/schuss_002");
+                sound.Schuesse[2] = Content.Load<SoundEffect>("audio/Schuss/schuss_003");
+                sound.Schuesse[3] = Content.Load<SoundEffect>("audio/Schuss/schuss_004");
+                sound.Schuesse[4] = Content.Load<SoundEffect>("audio/Schuss/schuss_005");
+                sound.Schuesse[5] = Content.Load<SoundEffect>("audio/Schuss/schuss_006");
+            }
+            catch (ContentLoadException e)
+            {
+                logger.Log("Beim Player Sounds laden ist ein Fehler aufgetreten", Thread.CurrentThread.Name, "Error");
+                this.Exit();
+            }
 
-            // Deathsounds laden
-            sound.MaleDeathSound.Add(Content.Load<SoundEffect>("audio/Male/Death/death_1"));
-            sound.MaleDeathSound.Add(Content.Load<SoundEffect>("audio/Male/Death/death_2"));
-            sound.MaleDeathSound.Add(Content.Load<SoundEffect>("audio/Male/Death/death_3"));
-            sound.MaleDeathSound.Add(Content.Load<SoundEffect>("audio/Male/Death/death_4"));
-            sound.MaleDeathSound.Add(Content.Load<SoundEffect>("audio/Male/Death/death_5"));
-            sound.MaleDeathSound.Add(Content.Load<SoundEffect>("audio/Male/Death/death_6"));
-            sound.MaleDeathSound.Add(Content.Load<SoundEffect>("audio/Male/Death/death_7"));
-            sound.MaleDeathSound.Add(Content.Load<SoundEffect>("audio/Male/Death/death_8"));
-            sound.MaleDeathSound.Add(Content.Load<SoundEffect>("audio/Male/Death/death_9"));
-            sound.MaleDeathSound.Add(Content.Load<SoundEffect>("audio/Male/Death/death_10"));
+            try { 
+                // Deathsounds laden
+                sound.MaleDeathSound.Add(Content.Load<SoundEffect>("audio/Male/Death/death_1"));
+                sound.MaleDeathSound.Add(Content.Load<SoundEffect>("audio/Male/Death/death_2"));
+                sound.MaleDeathSound.Add(Content.Load<SoundEffect>("audio/Male/Death/death_3"));
+                sound.MaleDeathSound.Add(Content.Load<SoundEffect>("audio/Male/Death/death_4"));
+                sound.MaleDeathSound.Add(Content.Load<SoundEffect>("audio/Male/Death/death_5"));
+                sound.MaleDeathSound.Add(Content.Load<SoundEffect>("audio/Male/Death/death_6"));
+                sound.MaleDeathSound.Add(Content.Load<SoundEffect>("audio/Male/Death/death_7"));
+                sound.MaleDeathSound.Add(Content.Load<SoundEffect>("audio/Male/Death/death_8"));
+                sound.MaleDeathSound.Add(Content.Load<SoundEffect>("audio/Male/Death/death_9"));
+                sound.MaleDeathSound.Add(Content.Load<SoundEffect>("audio/Male/Death/death_10"));
+            }
+            catch (ContentLoadException e)
+            {
+                logger.Log("Beim Player Sounds laden ist ein Fehler aufgetreten", Thread.CurrentThread.Name, "Error");
+                this.Exit();
+            }
 
-
-            // Damagesounds laden
-            sound.MaleDamageSound.Add(Content.Load<SoundEffect>("audio/Male/Damage/damage_1"));
-            sound.MaleDamageSound.Add(Content.Load<SoundEffect>("audio/Male/Damage/damage_2"));
-            sound.MaleDamageSound.Add(Content.Load<SoundEffect>("audio/Male/Damage/damage_3"));
-            sound.MaleDamageSound.Add(Content.Load<SoundEffect>("audio/Male/Damage/damage_4"));
-            sound.MaleDamageSound.Add(Content.Load<SoundEffect>("audio/Male/Damage/damage_5"));
-            sound.MaleDamageSound.Add(Content.Load<SoundEffect>("audio/Male/Damage/damage_6"));
-            sound.MaleDamageSound.Add(Content.Load<SoundEffect>("audio/Male/Damage/damage_7"));
-            sound.MaleDamageSound.Add(Content.Load<SoundEffect>("audio/Male/Damage/damage_8"));
-            sound.MaleDamageSound.Add(Content.Load<SoundEffect>("audio/Male/Damage/damage_9"));
-            sound.MaleDamageSound.Add(Content.Load<SoundEffect>("audio/Male/Damage/damage_10"));
+            try { 
+                // Damagesounds laden
+                sound.MaleDamageSound.Add(Content.Load<SoundEffect>("audio/Male/Damage/damage_1"));
+                sound.MaleDamageSound.Add(Content.Load<SoundEffect>("audio/Male/Damage/damage_2"));
+                sound.MaleDamageSound.Add(Content.Load<SoundEffect>("audio/Male/Damage/damage_3"));
+                sound.MaleDamageSound.Add(Content.Load<SoundEffect>("audio/Male/Damage/damage_4"));
+                sound.MaleDamageSound.Add(Content.Load<SoundEffect>("audio/Male/Damage/damage_5"));
+                sound.MaleDamageSound.Add(Content.Load<SoundEffect>("audio/Male/Damage/damage_6"));
+                sound.MaleDamageSound.Add(Content.Load<SoundEffect>("audio/Male/Damage/damage_7"));
+                sound.MaleDamageSound.Add(Content.Load<SoundEffect>("audio/Male/Damage/damage_8"));
+                sound.MaleDamageSound.Add(Content.Load<SoundEffect>("audio/Male/Damage/damage_9"));
+                sound.MaleDamageSound.Add(Content.Load<SoundEffect>("audio/Male/Damage/damage_10"));
+            }
+            catch (ContentLoadException e)
+            {
+                logger.Log("Beim Player Sounds laden ist ein Fehler aufgetreten", Thread.CurrentThread.Name, "Error");
+                this.Exit();
+            }
 
             // <== GEGNER ==>
-            sound.EnemieDeathSound.Add(Content.Load<SoundEffect>("audio/Enemies/Death/Enemie_Damage_1"));
-            sound.EnemieDeathSound.Add(Content.Load<SoundEffect>("audio/Enemies/Death/Enemie_Damage_2"));
-            sound.EnemieDeathSound.Add(Content.Load<SoundEffect>("audio/Enemies/Death/Enemie_Damage_3"));
-            sound.EnemieDeathSound.Add(Content.Load<SoundEffect>("audio/Enemies/Death/Enemie_Damage_4"));
-            sound.EnemieDeathSound.Add(Content.Load<SoundEffect>("audio/Enemies/Death/Enemie_Damage_5"));
-            sound.EnemieDeathSound.Add(Content.Load<SoundEffect>("audio/Enemies/Death/Enemie_Damage_6"));
+            try { 
+                sound.EnemieDeathSound.Add(Content.Load<SoundEffect>("audio/Enemies/Death/Enemie_Damage_1"));
+                sound.EnemieDeathSound.Add(Content.Load<SoundEffect>("audio/Enemies/Death/Enemie_Damage_2"));
+                sound.EnemieDeathSound.Add(Content.Load<SoundEffect>("audio/Enemies/Death/Enemie_Damage_3"));
+                sound.EnemieDeathSound.Add(Content.Load<SoundEffect>("audio/Enemies/Death/Enemie_Damage_4"));
+                sound.EnemieDeathSound.Add(Content.Load<SoundEffect>("audio/Enemies/Death/Enemie_Damage_5"));
+                sound.EnemieDeathSound.Add(Content.Load<SoundEffect>("audio/Enemies/Death/Enemie_Damage_6"));
+            }
+            catch (ContentLoadException e)
+            {
+                logger.Log("Beim Gegner Sounds laden ist ein Fehler aufgetreten", Thread.CurrentThread.Name, "Error");
+                this.Exit();
+            }
 
             // Schriften
-            font = Content.Load<SpriteFont>("Font");
-            DebugFont = Content.Load<SpriteFont>("Debug");
-            MenuFont = Content.Load<SpriteFont>("MenuFont");
+            try { 
+                font = Content.Load<SpriteFont>("Font");
+                DebugFont = Content.Load<SpriteFont>("Debug");
+                MenuFont = Content.Load<SpriteFont>("MenuFont");
+            }
+            catch (ContentLoadException e)
+            {
+                logger.Log("Beim Schriftarten laden ist ein Fehler aufgetreten", Thread.CurrentThread.Name, "Error");
+                this.Exit();
+            }
 
             // Spieler Init
             player = new Player(this,200f,100);
@@ -325,12 +361,15 @@ namespace BugHunter
         // UnloadContent will be called once per game and is the place to unload game-specific content.
         protected override void UnloadContent()
         {
-            updateThread?.Interrupt();
-            RankingListUpdateThread?.Interrupt();
-            GlobalScoreListUpdateThread?.Interrupt();
-            CheckDatabaseConnectionThread?.Interrupt();
-            SendStatisticsThread?.Interrupt();
-            CheckNameThread?.Interrupt();
+            if (!SendStatisticsThread.ThreadState.Equals(System.Diagnostics.ThreadState.Wait))
+            {
+                updateThread?.Interrupt();
+                RankingListUpdateThread?.Interrupt();
+                GlobalScoreListUpdateThread?.Interrupt();
+                CheckDatabaseConnectionThread?.Interrupt();
+                SendStatisticsThread?.Interrupt();
+                CheckNameThread?.Interrupt();
+            }
 
             // Speichern von Einstellungen
             settings.SaveSettings();
@@ -940,15 +979,22 @@ namespace BugHunter
                 TexturePackerMonoGameDefinitions.entities.Idle_011
             };
 
+            // Idle Right
             var idleAnimation = new Animation(new Vector2(0, 0), timePerFrame, SpriteEffects.None, idle);
+            player.IdleAnimations = new[]
+            {
+               idleAnimation
+            };
+            player.IdleAMRight = new AnimationManager(this.spriteSheet, player.Position, player.IdleAnimations);
 
+            // Idle Left
+            idleAnimation = new Animation(new Vector2(0, 0), timePerFrame, SpriteEffects.FlipHorizontally, idle);
 
             player.IdleAnimations = new[]
             {
                idleAnimation
             };
-
-            player.IdleAM = new AnimationManager(this.spriteSheet, player.Position, player.IdleAnimations);
+            player.IdleAMLeft = new AnimationManager(this.spriteSheet, player.Position, player.IdleAnimations);
 
             // Player Run Right
             var runRight = new[]

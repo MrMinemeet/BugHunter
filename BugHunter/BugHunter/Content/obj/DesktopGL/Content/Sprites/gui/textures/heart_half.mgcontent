@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <SourceFile>C:/Users/Alexa/Google Drive/Project Whitespace/BugHunter/BugHunter/BugHunter/Content/sprites/gui/textures/heart_half.png</SourceFile>
+  <SourceFile>C:/Users/Alex/Google Drive/Project Whitespace/BugHunter/BugHunter/BugHunter/Content/sprites/gui/textures/heart_half.png</SourceFile>
   <SourceTime>2019-02-10T19:57:44+01:00</SourceTime>
-  <DestFile>C:/Users/Alexa/Google Drive/Project Whitespace/BugHunter/BugHunter/BugHunter/Content/bin/DesktopGL/Content/sprites/gui/textures/heart_half.xnb</DestFile>
-  <DestTime>2019-05-02T10:22:23.7008992+02:00</DestTime>
+  <DestFile>C:/Users/Alex/Google Drive/Project Whitespace/BugHunter/BugHunter/BugHunter/Content/bin/DesktopGL/Content/sprites/gui/textures/heart_half.xnb</DestFile>
+  <DestTime>2019-05-23T10:19:57.2986732+02:00</DestTime>
   <Importer>TextureImporter</Importer>
   <ImporterTime>2018-10-08T15:37:24+02:00</ImporterTime>
   <Processor>TextureProcessor</Processor>

@@ -53,6 +53,7 @@ namespace BugHunter
 
         public enum PlayerState : byte { Idle, WalkingLeft, WalkingRight };
         public PlayerState AktState = PlayerState.Idle;
+        public Settings.Directions LookingDirection;
 
         // Vibration
         private bool IsVibrating = false;
@@ -64,7 +65,8 @@ namespace BugHunter
 
         // Animations
         public Animation[] IdleAnimations;
-        public AnimationManager IdleAM;
+        public AnimationManager IdleAMRight;
+        public AnimationManager IdleAMLeft;
         public Animation[] RunRightAnimations;
         public AnimationManager RunRightAM;
         public Animation[] RunLeftAnimations;
@@ -129,7 +131,8 @@ namespace BugHunter
             PotNewPlayerPosition = Position;
 
             // Animationen updaten
-            IdleAM.Update(gameTime);
+            IdleAMRight.Update(gameTime);
+            IdleAMLeft.Update(gameTime);
             RunRightAM.Update(gameTime);
             RunLeftAM.Update(gameTime);
 
@@ -339,31 +342,42 @@ namespace BugHunter
             {
 
                 this.PotNewPlayerPosition.Y -= Speed * (float)gameTime.ElapsedGameTime.TotalSeconds;
-                this.AktState = PlayerState.WalkingRight;
+
+                if (LookingDirection.Equals(Settings.Directions.Right))
+                    this.AktState = PlayerState.WalkingRight;
+                else
+                    this.AktState = PlayerState.WalkingLeft;
             }
 
             if (kstate.IsKeyDown(Keys.S) || gamepadState.ThumbSticks.Left.Y < 0)
             {
                 this.PotNewPlayerPosition.Y += Speed * (float)gameTime.ElapsedGameTime.TotalSeconds;
-                this.AktState = PlayerState.WalkingRight;
+
+                if (LookingDirection.Equals(Settings.Directions.Right))
+                    this.AktState = PlayerState.WalkingRight;
+                else
+                    this.AktState = PlayerState.WalkingLeft;
             }
 
             if (kstate.IsKeyDown(Keys.A) || gamepadState.ThumbSticks.Left.X < 0)
             {
                 this.PotNewPlayerPosition.X -= Speed * (float)gameTime.ElapsedGameTime.TotalSeconds;
                 this.AktState = PlayerState.WalkingLeft;
+                this.LookingDirection = Settings.Directions.Left;
             }
 
             if (kstate.IsKeyDown(Keys.D) || gamepadState.ThumbSticks.Left.X > 0)
             {
                 this.PotNewPlayerPosition.X += Speed * (float)gameTime.ElapsedGameTime.TotalSeconds;
                 this.AktState = PlayerState.WalkingRight;
+                this.LookingDirection = Settings.Directions.Right;
             }
 
             if (!DidHitCollision(CollisionMapArray, map))
             {
                 this.Position = this.PotNewPlayerPosition;
             }
+
             if(oldPosition.Equals(this.Position))
             {
                 AktState = PlayerState.Idle;
@@ -532,11 +546,20 @@ namespace BugHunter
             // Idle animation
             if (AktState.Equals(PlayerState.Idle))
             {
-                spriteRender.Draw(
-                    IdleAM.CurrentSprite,
-                    Position,
-                    Color.White, 0, 1,
-                    IdleAM.CurrentSpriteEffects);
+                if (LookingDirection.Equals(Settings.Directions.Left))
+                    spriteRender.Draw(
+                        IdleAMLeft.CurrentSprite,
+                        Position,
+                        Color.White, 0, 1,
+                        IdleAMLeft.CurrentSpriteEffects);
+
+                else if(LookingDirection.Equals(Settings.Directions.Right))
+                
+                    spriteRender.Draw(
+                        IdleAMLeft.CurrentSprite,
+                        Position,
+                        Color.White, 0, 1,
+                        IdleAMRight.CurrentSpriteEffects);
             }
 
             // Rechts gehen Animation
