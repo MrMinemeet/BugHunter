@@ -35,6 +35,7 @@
         public static string Settings_UsernameNichtErlaubt = "Username ist nicht erlaubt";
         public static string General_On = "EIN";
         public static string General_Off = "AUS";
+        public static string General_NeueVersionVerfuegbar = "Neue Version verfuegbar!";
 
     }
 }

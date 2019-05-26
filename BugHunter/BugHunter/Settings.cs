@@ -27,8 +27,9 @@ namespace BugHunter
         public Byte Soundlautstaerke = 50;
         public readonly string LoggingPath;
         public string NetVersion;
-        public string Version;
+        public string Version = "";
         public bool GotNewHighscore = false;
+        public string AvailableVersion = "";
 
 
         public string GUID= "";

@@ -150,8 +150,14 @@ namespace BugHunter
         double lastMenuButtonSwitch = 0;
         SettingsMenu settingsMenu;
 
+
+        // Klassen
+        public Requests requests;
+
         public Game1()
         {
+            requests = new Requests(this);
+
             gameStats = new Stats();
             this.settings = new Settings(this);
             graphics = new GraphicsDeviceManager(this)
@@ -389,6 +395,12 @@ namespace BugHunter
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Update(GameTime gameTime)
         {
+            // Falls eine Internetverbindung besteht und mehr als 120 seit dem letzen Request vergangen sind, wird geschaut ob eine neue Version verfügbar ist
+            if(settings.HasInternetConnection && gameTime.TotalGameTime.TotalSeconds - requests.LastAvailibleVersionCheck >= 60)
+            {
+                requests.GetLatestAvailableVersion(gameTime);
+            }
+
             if (settings.IsSendStatsAllowed && !ThreadsHaveStarted)
             {
                 updateThread.Start();
@@ -912,6 +924,11 @@ namespace BugHunter
 
                 // Schreibt Build-Version in Ecke
                 spriteBatch.DrawString(DebugFont, "Buildverion: " + settings.Version, new Vector2(0, 0), Color.White);
+
+                if (!settings.AvailableVersion.Equals(settings.Version) && settings.AvailableVersion != "")
+                {
+                    spriteBatch.DrawString(DebugFont, Texttable_DE.General_NeueVersionVerfuegbar, new Vector2(0, 30), Color.Orange);
+                }
 
 
                 // Zeichnet alle Menüpunkte

@@ -131,6 +131,7 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
+    <Compile Include="Requests.cs" />
     <Compile Include="Settings.cs" />
     <Compile Include="Sound.cs" />
     <Compile Include="Stats.cs" />
