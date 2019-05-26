@@ -11,8 +11,14 @@ namespace BugHunter
 {
     class UsernameBlacklist
     {
+        // Login-Daten für Filter
+        static string Blacklist_Username = "BlacklistUser";
+        static string Blacklist_Password = "sF9CpQlWZJcD5RC0aNkQ";
+
+
         public static string CheckUsernameForBadWords(Game1 game, string username)
         {
+
             List<string> BadUsernameList = new List<string>();
             // Bad Words Liste Laden
             BinaryReader br = null;
@@ -143,7 +149,7 @@ namespace BugHunter
             MySqlDataReader reader = null;
             List<string> BadWordList = new List<string>();
 
-            string connString = "Server=" + Settings.host + ";Database=Blacklists;port=" + Settings.port + ";User Id=" + Settings.username + ";password=" + Settings.password;
+            string connString = "Server=" + Settings.host + ";Database=Blacklists;port=" + Settings.port + ";User Id=" + Blacklist_Username + ";password=" + Blacklist_Password;
 
             mySqlConnection = new MySqlConnection(connString);
 

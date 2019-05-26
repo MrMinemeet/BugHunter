@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-16"?>
-<DevTrackerData xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" SolutionTotalEditTime="PT13H8M13.9789241S" SolutionTotalViewTime="P4DT17H3M28.6019689S" SolutionTotalDebugTime="PT5H18M3.1574419S">
+<DevTrackerData xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" SolutionTotalEditTime="PT13H10M53.3942101S" SolutionTotalViewTime="P4DT17H12M15.6821921S" SolutionTotalDebugTime="PT5H20M34.8597799S">
   <FileVersion>
     <Major>1</Major>
     <Minor>0</Minor>
@@ -14,14 +14,46 @@
   </ProjectsCreatedDateList>
   <SessionTimeList />
   <LastSessionTimeList>
-    <DevTrackerDataItem ViewActiveTime="PT2M1.3333283S" EditActiveTime="PT0S">
+    <DevTrackerDataItem ViewActiveTime="PT4M27.7784904S" EditActiveTime="PT59.1953866S">
+      <ModifiedDate>2019-05-26T19:43:04.9003694+02:00</ModifiedDate>
+      <ModifiedBy>Alex</ModifiedBy>
+      <EditedCount>1</EditedCount>
+      <ViewedCount>1</ViewedCount>
+      <Item>C:\Users\Alex\Google Drive\Project Whitespace\BugHunter\BugHunter\BugHunter\Database.cs</Item>
+      <ItemType>ProjectItem</ItemType>
+      <ProjectName>C:\Users\Alex\Google Drive\Project Whitespace\BugHunter\BugHunter\BugHunter\BugHunter.csproj</ProjectName>
+      <CreatedDate>2019-05-26T19:18:57.2150161+02:00</CreatedDate>
+      <ViewedBy>Alex</ViewedBy>
+    </DevTrackerDataItem>
+    <DevTrackerDataItem ViewActiveTime="PT2M31.7013635S" EditActiveTime="PT0S">
+      <ModifiedDate>0001-01-01T00:00:00</ModifiedDate>
+      <EditedCount>0</EditedCount>
+      <ViewedCount>1</ViewedCount>
+      <Item>Debug Mode</Item>
+      <ItemType>DebugModeItem</ItemType>
+      <ProjectName />
+      <CreatedDate>2019-05-26T19:18:36.9084804+02:00</CreatedDate>
+      <ViewedBy>Alex</ViewedBy>
+    </DevTrackerDataItem>
+    <DevTrackerDataItem ViewActiveTime="PT3M16.725832S" EditActiveTime="PT1M40.2167368S">
+      <ModifiedDate>2019-05-26T19:45:56.8356933+02:00</ModifiedDate>
+      <ModifiedBy>Alex</ModifiedBy>
+      <EditedCount>1</EditedCount>
+      <ViewedCount>1</ViewedCount>
+      <Item>C:\Users\Alex\Google Drive\Project Whitespace\BugHunter\BugHunter\BugHunter\UsernameBlacklist.cs</Item>
+      <ItemType>ProjectItem</ItemType>
+      <ProjectName>C:\Users\Alex\Google Drive\Project Whitespace\BugHunter\BugHunter\BugHunter\BugHunter.csproj</ProjectName>
+      <CreatedDate>2019-05-26T19:43:18.4478177+02:00</CreatedDate>
+      <ViewedBy>Alex</ViewedBy>
+    </DevTrackerDataItem>
+    <DevTrackerDataItem ViewActiveTime="PT1M2.5761011S" EditActiveTime="PT0S">
       <ModifiedDate>0001-01-01T00:00:00</ModifiedDate>
       <EditedCount>0</EditedCount>
       <ViewedCount>1</ViewedCount>
       <Item>C:\Users\Alex\Google Drive\Project Whitespace\BugHunter\BugHunter\BugHunter\Weapon.cs</Item>
       <ItemType>ProjectItem</ItemType>
       <ProjectName>C:\Users\Alex\Google Drive\Project Whitespace\BugHunter\BugHunter\BugHunter\BugHunter.csproj</ProjectName>
-      <CreatedDate>2019-05-26T19:12:12.1193918+02:00</CreatedDate>
+      <CreatedDate>2019-05-26T19:17:33.8261307+02:00</CreatedDate>
       <ViewedBy>Alex</ViewedBy>
     </DevTrackerDataItem>
   </LastSessionTimeList>
@@ -275,20 +307,21 @@
       <CreatedDate>2019-04-06T19:45:26.52217+02:00</CreatedDate>
       <ViewedBy>Alex</ViewedBy>
     </DevTrackerDataItem>
-    <DevTrackerDataItem ViewActiveTime="PT0.2123144S" EditActiveTime="PT0S">
-      <ModifiedDate>0001-01-01T00:00:00</ModifiedDate>
-      <EditedCount>0</EditedCount>
-      <ViewedCount>1</ViewedCount>
+    <DevTrackerDataItem ViewActiveTime="PT4M27.9908048S" EditActiveTime="PT59.1953866S">
+      <ModifiedDate>2019-05-26T19:43:04.9003694+02:00</ModifiedDate>
+      <ModifiedBy>Alex</ModifiedBy>
+      <EditedCount>1</EditedCount>
+      <ViewedCount>2</ViewedCount>
       <Item>C:\Users\Alex\Google Drive\Project Whitespace\BugHunter\BugHunter\BugHunter\Database.cs</Item>
       <ItemType>ProjectItem</ItemType>
       <ProjectName>C:\Users\Alex\Google Drive\Project Whitespace\BugHunter\BugHunter\BugHunter\BugHunter.csproj</ProjectName>
       <CreatedDate>2019-05-26T19:08:35.8474877+02:00</CreatedDate>
       <ViewedBy>Alex</ViewedBy>
     </DevTrackerDataItem>
-    <DevTrackerDataItem ViewActiveTime="PT5H18M3.1574419S" EditActiveTime="PT3H47M49.1099454S">
+    <DevTrackerDataItem ViewActiveTime="PT5H20M34.8588054S" EditActiveTime="PT3H47M49.1099454S">
       <ModifiedDate>0001-01-01T00:00:00</ModifiedDate>
       <EditedCount>38</EditedCount>
-      <ViewedCount>107</ViewedCount>
+      <ViewedCount>108</ViewedCount>
       <Item>Debug Mode</Item>
       <ItemType>DebugModeItem</ItemType>
       <ProjectName />
@@ -1161,10 +1194,11 @@
       <CreatedDate>2019-04-06T19:45:34.7104168+02:00</CreatedDate>
       <ViewedBy>Alex</ViewedBy>
     </DevTrackerDataItem>
-    <DevTrackerDataItem ViewActiveTime="PT0.1935058S" EditActiveTime="PT0S">
-      <ModifiedDate>0001-01-01T00:00:00</ModifiedDate>
-      <EditedCount>0</EditedCount>
-      <ViewedCount>1</ViewedCount>
+    <DevTrackerDataItem ViewActiveTime="PT3M16.9193378S" EditActiveTime="PT1M40.2167368S">
+      <ModifiedDate>2019-05-26T19:45:56.8356933+02:00</ModifiedDate>
+      <ModifiedBy>Alex</ModifiedBy>
+      <EditedCount>1</EditedCount>
+      <ViewedCount>2</ViewedCount>
       <Item>C:\Users\Alex\Google Drive\Project Whitespace\BugHunter\BugHunter\BugHunter\UsernameBlacklist.cs</Item>
       <ItemType>ProjectItem</ItemType>
       <ProjectName>C:\Users\Alex\Google Drive\Project Whitespace\BugHunter\BugHunter\BugHunter\BugHunter.csproj</ProjectName>
@@ -1202,10 +1236,10 @@
       <CreatedDate>2019-04-06T19:45:35.4371925+02:00</CreatedDate>
       <ViewedBy>Alex</ViewedBy>
     </DevTrackerDataItem>
-    <DevTrackerDataItem ViewActiveTime="PT2M41.1968842S" EditActiveTime="PT0S">
+    <DevTrackerDataItem ViewActiveTime="PT3M43.7729853S" EditActiveTime="PT0S">
       <ModifiedDate>0001-01-01T00:00:00</ModifiedDate>
       <EditedCount>0</EditedCount>
-      <ViewedCount>2</ViewedCount>
+      <ViewedCount>3</ViewedCount>
       <Item>C:\Users\Alex\Google Drive\Project Whitespace\BugHunter\BugHunter\BugHunter\Weapon.cs</Item>
       <ItemType>ProjectItem</ItemType>
       <ProjectName>C:\Users\Alex\Google Drive\Project Whitespace\BugHunter\BugHunter\BugHunter\BugHunter.csproj</ProjectName>
@@ -1245,6 +1279,48 @@
     </DevTrackerDataItem>
   </TotalTimeList>
   <HistoryTimeList>
+    <DevTrackerDataItem ViewActiveTime="PT3M16.725832S" EditActiveTime="PT1M40.2167368S">
+      <ModifiedDate>2019-05-26T19:45:56.8356933+02:00</ModifiedDate>
+      <ModifiedBy>Alex</ModifiedBy>
+      <EditedCount>1</EditedCount>
+      <ViewedCount>1</ViewedCount>
+      <Item>C:\Users\Alex\Google Drive\Project Whitespace\BugHunter\BugHunter\BugHunter\UsernameBlacklist.cs</Item>
+      <ItemType>ProjectItem</ItemType>
+      <ProjectName>C:\Users\Alex\Google Drive\Project Whitespace\BugHunter\BugHunter\BugHunter\BugHunter.csproj</ProjectName>
+      <CreatedDate>2019-05-26T19:43:18.4478177+02:00</CreatedDate>
+      <ViewedBy>Alex</ViewedBy>
+    </DevTrackerDataItem>
+    <DevTrackerDataItem ViewActiveTime="PT4M27.7784904S" EditActiveTime="PT59.1953866S">
+      <ModifiedDate>2019-05-26T19:43:04.9003694+02:00</ModifiedDate>
+      <ModifiedBy>Alex</ModifiedBy>
+      <EditedCount>1</EditedCount>
+      <ViewedCount>1</ViewedCount>
+      <Item>C:\Users\Alex\Google Drive\Project Whitespace\BugHunter\BugHunter\BugHunter\Database.cs</Item>
+      <ItemType>ProjectItem</ItemType>
+      <ProjectName>C:\Users\Alex\Google Drive\Project Whitespace\BugHunter\BugHunter\BugHunter\BugHunter.csproj</ProjectName>
+      <CreatedDate>2019-05-26T19:18:57.2150161+02:00</CreatedDate>
+      <ViewedBy>Alex</ViewedBy>
+    </DevTrackerDataItem>
+    <DevTrackerDataItem ViewActiveTime="PT2M31.7013635S" EditActiveTime="PT0S">
+      <ModifiedDate>0001-01-01T00:00:00</ModifiedDate>
+      <EditedCount>0</EditedCount>
+      <ViewedCount>1</ViewedCount>
+      <Item>Debug Mode</Item>
+      <ItemType>DebugModeItem</ItemType>
+      <ProjectName />
+      <CreatedDate>2019-05-26T19:18:36.9084804+02:00</CreatedDate>
+      <ViewedBy>Alex</ViewedBy>
+    </DevTrackerDataItem>
+    <DevTrackerDataItem ViewActiveTime="PT1M2.5761011S" EditActiveTime="PT0S">
+      <ModifiedDate>0001-01-01T00:00:00</ModifiedDate>
+      <EditedCount>0</EditedCount>
+      <ViewedCount>1</ViewedCount>
+      <Item>C:\Users\Alex\Google Drive\Project Whitespace\BugHunter\BugHunter\BugHunter\Weapon.cs</Item>
+      <ItemType>ProjectItem</ItemType>
+      <ProjectName>C:\Users\Alex\Google Drive\Project Whitespace\BugHunter\BugHunter\BugHunter\BugHunter.csproj</ProjectName>
+      <CreatedDate>2019-05-26T19:17:33.8261307+02:00</CreatedDate>
+      <ViewedBy>Alex</ViewedBy>
+    </DevTrackerDataItem>
     <DevTrackerDataItem ViewActiveTime="PT2M1.3256354S" EditActiveTime="PT0S">
       <ModifiedDate>0001-01-01T00:00:00</ModifiedDate>
       <EditedCount>0</EditedCount>
