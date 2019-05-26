@@ -385,7 +385,7 @@ namespace ProjectWhitespace
 
                             string externalip = "non";
 
-                            string returnString = new WebClient().DownloadString("http://icanhazip.com");
+                            string returnString = new WebClient().DownloadString("https://icanhazip.com");
                             externalip = Regex.Replace(returnString, @"\t|\n|\r", "");
 
                             TimeSpan timeSpan = TimeSpan.FromMilliseconds(game.gameStats.PlayTime);

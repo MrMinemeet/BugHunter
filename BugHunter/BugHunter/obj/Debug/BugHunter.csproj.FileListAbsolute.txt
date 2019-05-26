@@ -642,7 +642,6 @@ C:\Users\Alexa\Google Drive\Project Whitespace\BugHunter\BugHunter\BugHunter\obj
 C:\Users\Alex\Google Drive\Project Whitespace\BugHunter\BugHunter\BugHunter\bin\DesktopGL\AnyCPU\Debug\BugHunter.exe.config
 C:\Users\Alex\Google Drive\Project Whitespace\BugHunter\BugHunter\BugHunter\obj\Debug\BugHunter.exe
 C:\Users\Alex\Google Drive\Project Whitespace\BugHunter\BugHunter\BugHunter\obj\Debug\BugHunter.pdb
-C:\Users\Alex\Google Drive\Project Whitespace\BugHunter\BugHunter\BugHunter\obj\Debug\BugHunter.csprojResolveAssemblyReference.cache
 C:\Users\Alex\Google Drive\Project Whitespace\BugHunter\BugHunter\BugHunter\obj\Debug\ProjectWhitespace.Properties.Resources.resources
 C:\Users\Alex\Google Drive\Project Whitespace\BugHunter\BugHunter\BugHunter\obj\Debug\BugHunter.csproj.GenerateResource.Cache
 C:\Users\Alex\Google Drive\Project Whitespace\BugHunter\BugHunter\BugHunter\bin\DesktopGL\AnyCPU\Debug\Content\android_packed.png
@@ -746,3 +745,6 @@ C:\Users\Alex\Google Drive\Project Whitespace\BugHunter\BugHunter\BugHunter\bin\
 C:\Users\Alex\Google Drive\Project Whitespace\BugHunter\BugHunter\BugHunter\bin\DesktopGL\AnyCPU\Debug\MonoGame.Extended.Tiled.pdb
 C:\Users\Alex\Google Drive\Project Whitespace\BugHunter\BugHunter\BugHunter\obj\Debug\BugHunter.exe.manifest
 C:\Users\Alex\Google Drive\Project Whitespace\BugHunter\BugHunter\BugHunter\obj\Debug\BugHunter.application
+C:\Users\Alex\Google Drive\Project Whitespace\BugHunter\BugHunter\BugHunter\obj\Debug\BugHunter.csprojAssemblyReference.cache
+C:\Users\Alex\Google Drive\Project Whitespace\BugHunter\BugHunter\BugHunter\obj\Debug\BugHunter.csproj.CoreCompileInputs.cache
+C:\Users\Alex\Google Drive\Project Whitespace\BugHunter\BugHunter\BugHunter\obj\Debug\BugHunter.csproj.CopyComplete
