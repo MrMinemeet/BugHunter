@@ -153,11 +153,10 @@ namespace BugHunter
 
         // Klassen
         public Requests requests;
+        Konsole GameConsole;
 
         public Game1()
         {
-            requests = new Requests(this);
-
             gameStats = new Stats();
             this.settings = new Settings(this);
             graphics = new GraphicsDeviceManager(this)
@@ -180,6 +179,8 @@ namespace BugHunter
         // related content.  Calling base.Initialize will enumerate through any components and initialize them as well.
         protected override void Initialize()
         {
+            requests = new Requests(this);
+
             this.graphicsDevice = GraphicsDevice;
 
             logger = new Logger(this.settings.LoggingPath);
@@ -362,6 +363,10 @@ namespace BugHunter
             Color[] data = new Color[settings.resolutionHeight * settings.resolutionWidth];
             for (int i = 0; i < data.Length; ++i) data[i] = new Color(0,0,0,128);
             pauseScreen.SetData(data);
+
+
+            // GameConsole initialisieren
+            GameConsole = new Konsole(this);
         }
 
         // UnloadContent will be called once per game and is the place to unload game-specific content.
@@ -395,6 +400,9 @@ namespace BugHunter
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Update(GameTime gameTime)
         {
+            // GameKonsole updaten
+            GameConsole.Update(gameTime);
+
             // Falls eine Internetverbindung besteht und mehr als 120 seit dem letzen Request vergangen sind, wird geschaut ob eine neue Version verfügbar ist
             if(settings.HasInternetConnection && gameTime.TotalGameTime.TotalSeconds - requests.LastAvailibleVersionCheck >= 60)
             {
@@ -540,7 +548,7 @@ namespace BugHunter
                     this.StatsBoostGiven += 5000;
                 }
 
-                if (Keyboard.GetState().IsKeyDown(Keys.F3) && gameTime.TotalGameTime.TotalMilliseconds - LastKeyStrokeInput >= 500)
+                if (Keyboard.GetState().IsKeyDown(Keys.F3) && Keyboard.GetState().IsKeyUp(Keys.Tab) && gameTime.TotalGameTime.TotalMilliseconds - LastKeyStrokeInput >= 500)
                 {
                     settings.AreDebugInformationsVisible = !settings.AreDebugInformationsVisible;
                     LastKeyStrokeInput = gameTime.TotalGameTime.TotalMilliseconds;
@@ -809,6 +817,8 @@ namespace BugHunter
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Draw(GameTime gameTime)
         { 
+
+
             // Schwarzer Hintergrund
             GraphicsDevice.Clear(Color.TransparentBlack);
             
@@ -842,6 +852,8 @@ namespace BugHunter
                         "Player:\n" + " X: " + ((int)player.Position.X).ToString() + " Y: " + ((int)player.Position.Y).ToString(),
                         new Vector2(player.Position.X - (settings.resolutionWidth / 2), player.Position.Y - (settings.resolutionHeight / 2) + 125),
                         Color.White);
+
+                    spriteBatch.DrawString(DebugFont, "Dmg-Boost: " + player.Damageboost.ToString(), new Vector2(player.Position.X - (settings.resolutionWidth / 2), player.Position.Y - (settings.resolutionHeight / 2) + 185), Color.White);
                 }
 
                 if (CurrentGameState == GameState.Ingame || CurrentGameState == GameState.Paused || CurrentGameState == GameState.DeathScreen)
@@ -955,6 +967,14 @@ namespace BugHunter
                 }
                 spriteBatch.End();
             }
+
+
+            // GameConsole zeichnen
+            spriteBatch.Begin();
+            GameConsole.Draw(spriteBatch);
+            spriteBatch.End();
+
+
             base.Draw(gameTime);
         }
         private void InitialiseAnimationManager()
