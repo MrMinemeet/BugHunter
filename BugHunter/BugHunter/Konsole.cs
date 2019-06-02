@@ -38,14 +38,13 @@ namespace ProjectWhitespace
             {
                 LastKeyStroke = gameTime.TotalGameTime.TotalMilliseconds;
 
-                IsActive = !IsActive;
+                // IsActive = !IsActive;
                 Console.WriteLine(IsActive);
             }
 
             // Wenn nicht aktiv, Funktion beenden
             if (!this.IsActive)
                 return;
-
 
             // Tasteninput erhalten und an aktuellen Kommand anhängen
             string KeyInput = GetKeyboardInput(gameTime);
