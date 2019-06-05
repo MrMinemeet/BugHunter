@@ -21,6 +21,7 @@ namespace ProjectWhitespace
         private StringBuilder aktCommand = new StringBuilder("");
 
         private double LastKeyStroke = 0;
+        private bool CommandSubmitted = false;
 
 
         public Konsole(Game1 game)
@@ -38,8 +39,7 @@ namespace ProjectWhitespace
             {
                 LastKeyStroke = gameTime.TotalGameTime.TotalMilliseconds;
 
-                // IsActive = !IsActive;
-                Console.WriteLine(IsActive);
+                IsActive = !IsActive;
             }
 
             // Wenn nicht aktiv, Funktion beenden
@@ -50,10 +50,99 @@ namespace ProjectWhitespace
             string KeyInput = GetKeyboardInput(gameTime);
             if (!KeyInput.Equals("none"))    // Bei none ist keine Taste gedrückt worden
             {
-                if (KeyInput.Equals("rem")) // Beim Codewort "rem" wurde die Delete-Taste gedrückt
-                    aktCommand.Length--;
-                else
-                    aktCommand.Append(KeyInput);
+                switch(KeyInput)
+                {
+                    case "rem":
+                        if (aktCommand.Length > 0)
+                            aktCommand.Length--;
+                        break;
+                    case "enter":
+                        CommandSubmitted = true;
+                        break;
+
+                    default:
+                        aktCommand.Append(KeyInput);
+                        break;
+                }
+            }
+
+
+            // Bestätigten Befehl abarbeiten
+            if (CommandSubmitted && aktCommand.Length > 0)
+            {
+                string Befehl = string.Empty;
+                string Argument = string.Empty;
+                CommandSubmitted = false;
+
+                // Befehl vorbereiten
+                try
+                {
+                    string[] temp = aktCommand.ToString().Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
+                    Befehl = temp[0];
+                    Argument = string.Empty;
+
+                    if (temp.Length > 1)
+                        Argument = temp[1];
+                }
+                catch(Exception e)
+                {
+                    game.logger.Log(e.Message, "Konsole", "Error");
+                    Console.WriteLine(e.StackTrace);
+                }
+                finally
+                {
+                    aktCommand.Clear();
+                }
+
+                if (Befehl.Length > 0)
+                {
+                    Befehl = Befehl.ToLower();
+
+                    try
+                    {
+                        switch (Befehl)
+                        {
+                            case "godmode":
+                                bool GodmodeArg = bool.Parse(Argument);
+                                game.player.IsGodmode = GodmodeArg;
+                                break;
+
+                            case "refill-all":
+                                Player player = game.player;
+
+                                player.AmmunitionAmmountList[Weapon.WeaponTypes.c] = game.weapon.CAmmoAmount;
+                                player.AmmunitionAmmountList[Weapon.WeaponTypes.cpp] = game.weapon.CppAmmoAmount;
+                                player.AmmunitionAmmountList[Weapon.WeaponTypes.csharp] = game.weapon.CsharpAmmoAmount;
+                                player.AmmunitionAmmountList[Weapon.WeaponTypes.java] = game.weapon.JavaAmmoAmount;
+                                player.AmmunitionAmmountList[Weapon.WeaponTypes.maschinensprache] = game.weapon.MaschinenspracheAmmoAmount;
+                                break;
+
+                            case "unlimitedammo":
+                                bool UnlimitedAmmoArg = bool.Parse(Argument);
+                                game.player.HasUnlimitedAmmo = UnlimitedAmmoArg;
+                                break;
+
+                            case "setdamageboost":
+                                int boost = int.Parse(Argument);
+                                game.player.Damageboost = boost;
+                                break;
+
+                            case "killall":
+                                game.AndroidsList.Clear();
+                                game.iOSList.Clear();
+                                game.WindowsList.Clear();
+                                break;
+
+                            default:
+                                break;
+                        }
+                    }
+                    catch (Exception e)
+                    {
+                        game.logger.Log(e.Message, "Konsole", "Error");
+                        Console.WriteLine(e.StackTrace);
+                    }
+                }
             }
         }
 
@@ -70,7 +159,6 @@ namespace ProjectWhitespace
                 texture = new Texture2D(graphicsDevice, 1, 1);
                 texture.SetData(new Color[] { Color.DarkSlateGray });
                 spriteBatch.Draw(texture,new Rectangle(0,0,ConsoleWidth,ConsoleHeight), new Color(0,0,0,128));
-
 
                 spriteBatch.DrawString(this.ConsoleFont, aktCommand, new Vector2(10, 100), Color.GhostWhite);
             }
@@ -94,6 +182,13 @@ namespace ProjectWhitespace
                 {
                     game.LastKeyStrokeInput = gameTime.TotalGameTime.TotalMilliseconds;
                     return "rem";
+                }
+
+                // Bestätigen des Befehls
+                if (Keyboard.GetState().IsKeyDown(Keys.Enter))
+                {
+                    game.LastKeyStrokeInput = gameTime.TotalGameTime.TotalMilliseconds;
+                    return "enter";
                 }
 
                 // Überprüfen welche Taste gedrückt wurde
@@ -331,6 +426,11 @@ namespace ProjectWhitespace
                     else
                         sb.Append('z');
 
+                    game.LastKeyStrokeInput = gameTime.TotalGameTime.TotalMilliseconds;
+                }
+                if (Keyboard.GetState().IsKeyDown(Keys.Space))
+                {
+                    sb.Append(' ');
                     game.LastKeyStrokeInput = gameTime.TotalGameTime.TotalMilliseconds;
                 }
 

@@ -9,8 +9,6 @@
         public static string Menu_Einstellungen = "Einstellungen";
         public static string Menu_Stats = "Statistiken";
         public static string Menu_Ende = "Beenden";
-        public static string Text_Einstellungen_Laden = "Keine Spieldaten gefunden.";
-        public static string Text_Bestaetigen = "[ DOCH! ]";
         public static string Stats_Getötete_Gegner = "Gedebuggte Gegner: ";
         public static string Stats_Gesammelte_Powerups = "Gesammelte Powerups: ";
         public static string Stats_Anzahl_Geschossen = "Geschossen: ";
