@@ -27,6 +27,7 @@ namespace BugHunter
 
         public bool IsGodmode { get; set; } = false;
         public bool HasUnlimitedAmmo { get; set; } = false;
+        public bool FastshootEnabled { get; set; } = false;
 
         // Munitionsanzahl
         public IDictionary<Weapon.WeaponTypes, int> AmmunitionAmmountList = new Dictionary<Weapon.WeaponTypes, int>();
@@ -257,7 +258,7 @@ namespace BugHunter
                 // Initialisiert Projektil und stellt richtung, Position und Waffenart ein
                 if (kstate.IsKeyDown(Keys.Right) || gamepadState.IsButtonDown(Buttons.B))
                 {
-                    if (gameTime.TotalGameTime.TotalMilliseconds - lastTimeShot >= game.weapon.GetDelayAktWeapon(aktWeapon))
+                    if (gameTime.TotalGameTime.TotalMilliseconds - lastTimeShot >= game.weapon.GetDelayAktWeapon(aktWeapon) || FastshootEnabled)
                     {
                         projectiles.Add(new Projectile(game));
 
@@ -276,7 +277,7 @@ namespace BugHunter
                 }
                 else if (kstate.IsKeyDown(Keys.Left) || gamepadState.IsButtonDown(Buttons.X))
                 {
-                    if (gameTime.TotalGameTime.TotalMilliseconds - lastTimeShot >= game.weapon.GetDelayAktWeapon(aktWeapon))
+                    if (gameTime.TotalGameTime.TotalMilliseconds - lastTimeShot >= game.weapon.GetDelayAktWeapon(aktWeapon) || FastshootEnabled)
                     {
                         projectiles.Add(new Projectile(game));
 
@@ -295,7 +296,7 @@ namespace BugHunter
                 }
                 else if (kstate.IsKeyDown(Keys.Up) || gamepadState.IsButtonDown(Buttons.Y))
                 {
-                    if (gameTime.TotalGameTime.TotalMilliseconds - lastTimeShot >= game.weapon.GetDelayAktWeapon(aktWeapon))
+                    if (gameTime.TotalGameTime.TotalMilliseconds - lastTimeShot >= game.weapon.GetDelayAktWeapon(aktWeapon) || FastshootEnabled)
                     {
                         projectiles.Add(new Projectile(game));
 
@@ -314,7 +315,7 @@ namespace BugHunter
                 }
                 else if (kstate.IsKeyDown(Keys.Down) || gamepadState.IsButtonDown(Buttons.A))
                 {
-                    if (gameTime.TotalGameTime.TotalMilliseconds - lastTimeShot >= game.weapon.GetDelayAktWeapon(aktWeapon))
+                    if (gameTime.TotalGameTime.TotalMilliseconds - lastTimeShot >= game.weapon.GetDelayAktWeapon(aktWeapon) || FastshootEnabled)
                     {
                         projectiles.Add(new Projectile(game));
 

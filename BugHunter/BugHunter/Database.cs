@@ -275,7 +275,7 @@ namespace ProjectWhitespace
                             // Datenbankverbindung steht
                             game.logger.Log("Datenbankverbindung steht", Thread.CurrentThread.Name, "Debug");
 
-                            string query = "SELECT * FROM `GlobalScore`";
+                            string query = "SELECT * FROM GlobalScore WHERE GlobalScore.ID = 'GLOBAL'";
                             command = new MySqlCommand(query);
                             command.Connection = connection;
 

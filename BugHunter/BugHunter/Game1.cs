@@ -1074,13 +1074,20 @@ namespace BugHunter
             AndroidDamage = 1;
             WindowsHealth = 30;
             WindowsDamage = 1;
+            iOSHealth = 30;
+            iOSDamage = 1;
             Score = 0;
 
             weapon = new Weapon();
             player.Reset(MapArray);
 
+            // Powerups löschen
+            Powerups.RemoveRange(0,Powerups.Count);
+
+            // Gegner löschen
             AndroidsList.RemoveRange(0, AndroidsList.Count);
             WindowsList.RemoveRange(0, WindowsList.Count);
+            iOSList.RemoveRange(0, iOSList.Count);
         }
 
         /// <summary>

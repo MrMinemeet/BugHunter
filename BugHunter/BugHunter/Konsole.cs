@@ -133,6 +133,11 @@ namespace ProjectWhitespace
                                 game.WindowsList.Clear();
                                 break;
 
+                            case "fastshoot":
+                                bool FastshootArg = bool.Parse(Argument);
+                                game.player.FastshootEnabled = FastshootArg;
+                                break;
+
                             default:
                                 break;
                         }
