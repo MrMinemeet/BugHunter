@@ -247,6 +247,7 @@ namespace BugHunter
             catch (ContentLoadException e)
             {
                 logger.Log("Beim Player Sounds laden ist ein Fehler aufgetreten", Thread.CurrentThread.Name, "Error");
+                Console.WriteLine(e.StackTrace);
                 this.Exit();
             }
 
@@ -266,6 +267,7 @@ namespace BugHunter
             catch (ContentLoadException e)
             {
                 logger.Log("Beim Player Sounds laden ist ein Fehler aufgetreten", Thread.CurrentThread.Name, "Error");
+                Console.WriteLine(e.StackTrace);
                 this.Exit();
             }
 
@@ -285,6 +287,7 @@ namespace BugHunter
             catch (ContentLoadException e)
             {
                 logger.Log("Beim Player Sounds laden ist ein Fehler aufgetreten", Thread.CurrentThread.Name, "Error");
+                Console.WriteLine(e.StackTrace);
                 this.Exit();
             }
 
@@ -300,6 +303,7 @@ namespace BugHunter
             catch (ContentLoadException e)
             {
                 logger.Log("Beim Gegner Sounds laden ist ein Fehler aufgetreten", Thread.CurrentThread.Name, "Error");
+                Console.WriteLine(e.StackTrace);
                 this.Exit();
             }
 
@@ -312,6 +316,7 @@ namespace BugHunter
             catch (ContentLoadException e)
             {
                 logger.Log("Beim Schriftarten laden ist ein Fehler aufgetreten", Thread.CurrentThread.Name, "Error");
+                Console.WriteLine(e.StackTrace);
                 this.Exit();
             }
 

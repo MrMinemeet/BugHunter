@@ -22,6 +22,7 @@ namespace ProjectWhitespace
 
         private double LastKeyStroke = 0;
         private bool CommandSubmitted = false;
+        private LinkedList<string> KonsoleLog = new LinkedList<string>();
 
 
         public Konsole(Game1 game)
@@ -40,6 +41,13 @@ namespace ProjectWhitespace
                 LastKeyStroke = gameTime.TotalGameTime.TotalMilliseconds;
 
                 IsActive = !IsActive;
+            }
+
+            if (Keyboard.GetState().IsKeyDown(Keys.Escape) && (gameTime.TotalGameTime.TotalMilliseconds - LastKeyStroke >= 250))
+            {
+                LastKeyStroke = gameTime.TotalGameTime.TotalMilliseconds;
+
+                IsActive = false;
             }
 
             // Wenn nicht aktiv, Funktion beenden
@@ -65,7 +73,6 @@ namespace ProjectWhitespace
                         break;
                 }
             }
-
 
             // Bestätigten Befehl abarbeiten
             if (CommandSubmitted && aktCommand.Length > 0)
@@ -100,11 +107,23 @@ namespace ProjectWhitespace
 
                     try
                     {
+                        // Schauen ob der eingegebene Befehl bekannt ist
                         switch (Befehl)
                         {
+                            case "help":
+                                KonsoleLog.AddFirst("Godmode <true/false>");
+                                KonsoleLog.AddFirst("Refill-All");
+                                KonsoleLog.AddFirst("UnlimitedAmmo <true/false>");
+                                KonsoleLog.AddFirst("SedDamageBoost <number>");
+                                KonsoleLog.AddFirst("KillAll");
+                                KonsoleLog.AddFirst("Fastshoot <true/false>");
+                                break;
+
                             case "godmode":
                                 bool GodmodeArg = bool.Parse(Argument);
                                 game.player.IsGodmode = GodmodeArg;
+
+                                KonsoleLog.AddFirst("Godmode: " + GodmodeArg);
                                 break;
 
                             case "refill-all":
@@ -115,30 +134,42 @@ namespace ProjectWhitespace
                                 player.AmmunitionAmmountList[Weapon.WeaponTypes.csharp] = game.weapon.CsharpAmmoAmount;
                                 player.AmmunitionAmmountList[Weapon.WeaponTypes.java] = game.weapon.JavaAmmoAmount;
                                 player.AmmunitionAmmountList[Weapon.WeaponTypes.maschinensprache] = game.weapon.MaschinenspracheAmmoAmount;
+
+                                KonsoleLog.AddFirst("Munition aufgefuellt");
                                 break;
 
                             case "unlimitedammo":
                                 bool UnlimitedAmmoArg = bool.Parse(Argument);
                                 game.player.HasUnlimitedAmmo = UnlimitedAmmoArg;
+
+                                KonsoleLog.AddFirst("Unlimited Ammo: " + UnlimitedAmmoArg);
                                 break;
 
                             case "setdamageboost":
                                 int boost = int.Parse(Argument);
                                 game.player.Damageboost = boost;
+
+                                KonsoleLog.AddFirst("Damageboost auf " + boost + " gesetzt");
                                 break;
 
                             case "killall":
                                 game.AndroidsList.Clear();
                                 game.iOSList.Clear();
                                 game.WindowsList.Clear();
+
+                                KonsoleLog.AddFirst("Alle gegner getoetet");
                                 break;
 
                             case "fastshoot":
                                 bool FastshootArg = bool.Parse(Argument);
                                 game.player.FastshootEnabled = FastshootArg;
+
+                                KonsoleLog.AddFirst("Fastshoot: " + FastshootArg);
                                 break;
 
                             default:
+
+                                KonsoleLog.AddFirst("Befehl nicht gefunden!");
                                 break;
                         }
                     }
@@ -153,19 +184,40 @@ namespace ProjectWhitespace
 
         public void Draw(SpriteBatch spriteBatch)
         {
+            // Konsole beenden, falls nicht aktiv.
+            if (!IsActive)
+            {
+                return;
+            }
+
+            // <== Konsole AKTIV ==>
+            
             GraphicsDevice graphicsDevice = spriteBatch.GraphicsDevice;
             int ConsoleHeight = (int)(graphicsDevice.PresentationParameters.BackBufferHeight * 0.33f);
             int ConsoleWidth = graphicsDevice.PresentationParameters.BackBufferWidth;
 
-            if(IsActive)
-            {
-                // Transparenter Hintergrund für Konsole zeichnen
-                Texture2D texture;
-                texture = new Texture2D(graphicsDevice, 1, 1);
-                texture.SetData(new Color[] { Color.DarkSlateGray });
-                spriteBatch.Draw(texture,new Rectangle(0,0,ConsoleWidth,ConsoleHeight), new Color(0,0,0,128));
+             // Transparenter Hintergrund für Konsole zeichnen
+            Texture2D texture;
+            texture = new Texture2D(graphicsDevice, 1, 1);
+            texture.SetData(new Color[] { Color.DarkSlateGray });
+            spriteBatch.Draw(texture, new Rectangle(0, 0, ConsoleWidth, ConsoleHeight), new Color(0, 0, 0, 128));
 
-                spriteBatch.DrawString(this.ConsoleFont, aktCommand, new Vector2(10, 100), Color.GhostWhite);
+            spriteBatch.DrawString(this.ConsoleFont, aktCommand, new Vector2(10, ConsoleHeight - 20), Color.GhostWhite);
+
+            for(int i = KonsoleLog.Count; i > 0; i--)
+            {
+                if(ConsoleHeight - 40 - (25*i) <= 0)
+                {
+                    KonsoleLog.RemoveLast();
+                }
+            }
+
+            int linecount = 0;
+            // Konsolenlog ausgeben
+            foreach(string line in KonsoleLog)
+            {
+                spriteBatch.DrawString(this.ConsoleFont, line, new Vector2(10, ConsoleHeight - 40 - (25 * linecount)), Color.GhostWhite);
+                linecount++;
             }
         }
 
