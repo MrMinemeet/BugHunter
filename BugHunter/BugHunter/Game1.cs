@@ -68,15 +68,15 @@ namespace BugHunter
         // Gegner
         int MaxEnemies = 1;
 
-        List<Android> AndroidsList = new List<Android>();
+        public List<Android> AndroidsList = new List<Android>();
         int AndroidHealth = 30;
         int AndroidDamage = 1;
 
-        List<Windows> WindowsList = new List<Windows>();
+        public List<Windows> WindowsList = new List<Windows>();
         int WindowsHealth = 30;
         int WindowsDamage = 1;
 
-        List<iOS> iOSList = new List<iOS>();
+        public List<iOS> iOSList = new List<iOS>();
         int iOSHealth = 30;
         int iOSDamage = 1;
 
@@ -165,10 +165,10 @@ namespace BugHunter
                 PreferredBackBufferHeight = settings.resolutionHeight,
                 IsFullScreen = settings.IsFullscreen
             };
-            IsMouseVisible = settings.IsMouseVisible;
-            
+
             graphics.SynchronizeWithVerticalRetrace = true;
-            // IsFixedTimeStep = false;
+
+            IsMouseVisible = settings.IsMouseVisible;
             Content.RootDirectory = "Content";
 
             Thread.CurrentThread.Name = "MainThread";
@@ -247,6 +247,7 @@ namespace BugHunter
             catch (ContentLoadException e)
             {
                 logger.Log("Beim Player Sounds laden ist ein Fehler aufgetreten", Thread.CurrentThread.Name, "Error");
+                Console.WriteLine(e.StackTrace);
                 this.Exit();
             }
 
@@ -266,6 +267,7 @@ namespace BugHunter
             catch (ContentLoadException e)
             {
                 logger.Log("Beim Player Sounds laden ist ein Fehler aufgetreten", Thread.CurrentThread.Name, "Error");
+                Console.WriteLine(e.StackTrace);
                 this.Exit();
             }
 
@@ -285,6 +287,7 @@ namespace BugHunter
             catch (ContentLoadException e)
             {
                 logger.Log("Beim Player Sounds laden ist ein Fehler aufgetreten", Thread.CurrentThread.Name, "Error");
+                Console.WriteLine(e.StackTrace);
                 this.Exit();
             }
 
@@ -300,6 +303,7 @@ namespace BugHunter
             catch (ContentLoadException e)
             {
                 logger.Log("Beim Gegner Sounds laden ist ein Fehler aufgetreten", Thread.CurrentThread.Name, "Error");
+                Console.WriteLine(e.StackTrace);
                 this.Exit();
             }
 
@@ -312,6 +316,7 @@ namespace BugHunter
             catch (ContentLoadException e)
             {
                 logger.Log("Beim Schriftarten laden ist ein Fehler aufgetreten", Thread.CurrentThread.Name, "Error");
+                Console.WriteLine(e.StackTrace);
                 this.Exit();
             }
 
@@ -404,7 +409,7 @@ namespace BugHunter
             GameConsole.Update(gameTime);
 
             // Falls eine Internetverbindung besteht und mehr als 120 seit dem letzen Request vergangen sind, wird geschaut ob eine neue Version verfügbar ist
-            if(settings.HasInternetConnection && gameTime.TotalGameTime.TotalSeconds - requests.LastAvailibleVersionCheck >= 60)
+            if (settings.HasInternetConnection && gameTime.TotalGameTime.TotalSeconds - requests.LastAvailibleVersionCheck >= 60)
             {
                 requests.GetLatestAvailableVersion(gameTime);
             }
@@ -897,8 +902,7 @@ namespace BugHunter
                     if (CurrentGameState == GameState.Paused)
                     {
                         spriteBatch.Draw(pauseScreen, new Vector2(player.camera.Position.X, player.camera.Position.Y));
-
-
+                        
                         spriteBatch.DrawString(MenuFont, "PAUSE", new Vector2(player.Position.X - 100, player.Position.Y - 64), Color.White);
                         spriteBatch.DrawString(MenuFont, Texttable_DE.Stats_Highscore + gameStats.HighScore, new Vector2(player.camera.Position.X + 725, player.camera.Position.Y), Color.White);
                     }
@@ -1075,13 +1079,20 @@ namespace BugHunter
             AndroidDamage = 1;
             WindowsHealth = 30;
             WindowsDamage = 1;
+            iOSHealth = 30;
+            iOSDamage = 1;
             Score = 0;
 
             weapon = new Weapon();
             player.Reset(MapArray);
 
+            // Powerups löschen
+            Powerups.RemoveRange(0,Powerups.Count);
+
+            // Gegner löschen
             AndroidsList.RemoveRange(0, AndroidsList.Count);
             WindowsList.RemoveRange(0, WindowsList.Count);
+            iOSList.RemoveRange(0, iOSList.Count);
         }
 
         /// <summary>

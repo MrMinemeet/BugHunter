@@ -665,6 +665,7 @@ namespace BugHunter
                 catch(ThreadInterruptedException e)
                 {
                     game.logger.Log("Thread wird beendet", Thread.CurrentThread.Name, "Debug");
+                    Console.WriteLine(e.StackTrace);
                     break;
                 }
             }
